@@ -4,7 +4,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-ㅣㅣㅏ;ㅣ
 <style type="text/css">
 	 body {
         margin: 0px;
@@ -229,6 +228,7 @@
 <body>
 <!--  지우는 거 자제해달라..싫어 --> 
 <!-- 입벌려 빅맵들어갑니다 -->
+<!-- 최유정 깃 처음  -->
 
 	<!-- <header id= header>
         <img class="mainlogo" alt="logo" src="img/mainicon.png">
