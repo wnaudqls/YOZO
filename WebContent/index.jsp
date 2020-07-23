@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-ㅣㅣㅏ;ㅣ
+명빈쓰
 <style type="text/css">
 	 body {
         margin: 0px;
