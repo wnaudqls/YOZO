@@ -15,7 +15,7 @@
         }
    
     header{
-        margin:0px;1
+        margin:0px;
     }
 
     #header{
