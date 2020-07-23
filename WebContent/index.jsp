@@ -5,6 +5,9 @@
 <head>
 <meta charset="UTF-8">
 <title>메인 페이지</title>
+
+명빈쓰
+
 <style type="text/css">
 	 body {
         margin: 0px;
