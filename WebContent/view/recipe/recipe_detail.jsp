@@ -47,7 +47,7 @@
 
 </head>
 <body>
-<%@ include file="./form/header.jsp" %>
+<%@ include file="../form/header.jsp" %>
 <!-- 레시피 정보 --> 
 	<div id="title_img">
 		<img alt="title_img" src="./img/img04.png">
@@ -124,7 +124,7 @@
 
 
 
-<%@ include file="./form/footer.jsp" %>
+<%@ include file="../form/footer.jsp" %>
 </body>
 </html>
 

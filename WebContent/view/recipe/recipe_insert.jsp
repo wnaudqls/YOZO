@@ -68,7 +68,7 @@
 
 </head>
 <body>
-<%@ include file="./form/header.jsp" %>
+<%@ include file="../form/header.jsp" %>
 <!-- 상단부 -->
 	<div id="upload_title">
 		<input type="button" value="사진업로드" onclick="#">
@@ -190,7 +190,7 @@
 
 
 
-<%@ include file="./form/footer.jsp" %>
+<%@ include file="../form/footer.jsp" %>
 </body>
 </html>
 

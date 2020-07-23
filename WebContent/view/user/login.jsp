@@ -21,7 +21,7 @@
    </style>
 </head>
 <body>
-<%@ include file="./form/header.jsp" %>
+<%@ include file="../form/header.jsp" %>
 
    <div class="login">
    <br>
@@ -39,7 +39,7 @@
       <a href="join.jsp">회원가입하기</a> <br>
    
    </div>
-<%@ include file="./form/footer.jsp" %>
+<%@ include file="../form/footer.jsp" %>
 
 </body>
 </html>
