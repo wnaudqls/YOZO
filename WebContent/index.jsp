@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>요리조리 ㄴ개같은거 </title>
+<title>메인 페이지</title>
 <style type="text/css">
 	 body {
         margin: 0px;
@@ -287,38 +287,7 @@
           <br>
        </div>
     </footer> -->
-    나도가자123123123 난 개병ㅇ시닌이ㅏㅌ츠프ㅏㅣ
-    테스트 가자아
-    빅맥들어갑니다 베토디..
-<<<<<<< HEAD
-    불고기버거
-=======
-    다시 한 번 .......보냅니다....
->>>>>>> refs/remotes/origin/yujeong_love
-
------
-<<<<<<< HEAD
-처음부터 다시 시작!!!
----------------
-유정가지에서 수정을 해씁니다
-=======
-처음부터 다시 시작!!! + 덧붙였어  유정이가 수정 (마스터에서)
->>>>>>> branch 'master' of https://github.com/shm1113/YORIZORI.git
-수정을 한번합니다
-
-
--------
-진짜 마지막
-
-----
-헷갈리니까 덧붙이세요~
-<<<<<<< HEAD
-집중
-=======
-----
-찡짜!!!
->>>>>>> refs/remotes/origin/yujeong_love
-팡팡파라바라팡팡팡
+  
 </body>
 <%@ include file="../../form/footer.jsp" %>
 </html>
