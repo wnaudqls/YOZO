@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="member">
+
+<resultMap id="memberResultMap" type="memberDto">
+	<result property="member_id" column="member_id"/>
+	<result property="member_pw" column="member_pw"/>
+	<result property="member_name" column="member_name"/>
+	<result property="member_nick" column="member_nick"/>
+	<result property="member_birth" column="member_birth"/>
+	<result property="member_email" column="member_email"/>
+	<result property="member_enabled" column="member_enabled"/>
+	<result property="member_phone" column="member_phone"/>
+	<result property="member_addr" column="member_addr"/>
+	<result property="member_role" column="member_role"/>
+</resultMap>
+
+	<select id="selectList" resultMap="memberResultMap">
+		SELECT MEMBER_ID, MEMBER_PW, MEMBER_NAME, MEMBER_NICK, MEMBER_BIRTH,
+			   MEMBER_EMAIL, MEMBER_ENABLED, MEMBER_PHONE, MEMBER_ADDR, MEMBER_ROLE
+		FROM MEMBER	   
+	</select>
+	
+	
+	<select id="selectOne" parameterType="int" resultType="memberDto">
+		SELECT MEMBER_ID, MEMBER_PW, MEMBER_NAME, MEMBER_NICK, MEMBER_BIRTH,
+			   MEMBER_EMAIL, MEMBER_ENABLED, MEMBER_PHONE, MEMBER_ADDR, MEMBER_ROLE
+		FROM MEMBER
+		WHERE MEMBER_ID = #{MEMBER_ID}
+	</select>
+	
+	
+	<insert id="insert" parameterType="memberDto">
+		INSERT INTO MEMBER
+		VALUES(#{MEMBER_ID},#{MEMBER_PW},#{MEMBER_NAME},#{MEMBER_NICK},#{MEMBER_BIRTH},
+		       #{MEMBER_EMAIL},#{MEMBER_ENABLED},#{MEMBER_PHONE},#{MEMBER_ADDR},#{MEMBER_ROLE})
+	</insert>
+	
+	
+	<update id="update" parameterType="memberDto">
+		UPDATE MEMBER 
+		SET MEMBER_PW = #{MEMBER_PW}, MEMBER_ADDR = #{MEMBER_ADDR},
+		    MEMBER_PHONE = #{MEMBER_PHONE}, MEMBER_NICK = #{MEMBER_NICK}
+		WHERE MEMBER_ID = #{MEMBER_ID}    
+	</update>
+	
+	
+	<delete id="delete" parameterType="int">
+		DELETE FROM MEMBER
+		WHERE MEMBER_ID = #{MEMBER_ID}
+	</delete>
+
+</mapper>
+
