@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>메인 페이지</title>
 
-명빈쓰
+현승test
 
 <style type="text/css">
 	 body {
