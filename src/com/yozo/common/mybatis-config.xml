@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- MyBatis환경설정 파일  MyBatis가 JDBC 코드를 실행하는데 필요한 전반에 걸친 세팅을 한다
+		<순서 >
+		TypeAlias설정: 사용할 모델 클래스에 대한 별칭 설정
+		DB 연동을 위한 설정 : DataBase에 어떻게 접속할 것인지에 대한 설정 <environments>
+		Mapper설정 파일 등록 : 매핑 설정이 어디 있는지  -->
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+		<!-- DB접속정보 값을 가지고 있는 파일 설정 -->
+	<properties resource="com/yozo/common/db/properties"/>	
+	
+	
+		<!-- 모델(DTO)을 연결해주는 별칭을 설정한다. <mapper/>영역에서 전역적으로 사용할 수 있다 -->
+	<typeAliases>
+		<typeAlias alias="DTO경로" type="별칭"/>
+	</typeAliases>
+	
+	
+	
+		<!-- DB접속 정보 셋팅 -->
+	<environments default="development">
+		<environment id="development">
+				<!-- 트랜젝션 설정,Mybatis는 transactionManager로 트랜잭션을 
+				관리하므로 Autocommit에 대한 설정을 할 수 있다. -->
+			<transactionManager type="JDBC"/>
+			
+			<dataSource type="POOLED">
+					<!-- JDBC 드라이버의 패키지 경로를 포함한 결제 자바 클래스명 -->
+				<property name="driver" value="${driver}"/>
+					<!-- 데이터베이스 인스턴스에 대한 JDBC URL -->
+				<property name="url" value="${url}"/>
+					<!-- 데이터베이스에 로그인 할 때 사용할 사용자명 -->
+				<property name="username" value="${username}"/>
+					<!-- 데이터베이스에 로그인 할 때 사용할 패스워드 -->
+				<property name="password" value="${password}"/>
+			</dataSource>
+		</environment>	
+	</environments>
+	
+			<!-- mapper추가 -->
+		<mappers>
+			<mapper resource=""/>
+		</mappers>
+	
+	
+</configuration>
