@@ -242,7 +242,7 @@ h2 {
 
 </head>
 
-<%@ include file="../../form/header.jsp" %>
+<%@ include file="../form/header.jsp" %>
 
 <body>
 	<main>
@@ -370,7 +370,7 @@ h2 {
 		</section>
 	</main>
 	<!-- 푸터 -->
-<%@ include file="../../form/footer.jsp" %>
+<%@ include file="../form/footer.jsp" %>
 
 
 
