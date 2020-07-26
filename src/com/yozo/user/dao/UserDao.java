@@ -22,7 +22,7 @@ public class UserDao extends SqlMapConfig{
 		
 		
 
-		session = getSqlSessionFactory().openSession(true);
+		session = getSqlSEssionFactory().openSession(true);
 		rdto = session.selectOne(namespace+"login",dto);
 		System.out.println("아무거나 ..");
 		session.close();
