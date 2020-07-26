@@ -4,10 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-
-ㅣㅣㅏ;ㅣ
-sadfad
-
+<title>YoriZori</title>
 <style type="text/css">
 	 body {
         margin: 0px;
@@ -228,8 +225,11 @@ sadfad
 
 </script>
 </head>
-<%@ include file="../../form/header.jsp" %>
+
+
+
 <body>
+<%@ include file="./view/form/header.jsp" %>
 <!--  지우는 거 자제해달라..싫어 --> 
 <!-- 입벌려 빅맵들어갑니다 -->
 
@@ -290,7 +290,7 @@ sadfad
           <br>
        </div>
     </footer> -->
-  
+  <%@ include file="./view/form/footer.jsp" %>
 </body>
-<%@ include file="../../form/footer.jsp" %>
+
 </html>

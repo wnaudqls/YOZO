@@ -9,12 +9,12 @@
 <configuration>
 
 		<!-- DB접속정보 값을 가지고 있는 파일 설정 -->
-	<properties resource="com/yozo/common/db/properties"/>	
+	<properties resource="com/yozo/common/db.properties"/>	
 	
 	
 		<!-- 모델(DTO)을 연결해주는 별칭을 설정한다. <mapper/>영역에서 전역적으로 사용할 수 있다 -->
 	<typeAliases>
-		<typeAlias alias="DTO경로" type="별칭"/>
+		<typeAlias type="com.yozo.user.dto.MemberDto" alias="memberDto"/>
 	</typeAliases>
 	
 	
@@ -41,7 +41,7 @@
 	
 			<!-- mapper추가 -->
 		<mappers>
-			<mapper resource=""/>
+			<mapper resource="com/yozo/user/db/mybatis-mapper.xml"/>
 		</mappers>
 	
 	

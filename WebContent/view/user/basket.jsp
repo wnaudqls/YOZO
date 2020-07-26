@@ -54,7 +54,7 @@ body h1{
 </style>
 
 </head>
-<%@ include file="../../form/header.jsp" %>
+<%@ include file="../form/header.jsp" %>
 <body>
 	<h1>장바구니</h1>
 
@@ -101,7 +101,7 @@ body h1{
 
 
 	<!-- 푸터 -->
-<%@ include file="../../form/footer.jsp" %>
+<%@ include file="../form/footer.jsp" %>
 
 
 
