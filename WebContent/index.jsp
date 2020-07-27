@@ -229,7 +229,7 @@
 
 
 <body>
-<%@ include file="./view/form/header.jsp" %>
+<%@ include file="./form/header.jsp" %>
 <!--  지우는 거 자제해달라..싫어 --> 
 <!-- 입벌려 빅맵들어갑니다 -->
 
@@ -264,12 +264,12 @@
         <button class="btn">검색</button>
         
     </div>
-    <video oncontextmenu="return false;" id="myVideo" height = "600"width="100%" autoplay muted loop poster="img/캡파이리.jpg">
-        <source src="img/main_video.mp4" type="video/mp4">
+    <video oncontextmenu="return false;" id="myVideo" height = "600"width="100%" autoplay muted loop poster="/YORIZORI/img/캡파이리.jpg">
+        <source src="/YORIZORI/img/main_video.mp4" type="video/mp4">
     </video>
      <body id = body>
        <section class ="maincontent1">
-            <img class="mainlogo" alt="logo" src="/picture/mainicon.png">
+            <img class="mainlogo" alt="logo" src="/YORIZORI/img/mainicon.png">
        </section>
        <section>
       
@@ -290,7 +290,7 @@
           <br>
        </div>
     </footer> -->
-  <%@ include file="./view/form/footer.jsp" %>
+  <%@ include file="./form/footer.jsp" %>
 </body>
 
 </html>
