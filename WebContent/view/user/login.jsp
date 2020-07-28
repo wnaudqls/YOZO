@@ -23,7 +23,7 @@
    </style>
 </head>
 <body>
-<%@ include file="../form/header.jsp" %>
+<%@ include file="../../form/header.jsp" %>
 
    <div class="login">
    <br>
@@ -31,7 +31,7 @@
    <br>
    <br>
       <h1>로그인</h1>
-	<form action="../../user.do" method="post">
+	<form action="../../../../user.do" method="post">
 		<input type="hidden" name="command" value="login">
 		<input type="text" name="id" placeholder="아이디를 입력하세요" > <br>
 		<input type="password" name="pw" placeholder="비밀번호를 입력하세요"> <br><br>
@@ -44,7 +44,7 @@
 		<input type="submit" value="로그인"> 
 	</form>
    </div>
-<%@ include file="../form/footer.jsp" %>
+<%@ include file="../../form/footer.jsp" %>
 
 </body>
 </html>
