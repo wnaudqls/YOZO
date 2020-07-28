@@ -1,6 +1,7 @@
 package com.yozo.user.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -22,11 +23,11 @@ public class UserController extends HttpServlet {
     public UserController() {
     }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doPost(request, response);
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doGet(request, response);
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
 		
@@ -36,36 +37,109 @@ public class UserController extends HttpServlet {
 		String command = request.getParameter("command");
 		UserDao dao = new UserDao();
 		
-		if(command.equals("login")) {
+		
+
+		if(command.equals("main")) {
+		
+			RequestDispatcher dispatch = request.getRequestDispatcher("view/main/main.jsp");
+			dispatch.forward(request, response);	// 3 code이름을 받아온 값 info에 전달(option에서 받아온 주소)
 			
+		} else if(command.equals("loginform")) {
+			
+			RequestDispatcher dispatch = request.getRequestDispatcher("view/user/login.jsp");
+			dispatch.forward(request, response);	// 3 code이름을 받아온 값 info에 전달(option에서 받아온 주소)
+			
+		} else if (command.equals("login")) {
+			System.out.println("오긴오니");
 			String id = request.getParameter("id");
 			String pw = request.getParameter("pw");
 			
-			System.out.println("좀 되세요 싸발1");
 			
 			MemberDto dto = new MemberDto();
 			dto.setMember_id(id);
 			dto.setMember_pw(pw);
-			
+			System.out.println("id = " +id);
 			
 			MemberDto rdto = dao.login(id, pw);
-			System.out.println("좀 되세요 싸발2");
+			
+			System.out.println(rdto);
+			
+			
 			if (rdto != null) {
-				session.setAttribute("dto", rdto);
+				session.setAttribute("dto", rdto);		
 				session.setMaxInactiveInterval(10*60);
 				
-				if (rdto.getMember_role().equals("ADMIN")) {
-					response.sendRedirect("index.jsp");
-				}
+				RequestDispatcher dispatch = request.getRequestDispatcher("user.do?command=main");
+				dispatch.forward(request, response);
+				
+				/* 사용자 권한 관련 if문
+				 * if (rdto.getMember_role().equals("ADMIN")) {
+				 * response.sendRedirect("index.jsp?"); }
+				 */
+				
+				
 				
 			} else {
-				session = request.getSession();
-				session.invalidate();
-				System.out.println("로그아웃");
+				System.out.println("로그인 실패");
+				
+				response.sendRedirect("user.do?command=loginform");
+				PrintWriter out = response.getWriter();
+				out.println("<script>alert('계정이 등록 되었습니다'); </script>");
+
+
+				/*
+				 * out.println(); out.
+				 * println("<html><head></head><script type=\"text/javascript\" src=\"https://code.jquery.com/jquery-3.5.1.min.js\"></script><script type=\"text/javascript\">"
+				 * ); out.println("alert('아이디 or 비밀번호를 확인해 주세요')");
+				 * out.println("</script></html>");
+				 */
+
+				
 			}
 			
-			RequestDispatcher dispatch = request.getRequestDispatcher("index.jsp");
-			dispatch.forward(request, response);	// 3 code이름을 받아온 값 info에 전달(option에서 받아온 주소)
+			
+			/* 로그아웃
+			 * else { session = request.getSession(); session.invalidate();
+			 * System.out.println("로그아웃"); }
+			 */
+			
+			
+			
+		} else if (command.equals("joinform")) {
+			
+			response.sendRedirect("view/user/join.jsp");
+			
+		} else if (command.equals("idcheck")) {
+			// 1.
+			String id = request.getParameter("id");
+			
+			System.out.println(id);
+			// 2.
+			MemberDto dto = dao.idCheck(id);
+			System.out.println("잘왔니??"+dto);
+			boolean idnotused = true;
+			if (dto != null) {
+				idnotused = false;
+			}
+			// 3.
+			// 4.
+			response.sendRedirect("/YORIZORI/view/user/idcheck.jsp?idnotused="+idnotused);
+		
+		} else if (command.equals("nickcheck")) {
+			
+			String nick = request.getParameter("nick");
+			
+			System.out.println(nick);
+			// 2.
+			MemberDto dto = dao.nickCheck(nick);
+			System.out.println("잘왔니??"+dto);
+			boolean nicknotused = true;
+			if (dto != null) {
+				nicknotused = false;
+			}
+			// 3.
+			// 4.
+			response.sendRedirect("/YORIZORI/view/user/nickcheck.jsp?nicknotused="+nicknotused);
 			
 		}
 		
@@ -73,12 +147,6 @@ public class UserController extends HttpServlet {
 		
 		
 		
-		if(command.equals("main")) {
-		
-			RequestDispatcher dispatch = request.getRequestDispatcher("index.jsp");
-			dispatch.forward(request, response);	// 3 code이름을 받아온 값 info에 전달(option에서 받아온 주소)
-			
-		}
 	}
 
 }

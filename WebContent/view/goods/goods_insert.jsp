@@ -43,6 +43,7 @@ section {
 
 <%@ include file="../../form/header.jsp"%>
 
+
 <body>
 <section>
 <form action = "<%request.getContextPath(); %>/YORIZORI/goodscontroller_two.do" method="post">

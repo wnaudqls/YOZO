@@ -53,7 +53,7 @@
 
 </head>
 <body>
-<%@ include file="../form/header.jsp" %>
+<%@ include file="../../form/header.jsp" %>
 
 <div id="schedule">
 <table id=schedule_table border="1">
@@ -89,10 +89,10 @@
 
 
 
+<%@ include file="../../form/footer.jsp" %>
 
 
 
-<%@ include file="../form/footer.jsp" %>
 </body>
 </html>
 

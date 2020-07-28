@@ -13,26 +13,30 @@
 <style type="text/css">
    /*푸터*/
       footer {
-      		clear:both;
+      	/* 	clear:both; */
           position: static;
            width: 100%; 
           /* bottom: 50px; */
-           margin-top: -50px;
-          border-top: 1px solid black;
+        /*   margin-top: -50px; */
+          /* border-top: 1px solid black; */
           background-color: silver;
           text-align: center;
+          border: 0px;
+          margin:0px;
+          padding:0px;
          
       }
       
       #info {
          text-align: center;
          display: inline-block;
+                   border: 0px;
+          margin:0px;
+          padding:0px;
       }
    /*푸터*/
    </style>
 </head>
-<body>
-
 <footer>
       <div id="info">
          <b>CREATORS</b> <br>
@@ -47,6 +51,4 @@
          <br>
       </div>
    </footer>
-
-</body>
 </html>
