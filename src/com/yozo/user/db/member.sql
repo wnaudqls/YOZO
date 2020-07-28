@@ -22,4 +22,6 @@ CREATE TABLE MEMBER(
 SELECT * FROM MEMBER;
 
 INSERT INTO MEMBER
+                                    
 VALUES('AAA','AAA','AAA','AAA','AAA@AAA',NULL,TRUE,'N','123','YONGIN','회원')
+
