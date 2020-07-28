@@ -45,12 +45,31 @@
 #pagination a {display:inline-block;margin-right:10px;}
 #pagination .on {font-weight: bold; cursor: default;color:#777;}
 </style>
- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5fd97c285bc2fd92bcc414317fce278e&libraries=services"></script>
+<body>
+ <div class="map_wrap">
+        <div id= "map" style= "width:100%; height:100%; position:relative; overflow:hidden;">
+        	ㄴㅇㄴㅇ
+        </div>
+        <div id="menu_wrap" class="bg_white">
+            <div class="option">
+                <div>
+                    <form onsubmit="searchPlaces(); return false;">
+                        키워드 : <input type="text" value="" id="keyword" size="15" placeholder="ex)태평1동 마트"> 
+                        <button type="submit">검색하기</button> 
+                    </form>
+                </div>
+            </div>
+            <hr>
+            <ul id="placesList"></ul>
+            <div id="pagination"></div>
+        </div>
+    </div>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5fd97c285bc2fd92bcc414317fce278e&libraries=services"></script>
  <script>
     // 마커를 담을 배열입니다
     var markers = [];
     
-    var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+    var mapContainer = document.getElementById("map"), // 지도를 표시할 div 
         mapOption = {
             center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
             level: 3 // 지도의 확대 레벨
@@ -264,24 +283,6 @@
         }
     }
 </script>
-<body>
- <div class="map_wrap">
-        <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
-    
-        <div id="menu_wrap" class="bg_white">
-            <div class="option">
-                <div>
-                    <form onsubmit="searchPlaces(); return false;">
-                        키워드 : <input type="text" value="" id="keyword" size="15" placeholder="ex)태평1동 마트"> 
-                        <button type="submit">검색하기</button> 
-                    </form>
-                </div>
-            </div>
-            <hr>
-            <ul id="placesList"></ul>
-            <div id="pagination"></div>
-        </div>
-    </div>
 </body>
 <%@include file="../../form/footer.jsp" %>
 </html>

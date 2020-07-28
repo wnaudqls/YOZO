@@ -10,8 +10,10 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
 		<attributes>
+			<attribute name="module" value="true"/>
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="WebContent/form/footer.jsp"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

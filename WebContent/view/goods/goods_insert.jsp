@@ -41,7 +41,11 @@ section {
 
 </head>
 
+<<<<<<< HEAD
 <%@ include file="../../form/header.jsp"%>
+=======
+<%@ include file="../../form/header.jsp" %>
+>>>>>>> branch 'develop' of https://github.com/shm1113/YOZO.git
 
 <body>
 <section>
@@ -70,9 +74,11 @@ section {
 			<input class="btn" type="button" value="취소"/>
 			<input class="btn" type="submit" value="등록"/>
 		</div>
+
 	</div>
 </form>
 </section>
 	<%@ include file="../../form/footer.jsp"%>
+
 </body>
 </html>

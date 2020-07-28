@@ -95,7 +95,7 @@ section {
 
 </style>
 <body>
-	<%@ include file="../form/header.jsp"%>
+	<%@ include file="../../form/header.jsp"%>
 	<section>
 		<div id="title">작성자 님의 레시피</div>
 		<div id="btns">
@@ -191,7 +191,7 @@ section {
 		</div> -->
 
 	</section>
-	<%@ include file="../form/footer.jsp"%>
+	<%@ include file="../../form/footer.jsp"%>
 
 </body>
 </html>
