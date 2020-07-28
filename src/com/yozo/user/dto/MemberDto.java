@@ -6,7 +6,6 @@ public class MemberDto {
 	private String member_pw;
 	private String member_name;
 	private String member_nick;
-	private int member_birth;
 	private String member_email;
 	private String member_enabled;
 	private String member_phone;
@@ -17,14 +16,13 @@ public class MemberDto {
 		
 	}
 	public MemberDto(String member_id, String member_pw, String member_name,
-			String member_nick, int member_birth, String member_email,
+			String member_nick,  String member_email,
 			String member_enabled, String member_phone, String member_addr, String member_role) {
 		
 		this.member_id = member_id;
 		this.member_pw = member_pw;
 		this.member_name = member_name;
 		this.member_nick = member_nick;
- 		this.member_birth = member_birth;
 		this.member_email = member_email;
 		this.member_enabled = member_enabled;
 		this.member_phone = member_phone;
@@ -56,12 +54,6 @@ public class MemberDto {
 	public void setMember_nick(String member_nick) {
 		this.member_nick = member_nick;
 	}
-	public int getMember_birth() {
-		return member_birth;
-	}
-	public void setMember_birth(int member_birth) {
-		this.member_birth = member_birth;
-	}
 	public String getMember_email() {
 		return member_email;
 	}
@@ -92,8 +84,13 @@ public class MemberDto {
 	public void setMember_role(String member_role) {
 		this.member_role = member_role;
 	}
+	@Override
+	public String toString() {
+		return "MemberDto [member_id=" + member_id + ", member_pw=" + member_pw + ", member_name=" + member_name
+				+ ", member_nick=" + member_nick + ", member_email=" + member_email + ", member_enabled="
+				+ member_enabled + ", member_phone=" + member_phone + ", member_addr=" + member_addr + ", member_role="
+				+ member_role + "]";
+	}
 	
-	
-	
-	
+		
 }

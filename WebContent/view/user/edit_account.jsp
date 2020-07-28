@@ -93,7 +93,7 @@ section {
 	});
 </script>
 <body>
-	<%@ include file="../form/header.jsp"%>
+	<%@ include file="../../form/header.jsp"%>
 	<section>
 		
 		<!--팝업 -->
@@ -174,7 +174,7 @@ section {
 			</div>
 		</div>
 	</section>
-	<%@ include file="../form/footer.jsp"%>
+	<%@ include file="../../form/footer.jsp"%>
 
 </body>
 </html>

@@ -120,7 +120,7 @@
 	</style>
 </head>
 <body>
-<%@ include file="../form/header.jsp" %>
+<%@ include file="../../form/header.jsp" %>
 <br>
 <br>
 <br>
@@ -162,7 +162,7 @@
 	<br>
 	<br>
 	<br>
-<%@ include file="../form/footer.jsp" %>
+<%@ include file="../../form/footer.jsp" %>
 
 </body>
 </html>	

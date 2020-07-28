@@ -116,6 +116,7 @@
 
 
 	</section>
+	
 </main>
 <%@ include file="../../form/footer.jsp" %>
 </body>

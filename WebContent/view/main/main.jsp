@@ -168,7 +168,8 @@
 
     .show {display:block;}
 </style>
-<script type="text/javascript" src="../resouces/js/jquery-3.5.1.min.js"></script>
+<!-- <script type="text/javascript" src="../resouces/js/jquery-3.5.1.min.js"></script> -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js" >\</script>
 <script type="text/javascript">
 
 	$(document).ready(function() {
@@ -229,7 +230,7 @@
 
 
 <body>
-<%@ include file="../form/header.jsp" %>
+<%@ include file="../../form/header.jsp" %>
 <!--  지우는 거 자제해달라..싫어 --> 
 <!-- 입벌려 빅맵들어갑니다 -->
 
@@ -290,7 +291,7 @@
           <br>
        </div>
     </footer> -->
-  <%@ include file="../form/footer.jsp" %>
+  <%@ include file="../../form/footer.jsp" %>
 </body>
 
 </html>

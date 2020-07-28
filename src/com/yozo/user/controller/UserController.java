@@ -50,7 +50,7 @@ public class UserController extends HttpServlet {
 			dispatch.forward(request, response);	// 3 code이름을 받아온 값 info에 전달(option에서 받아온 주소)
 			
 		} else if (command.equals("login")) {
-			
+			System.out.println("오긴오니");
 			String id = request.getParameter("id");
 			String pw = request.getParameter("pw");
 			
@@ -84,10 +84,15 @@ public class UserController extends HttpServlet {
 				
 				response.sendRedirect("user.do?command=loginform");
 				PrintWriter out = response.getWriter();
-				out.println();
-				out.println("<html><head></head><script type=\"text/javascript\">"); 
-				out.println("<h1>Hello, world</h1><p>this is sample servlet.</p>"); 
-				out.println("</script></html>");
+				out.println("<script>alert('계정이 등록 되었습니다'); </script>");
+
+
+				/*
+				 * out.println(); out.
+				 * println("<html><head></head><script type=\"text/javascript\" src=\"https://code.jquery.com/jquery-3.5.1.min.js\"></script><script type=\"text/javascript\">"
+				 * ); out.println("alert('아이디 or 비밀번호를 확인해 주세요')");
+				 * out.println("</script></html>");
+				 */
 
 				
 			}
