@@ -40,12 +40,8 @@ section {
 <script type="text/javascript" src="${pageContext.request.contextPath }/ckeditor/ckeditor.js "></script>
 
 </head>
-
-<<<<<<< HEAD
 <%@ include file="../../form/header.jsp"%>
-=======
-<%@ include file="../../form/header.jsp" %>
->>>>>>> branch 'develop' of https://github.com/shm1113/YOZO.git
+
 
 <body>
 <section>
