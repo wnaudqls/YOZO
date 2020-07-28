@@ -4,6 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<title>YoriZori</title>
+
 <style type="text/css">
 	 body {
         margin: 0px;
@@ -12,7 +14,7 @@
         }
    
     header{
-        margin:0px;1
+        margin:0px;
     }
 
     #header{
@@ -224,8 +226,11 @@
 
 </script>
 </head>
-<%@ include file="../../form/header.jsp" %>
+
+
+
 <body>
+<%@ include file="./form/header.jsp" %>
 <!--  지우는 거 자제해달라..싫어 --> 
 <!-- 입벌려 빅맵들어갑니다 -->
 
@@ -265,7 +270,7 @@
     </video>
      <body id = body>
        <section class ="maincontent1">
-            <img class="mainlogo" alt="logo" src="/picture/mainicon.png">
+            <img class="mainlogo" alt="logo" src="/YORIZORI/img/mainicon.png">
        </section>
        <section>
       
@@ -287,6 +292,7 @@
        </div>
     </footer> -->
 
+  <%@ include file="./form/footer.jsp" %>
 </body>
-<%@ include file="../../form/footer.jsp" %>
+
 </html>
