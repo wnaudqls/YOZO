@@ -138,6 +138,7 @@ window.onclick = function(event){
         }
     }
 }
+
 function dropuser(){
     document.getElementById("dropuser_content").classList.toggle("show")
 ;}
@@ -167,6 +168,7 @@ window.onclick = function(event){
                 <a href="">장바구니</a>
                 <a href="">우리집냉장고</a>
             </div>
+        </div>
     </header>      
          <nav id="icon">
             <img class="recipe" alt="logo" src="/picture/recipebookicon.png">

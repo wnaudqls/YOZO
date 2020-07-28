@@ -4,7 +4,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-ㅣㅣㅏ;ㅣ
 <style type="text/css">
 	 body {
         margin: 0px;
@@ -261,8 +260,8 @@
         <button class="btn">검색</button>
         
     </div>
-    <video oncontextmenu="return false;" id="myVideo" height = "600"width="100%" autoplay muted loop poster="img/캡파이리.jpg">
-        <source src="img/main_video.mp4" type="video/mp4">
+    <video oncontextmenu="return false;" id="myVideo" height = "600"width="100%" autoplay muted loop>
+        <source src="img/main/main_video.mp4" type="video/mp4">
     </video>
      <body id = body>
        <section class ="maincontent1">
@@ -287,34 +286,7 @@
           <br>
        </div>
     </footer> -->
-    나도가자123123123 난 개병ㅇ시닌이ㅏㅌ츠프ㅏㅣ
-    테스트 가자아
-    빅맥들어갑니다 베토디..
-    불고기버거
 
-
------
-
-처음부터 다시 시작!!!
----------------
-유정가지에서 수정을 해씁니다
-
-처음부터 다시 시작!!! + 덧붙였어  유정이가 수정 (마스터에서)
-
-수정을 한번합니다
-
-
--------
-진짜 마지막
-
-----
-헷갈리니까 덧붙이세요~
-
-집중
-
-----
-찡짜!!!
-팡팡파라바라팡팡팡
 </body>
 <%@ include file="../../form/footer.jsp" %>
 </html>
