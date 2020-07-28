@@ -1,9 +1,7 @@
 package com.yozo.user.dao;
 
-public class UserDao {
+import org.apache.ibatis.session.SqlSession;
 
-<<<<<<< HEAD
-=======
 import com.yozo.common.SqlMapConfig;
 import com.yozo.user.dto.MemberDto;
 
@@ -24,16 +22,61 @@ public class UserDao extends SqlMapConfig{
 		
 		
 
-		session = getSqlSEssionFactory().openSession(true);
+		session = getSqlSessionFactory().openSession(true);
 		rdto = session.selectOne(namespace+"login",dto);
-		System.out.println("아무거나 ..");
+		System.out.println(rdto);
 		session.close();
 		
 		
 		return rdto;
 	}
 	
+	public MemberDto idCheck(String member_id) {
+		
+		SqlSession session = null;
+		MemberDto rdto = null;
+		MemberDto dto = new MemberDto();
+		System.out.println("id어딧게"+member_id);
+		dto.setMember_id(member_id);
+		
+		
+		session = getSqlSessionFactory().openSession(true);
+		rdto = session.selectOne(namespace+"idcheck",dto);
+		
+		System.out.println("넌뭐니"+rdto);
+		session.close();
+		
+		
+		return rdto;
+	}
+	public MemberDto nickCheck(String member_nick) {
+		
+		SqlSession session = null;
+		MemberDto rdto = null;
+		MemberDto dto = new MemberDto();
+		System.out.println("id어딧게"+member_nick);
+		dto.setMember_nick(member_nick);
+		
+		
+		session = getSqlSessionFactory().openSession(true);
+		rdto = session.selectOne(namespace+"nickcheck",dto);
+		
+		System.out.println("넌뭐니"+rdto);
+		session.close();
+		
+		
+		return rdto;
+	}
+	
+	public MemberDto join(MemberDto dto) {
+		
+		SqlSession session = null;
+		
+		
+		
+		return null;
+	}
 	
 	
->>>>>>> branch 'develop' of https://github.com/shm1113/YOZO.git
+	
 }

@@ -4,20 +4,42 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="member">
 
-<resultMap id="memberResultMap" type="memberDto">
-	<result property="member_id" column="member_id"/>
-	<result property="member_pw" column="member_pw"/>
-	<result property="member_name" column="member_name"/>
-	<result property="member_nick" column="member_nick"/>
-	<result property="member_birth" column="member_birth"/>
-	<result property="member_email" column="member_email"/>
-	<result property="member_enabled" column="member_enabled"/>
-	<result property="member_phone" column="member_phone"/>
-	<result property="member_addr" column="member_addr"/>
-	<result property="member_role" column="member_role"/>
+<resultMap id="MemberResultMap" type="memberDto">
+	<result property="Member_id" column="Member_id"/>
+	<result property="Member_pw" column="Member_pw"/>
+	<result property="Member_name" column="Member_name"/>
+	<result property="Member_nick" column="Member_nick"/>
+	<result property="Member_email" column="Member_email"/>
+	<result property="Member_enabled" column="Member_enabled"/>
+	<result property="Member_phone" column="Member_phone"/>
+	<result property="Member_addr" column="Member_addr"/>
+	<result property="Member_role" column="Member_role"/>
 </resultMap>
 
-	<select id="selectList" resultMap="memberResultMap">
+	<select id="login" parameterType="memberDto" resultType="memberDto">
+			
+		SELECT MEMBER_ID, MEMBER_PW, MEMBER_NAME, MEMBER_NICK,
+		       MEMBER_EMAIL, MEMBER_ENABLED, MEMBER_PHONE, MEMBER_ADDR, MEMBER_ROLE	
+		FROM MEMBER
+		WHERE MEMBER_ID = #{member_id}
+		AND MEMBER_PW = #{member_pw}
+		
+	</select>
+	
+	<select id="idcheck" parameterType="memberDto" resultType="memberDto">
+	
+		SELECT * FROM MEMBER WHERE MEMBER_ID = #{member_id}
+	
+	</select>
+	
+	<select id="nickcheck" parameterType="memberDto" resultType="memberDto">
+	
+		SELECT * FROM MEMBER WHERE MEMBER_NICK = #{member_nick}
+	
+	</select>
+
+
+<!-- 	<select id="selectList" resultMap="MemberResultMap">
 		SELECT MEMBER_ID, MEMBER_PW, MEMBER_NAME, MEMBER_NICK, MEMBER_BIRTH,
 			   MEMBER_EMAIL, MEMBER_ENABLED, MEMBER_PHONE, MEMBER_ADDR, MEMBER_ROLE
 		FROM MEMBER	   
@@ -50,7 +72,7 @@
 	<delete id="delete" parameterType="int">
 		DELETE FROM MEMBER
 		WHERE MEMBER_ID = #{MEMBER_ID}
-	</delete>
+	</delete> -->
 
 </mapper>
 
