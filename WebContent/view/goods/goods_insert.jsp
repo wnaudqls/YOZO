@@ -71,9 +71,11 @@ section {
 			<input class="btn" type="button" value="취소"/>
 			<input class="btn" type="submit" value="등록"/>
 		</div>
+
 	</div>
 </form>
 </section>
 	<%@ include file="../../form/footer.jsp"%>
+
 </body>
 </html>
