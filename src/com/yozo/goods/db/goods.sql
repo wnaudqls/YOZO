@@ -1,7 +1,7 @@
 DROP TABLE GOODS CASCADE CONSTRAINT;
 
 CREATE TABLE GOODS(
-	GOODS_NO NUMBER PRIMARY KEY,
+	GOODS_NO NUMBER DEFAULT 1 PRIMARY KEY,
 	MEMBER_ID VARCHAR2(50) NOT NULL,
 	GOODS_TITLE VARCHAR2(100) NOT NULL UNIQUE,
 	GOODS_PRICE NUMBER NOT NULL UNIQUE,
@@ -13,7 +13,3 @@ CREATE TABLE GOODS(
 	ON DELETE CASCADE
 );
 --테이블정의서에서 GOODS_READCOUNT : 조회수 안 넣었습니다.
-select NVL(select max(member_no)+1,1) from goods
-
-insert into goods values(1,'e','e',2,2,'2','2',sysdate) 
-select NVL2(count(member_id),1,max(member_id)+1) from goods
