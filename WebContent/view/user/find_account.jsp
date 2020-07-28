@@ -48,7 +48,7 @@ section {
 	
 </style>
 <body>
-<%@ include file ="../form/header.jsp" %>
+<%@ include file ="../../form/header.jsp" %>
 <section>
 	<div class="find">
 		<div class="findmessage">
@@ -77,6 +77,6 @@ section {
 		
 	</div>
 </section>
-<%@ include file="../form/footer.jsp" %>
+<%@ include file="../../form/footer.jsp" %>
 </body>
 </html>
