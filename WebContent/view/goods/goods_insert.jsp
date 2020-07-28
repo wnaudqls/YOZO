@@ -40,6 +40,7 @@ section {
 <script type="text/javascript" src="${pageContext.request.contextPath }/ckeditor/ckeditor.js "></script>
 
 </head>
+
 <%@ include file="../../form/header.jsp"%>
 
 
