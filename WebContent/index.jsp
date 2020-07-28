@@ -4,9 +4,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<<<<<<< HEAD
 
 ㅣㅣㅏ;ㅣ
 sadfad
+=======
+<title>YoriZori</title>
+>>>>>>> branch 'develop' of https://github.com/shm1113/YOZO.git
 
 <style type="text/css">
 	 body {
@@ -230,6 +234,10 @@ sadfad
 </head>
 <%@ include file="../../form/header.jsp" %>
 <body>
+<<<<<<< HEAD
+=======
+<%@ include file="./form/header.jsp" %>
+>>>>>>> branch 'develop' of https://github.com/shm1113/YOZO.git
 <!--  지우는 거 자제해달라..싫어 --> 
 <!-- 입벌려 빅맵들어갑니다 -->
 
@@ -264,12 +272,12 @@ sadfad
         <button class="btn">검색</button>
         
     </div>
-    <video oncontextmenu="return false;" id="myVideo" height = "600"width="100%" autoplay muted loop poster="img/캡파이리.jpg">
-        <source src="img/main_video.mp4" type="video/mp4">
+    <video oncontextmenu="return false;" id="myVideo" height = "600"width="100%" autoplay muted loop>
+        <source src="img/main/main_video.mp4" type="video/mp4">
     </video>
      <body id = body>
        <section class ="maincontent1">
-            <img class="mainlogo" alt="logo" src="/picture/mainicon.png">
+            <img class="mainlogo" alt="logo" src="/YORIZORI/img/mainicon.png">
        </section>
        <section>
       
@@ -290,7 +298,12 @@ sadfad
           <br>
        </div>
     </footer> -->
+<<<<<<< HEAD
   
+=======
+
+  <%@ include file="./form/footer.jsp" %>
+>>>>>>> branch 'develop' of https://github.com/shm1113/YOZO.git
 </body>
 <%@ include file="../../form/footer.jsp" %>
 </html>
