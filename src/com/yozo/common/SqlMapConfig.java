@@ -9,17 +9,17 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 public class SqlMapConfig {
 
-	// static ï¿½ï¿½ï¿½ ï¿½Êµï¿½ï¿½ SQlSessionFactory typeï¿½ï¿½ï¿½ï¿½
+	// static ¸â¹ö ÇÊµå·Î SQlSessionFactory type¼±¾ð
 	private SqlSessionFactory sqlSessionFactory;
 
-	public SqlSessionFactory getSqlSessionFactory() {
+	public SqlSessionFactory getSqlSEssionFactory() {
 		String resource = "com/yozo/common/mybatis-config.xml";
 		Reader reader = null;
 
 		try {
 
 			reader = Resources.getResourceAsReader(resource);
-			// SqlSessionFactory ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½î³»ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Êµå¿¡ ï¿½ï¿½ï¿½ï¿½
+			// SqlSessionFactory °´Ã¼ÀÇ ÂüÁ¶°ªÀ» ¾ò¾î³»¼­ ¸â¹öÇÊµå¿¡ ÀúÀå
 			sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

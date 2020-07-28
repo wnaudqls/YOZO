@@ -155,7 +155,7 @@ body {
 }
 </style>
 
-<%@ include file="../form/header.jsp" %>
+<%@ include file="../../form/header.jsp" %>
 
 <body>
 	<main>
@@ -272,6 +272,6 @@ body {
 		</section>
 	</main>
 	<!-- 푸터 -->
-<%@ include file="../form/footer.jsp" %>
+<%@ include file="../../form/footer.jsp" %>
 </body>
 </html>

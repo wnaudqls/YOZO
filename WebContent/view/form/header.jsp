@@ -158,31 +158,28 @@ window.onclick = function(event){
 </head>
 <body>
 <header id= header>
-        <img class="mainlogo" alt="logo" src="../../img/mainicon.png">
-        
+        <img class="mainlogo" alt="logo" src="/picture/mainicon.png">
         <div class = "dropuserdown">
-            <img onclick = "dropuser()" class="usericon"alt="logo" src="../../img/usericon.png">
+            <img onclick = "dropuser()" class="usericon"alt="logo" src="../img/usericon.png">
             <div id="dropuser_content" class = "dropuser_content">
                 <a href="">개인정보수정</a>
                 <a href="">나의레시피</a>
                 <a href="">장바구니</a>
                 <a href="">우리집냉장고</a>
             </div>
-        </div>
-        
     </header>      
          <nav id="icon">
-            <img class="recipe" alt="logo" src="../../img/recipebookicon.png">
+            <img class="recipe" alt="logo" src="/picture/recipebookicon.png">
             <div class = "dropstreamdown">
-                <img onclick = "dropstream()" class="stream"alt="logo" src="../../img/broadcasticon.png">
+                <img onclick = "dropstream()" class="stream"alt="logo" src="/picture/broadcasticon.png">
                 <div id="dropstream_content" class = "dropstream_content">
                     <a href="">방송하기</a>
                     <a href="">시청하기</a>
                     <a href="">예약하기</a>
                 </div>
             </div>
-            <img class="goods" alt="logo" src="../../img/goodsicon.png">
-            <img class="map" alt="logo" src="../../img/mapicon.png">
+            <img class="goods" alt="logo" src="/picture/goodsicon.png">
+            <img class="map" alt="logo" src="/picture/mapicon.png">
         </nav>
 </body>
 </html>

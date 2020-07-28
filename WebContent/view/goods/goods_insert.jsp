@@ -52,7 +52,7 @@
 
 </head>
 
-<%@ include file="../form/header.jsp" %>
+<%@ include file="../../form/header.jsp" %>
 
 <body>
 <main>
@@ -116,9 +116,7 @@
 
 
 	</section>
-	
-<%@ include file="../form/footer.jsp" %>
-	
 </main>
+<%@ include file="../../form/footer.jsp" %>
 </body>
 </html>

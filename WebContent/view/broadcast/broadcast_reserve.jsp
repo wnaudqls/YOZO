@@ -72,7 +72,7 @@
 </style>
 
 </head>
-<%@ include file="../form/header.jsp" %>
+<%@ include file="../../form/header.jsp" %>
 <body>
 <!-- 상단부 -->
    <div id="upload_title">
@@ -194,6 +194,7 @@
       <br><br><br><br><br>
 
 
+
 </body>
-<%@ include file="../form/footer.jsp" %>
+<%@ include file="../../form/footer.jsp" %>
 </html>
