@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>YoriZori</title>
+
 <style type="text/css">
 	 body {
         margin: 0px;
@@ -264,8 +265,8 @@
         <button class="btn">검색</button>
         
     </div>
-    <video oncontextmenu="return false;" id="myVideo" height = "600"width="100%" autoplay muted loop poster="/YORIZORI/img/캡파이리.jpg">
-        <source src="/YORIZORI/img/main_video.mp4" type="video/mp4">
+    <video oncontextmenu="return false;" id="myVideo" height = "600"width="100%" autoplay muted loop>
+        <source src="img/main/main_video.mp4" type="video/mp4">
     </video>
      <body id = body>
        <section class ="maincontent1">
@@ -290,6 +291,7 @@
           <br>
        </div>
     </footer> -->
+
   <%@ include file="./form/footer.jsp" %>
 </body>
 
