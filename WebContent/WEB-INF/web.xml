@@ -9,4 +9,27 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+
+
+<!--ckfinder start -->
+<servlet>
+  <servlet-name>ConnectorServlet</servlet-name>
+  <servlet-class>com/yozo/goods/controller/GoodsController</servlet-class>
+  <init-param>
+      <param-name>XMLConfig</param-name>
+      <param-value>/WEB-INF/config.xml</param-value>
+  </init-param>
+  <init-param>
+      <param-name>debug</param-name>
+      <param-value>false</param-value>
+  </init-param>
+  <load-on-startup>1</load-on-startup>
+  
+
+</servlet>
+    <servlet-mapping>
+  <servlet-name>ConnectorServlet</servlet-name>
+  <url-pattern>/goodscontroller_two.do</url-pattern>
+</servlet-mapping>  
 </web-app>
+<!-- ckfinder end -->

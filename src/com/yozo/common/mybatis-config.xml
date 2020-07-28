@@ -15,6 +15,7 @@
 		<!-- 모델(DTO)을 연결해주는 별칭을 설정한다. <mapper/>영역에서 전역적으로 사용할 수 있다 -->
 	<typeAliases>
 		<typeAlias type="com.yozo.user.dto.MemberDto" alias="memberDto"/>
+		<typeAlias type="com.yozo.goods.dto.GoodsDto" alias="goodsDto"/>
 	</typeAliases>
 	
 	
@@ -42,6 +43,7 @@
 			<!-- mapper추가 -->
 		<mappers>
 			<mapper resource="com/yozo/user/db/mybatis-mapper.xml"/>
+			<mapper resource="com/yozo/goods/db/goods-mapper.xml"/>
 		</mappers>
 	
 	
