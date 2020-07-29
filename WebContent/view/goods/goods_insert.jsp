@@ -37,7 +37,9 @@ section {
 
 
 </style>
-<script type="text/javascript" src="${pageContext.request.contextPath }/ckeditor/ckeditor.js "></script>
+ <script type="text/javascript" src="${pageContext.request.contextPath }/ckeditor/ckeditor.js "></script>
+<!--  <script src="//cdn.ckeditor.com/4.14.1/full/ckeditor.js"></script> -->
+
 
 </head>
 
@@ -46,7 +48,7 @@ section {
 
 <body>
 <section>
-<form action = "<%request.getContextPath(); %>/YORIZORI/goodscontroller_two.do" method="post">
+<form action = "<%request.getContextPath(); %>/YORIZORI/goodscontroller.do" method="post">
 <input type="hidden" name="command" value="goodsinsertres" >
 	<div>
 		<div id="goods_name">
@@ -62,10 +64,13 @@ section {
 		<div>
 			<textarea name="goods_content" id="editor"></textarea>
 			<script type="text/javascript">
-				CKEDITOR.replace('editor'
-						,{height : 300 
-					});
+			CKEDITOR.replace("editor",{
+				height: 300
+			});
+
+
 			</script>
+	
 		</div>
 		<div>
 			<input class="btn" type="button" value="취소"/>
@@ -74,6 +79,7 @@ section {
 
 	</div>
 </form>
+
 </section>
 	<%@ include file="../../form/footer.jsp"%>
 
