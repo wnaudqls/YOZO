@@ -32,13 +32,5 @@
   <url-pattern>/ckfinder/core/connector/java/connector.java</url-pattern>
 </servlet-mapping>  
 <!-- ckfinder end -->
-<!-- <servlet>
-	<servlet-name>Goodscontroller</servlet-name>
-	<servlet-class>com.yozo.goods.controller.GoodsController</servlet-class>
-</servlet>
 
-<servlet-mapping>
-	<servlet-name>Goodscontroller</servlet-name>
-	<url-pattern>/goodscontroller_two.do</url-pattern>
-</servlet-mapping> -->
 </web-app>

@@ -11,7 +11,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>굿즈 등록</title>
 
 <style type="text/css">
