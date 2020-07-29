@@ -10,7 +10,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>굿즈 목록</title>
 </head>
 
@@ -158,15 +158,14 @@ body {
 <%@ include file="../../form/header.jsp" %>
 
 <body>
-	<main>
 		<section>
-			<div id="title">작성자 님의 레시피</div>
+			
 			<div id="btns">
 				<input class="btn" type="button" value="등록" /> <input class="btn"
 					type="button" value="삭제" />
 			</div>
 			
-			<h2>제품보기(4)</h2>
+			<h2>제품보기</h2>
 			<div class="card">
 
 				<div class="top-section">
@@ -271,7 +270,6 @@ body {
 			</script>
 
 		</section>
-	</main>
 	<!-- 푸터 -->
 <%@ include file="../../form/footer.jsp" %>
 </body>

@@ -11,7 +11,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>굿즈 등록</title>
 
 <style type="text/css">
@@ -30,14 +30,14 @@ section {
    border-radius : 0.35em;
    font-weight: bold;
    cursor: pointer;
-   
 
 }
 
 
 
 </style>
- <script type="text/javascript" src="${pageContext.request.contextPath }/ckeditor/ckeditor.js "></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/ckeditor/ckeditor.js "></script>
 <!--  <script src="//cdn.ckeditor.com/4.14.1/full/ckeditor.js"></script> -->
 
 
@@ -48,28 +48,32 @@ section {
 
 <body>
 <section>
-<form action = "<%request.getContextPath(); %>/YORIZORI/goodscontroller.do" method="post">
-<input type="hidden" name="command" value="goodsinsertres" >
-	<div>
+<form action = "<%request.getContextPath();%>/YORIZORI/goods.do" method="post">
+<input type="hidden" name="command" value="goodsinsertres">
 		<div id="goods_name">
 			<label>상품이름</label>
-			<input type="text" name="goods_title" >
+			<input type="text" name="goods_title">
 		</div>
 		<div id="goods_etc">
 		<div>
-			<label>수량</label> <input type="number" placeholer="1" name="goods_quantity">
+			<label>수량</label> <input type="number" placeholder="1" name="goods_quantity">
 			<label>가격</label> <input type="text" name="goods_price">
 		</div>
 		<hr>
 		<div>
 			<textarea name="goods_content" id="editor"></textarea>
-			<script type="text/javascript">
-			CKEDITOR.replace("editor",{
-				height: 300
+<!-- 			<script type="text/javascript">
+			$(function(){
+			CKEDITOR.replace("editor"
+	/* 			filebrowserUploadUrl: '${pageContext.request.contextPath}/fileupload.do' */
+			);
 			});
-
-
-			</script>
+			</script> -->
+			<script type="text/javascript">
+            CKEDITOR.replace("editor",{
+                height: 300
+            });
+            </script>
 	
 		</div>
 		<div>
