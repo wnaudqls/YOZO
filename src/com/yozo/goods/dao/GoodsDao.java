@@ -14,7 +14,7 @@ public class GoodsDao extends SqlMapConfig {
 		int res = 0;
 		System.out.println(dto);
 		try {
-			session = getSqlSEssionFactory().openSession(false);
+			session = getSqlSessionFactory().openSession(false);
 			res = session.insert(namespace+"insert",dto);
 		} catch (Exception e) {
 			e.printStackTrace();

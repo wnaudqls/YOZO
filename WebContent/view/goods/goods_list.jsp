@@ -158,7 +158,6 @@ body {
 <%@ include file="../../form/header.jsp" %>
 
 <body>
-	<main>
 		<section>
 			<div id="title">작성자 님의 레시피</div>
 			<div id="btns">
@@ -271,7 +270,6 @@ body {
 			</script>
 
 		</section>
-	</main>
 	<!-- 푸터 -->
 <%@ include file="../../form/footer.jsp" %>
 </body>
