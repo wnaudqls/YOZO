@@ -11,7 +11,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>굿즈 등록</title>
 
 <style type="text/css">
@@ -48,7 +48,7 @@ section {
 
 <body>
 <section>
-<form action = "<%request.getContextPath(); %>/YORIZORI/goodscontroller.do" method="post">
+<form action = "<%request.getContextPath(); %>/YORIZORI/goods.do" method="post">
 <input type="hidden" name="command" value="goodsinsertres" >
 	<div>
 		<div id="goods_name">
@@ -67,8 +67,6 @@ section {
 			CKEDITOR.replace("editor",{
 				height: 300
 			});
-
-
 			</script>
 	
 		</div>
@@ -76,7 +74,7 @@ section {
 			<input class="btn" type="button" value="취소"/>
 			<input class="btn" type="submit" value="등록"/>
 		</div>
-
+	</div>
 	</div>
 </form>
 
