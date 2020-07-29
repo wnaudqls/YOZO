@@ -48,14 +48,13 @@ public class GoodsController extends HttpServlet {
 			int goods_price = Integer.parseInt(request.getParameter("goods_price"));
 			String goods_content = request.getParameter("goods_content");
 			
-			int res = biz.insert(new GoodsDto(0,"아이디",goods_title, goods_price,goods_quantity, "사진", goods_content,null));
+			System.out.println(goods_content);
 			
-			if(res>0) {
-				//dispatch("goodscontroller.do?command=list", request, response);
-				System.out.println("작성완료..");
-			}else {
-				System.out.println("작성실패ㅋ");
-			}
+			 int res = biz.insert(new GoodsDto(0,"아이디",goods_title,
+			 goods_price,goods_quantity, "사진", goods_content,null));
+			  
+			 
+			 
 			
 		}
 		
