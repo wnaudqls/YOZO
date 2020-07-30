@@ -15,7 +15,7 @@ import com.yozo.goods.dto.GoodsDto;
 /**
  * Servlet implementation class GoodsController
  */
-@WebServlet("/goodscontroller.do")
+@WebServlet("/goods.do")
 public class GoodsController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -57,6 +57,10 @@ public class GoodsController extends HttpServlet {
 			 
 			 
 
+		}else if(command.equals("goodsinsertform")) {
+			response.sendRedirect(request.getContextPath()+"/view/goods/goods_insert.jsp");
+		}else if(command.equals("goodslist")) {
+			response.sendRedirect(request.getContextPath()+"/view/goods/goods_list.jsp");
 		}
 		
 		
