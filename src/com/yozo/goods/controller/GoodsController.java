@@ -65,6 +65,10 @@ public class GoodsController extends HttpServlet {
 			 
 			 
 
+		}else if(command.equals("goodsinsertform")) {
+			response.sendRedirect(request.getContextPath()+"/view/goods/goods_insert.jsp");
+		}else if(command.equals("goodslist")) {
+			response.sendRedirect(request.getContextPath()+"/view/goods/goods_list.jsp");
 		}
 		
 		

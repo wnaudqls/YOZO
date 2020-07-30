@@ -1,11 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 	request.setCharacterEncoding("UTF-8");
 %>
 <%
 	response.setContentType("text/html charset=UTF-8");
 %>
+
 
 <!DOCTYPE html>
 <html>
@@ -16,8 +18,7 @@
 
 <style type="text/css">
 section {
-	height: 1200px;
-	margin: 0px;
+	height: 600px;
 }
 
 #title {
@@ -52,10 +53,7 @@ section {
 	text-decoration: none;
 	font-family: "montserrat";
 }
-/* 전체바탕 배경색 */
-body {
-	background-color: #FFFDBC;
-}
+
 
 .card {
 	width: 360px;
@@ -153,18 +151,30 @@ body {
 .btn_basket:hover {
 	background: #333;
 }
+
+.goods_list{
+	border: 1px solid black;
+}
+#warning{
+	width: 100px;
+	height :100px;
+	vertical-align: middle;
+}
+#message{
+	display : inline-block;
+	vertical-align: middle;
+}
 </style>
 
 <%@ include file="../../form/header.jsp" %>
-
 <body>
-		<section>
-			
+
+	<--	<section>
 			<div id="btns">
-				<input class="btn" type="button" value="등록" /> <input class="btn"
-					type="button" value="삭제" />
+				<input class="btn" type="button" value="등록" onclick="location.href='<%request.getContextPath(); %>/YORIZORI/goods.do?command=goodsinsertform'"/> 
+				<input class="btn" type="button" value="삭제" />
 			</div>
-			
+		
 			<h2>제품보기</h2>
 			<div class="card">
 
@@ -269,7 +279,50 @@ body {
 				}
 			</script>
 
-		</section>
+		</section> -->
+
+<section>
+<div class="goods_list">
+	<!--썸네일 / 제목 / 가격 / 장바구니담기버튼 -->
+
+	<c:choose>
+		<c:when test="${empty list }">
+			<div>
+			<img id="warning" alt="warning" src="../../img/warning.jpg">
+			<h1 id="message">등록된 상품이 존재하지 않습니다.</h1>
+			</div>
+		</c:when>
+		
+		<c:otherwise>
+			<forEach items="${list }" var ="dto">
+			<div class="tablewrapper">
+		<table>
+				<tr>
+					<td>${dto.goods_photo }</td>
+				</tr>
+				<tr>
+					<td>${dto.goods_title }</td>
+				</tr>
+				<tr>
+					<td>${dto.goods_price }</td>
+				</tr>
+				<tr>
+					<td>
+						<input type="button" value="장바구니 담기"/>
+					</td>
+				</tr>
+		</table>
+			
+			
+				
+			</div>
+			</forEach>
+			
+		</c:otherwise>
+	</c:choose>
+	
+</div>
+</section>
 	<!-- 푸터 -->
 <%@ include file="../../form/footer.jsp" %>
 </body>
