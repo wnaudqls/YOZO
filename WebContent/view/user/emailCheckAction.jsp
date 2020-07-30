@@ -22,7 +22,7 @@
 
 	}
 
-	elsif(member_id == null) {
+	else if(member_id == null) {
 
 		PrintWriter script = response.getWriter();
 

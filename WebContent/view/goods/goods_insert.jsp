@@ -17,6 +17,7 @@
 <style type="text/css">
 section {
 	height : 600px;
+	width:80%;
 }
 
 
@@ -32,6 +33,12 @@ section {
    cursor: pointer;
 
 }
+/*goods_price 버튼 지우기*/
+input[name="goods_price"]::-webkit-outer-spin-button,
+input[name="goods_price"]::-webkit-inner-spin-button{
+	-webkit-appearance:none;
+}
+
 
 
 
@@ -52,12 +59,12 @@ section {
 <input type="hidden" name="command" value="goodsinsertres">
 		<div id="goods_name">
 			<label>상품이름</label>
-			<input type="text" name="goods_title">
+			<input type="text" name="goods_title" required>
 		</div>
 		<div id="goods_etc">
 		<div>
-			<label>수량</label> <input type="number" placeholder="1" name="goods_quantity">
-			<label>가격</label> <input type="text" name="goods_price">
+			<label>수량</label> <input type="number" placeholder="1" name="goods_quantity" min=1 max=1000 required>
+			<label>가격</label> <input type="number" name="goods_price" min=1 required>
 		</div>
 		<hr>
 		<div>

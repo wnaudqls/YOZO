@@ -19,8 +19,8 @@
 	-->
 	<!-- YOZO : 플젝이름 -->
 	<!-- <baseDir>C:\workspaces\workspace_semi\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\YORIZORI\ckstorage</baseDir> -->
-	<baseDir>C:\Users\shm11\OneDrive\바탕 화면\sdsd</baseDir>
-	<baseDir>C:\workspaces\workspace_semi\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\YOZO\ckstorage</baseDir>
+	<!-- <baseDir>C:\Users\shm11\OneDrive\바탕 화면\sdsd</baseDir> -->
+	<baseDir>C:\Git\YOZO\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\YOZO\ckstorage</baseDir>
 <!-- 	<baseDir>C:\workspaces\workspace_semi\YOZO\WebContent\ckstorage</baseDir> -->
 	<!-- 실질적인 프로젝트 이름 경로명 -->
 	<baseURL>\YORIZORI\ckstorage\</baseURL>
@@ -64,29 +64,29 @@
 	<defaultResourceTypes></defaultResourceTypes>
 	<types>
 		<type name="Files">
-			<!-- <url>%BASE_URL%files/</url> -->
-			<url>C:\Users\shm11\OneDrive\바탕 화면\sdsd</url>
-			<!-- <directory>%BASE_DIR%files</directory> -->
-			<directory>C:\Users\shm11\OneDrive\바탕 화면\sdsd\files</directory>
+			<url>%BASE_URL%files/</url>
+			<!-- <url>C:\Users\shm11\OneDrive\바탕 화면\sdsd</url> -->
+			<directory>%BASE_DIR%files</directory>
+			<!-- <directory>C:\Users\shm11\OneDrive\바탕 화면\sdsd\files</directory> -->
 			<maxSize>0</maxSize>
 			<allowedExtensions>7z,aiff,asf,avi,bmp,csv,doc,docx,fla,flv,gif,gz,gzip,jpeg,jpg,mid,mov,mp3,mp4,mpc,mpeg,mpg,ods,odt,pdf,png,ppt,pptx,pxd,qt,ram,rar,rm,rmi,rmvb,rtf,sdc,sitd,swf,sxc,sxw,tar,tgz,tif,tiff,txt,vsd,wav,wma,wmv,xls,xlsx,zip
 			</allowedExtensions>
 			<deniedExtensions></deniedExtensions>
 		</type>
 		<type name="Images">
-			<!-- <url>%BASE_URL%images/</url> -->
-			<url>C:\Users\shm11\OneDrive\바탕 화면\sdsd</url>
-			<!-- <directory>%BASE_DIR%images</directory> -->
-			<directory>C:\Users\shm11\OneDrive\바탕 화면\sdsd\images</directory>
+			<url>%BASE_URL%images/</url>
+			<!-- <url>C:\Users\shm11\OneDrive\바탕 화면\sdsd</url> -->
+			<directory>%BASE_DIR%images</directory>
+			<!-- <directory>C:\Users\shm11\OneDrive\바탕 화면\sdsd\images</directory> -->
 			<maxSize>0</maxSize>
 			<allowedExtensions>bmp,gif,jpeg,jpg,png</allowedExtensions>
 			<deniedExtensions></deniedExtensions>
 		</type>
 		<type name="Flash">
-			<!-- <url>%BASE_URL%flash/</url> -->
-			<url>C:\Users\shm11\OneDrive\바탕 화면\sdsd</url>
-			<!-- <directory>%BASE_DIR%flash</directory> -->
-			<directory>C:\Users\shm11\OneDrive\바탕 화면\sdsd\flash</directory>
+			<url>%BASE_URL%flash/</url>
+			<!-- <url>C:\Users\shm11\OneDrive\바탕 화면\sdsd</url> -->
+			<directory>%BASE_DIR%flash</directory>
+			<!-- <directory>C:\Users\shm11\OneDrive\바탕 화면\sdsd\flash</directory> -->
 			<maxSize>0</maxSize>
 			<allowedExtensions>swf,flv</allowedExtensions>
 			<deniedExtensions></deniedExtensions>
@@ -115,9 +115,9 @@
 	</accessControls>
 	<thumbs>
 		<enabled>true</enabled>
-		<!-- <url>%BASE_URL%_thumbs/</url> -->
-		<url>C:\Users\shm11\OneDrive\바탕 화면\sdsd</url>
-		<!-- <directory>%BASE_DIR%_thumbs</directory> -->
+		<url>%BASE_URL%_thumbs/</url>
+		<!-- <url>C:\Users\shm11\OneDrive\바탕 화면\sdsd</url> -->
+		<directory>%BASE_DIR%_thumbs</directory>
 		<directory>C:\Users\shm11\OneDrive\바탕 화면\sdsd\_thumbs</directory>
 		<directAccess>false</directAccess>
 		<maxHeight>100</maxHeight>

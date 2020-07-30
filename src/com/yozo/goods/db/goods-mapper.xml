@@ -6,7 +6,7 @@
   <insert id="insert" parameterType="goodsDto">
   <!-- member_id : 작성자 -->
   	INSERT INTO GOODS1
-  	VALUES(#{goods_no}, #{member_id},#{goods_title},#{goods_price},#{goods_quantity},#{goods_photo},#{goods_content},SYSDATE)
+  	VALUES(#{goods_no},#{member_id},#{goods_title},#{goods_price},#{goods_quantity},#{goods_photo},#{goods_content},SYSDATE)
   </insert>
   
   </mapper>
