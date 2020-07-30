@@ -1,16 +1,21 @@
 package com.yozo.goods.controller;
 
 import java.io.IOException;
+import java.util.Enumeration;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.yozo.goods.biz.GoodsBiz;
 import com.yozo.goods.dto.GoodsDto;
+
 
 /**
  * Servlet implementation class GoodsController
@@ -53,8 +58,6 @@ public class GoodsController extends HttpServlet {
 			String goods_main_photo=request.getParameter("goods_main_photo");
 			int res=0;
 			System.out.println(goods_content);
-			
-			
 			 res = biz.insert(new GoodsDto(1,"session값",goods_title,goods_price,goods_quantity,"사진", goods_content,null,goods_main_photo));
 			 
 			 if(res>0) {
@@ -69,6 +72,37 @@ public class GoodsController extends HttpServlet {
 			response.sendRedirect(request.getContextPath()+"/view/goods/goods_insert.jsp");
 		}else if(command.equals("goodslist")) {
 			response.sendRedirect(request.getContextPath()+"/view/goods/goods_list.jsp");
+		}
+		
+		else if(command.equals("imgUpload")) {
+			System.out.println("imgUpload왔다잉");
+			System.out.println(request.getContentType());
+			String realFolder = ""; 
+			String filename1 = "";	//업로드한 파일이름  	
+			int maxSize = 1024*1024*5; 	//파일 사이즈 설정: 5M
+			String encType = "multipart/form-data"; 	
+			String savefile = "imgtest"; 
+			ServletContext scontext = getServletContext();
+			System.out.println("scontext:"+scontext);
+			realFolder = scontext.getRealPath(savefile);
+			System.out.println("realFolder"+realFolder);
+			
+			try{ 
+			MultipartRequest multi=new MultipartRequest(request, realFolder, maxSize, new DefaultFileRenamePolicy()); 
+			Enumeration<?> files = multi.getFileNames(); //전송한 전체 파일이름들을 가져온다.
+			System.out.println("files"+files);
+			String file1 = (String)files.nextElement();
+			System.out.println("file1:"+file1);
+			//파일명 중복이 발생했을 때 정책에 의해 뒤에 1,2,3 처럼 숫자가 붙어 고유 파일명을 생성한다
+			//이때 생성된 이름을 FilesystemName이라고 하여 그 이름 정보를 가져온다.(중복 처리)
+			filename1 = multi.getFilesystemName(file1); 
+			} catch(Exception e) { 
+				System.out.println("이런 싸발면");
+			e.printStackTrace(); 
+			} 
+			 
+			String fullpath = realFolder + "\\" + filename1; 
+			System.out.println("fullpath:"+fullpath);
 		}
 		
 		
