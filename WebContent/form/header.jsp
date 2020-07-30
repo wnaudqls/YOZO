@@ -181,7 +181,7 @@ window.onclick = function(event){
                 </div>
             </div>
             <img class="goods" alt="logo" src="/YORIZORI/img/goodsicon.png">
-            <img class="map" alt="logo" src="/YORIZORI/img/mapicon.png">
+            <img onclick ="view/map/map.jsp" class="map" alt="logo" src="/YORIZORI/img/mapicon.png">
         </nav>
 </body>
 </html>
