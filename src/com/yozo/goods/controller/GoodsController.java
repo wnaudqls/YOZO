@@ -36,7 +36,7 @@ public class GoodsController extends HttpServlet {
 		response.setContentType("text/html; charset=utf-8");
 		
 		
-		System.out.println("정신차리지");
+		
 		String command = request.getParameter("command");
 		System.out.println("["+command+"]");
 		
@@ -45,7 +45,6 @@ public class GoodsController extends HttpServlet {
 		//굿즈 상품 등독
 		if(command.equals("goodsinsertres")) {
 			System.out.println("goodsinsertres왔음");
-			//response.sendRedirect(request.getContextPath()+"/view/goods/goods_insert.jsp");
 			String goods_title = request.getParameter("goods_title");
 			int goods_quantity = Integer.parseInt(request.getParameter("goods_quantity"));
 			int goods_price = Integer.parseInt(request.getParameter("goods_price"));
@@ -55,7 +54,7 @@ public class GoodsController extends HttpServlet {
 			System.out.println(goods_content);
 			
 			
-			 res = biz.insert(new GoodsDto(1,"session값",goods_title,goods_price,goods_quantity,"사진", goods_content,null,goods_main_photo));
+			 res = biz.insert(new GoodsDto(1,"session값",goods_title,goods_main_photo,goods_price,goods_quantity,"사진", goods_content,null));
 			 
 			 if(res>0) {
 				 dispatch("goods_list.jsp", request, response);
