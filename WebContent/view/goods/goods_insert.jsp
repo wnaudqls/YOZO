@@ -7,9 +7,7 @@
 <%
 	response.setContentType("text/html charset=UTF-8");
 %>
-<%@ page import="java.io.* , java.util.*"%>                         
-<%@ page import = "com.oreilly.servlet.MultipartRequest"%>    
-<%@ page import = "com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>
+
 
 <!DOCTYPE html>
 <html>
