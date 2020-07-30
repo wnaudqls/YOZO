@@ -12,6 +12,7 @@ public class GoodsDto {
 	private String goods_photo;
 	private String goods_content;
 	private Date goods_regdate;
+	private String goods_main_photo;
 	
 	//기본생성자
 	public GoodsDto() {
@@ -19,7 +20,7 @@ public class GoodsDto {
 	}
 
 	public GoodsDto(int goods_no, String member_id, String goods_title, int goods_price, int goods_quantity,
-			String goods_photo, String goods_content, Date goods_regdate) {
+			String goods_photo, String goods_content, Date goods_regdate, String goods_main_photo) {
 		super();
 		this.goods_no = goods_no;
 		this.member_id = member_id;
@@ -29,8 +30,11 @@ public class GoodsDto {
 		this.goods_photo = goods_photo;
 		this.goods_content = goods_content;
 		this.goods_regdate = goods_regdate;
+		this.goods_main_photo = goods_main_photo;
 	}
 
+	
+	
 	public int getGoods_no() {
 		return goods_no;
 	}
@@ -95,12 +99,22 @@ public class GoodsDto {
 		this.goods_regdate = goods_regdate;
 	}
 
+	public String getGoods_main_photo() {
+		return goods_main_photo;
+	}
+
+	public void setGoods_main_photo(String goods_main_photo) {
+		this.goods_main_photo = goods_main_photo;
+	}
+
 	@Override
 	public String toString() {
 		return "GoodsDto [goods_no=" + goods_no + ", member_id=" + member_id + ", goods_title=" + goods_title
 				+ ", goods_price=" + goods_price + ", goods_quantity=" + goods_quantity + ", goods_photo=" + goods_photo
-				+ ", goods_content=" + goods_content + ", goods_regdate=" + goods_regdate + "]";
+				+ ", goods_content=" + goods_content + ", goods_regdate=" + goods_regdate + ", goods_main_photo="
+				+ goods_main_photo + "]";
 	}
+
 	
 	
 		
