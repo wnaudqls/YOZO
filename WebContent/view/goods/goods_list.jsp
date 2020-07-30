@@ -168,7 +168,7 @@ section {
 
 <%@ include file="../../form/header.jsp" %>
 <body>
-
+<%--  병욱오빠가 만드신 html
 	<--	<section>
 			<div id="btns">
 				<input class="btn" type="button" value="등록" onclick="location.href='<%request.getContextPath(); %>/YORIZORI/goods.do?command=goodsinsertform'"/> 
@@ -280,7 +280,7 @@ section {
 			</script>
 
 		</section> -->
-
+ --%>
 <section>
 <div class="goods_list">
 	<!--썸네일 / 제목 / 가격 / 장바구니담기버튼 -->
@@ -324,6 +324,10 @@ section {
 </div>
 </section>
 	<!-- 푸터 -->
+	
+	<!-- 테스터 해본거임ㅋ <img src="/YORIZORI/ckstorage/images/WIN_20200730_13_16_14_Pro(1).jpg"> -->
+	
+	
 <%@ include file="../../form/footer.jsp" %>
 </body>
 </html>
