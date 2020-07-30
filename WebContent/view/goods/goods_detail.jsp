@@ -25,7 +25,6 @@
 /* 전체바탕 배경색 */
 body {
 	
-	padding: 50px;
 }
 
 /* product_view .img 시작 지점 */
@@ -42,8 +41,9 @@ body {
 	top: 0;
 }
 
-.product_view .img > img {
-	width: 368px; height: 370px;
+.product_view .img>img {
+	width: 368px;
+	height: 370px;
 	border: 1px solid #e8e8e8;
 }
 
@@ -64,7 +64,8 @@ body {
 }
 
 .product_view .img li img {
-	width: 68px; height: 68px;
+	width: 68px;
+	height: 68px;
 	border: 1px solid #e8e8e8;
 }
 
@@ -98,61 +99,76 @@ body {
 }
 
 .product_view table .length {
-	position: relative; width:71px; height: 32px; border:1px solid #c6c6c6; 
-	
+	position: relative;
+	width: 71px;
+	height: 32px;
+	border: 1px solid #c6c6c6;
 }
 
 .product_view table .length input {
 	width: 44px;
 	height: 30px;
-	border: none; 
-	border-right:1px solid #c6c6c6; text-align: center;
+	border: none;
+	border-right: 1px solid #c6c6c6;
+	text-align: center;
 }
 
 .product_view table .length a {
-	overflow: hidden; position: absolute; right: 0; width: 26px;
-	height: 16px; color: transparent;
-	
+	overflow: hidden;
+	position: absolute;
+	right: 0;
+	width: 26px;
+	height: 16px;
+	color: transparent;
 }
 
 .product_view table .length a:nth-of-type(1) {
-	top:0; background: url("화살표 위")
-	no-repeat center;
-	
+	top: 0;
+	background: url("화살표 위") no-repeat center;
 }
 
 .product_view table .length a:nth-of-type(2) {
-	bottom:0; background: url("화살표 위")
-	no-repeat center;
+	bottom: 0;
+	background: url("화살표 위") no-repeat center;
 	border-top: 1px solid #c6c6c6;
 }
 
-.product_view table select { 
-	width:100%; 
-	border:1px solid #c6c6c6;
-	box-sizing : border-box;
+.product_view table select {
+	width: 100%;
+	border: 1px solid #c6c6c6;
+	box-sizing: border-box;
 	background: url("셀렉트 아이콘") no-repeat right 11px center;
-	appearance:none;
-	webkit-appearance:none; 
-	-moz-appearance: none;	
+	appearance: none;
+	webkit-appearance: none;
+	-moz-appearance: none;
 }
 
-.product_view table select::-ms-expand { display: none;}
+.product_view table select::-ms-expand {
+	display: none;
+}
 
 /* 버튼 시작점  btns_product_updown */
-
 .product_view .btns_product_updown {
-	padding: 45px 0 0; text-align: center;
+	padding: 45px 0 0;
+	text-align: center;
 }
-.product_view .btns_product_updown > a{
-	display: inline-block; width: 136px; height: 42px; border-radius: 2px;
-	font-size: 16px; color:#fff; line-height: 42px;
+
+.product_view .btns_product_updown>a {
+	display: inline-block;
+	width: 136px;
+	height: 42px;
+	border-radius: 2px;
+	font-size: 16px;
+	color: #fff;
+	line-height: 42px;
 }
-.product_view .btns_product_updown > a.btns_product_updown1{
-	background:#666;
+
+.product_view .btns_product_updown>a.btns_product_updown1 {
+	background: #666;
 }
-.product_view .btns_product_updown > a.btns_product_updown2{
-	background:#0a56a9;
+
+.product_view .btns_product_updown>a.btns_product_updown2 {
+	background: #0a56a9;
 }
 
 .card {
@@ -239,140 +255,123 @@ h2 {
 	text-align: center;
 }
 </style>
-
 </head>
-
-<%@ include file="../../form/header.jsp" %>
-
 <body>
-	<main>
-	<br> <br>
-		<section>
-<!-- 쇼핑몰 상세보기 시작점 -->
+	<%@ include file="../../form/header.jsp"%>
+	<section class="section">
+		<!-- 쇼핑몰 상세보기 시작점 -->
+		<div class="product_view">
+			<h3></h3>
+			<table>
+				<caption>
+					<details>
+						<summary>상품정보</summary>
+						판매가, 상품코드, 옵션 및 결제 금액 안내
+					</details>
+				</caption>
+				<colgroup>
+					<col style="width: 173px;">
+					<col>
+				</colgroup>
+				<tbody>
+					<tr>
+						<th>판매가</th>
+						<td>129,000</td>
+					</tr>
+					<tr>
+						<th>상품코드</th>
+						<td>C004843</td>
+					</tr>
+					<tr>
+						<th>제조사/공급사</th>
+						<td>California / YORIZORI</td>
+					</tr>
+					<tr>
+						<th>구매 수량</th>
+						<td>
+							<div class="length">
+								<input type="number" min="1" value="1"> <a href="#a">증가</a>
+								<a href="#a">감소</a>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<th>사용가능쿠폰</th>
+						<td>0개</td>
+					</tr>
+					<tr>
+						<th>옵션선택</th>
+						<td><select>
+								<option>기본(+0)</option>
+						</select></td>
+					</tr>
+					<tr>
+						<th>배송비</th>
+						<td>무료배송</td>
+					</tr>
+					<tr>
+						<th>결제금액</th>
+						<td>129,000</td>
+					</tr>
 
-			<div class="product_view">
-				<h3>도마 명품 캘리포니아 ( 요리조리 쇼핑몰 단독!!!)</h3>
-				<table>
-					<caption>
-						<details>
-							<summary>상품정보</summary>
-							판매가, 상품코드, 옵션 및 결제 금액 안내
-						</details>
-					</caption>
-					<colgroup>
-						<col style="width: 173px;">
-						<col>
-					</colgroup>
-					<tbody>
-						<tr>
-							<th>판매가</th>
-							<td>129,000</td>
-						</tr>
-						<tr>
-							<th>상품코드</th>
-							<td>C004843</td>
-						</tr>
-						<tr>
-							<th>제조사/공급사</th>
-							<td>California / YORIZORI</td>
-						</tr>
-						<tr>
-							<th>구매 수량</th>
-							<td>
-								<div class="length">
-									<input type="number" min="1" value="1"> <a href="#a">증가</a>
-									<a href="#a">감소</a>
-								</div>
-							</td>
-						</tr>
-						<tr>
-							<th>사용가능쿠폰</th>
-							<td>0개</td>
-						</tr>
-						<tr>
-							<th>옵션선택</th>
-							<td><select>
-									<option>기본(+0)</option>
-							</select></td>
-						</tr>
-						<tr>
-							<th>배송비</th>
-							<td>무료배송</td>
-						</tr>
-						<tr>
-							<th>결제금액</th>
-							<td>129,000</td>
-						</tr>
+				</tbody>
 
-					</tbody>
+			</table>
+			<div class="img">
+				<img alt="" src="img/goods1.jpg">
+				<ul>
+					<li><a href="#a"><img alt="" src="img/goods2.png"></a></li>
+					<li><a href="#a"><img alt="" src="img/goods3.png"></a></li>
+				</ul>
+			</div>
+			<div class="btns_product_updown">
+				<a href="#a" class="btns_product_updown1">장바구니</a> <a href="#a"
+					class="btns_product_updown2">구매하기</a>
+			</div>
+		</div>
 
-				</table>
-				<div class= "img">
-					<img alt="" src="img/goods1.jpg">
-					<ul>
-						<li><a href="#a"><img alt="" src="img/goods2.png"></a></li>
-						<li><a href="#a"><img alt="" src="img/goods3.png"></a></li>
-					</ul>
+		<!-- 클래스 card 시작 지점 -->
+		<div class="card">
+
+			<div class="top-section">
+				<img id="image-container" alt="" src="img/goods1.jpg">
+				<div class="nav">
+					<!-- onclick 하면 change_img()함수가 실행된다. -->
+					<img alt="" src="img/goods2.png" onclick="change_img(this)">
+					<img alt="" src="img/goods3.png" onclick="change_img(this)">
+					<img alt="" src="img/goods4.png" onclick="change_img(this)">
 				</div>
-				<div class= "btns_product_updown">
-					<a href="#a" class="btns_product_updown1">장바구니</a> 
-					<a href="#a" class="btns_product_updown2">구매하기</a>
-				</div>
+				<div class="price">52,000 WON</div>
 			</div>
 
-<!-- 클래스 card 시작 지점 -->
-			<div class="card">
 
-				<div class="top-section">
-					<img id="image-container" alt="" src="img/goods1.jpg">
-					<div class="nav">
-						<!-- onclick 하면 change_img()함수가 실행된다. -->
-						<img alt="" src="img/goods2.png" onclick="change_img(this)">
-						<img alt="" src="img/goods3.png" onclick="change_img(this)">
-						<img alt="" src="img/goods4.png" onclick="change_img(this)">
-					</div>
-					<div class="price">52,000 WON</div>
-				</div>
-
-
-				<div class="product-info">
-					<div class="name">YORIZORI 도마</div>
-					<div class="dis">'MUST HAVE' kitchen tools</div>
-					<!-- 장바구니 담기 링크 -->
-					<a class="btn_basket" href="#">장바구니에 담기</a>
-				</div>
-
+			<div class="product-info">
+				<div class="name">YORIZORI 도마</div>
+				<div class="dis">'MUST HAVE' kitchen tools</div>
+				<!-- 장바구니 담기 링크 -->
+				<a class="btn_basket" href="#">장바구니에 담기</a>
 			</div>
-			
-<!-- javascript 시작점 -->
-			<script type="text/javascript">
-				/* 체크 */
-				var container = document.getElementById("image-container");
-				function change_img(image) {
-					container.src = image.src;
-				}
-			</script>
+
+		</div>
+
+		<!-- javascript 시작점 -->
+		<script type="text/javascript">
+			/* 체크 */
+			var container = document.getElementById("image-container");
+			function change_img(image) {
+				container.src = image.src;
+			}
+		</script>
 
 
-			<br> <br>
-			<h2>상세설명</h2>
-			<br>
-			<h2>-------------------------------------------------------------------------------------------------------</h2>			
-			<br> <br> <br> <br> <br> <br> <br>
-			<br> <br> <br> <br> <br> <br> <br>
-			<br> <br> <br> <br> <br> <br> <br>
-			<br> <br> <br> <br> <br> <br> <br>
-			<br> <br> <br> <br> <br> <br> <br>
-			<br> <br> <br> <br> <br>
-			<br> <br> <br> <br> <br> <br> <br>
-			<br> <br> <br> <br> <br> <br> <br>
-			<br> <br> <br>
-		</section>
-	</main>
+		<br> <br>
+		<h2>상세설명</h2>
+		<br>
+		<h2>-------------------------------------------------------------------------------------------------------</h2>
+
+	</section>
 	<!-- 푸터 -->
-<%@ include file="../../form/footer.jsp" %>
 
-
-
+	<%@ include file="../../form/footer.jsp"%>
 </body>
 </html>

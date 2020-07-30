@@ -18,9 +18,8 @@
 section {
 	height : 600px;
 	width:80%;
+	margin: 0 10%;
 }
-
-
 .btn{
    width : 70px;
    height : 35px;
@@ -31,8 +30,8 @@ section {
    border-radius : 0.35em;
    font-weight: bold;
    cursor: pointer;
-
 }
+
 /*goods_price 버튼 지우기*/
 input[name="goods_price"]::-webkit-outer-spin-button,
 input[name="goods_price"]::-webkit-inner-spin-button{
@@ -60,6 +59,7 @@ input[name="goods_price"]::-webkit-inner-spin-button{
 		<div id="goods_name">
 			<label>상품이름</label>
 			<input type="text" name="goods_title" required>
+			<input type="file" name="goods_main_photo"/>
 		</div>
 		<div id="goods_etc">
 		<div>
