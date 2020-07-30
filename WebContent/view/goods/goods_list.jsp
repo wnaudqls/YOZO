@@ -167,53 +167,9 @@ section {
 </style>
 
 <%@ include file="../../form/header.jsp" %>
-
 <body>
-<section>
-<div class="goods_list">
-	<!--썸네일 / 제목 / 가격 / 장바구니담기버튼 -->
 
-	<c:choose>
-		<c:when test="${empty list }">
-			<div>
-			<img id="warning" alt="warning" src="../../img/warning.jpg">
-			<h1 id="message">등록된 상품이 존재하지 않습니다.</h1>
-			</div>
-		</c:when>
-		
-		<c:otherwise>
-			<forEach items="${list }" var ="dto">
-			<div class="tablewrapper">
-		<table>
-				<tr>
-					<td>${dto.goods_photo }</td>
-				</tr>
-				<tr>
-					<td>${dto.goods_title }</td>
-				</tr>
-				<tr>
-					<td>${dto.goods_price }</td>
-				</tr>
-				<tr>
-					<td>
-						<input type="button" value="장바구니 담기"/>
-					</td>
-				</tr>
-		</table>
-			
-			
-				
-			</div>
-			</forEach>
-			
-		</c:otherwise>
-	</c:choose>
-	
-</div>
-</section>
-<%-- 병욱오빠가 만드신 html
-	<main>
-		<section>
+	<--	<section>
 			<div id="btns">
 				<input class="btn" type="button" value="등록" onclick="location.href='<%request.getContextPath(); %>/YORIZORI/goods.do?command=goodsinsertform'"/> 
 				<input class="btn" type="button" value="삭제" />
@@ -323,8 +279,50 @@ section {
 				}
 			</script>
 
-		</section>
-	</main> --%>
+		</section> -->
+
+<section>
+<div class="goods_list">
+	<!--썸네일 / 제목 / 가격 / 장바구니담기버튼 -->
+
+	<c:choose>
+		<c:when test="${empty list }">
+			<div>
+			<img id="warning" alt="warning" src="../../img/warning.jpg">
+			<h1 id="message">등록된 상품이 존재하지 않습니다.</h1>
+			</div>
+		</c:when>
+		
+		<c:otherwise>
+			<forEach items="${list }" var ="dto">
+			<div class="tablewrapper">
+		<table>
+				<tr>
+					<td>${dto.goods_photo }</td>
+				</tr>
+				<tr>
+					<td>${dto.goods_title }</td>
+				</tr>
+				<tr>
+					<td>${dto.goods_price }</td>
+				</tr>
+				<tr>
+					<td>
+						<input type="button" value="장바구니 담기"/>
+					</td>
+				</tr>
+		</table>
+			
+			
+				
+			</div>
+			</forEach>
+			
+		</c:otherwise>
+	</c:choose>
+	
+</div>
+</section>
 	<!-- 푸터 -->
 <%@ include file="../../form/footer.jsp" %>
 </body>

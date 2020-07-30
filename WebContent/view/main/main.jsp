@@ -7,7 +7,7 @@
 <title>YoriZori</title>
 <style type="text/css">
 	 body {
-        margin: 0px;
+        margin:0;
         text-align: center;
         width: 100%;
         }
@@ -226,39 +226,8 @@
 
 </script>
 </head>
-
-
-
 <body>
 <%@ include file="../../form/header.jsp" %>
-<!--  지우는 거 자제해달라..싫어 --> 
-<!-- 입벌려 빅맵들어갑니다 -->
-
-	<!-- <header id= header>
-        <img class="mainlogo" alt="logo" src="img/mainicon.png">
-        <div class = "dropuserdown">
-            <img onclick = "dropuser()" class="usericon"alt="logo" src="img/usericon.png">
-            <div id="dropuser_content" class = "dropuser_content">
-                <a href="">개인정보수정</a>
-                <a href="">나의레시피</a>
-                <a href="">장바구니</a>
-                <a href="">우리집냉장고</a>
-            </div>
-           </div>
-    </header>      
-         <nav id="icon">
-            <img class="recipe" alt="logo" src="img/recipebookicon.png">
-            <div class = "dropstreamdown">
-                <img onclick = "dropstream()" class="stream"alt="logo" src="img/broadcasticon.png">
-                <div id="dropstream_content" class = "dropstream_content">
-                    <a href="">방송하기</a>
-                    <a href="">시청하기</a>
-                    <a href="">예약하기</a>
-                </div>
-            </div>
-            <img class="goods" alt="logo" src="img/goodsicon.png">
-            <img class="map" alt="logo" src="img/mapicon.png">
-        </nav> -->
    <body id = body>
     <div class="search">
         <input type="search" name="search" placeholder="레시피 검색">
@@ -276,21 +245,6 @@
       
        </section>
     </body>
-    
-     <!-- <footer>
-       <div id="info">
-          <b>CREATORS</b> <br>
-          이현승 : https://github.com/LHSEUNGG   <br>
-          최유정 : https://github.com/LIEBEALLES   <br>
-          박진석 : https://github.com/parkjin1407   <br>
-          주명빈 : https://github.com/wnaudqls   <br>
-          이병욱 : https://github.com/rpget2020   <br>
-          성현모 : https://github.com/shm1113   <br>
-          <br>
-          KH정보교육원 &copy; all rights reserved ...
-          <br>
-       </div>
-    </footer> -->
   <%@ include file="../../form/footer.jsp" %>
 </body>
 

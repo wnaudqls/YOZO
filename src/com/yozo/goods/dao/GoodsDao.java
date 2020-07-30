@@ -12,7 +12,7 @@ public class GoodsDao extends SqlMapConfig {
 	public int insert(GoodsDto dto) {
 		SqlSession session = null;
 		int res = 0;
-		System.out.println(dto);
+		System.out.println("여기는 insert dao다 오바오바"+dto);
 		try {
 			session = getSqlSessionFactory().openSession(false);
 			res = session.insert(namespace+"insert",dto);
@@ -22,7 +22,6 @@ public class GoodsDao extends SqlMapConfig {
 			session.commit();
 			session.close();
 		}
-		
 		return res;
 	}
 }

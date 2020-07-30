@@ -42,6 +42,7 @@ public class GoodsController extends HttpServlet {
 		
 		GoodsBiz biz = new GoodsBiz();
 		
+		//굿즈 상품 등독
 		if(command.equals("goodsinsertres")) {
 			System.out.println("goodsinsertres왔음");
 			//response.sendRedirect(request.getContextPath()+"/view/goods/goods_insert.jsp");
@@ -50,10 +51,17 @@ public class GoodsController extends HttpServlet {
 			int goods_price = Integer.parseInt(request.getParameter("goods_price"));
 			String goods_content = request.getParameter("goods_content");
 			
+			int res=0;
 			System.out.println(goods_content);
 			
 			
-			 int res = biz.insert(new GoodsDto(0,"아이디",goods_title,goods_price,goods_quantity, "사진", goods_content,null));
+			 res = biz.insert(new GoodsDto(1,"session값",goods_title,goods_price,goods_quantity,"사진", goods_content,null));
+			 
+			 if(res>0) {
+				 dispatch("goods_list.jsp", request, response);
+			 }else {
+				 jsResponse("작성 실패","유정쓰가만든 goods_insertform", response);
+			 }
 			 
 			 
 
