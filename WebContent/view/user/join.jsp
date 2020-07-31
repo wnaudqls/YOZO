@@ -11,8 +11,9 @@
 <title>회원가입</title>
 
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+	
 	<script type="text/javascript">
-
+	var rnum=0;
 	function idCheck(){
 		
 		var doc = document.getElementsByName("id")[0];
@@ -79,16 +80,63 @@
 			})  
 
 	});
-	
 	$(function() {
-		$('#chkphone').click(function() {
-			alert('#phone') ;
-		})
+		$('#pwchk').blur(function(){
+			   if($('#pw').val() != $('#pwchk').val()){
+			    	if($('#pwchk').val()!=''){
+				    alert("비밀번호가 일치하지 않습니다.");
+			    	    $('#pwchk').val('');
+			          $('#pwchk').focus();
+			       }
+			    }
+			})  
+
 	});
 
+	//ajax를 사용하여 한 이유는 한 페이지에서 다끝내기 위해서 사용하였다.
+	function emailCheck(checkNum) {	//메일 보내기 기능 버튼! (랜덤 정수 반환받는 파라미터)
+	//해당하는value 값 특히 이메일은 값이 여러개
+	//selected 선택 된값 으로 잡아줘여한다.
+	   var email = document.getElementById("email").value;
+		rnum=checkNum;
+	   //value 값 저장 
+	   console.log(checkNum);
+	   
+	   
+		$.ajax({         //한번더 ajax 사용하요 
+		   url:"<%=request.getContextPath() %>/user.do", //컨트롤러 활용하여
+		   type:"post",         // post방식
+		   datatype:"json",      //datatype
+		   data:{"command":"sendEmail","email":email, "random":checkNum},	//ajax 에서 컨트롤러=샌드이메일 로 이동 (리시버=이베일 & 랜덤=체크넘 가지고)
+		   success(data) {
+		      alert("전송성공! \n 인증번호를 확인해주세요 ");
+		   },
+		   error(err) {
+		      alert("해당 이메일 전송 실패");
+		   }
+		    
+		});
+	    
+	 
+	}
+	function chkAuth1(){
+		var num=document.getElementById("chkAuth").value;//메일로 오는 값  = > 메일로 올 때 새로 난수 생성되서 옴
+		alert(num+rnum);
+		
+		if(num == rnum){		// 먼저 생선된 값 
+			alert("인증성공");
+			document.getElementById('joinBtn').style.display = "inline";
+
+		}else{
+			alert("인증실패");
+			document.getElementById('joinBtn').style.display = "none";
+
+		}
+	}
+
+	
 	</script>
-
-
+	
 	<style type="text/css">
 		
 		body {
@@ -106,7 +154,7 @@
 			margin-left: auto;
 			margin-right: auto;
 		}
-		#id, #nick, #pw, #pwchk, #email, #addr_detail {
+		#id, #nick, #name, #pw, #pwchk, #email, #chkAuth, #addr_detail, #phone {
 			width: 200px;
 		} 
 		td {
@@ -118,16 +166,33 @@
 		}
 	
 	</style>
+	
+	
+	
 </head>
 <body>
 <%@ include file="../../form/header.jsp" %>
 <br>
 <br>
 <br>
+
+<%!
+
+   int random = 0;
+
+   public int getRandom(){
+   
+   random = (int)Math.floor((Math.random()*(99999-10000+1)))+10000;
+   return random;
+   }
+%>
+
 	<div>
 	<h1>회원 가입</h1>
+		<form action="<%=request.getContextPath() %>/user.do" method="get">
+		<input type="hidden" name="command" value="join" >
 		<table>
-		
+	
 <tr>
 				<td class="col">아이디 : </td><td><input type="text" id="id" name="id" placeholder="아이디를 입력해 주세요"></td><td><input type="button" value="중복확인" onclick="idCheck()"></td>
 </tr>
@@ -135,34 +200,41 @@
 				<td class="col">닉네임 : </td><td><input type="text" id="nick" name="nick" placeholder="닉네임을 입력해 주세요"></td><td><input type="button" value="중복확인" onclick="nickCheck()"></td>
 </tr>
 <tr>
+				<td class="col">이름 : </td><td><input type="text" id="name" name="name" placeholder="이름을 입력해 주세요"></td>
+</tr>
+<tr>
 				<td class="col">비밀번호 : </td><td><input type="password" id="pw" name="pw" placeholder="비밀번호를 입력해 주세요"></td>
-				
 </tr>
 <tr>
-				<td class="col">비밀번호<br> 확인 : </td><td> <input type="password" id="pwchk" placeholder="비밀번호를 다시 입력해 주세요" required="required"></td>
+				<td class="col">비밀번호<br> 확인 : </td><td> <input type="password" id="pwchk" placeholder="비밀번호를 다시 입력해 주세요"></td>
 </tr>
 <tr>
-				<td class="col">이메일 : </td> <td> <input type="text" id="email" placeholder="이메일을 입력해 주세요"></td><td><input type="button" value="본인인증" onclick=""></td>
+				<td class="col">이메일 : </td> <td> <input type="text" id="email" name="email" placeholder="이메일을 입력해 주세요"></td><td><input type="button" value="본인인증" onclick="emailCheck('<%=getRandom()%>');"></td>
+</tr>
+<tr>
+				<td class="col">인증번호 확인 : </td> <td> <input type="text" id="chkAuth" placeholder="인증번호를 입력해 주세요"></td><td><input type="button" value="인증확인" onclick="chkAuth1()"></td>
 </tr>
 <tr>
 				<td class="col" class="asdf">주소 : </td> <td class="asdf"> <input type="text" id="addr" readonly="readonly"> - <input type="text" id="addr" readonly="readonly"></td><td class="asdf"><input type="button" value="우편번호찾기"></td>
 </tr>
 <tr>
-				<td></td><td colspan="2"><input type="text" id="addr_detail" placeholder="상세주소를 입력해 주세요"></td>	
+				<td></td><td colspan="2"><input type="text" id="addr_detail" name="addr" placeholder="상세주소를 입력해 주세요"></td>	
 </tr>
 <tr>
-				<td class="col">전화번호 : </td> <td colspan="2"> <input type="text" id="phone"> - <input type="text" id="phone"> - <input type="text" id="phone"></td><td><input type="button" id="chkphone"></td>
+				<td class="col">전화번호 : </td> <td colspan="2"> <input type="text" id="phone" name="phone"></td> 
 </tr>
 		</table>
+		<p style="color: green;" style="text-align: center;">이메일 인증을 하면 가입버튼이 나타납니다.</p>
+		<input type="submit" id="joinBtn" value="가입하기" style="display: none;">
 		
-		<input type="button" value="가입하기">
-		
+		</form>
 	</div>
 	<br>
 	<br>
 	<br>
 	<br>
-<%@ include file="../../form/footer.jsp" %>
+
+	<%@ include file="../../form/footer.jsp" %>
 
 </body>
 </html>	
