@@ -101,9 +101,11 @@ section {
 	function total_price() {
 		var price = document.getElementById("goods_price").innerText;
 		var cnt = document.getElementById("count").value;
-
+		
 		var total_price = parseInt(price) * parseInt(cnt);
 		document.getElementById("total_price").innerText = total_price;
+		
+		
 
 	}
 	
@@ -122,8 +124,7 @@ section {
 		    buyer_name : '구매자이름',
 		    buyer_tel : '010-1234-5678',
 		    buyer_addr : '서울특별시 강남구 삼성동',
-		    buyer_postcode : '123-456',
-		    m_redirect_url : 'https://www.yourdomain.com/payments/complete'
+		    buyer_postcode : '123-456'
 		}, function(rsp) {
 		    if ( rsp.success ) {
 		        var msg = '결제가 완료되었습니다.';
@@ -143,7 +144,8 @@ section {
  		
 </script>
 <body> 
-	<%@include file=../../form/header.jsp"%>
+	
+	<%@include file="../../form/header.jsp"%>
 	<section class="section">
 		<!-- 쇼핑몰 상세보기 시작점  -->
 		<div class="product_wrap">
