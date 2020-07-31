@@ -73,7 +73,7 @@ public class GoodsController extends HttpServlet {
 		}else if(command.equals("goodslist")) {
 			response.sendRedirect(request.getContextPath()+"/view/goods/goods_list.jsp");
 		}
-		
+		 //test
 		else if(command.equals("imgUpload")) {
 			System.out.println("imgUpload왔다잉");
 			System.out.println(request.getContentType());
