@@ -1,16 +1,21 @@
 package com.yozo.goods.controller;
 
 import java.io.IOException;
+import java.util.Enumeration;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.yozo.goods.biz.GoodsBiz;
 import com.yozo.goods.dto.GoodsDto;
+
 
 /**
  * Servlet implementation class GoodsController
@@ -36,7 +41,7 @@ public class GoodsController extends HttpServlet {
 		response.setContentType("text/html; charset=utf-8");
 		
 		
-		
+		System.out.println("정신차리지");
 		String command = request.getParameter("command");
 		System.out.println("["+command+"]");
 		
@@ -45,6 +50,7 @@ public class GoodsController extends HttpServlet {
 		//굿즈 상품 등독
 		if(command.equals("goodsinsertres")) {
 			System.out.println("goodsinsertres왔음");
+			//response.sendRedirect(request.getContextPath()+"/view/goods/goods_insert.jsp");
 			String goods_title = request.getParameter("goods_title");
 			int goods_quantity = Integer.parseInt(request.getParameter("goods_quantity"));
 			int goods_price = Integer.parseInt(request.getParameter("goods_price"));
@@ -52,9 +58,7 @@ public class GoodsController extends HttpServlet {
 			String goods_main_photo=request.getParameter("goods_main_photo");
 			int res=0;
 			System.out.println(goods_content);
-			
-			
-			 res = biz.insert(new GoodsDto(1,"session값",goods_title,goods_main_photo,goods_price,goods_quantity,"사진", goods_content,null));
+			 res = biz.insert(new GoodsDto(1,"session값",goods_title,goods_price,goods_quantity,"사진", goods_content,null,goods_main_photo));
 			 
 			 if(res>0) {
 				 dispatch("goods_list.jsp", request, response);

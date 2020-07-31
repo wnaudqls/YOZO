@@ -142,8 +142,8 @@ section {
 
  		
 </script>
-<body>
-	<%@ include file="../../form/header.jsp"%>
+<body> 
+	<%@include file=../../form/header.jsp"%>
 	<section class="section">
 		<!-- 쇼핑몰 상세보기 시작점  -->
 		<div class="product_wrap">

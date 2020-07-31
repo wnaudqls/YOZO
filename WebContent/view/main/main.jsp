@@ -65,7 +65,7 @@
         right: 0; bottom: 0;
         min-width: 100%; min-height: 100%;
         width: auto; height: auto; z-index: -100;
-        background: url(polina.jpg) no-repeat;
+        /* background: url(polina.jpg) no-repeat; */
         background-size: cover;
 
     }
@@ -169,7 +169,7 @@
     .show {display:block;}
 </style>
 <!-- <script type="text/javascript" src="../resouces/js/jquery-3.5.1.min.js"></script> -->
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js" >\</script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js">\</script>
 <script type="text/javascript">
 
 	$(document).ready(function() {
@@ -228,23 +228,14 @@
 </head>
 <body>
 <%@ include file="../../form/header.jsp" %>
-   <body id = body>
     <div class="search">
         <input type="search" name="search" placeholder="레시피 검색">
         <button class="btn">검색</button>
         
     </div>
-    <video oncontextmenu="return false;" id="myVideo" height = "600"width="100%" autoplay muted loop poster="img/캡파이리.jpg">
-        <source src="img/main_video.mp4" type="video/mp4">
+    <video oncontextmenu="return false;" id="myVideo" height = "600"width="100%" autoplay muted loop ">
+        <source src="<%=request.getContextPath()%>/img/main/main_video.mp4" type="video/mp4">
     </video>
-     <body id = body>
-       <section class ="maincontent1">
-            <img class="mainlogo" alt="logo" src="/picture/mainicon.png">
-       </section>
-       <section>
-      
-       </section>
-    </body>
   <%@ include file="../../form/footer.jsp" %>
 </body>
 

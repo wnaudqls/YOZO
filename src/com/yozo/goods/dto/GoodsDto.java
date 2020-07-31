@@ -19,23 +19,24 @@ public class GoodsDto {
 		
 	}
 
-	public GoodsDto(int goods_no, String member_id, String goods_title, String goods_main_photo,int goods_price, int goods_quantity,
-			String goods_photo, String goods_content, Date goods_regdate) {
+	
+	
+	public GoodsDto(int goods_no, String member_id, String goods_title, int goods_price, int goods_quantity,
+			String goods_photo, String goods_content, Date goods_regdate, String goods_main_photo) {
 		super();
 		this.goods_no = goods_no;
 		this.member_id = member_id;
 		this.goods_title = goods_title;
-		this.goods_main_photo = goods_main_photo;
 		this.goods_price = goods_price;
 		this.goods_quantity = goods_quantity;
 		this.goods_photo = goods_photo;
 		this.goods_content = goods_content;
 		this.goods_regdate = goods_regdate;
-		
+		this.goods_main_photo = goods_main_photo;
 	}
 
-	
-	
+
+
 	public int getGoods_no() {
 		return goods_no;
 	}
