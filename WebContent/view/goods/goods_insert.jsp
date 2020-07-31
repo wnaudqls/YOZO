@@ -14,7 +14,7 @@
 <head>
 <meta charset="UTF-8">
 <title>굿즈 등록</title>
-
+test
 <style type="text/css">
 section {
 	height : 600px;
