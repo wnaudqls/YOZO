@@ -51,15 +51,6 @@ section {
 	margin-top: 30px;
 	margin-bottom: 30px;
 }
-/* 장바구니 버튼 색깔 */
-.btns_product_updown>a.btns_product_updown1 {
-	background: #989b9e;
-}
-
-/* 구매하기 버튼 색깔 */
-.btns_product_updown>a.btns_product_updown2 {
-	background-color: #F5A9A9;
-}
 
 #thumbnail {
 	width: 300px;
@@ -83,6 +74,20 @@ section {
 .product_wrap {
 	text-align: center;
 }
+.btn{
+   width : 70px;
+   height : 35px;
+   margin-top: 20px;
+   background-color : #F5A9A9;
+   color : #FAFAFA;
+   border : 0;
+   outline: 0;
+   border-radius : 0.35em;
+   font-weight: bold;
+   cursor: pointer;
+
+}
+
 </style>
 </head>
 
@@ -91,6 +96,8 @@ section {
 <script src="https://cdn.iamport.kr/js/iamport.payment-1.1.4.js" type="text/javascript"></script>
 
 <script type="text/javascript">
+
+
 	function total_price() {
 		var price = document.getElementById("goods_price").innerText;
 		var cnt = document.getElementById("count").value;
@@ -100,16 +107,17 @@ section {
 
 	}
 	
-		
- 		var IMP = window.iMP;
-		IMP.init('imp92407375') // 가맹점식별코드
-		
+	function pay(){
+
+		var IMP = window.IMP; // 생략가능
+		IMP.init('imp92407375');
+
 		IMP.request_pay({
-		    pg : 'inicis', // version 1.1.0부터 지원.
+		    pg : 'html5_inicis', // version 1.1.0부터 지원.
 		    pay_method : 'card',
 		    merchant_uid : 'merchant_' + new Date().getTime(),
 		    name : '주문명:결제테스트',
-		    amount : 14000, //판매 가격
+		    amount : 14000,
 		    buyer_email : 'iamport@siot.do',
 		    buyer_name : '구매자이름',
 		    buyer_tel : '010-1234-5678',
@@ -129,6 +137,10 @@ section {
 		    }
 		    alert(msg);
 		});
+
+	};
+
+ 		
 </script>
 <body>
 	<%@ include file="../../form/header.jsp"%>
@@ -174,9 +186,9 @@ section {
 
 				</table>
 			</div>
-			<div class="btns_product_updown">
-				<a href="" class="btns_product_updown1">장바구니</a> 
-				<input type="button" value="구매하기" onclick="IMP.request_pay();"/>
+			<div>
+				<input class="btn" type="button" value="장바구니"/>
+				<input class="btn" type="button" value="구매하기" onclick="pay();"/>
 			</div>
 		</div>
 		<hr>
@@ -185,7 +197,6 @@ section {
 			<p>${dto.goods_content }</p>
 		</div>
 	</section>
-
 
 	<!-- 푸터 -->
 	<%@ include file="../../form/footer.jsp"%>
