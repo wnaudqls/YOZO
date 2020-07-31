@@ -33,7 +33,6 @@
    <br>
       <h1>로그인</h1>
 	<form action="<%=request.getContextPath() %>/user.do" method="post">
-	<!-- <form action="/YORIZORI/view/user/emailSendAction.jsp" method="post"> -->
 		<input type="hidden" name="command" value="login">
 		<input type="text" name="id" placeholder="아이디를 입력하세요" > <br>
 		<input type="password" name="pw" placeholder="비밀번호를 입력하세요"> <br><br>
