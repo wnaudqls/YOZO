@@ -113,7 +113,7 @@ height:310px;
 <body>
 	<section>
 		<form action="<%=request.getContextPath()%>/goods.do" method="post" id="goods_form">
-			<input type="hidden" name="command" value="goodsinsertres"> 
+			<input type="hidden" name="command" value="goodsinsertres">
 		<!-- 	<input type="hidden" id="goods_main_photo" name="goods_main_photo"> -->
 			<div class="goods_wrap">
 				<div class="goods_name">

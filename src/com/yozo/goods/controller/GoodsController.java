@@ -60,9 +60,9 @@ public class GoodsController extends HttpServlet {
 			 
 			 if(res>0) {
 				 System.out.println("작성성공");
-				 dispatch("goods_list.jsp", request, response);
+				 dispatch("goods.do?command=goodslist", request, response);
 			 }else {
-				 jsResponse("작성 실패","유정쓰가만든 goods_insertform", response);
+				 jsResponse("작성 실패","goods_insertform", response);
 			 }
 			 
 			 
@@ -72,8 +72,14 @@ public class GoodsController extends HttpServlet {
 		}else if(command.equals("goodslist")) {
 
 			//db에서 값 가지고 오기!
-
-			response.sendRedirect(request.getContextPath()+"/view/goods/goods_list.jsp");
+			List<GoodsDto> list = biz.selectList();
+			request.setAttribute("list", list);
+			ServletContext scontext = getServletContext();
+			String savefile = "imgtest"; 
+			String realFolder =scontext.getRealPath(savefile);
+			request.setAttribute("path", realFolder);
+			dispatch("/view/goods/goods_list.jsp", request, response);
+	
 		}
 		 //test
 		else if(command.equals("imgUpload")) {
@@ -89,7 +95,6 @@ public class GoodsController extends HttpServlet {
 			System.out.println("scontext:"+scontext);
 			realFolder = scontext.getRealPath(savefile);
 			System.out.println("realFolder"+realFolder);
-
 			
 			List<GoodsDto> list = biz.selectList();
 			request.setAttribute("list", list);
