@@ -133,6 +133,25 @@
 
 		}
 	}
+	
+	function goPopup(){
+//	    var pop = window.open("../../popup/jusoPopup.jsp","pop","width=570,height=420, scrollbars=yes, resizable=yes"); 
+	    var pop = window.open("./jusoPopup.jsp","pop","width=570,height=420, scrollbars=yes, resizable=yes"); 
+	 
+	}
+	function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAddr, jibunAddr, zipNo, admCd, rnMgtSn, bdMgtSn
+							, detBdNmList, bdNm, bdKdcd, siNm, sggNm, emdNm, liNm, rn, udrtYn, buldMnnm, buldSlno, mtYn, lnbrMnnm, lnbrSlno, emdNo){
+		// 팝업페이지에서 주소입력한 정보를 받아서, 현 페이지에 정보를 등록합니다.
+		document.form.road_addr_part1.value = roadAddrPart1;
+		document.form.road_addr_part2.value = roadAddrPart2;
+		document.form.addr_detail.value = addrDetail;
+		document.form.zip_no.value = zipNo;
+		
+	   console.log(roadAddrPart1);
+
+		
+		
+	}
 
 	
 	</script>
@@ -143,10 +162,6 @@
 			text-align: center;
 		}
 		
-		#addr {
-			width: 70px;
-		}
-		
 		#phone {
 			width: 60px;
 		}
@@ -154,7 +169,7 @@
 			margin-left: auto;
 			margin-right: auto;
 		}
-		#id, #nick, #name, #pw, #pwchk, #email, #chkAuth, #addr_detail, #phone {
+		#id, #nick, #name, #pw, #pwchk, #email, #chkAuth, #road_addr_part1,#road_addr_part2, #addr_detail, #phone {
 			width: 200px;
 		} 
 		td {
@@ -164,6 +179,7 @@
 		.asdf {
 			padding: 0px;
 		}
+	
 	
 	</style>
 	
@@ -189,7 +205,7 @@
 
 	<div>
 	<h1>회원 가입</h1>
-		<form action="<%=request.getContextPath() %>/user.do" method="get">
+		<form action="<%=request.getContextPath() %>/user.do" name="form" id="form" method="post">
 		<input type="hidden" name="command" value="join" >
 		<table>
 	
@@ -215,16 +231,24 @@
 				<td class="col">인증번호 확인 : </td> <td> <input type="text" id="chkAuth" placeholder="인증번호를 입력해 주세요"></td><td><input type="button" value="인증확인" onclick="chkAuth1()"></td>
 </tr>
 <tr>
-				<td class="col" class="asdf">주소 : </td> <td class="asdf"> <input type="text" id="addr" readonly="readonly"> - <input type="text" id="addr" readonly="readonly"></td><td class="asdf"><input type="button" value="우편번호찾기"></td>
+				<td class="col" class="asdf">주소 : </td> <td class="asdf"> 
+				<input type="hidden" id="confmKey" name="confmKey" value=""  >
+				<input type="text" id="zip_no" name="zip_no" placeholder="우편번호" readonly="readonly" value=""> </td> <td><input type="button" value="주소 검색" onclick="goPopup();"> </td>
 </tr>
 <tr>
-				<td></td><td colspan="2"><input type="text" id="addr_detail" name="addr" placeholder="상세주소를 입력해 주세요"></td>	
+				<td></td><td colspan="2"><input type="text" id="road_addr_part1" name="road_addr_part1" placeholder="도로명 주소" readonly="readonly" value=""></td>	
+</tr>
+<tr>
+				<td></td><td colspan="2"><input type="text" id="road_addr_part2" name="road_addr_part2" placeholder="상세주소 1" readonly="readonly" value=""></td>
+</tr>
+<tr>
+				<td></td><td colspan="2"><input type="text" id="addr_detail" name="addr_detail" placeholder="상세주소 2" readonly="readonly" value=""></td>
 </tr>
 <tr>
 				<td class="col">전화번호 : </td> <td colspan="2"> <input type="text" id="phone" name="phone"></td> 
 </tr>
 		</table>
-		<p style="color: green;" style="text-align: center;">이메일 인증을 하면 가입버튼이 나타납니다.</p>
+			<p style="color: green;" style="text-align: center;">이메일 인증을 하면 가입버튼이 나타납니다.</p>
 		<input type="submit" id="joinBtn" value="가입하기" style="display: none;">
 		
 		</form>
