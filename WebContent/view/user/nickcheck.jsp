@@ -19,7 +19,7 @@
 	function confirmnick(bool){
 		if (bool == "true") {
 			opener.document.getElementsByName("nick")[0].title = 'y';
-			opener.document.getElementsByName("pw")[0].focus();
+			opener.document.getElementsByName("name")[0].focus();
 		} else {
 			opener.document.getElementsByName("nick")[0].focus();
 		}

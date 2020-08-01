@@ -53,10 +53,13 @@ public class GoodsController extends HttpServlet {
 			String goods_main_photo=request.getParameter("goods_main_photo");
 			
 			int res=0;
-			System.out.println(goods_title + goods_quantity + goods_price + goods_content + goods_main_photo);
-			 res = biz.insert(new GoodsDto(1,"session값",goods_title,goods_price,goods_quantity,"사진", goods_content,null,goods_main_photo));
+
+			System.out.println(goods_content);
+			 res = biz.insert(new GoodsDto(1,"ID",goods_title,goods_price,goods_quantity, goods_content,null,goods_main_photo));
+
 			 
 			 if(res>0) {
+				 System.out.println("작성성공");
 				 dispatch("goods_list.jsp", request, response);
 			 }else {
 				 jsResponse("작성 실패","유정쓰가만든 goods_insertform", response);
@@ -67,7 +70,26 @@ public class GoodsController extends HttpServlet {
 		}else if(command.equals("goodsinsertform")) {
 			response.sendRedirect(request.getContextPath()+"/view/goods/goods_insert.jsp");
 		}else if(command.equals("goodslist")) {
+
 			//db에서 값 가지고 오기!
+
+			response.sendRedirect(request.getContextPath()+"/view/goods/goods_list.jsp");
+		}
+		 //test
+		else if(command.equals("imgUpload")) {
+			System.out.println("imgUpload왔다잉");
+			System.out.println(request.getContentType());
+			String realFolder = "";
+ 
+			String filename1 = "";	//업로드한 파일이름  	
+			int maxSize = 1024*1024*5; 	//파일 사이즈 설정: 5M
+		/*	String encType = "multipart/form-data"; 	*/
+			String savefile = "imgtest"; 
+			ServletContext scontext = getServletContext();
+			System.out.println("scontext:"+scontext);
+			realFolder = scontext.getRealPath(savefile);
+			System.out.println("realFolder"+realFolder);
+
 			
 			List<GoodsDto> list = biz.selectList();
 			request.setAttribute("list", list);
