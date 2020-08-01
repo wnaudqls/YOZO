@@ -164,6 +164,8 @@ section {
 	display : inline-block;
 	vertical-align: middle;
 }
+.tablewrapper{
+display: inline-block;}
 </style>
 
 <%@ include file="../../form/header.jsp" %>
@@ -190,7 +192,7 @@ section {
 			<div class="tablewrapper">
 		<table>
 				<tr>
-					<td>${dto.goods_photo }</td>
+					<td><img src="${path }/${dto.goods_main_photo }"/></td>
 				</tr>
 				<tr>
 					<td>${dto.goods_title }</td>
@@ -218,7 +220,6 @@ section {
 </section>
 	<!-- 푸터 -->
 	
-	<!-- 테스터 해본거임ㅋ <img src="/YORIZORI/ckstorage/images/WIN_20200730_13_16_14_Pro(1).jpg"> -->
 	
 	
 <%@ include file="../../form/footer.jsp" %>
