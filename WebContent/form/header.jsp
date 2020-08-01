@@ -119,6 +119,10 @@
     #dropstream_content a:hover {background-color: black}
 
     .show {display:block;}
+    
+.finger{
+    	cursor: pointer;
+    } 
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
@@ -159,7 +163,7 @@ window.onclick = function(event){
 </head>
 <body>
 <header id= header>
-        <img class="mainlogo" alt="logo" src="/YORIZORI/img/mainicon.png">
+        <img class="mainlogo finger" alt="logo" src="/YORIZORI/img/mainicon.png" onclick="location.href='<%request.getContextPath();%>/YORIZORI/view/main/main.jsp'">
         <div class = "dropuserdown">
             <img onclick = "dropuser()" class="usericon"alt="logo" src="/YORIZORI/img/usericon.png">
             <div id="dropuser_content" class = "dropuser_content">
@@ -171,17 +175,18 @@ window.onclick = function(event){
         </div>
     </header>      
          <nav id="icon">
-            <img class="recipe" alt="logo" src="/YORIZORI/img/recipebookicon.png">
+            <img class="recipe finger" alt="logo" src="/YORIZORI/img/recipebookicon.png">
             <div class = "dropstreamdown">
-                <img onclick = "dropstream()" class="stream"alt="logo" src="/YORIZORI/img/broadcasticon.png">
+                <img onclick = "dropstream()" class="stream finger" alt="logo" src="/YORIZORI/img/broadcasticon.png">
                 <div id="dropstream_content" class = "dropstream_content">
                     <a href="">방송하기</a>
                     <a href="">시청하기</a>
                     <a href="">예약하기</a>
                 </div>
             </div>
-            <img class="goods" alt="logo" src="/YORIZORI/img/goodsicon.png">
-            <img class="map" alt="logo" src="/YORIZORI/img/mapicon.png">
+            <!--유정 goods onclick 건들임 -->
+            <img class="goods finger" alt="logo" src="/YORIZORI/img/goodsicon.png" onclick="location.href='<%request.getContextPath();%>/YORIZORI/goods.do?command=goodslist'">
+            <img class="map finger" alt="logo" src="/YORIZORI/img/mapicon.png">
         </nav>
 </body>
 </html>

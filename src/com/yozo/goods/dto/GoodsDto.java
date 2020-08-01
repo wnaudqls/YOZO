@@ -18,6 +18,8 @@ public class GoodsDto {
 		
 	}
 
+	
+	
 	public GoodsDto(int goods_no, String member_id, String goods_title, int goods_price, int goods_quantity,
 			 String goods_content, Date goods_regdate, String goods_main_photo) {
 		super();
@@ -31,8 +33,8 @@ public class GoodsDto {
 		this.goods_main_photo = goods_main_photo;
 	}
 
-	
-	
+
+
 	public int getGoods_no() {
 		return goods_no;
 	}
