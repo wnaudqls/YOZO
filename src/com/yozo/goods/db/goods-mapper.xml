@@ -5,8 +5,15 @@
   <mapper namespace ="goods">
   <insert id="insert" parameterType="goodsDto">
   <!-- member_id : 작성자 -->
-  	INSERT INTO GOODS1
-  	VALUES(#{goods_no},#{member_id},#{goods_title},#{goods_price},#{goods_quantity},#{goods_photo},#{goods_content},SYSDATE,#{goods_main_photo})
+  	INSERT INTO GOODS
+  	VALUES(goods_seq.nextval,#{member_id},#{goods_title},#{goods_main_photo},#{goods_price},#{goods_quantity},#{goods_content},sysdate)
   </insert>
+  <select id="selectList" resultType ="goodsDto">
+  	SELECT GOODS_NO, MEMBER_ID, GOODS_TITLE, GOODS_MAIN_PHOTO, GOODS_PRICE, GOODS_QUANTITY, 
+  	GOODS_PHOTO, GOODS_CONTENT, GOODS_REGDATE
+  	FROM GOODS
+  </select>
   
+  
+
   </mapper>
