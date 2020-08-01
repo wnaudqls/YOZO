@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 	request.setCharacterEncoding("UTF-8");
 %>
@@ -7,17 +8,17 @@
 	response.setContentType("text/html charset=UTF-8");
 %>
 
+
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>굿즈 목록</title>
 </head>
 
 <style type="text/css">
 section {
-	height: 1200px;
-	margin: 0px;
+	height: 600px;
 }
 
 #title {
@@ -52,10 +53,7 @@ section {
 	text-decoration: none;
 	font-family: "montserrat";
 }
-/* 전체바탕 배경색 */
-body {
-	background-color: #FFFDBC;
-}
+
 
 .card {
 	width: 360px;
@@ -153,125 +151,77 @@ body {
 .btn_basket:hover {
 	background: #333;
 }
+
+.goods_list{
+	border: 1px solid black;
+}
+#warning{
+	width: 100px;
+	height :100px;
+	vertical-align: middle;
+}
+#message{
+	display : inline-block;
+	vertical-align: middle;
+}
+.tablewrapper{
+display: inline-block;}
 </style>
 
 <%@ include file="../../form/header.jsp" %>
-
 <body>
-	<main>
-		<section>
-			<div id="title">작성자 님의 레시피</div>
+	<section>
 			<div id="btns">
-				<input class="btn" type="button" value="등록" /> <input class="btn"
-					type="button" value="삭제" />
+				<input class="btn" type="button" value="등록" onclick="location.href='<%request.getContextPath(); %>/YORIZORI/goods.do?command=goodsinsertform'"/> 
+				<input class="btn" type="button" value="삭제" />
+			</div>
+		
+<div class="goods_list">
+	<!--썸네일 / 제목 / 가격 / 장바구니담기버튼 -->
+
+	<c:choose>
+		<c:when test="${empty list }">
+			<div>
+			<img id="warning" alt="warning" src="../../img/warning.jpg">
+			<h1 id="message">등록된 상품이 존재하지 않습니다.</h1>
+			</div>
+		</c:when>
+		
+		<c:otherwise>
+		<c:forEach items="${list }" var="dto">
+			<div class="tablewrapper">
+		<table>
+				<tr>
+					<td><img src="${path }/${dto.goods_main_photo }"/></td>
+				</tr>
+				<tr>
+					<td>${dto.goods_title }</td>
+				</tr>
+				<tr>
+					<td>${dto.goods_price }</td>
+				</tr>
+				<tr>
+					<td>
+						<input type="button" value="장바구니 담기"/>
+					</td>
+				</tr>
+	
+		</table>
+			
+			
+				
 			</div>
 			
-			<h2>제품보기(4)</h2>
-			<div class="card">
-
-				<div class="top-section">
-					<img id="image-container" alt="" src="img/goods1.jpg">
-					<div class="nav">
-						<!-- onclick 하면 change_img()함수가 실행된다. -->
-						<img alt="" src="img/goods2.png" onclick="change_img(this)">
-						<img alt="" src="img/goods3.png" onclick="change_img(this)">
-						<img alt="" src="img/goods4.png" onclick="change_img(this)">
-					</div>
-					<div class="price">52,000 WON</div>
-				</div>
-
-
-				<div class="product-info">
-					<div class="name">YORIZORI 도마</div>
-					<div class="dis">'MUST HAVE' kitchen tools</div>
-					<!-- 장바구니 담기 링크 -->
-					<a class="btn_basket" href="#">장바구니에 담기</a>
-				</div>
-
-			</div>
-
-			<div class="card2">
-
-				<div class="top-section">
-					<img id="image-container" alt="" src="img/goods1.jpg">
-					<div class="nav">
-						<!-- onclick 하면 change_img()함수가 실행된다. -->
-						<img alt="" src="img/goods2.png" onclick="change_img(this)">
-						<img alt="" src="img/goods3.png" onclick="change_img(this)">
-						<img alt="" src="img/goods4.png" onclick="change_img(this)">
-					</div>
-					<div class="price">52,000 WON</div>
-				</div>
-
-
-				<div class="product-info">
-					<div class="name">YORIZORI 도마</div>
-					<div class="dis">'MUST HAVE' kitchen tools</div>
-					<!-- 장바구니 담기 링크 -->
-					<a class="btn_basket" href="#">장바구니에 담기</a>
-				</div>
-
-			</div>
-
-			<div class="card3">
-
-				<div class="top-section">
-					<img id="image-container" alt="" src="img/goods1.jpg">
-					<div class="nav">
-						<!-- onclick 하면 change_img()함수가 실행된다. -->
-						<img alt="" src="img/goods2.png" onclick="change_img(this)">
-						<img alt="" src="img/goods3.png" onclick="change_img(this)">
-						<img alt="" src="img/goods4.png" onclick="change_img(this)">
-					</div>
-					<div class="price">52,000 WON</div>
-				</div>
-
-
-				<div class="product-info">
-					<div class="name">YORIZORI 도마</div>
-					<div class="dis">'MUST HAVE' kitchen tools</div>
-					<!-- 장바구니 담기 링크 -->
-					<a class="btn_basket" href="#">장바구니에 담기</a>
-				</div>
-
-			</div>
-
-			<div class="card4">
-
-				<div class="top-section">
-					<img id="image-container" alt="" src="img/goods1.jpg">
-					<div class="nav">
-						<!-- onclick 하면 change_img()함수가 실행된다. -->
-						<img alt="" src="img/goods2.png" onclick="change_img(this)">
-						<img alt="" src="img/goods3.png" onclick="change_img(this)">
-						<img alt="" src="img/goods4.png" onclick="change_img(this)">
-					</div>
-					<div class="price">52,000 WON</div>
-				</div>
-
-
-				<div class="product-info">
-					<div class="name">YORIZORI 도마</div>
-					<div class="dis">'MUST HAVE' kitchen tools</div>
-					<!-- 장바구니 담기 링크 -->
-					<a class="btn_basket" href="#">장바구니에 담기</a>
-				</div>
-
-			</div>
-
-
-
-			<script type="text/javascript">
-				/* 체크 */
-				var container = document.getElementById("image-container");
-				function change_img(image) {
-					container.src = image.src;
-				}
-			</script>
-
-		</section>
-	</main>
+		</c:forEach>
+		</c:otherwise>
+	</c:choose>
+	
+</div>
+</section>
 	<!-- 푸터 -->
+	
+	
+	
 <%@ include file="../../form/footer.jsp" %>
 </body>
 </html>

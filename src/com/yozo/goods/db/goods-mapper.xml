@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace ="goods">
+  <insert id="insert" parameterType="goodsDto">
+  <!-- member_id : 작성자 -->
+  	INSERT INTO GOODS
+  	VALUES(goods_seq.nextval,#{member_id},#{goods_title},#{goods_main_photo},#{goods_price},#{goods_quantity},#{goods_content},sysdate)
+  </insert>
+  
+  <select id="selectList" resultType ="goodsDto">
+  	SELECT GOODS_NO, MEMBER_ID, GOODS_TITLE, GOODS_MAIN_PHOTO, GOODS_PRICE, GOODS_QUANTITY, 
+  	GOODS_CONTENT, GOODS_REGDATE
+  	FROM GOODS
+  </select>
+  
+  
+
+  </mapper>
