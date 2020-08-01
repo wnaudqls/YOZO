@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>요리조리</title>
+
 <style type="text/css">
 	 body {
         margin: 0px;
@@ -155,6 +156,25 @@ window.onclick = function(event){
         }
     }
 }
+
+//메뉴 클릭 시 로그인이 필요한 경우 로그인으로 이동 기능 작성 중 *************************
+
+
+	var sessionVal = '${session}';
+	
+function {
+	alert(sessionVal);
+	if (sessionVal < 0) {
+		for (int i = 0; i > 7;i++){
+			var needLogin = document.getElementsByClass("useId")[i]
+			needLogin[i].click() {
+				location.href="user.do?command=loginform"
+			}
+		}
+	} 
+}
+
+
 </script>
 </head>
 <body>
@@ -163,10 +183,10 @@ window.onclick = function(event){
         <div class = "dropuserdown">
             <img onclick = "dropuser()" class="usericon"alt="logo" src="/YORIZORI/img/usericon.png">
             <div id="dropuser_content" class = "dropuser_content">
-                <a href="">개인정보수정</a>
-                <a href="">나의레시피</a>
-                <a href="">장바구니</a>
-                <a href="">우리집냉장고</a>
+                <a href="" class="useId">개인정보수정</a>
+                <a href="" class="useId">나의레시피</a>
+                <a href="" class="useId">장바구니</a>
+                <a href="" class="useId">우리집냉장고</a>
             </div>
         </div>
     </header>      
@@ -175,9 +195,9 @@ window.onclick = function(event){
             <div class = "dropstreamdown">
                 <img onclick = "dropstream()" class="stream"alt="logo" src="/YORIZORI/img/broadcasticon.png">
                 <div id="dropstream_content" class = "dropstream_content">
-                    <a href="">방송하기</a>
-                    <a href="">시청하기</a>
-                    <a href="">예약하기</a>
+                    <a href="" class="useId">방송하기</a>
+                    <a href="" >시청하기</a>
+                    <a href="" class="useId">예약하기</a>
                 </div>
             </div>
             <img class="goods" alt="logo" src="/YORIZORI/img/goodsicon.png">

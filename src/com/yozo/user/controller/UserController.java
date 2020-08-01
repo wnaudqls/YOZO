@@ -79,6 +79,13 @@ public class UserController extends HttpServlet {
 				session.setAttribute("dto", rdto);		
 				session.setMaxInactiveInterval(10*60);
 				
+				System.out.println("세션 정보 : "+ session);
+				
+				PrintWriter out = response.getWriter();
+				out.println("<script type='text/javascript'>alert('계정이 등록 되었습니다'); </script>");
+				
+				request.setAttribute("session", session);
+				
 				RequestDispatcher dispatch = request.getRequestDispatcher("user.do?command=main");
 				dispatch.forward(request, response);
 				
@@ -89,13 +96,12 @@ public class UserController extends HttpServlet {
 				
 				
 				
+				
 			} else {
 				System.out.println("로그인 실패");
 				
 				response.sendRedirect("user.do?command=loginform");
-				PrintWriter out = response.getWriter();
-				out.println("<script>alert('계정이 등록 되었습니다'); </script>");
-
+				
 
 				/*
 				 * out.println(); out.
@@ -160,8 +166,12 @@ public class UserController extends HttpServlet {
 			 String name = request.getParameter("name");
 			 String pw = request.getParameter("pw"); 
 			 String email = request.getParameter("email"); 
-			 String addr = request.getParameter("addr");
+			 String road_addr_part1 = request.getParameter("road_addr_part1");
+			 String road_addr_part2 = request.getParameter("road_addr_part2");
+			 String addr_detail = request.getParameter("addr_detail");
 			 String phone = request.getParameter("phone");
+			 
+			 String addr = road_addr_part1 + " " + road_addr_part2 + " " + addr_detail;
 			 
 			 System.out.println(id+nick+name+pw+email+addr+phone);
 			 
