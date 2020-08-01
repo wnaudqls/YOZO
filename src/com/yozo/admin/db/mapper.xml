@@ -19,15 +19,23 @@
 		SELECT * FROM MEMBER
 	</select>
 	<!-- <select id ="selectOne">
-		SELECT  MEMBER_NO, MEMBER_ID, MEMBER_NICK, MEMBER_NAME, MEMBER_ADDR, MEMBER_ROLE FROM MEMBER WHERE MEMBER_NO = #{member_no}
-	</select>
+		SELECT  MEMBER_NO, MEMBER_ID, MEMBER_NICK, MEMBER_NAME, MEMBER_ADDR, MEMBER_ROLE FROM MEMBER WHERE MEMBER_id = #{member_id}
+	</select> -->
+	<!-- <select id="">
+		<![CDATA[
+			SELECT * 
+			FROM BOARD 
+			WHERE AND TITLE LIKE CONCAT('%',#{searchKeyword},'%') )
+			ORDER BY SEQ DESC
+		]]>
+	</select> -->
 	<update id ="update">
-		UPDATE MEMBER SET MEMBER_ROLE = #{role}, WHERE MEMBER_NO = #{member_no}
+		UPDATE MEMBER SET MEMBER_ROLE = #{memeber_role}, WHERE MEMBER_NO = #{member_no}
 	</update>
 	<delete id = "delete">
 		DELETE FROM MEMBER WHERE MEMBER_NO = #{member_no}
 	</delete>
-	<delete id = "multdel">
+	<!-- <delete id = "multdel">
 		DELETE FROM MEMBER WHERE MEMBER_NO IN
 		<foreach collection="seqs" item="seq" index="index" open="("separator=","close=")">
 			#{member_no}

@@ -13,16 +13,10 @@ import javax.servlet.http.HttpServletResponse;
 import com.yozo.admin.dao.AdminDao;
 import com.yozo.admin.dto.AdminDto;
 
-/**
- * Servlet implementation class AdminController
- */
 @WebServlet("/admin.do")
 public class AdminController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    /**
-     * Default constructor. 
-     */
     public AdminController() {
         
     }
@@ -43,7 +37,13 @@ public class AdminController extends HttpServlet {
            List<AdminDto> list = dao.selectList();
            request.setAttribute("list", list);
            dispatch(url+"user_list.jsp", request, response);
-        } 
+        } else if (command.equals("update")) {
+        	
+        } else if (command.equals("delete")) {
+        	
+        } else if (command.equals("search")) {
+        	
+        }
      }
 
      protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -57,10 +57,8 @@ public class AdminController extends HttpServlet {
         try {
            dispatch.forward(request, response);
         } catch (ServletException e) {
-           // TODO Auto-generated catch block
            e.printStackTrace();
         } catch (IOException e) {
-           // TODO Auto-generated catch block
            e.printStackTrace();
         } 
      }
