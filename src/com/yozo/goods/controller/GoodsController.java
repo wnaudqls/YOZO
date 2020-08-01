@@ -58,9 +58,10 @@ public class GoodsController extends HttpServlet {
 			String goods_main_photo=request.getParameter("goods_main_photo");
 			int res=0;
 			System.out.println(goods_content);
-			 res = biz.insert(new GoodsDto(1,"session값",goods_title,goods_price,goods_quantity,"사진", goods_content,null,goods_main_photo));
+			 res = biz.insert(new GoodsDto(1,"ID",goods_title,goods_price,goods_quantity, goods_content,null,goods_main_photo));
 			 
 			 if(res>0) {
+				 System.out.println("작성성공");
 				 dispatch("goods_list.jsp", request, response);
 			 }else {
 				 jsResponse("작성 실패","유정쓰가만든 goods_insertform", response);
@@ -77,10 +78,11 @@ public class GoodsController extends HttpServlet {
 		else if(command.equals("imgUpload")) {
 			System.out.println("imgUpload왔다잉");
 			System.out.println(request.getContentType());
-			String realFolder = ""; 
+			String realFolder = "";
+ 
 			String filename1 = "";	//업로드한 파일이름  	
 			int maxSize = 1024*1024*5; 	//파일 사이즈 설정: 5M
-			String encType = "multipart/form-data"; 	
+		/*	String encType = "multipart/form-data"; 	*/
 			String savefile = "imgtest"; 
 			ServletContext scontext = getServletContext();
 			System.out.println("scontext:"+scontext);

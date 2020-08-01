@@ -10,13 +10,12 @@ NOCYCLE
 NOCACHE
 
 CREATE TABLE GOODS(
-	GOODS_NO NUMBER DEFAULT 1 PRIMARY KEY,
+	GOODS_NO NUMBER PRIMARY KEY,
 	MEMBER_ID VARCHAR2(50) NOT NULL,
 	GOODS_TITLE VARCHAR2(100) NOT NULL UNIQUE,
-	GOODS_MAIN_PHOTO Vㅁ2ㅊㅌㄽ5ㅌ5	6`                                                                                                                                                                                                                                                                           ㅇㄴㅁㅇㄹㄷ준ㅇㅁ리ㅏㄴㅇㅁ아ㅓㄻ닝ㄻ니ㅏㅇㄹㄹ둔ㅇ런ㅇ리ㅏㄴㅁ럊`RCHAR2(1000) NOT NULL,
-	GOODS_PRICE NUMBER NOT NULL UNIQUE,
+	GOODS_MAIN_PHOTO VARCHAR2(1000) NOT NULL,
+	GOODS_PRICE NUMBER NOT NULL,
 	GOODS_QUANTITY NUMBER NOT NULL,
-	GOODS_PHOTO VARCHAR2(4000) NOT NULL,
 	GOODS_CONTENT VARCHAR2(4000) NOT NULL,
 	GOODS_REGDATE DATE DEFAULT(SYSDATE) NOT NULL,
 	CONSTRAINT GOODS_FK_MEMBER_ID FOREIGN KEY(MEMBER_ID) REFERENCES MEMBER(MEMBER_ID)
