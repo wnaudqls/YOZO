@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace = "mapper">
+<resultMap type="adminDto" id="AdminDto">
+	<result property = "member_no" column = "MEMBER_NO"/>
+	<result property = "member_id" column = "MEMBER_ID"/>
+	<result property = "member_pw" column = "MEMBER_PW"/>
+	<result property = "member_name" column = "MEMEBER_NAME"/>
+	<result property = "member_nick" column = "MEMEBER_NICK"/>
+	<result property = "member_email" column = "MEMBER_EMAIL"/>
+	<result property = "member_email_hash" column = "MEMBER_EMAIL_HASH"/>
+	<result property = "member_email_checked" column = "MEMBER_EMAIL_CHECKED"/>
+	<result property = "member_enabled" column = "MEMEBER_ENABLED"/>
+	<result property = "member_phone" column = "MEMBER_PHONE"/>
+	<result property = "member_addr" column = "MEMBER_ADDR"/>
+	<result property = "member_role" column = "MEMBER_ROLE"/>
+</resultMap>
+	<select id="selectList" resultType="adminDto">
+		SELECT MEMBER_NO, MEMBER_ID, MEMBER_NICK, MEMBER_NAME, MEMBER_ADDR, MEMBER_ROLE FROM MEMBER
+	</select>
+	<!-- <select id ="selectOne">
+		SELECT  MEMBER_NO, MEMBER_ID, MEMBER_NICK, MEMBER_NAME, MEMBER_ADDR, MEMBER_ROLE FROM MEMBER WHERE MEMBER_NO = #{member_no}
+	</select>
+	<update id ="update">
+		UPDATE MEMBER SET MEMBER_ROLE = #{role}, WHERE MEMBER_NO = #{member_no}
+	</update>
+	<delete id = "delete">
+		DELETE FROM MEMBER WHERE MEMBER_NO = #{member_no}
+	</delete>
+	<delete id = "multdel">
+		DELETE FROM MEMBER WHERE MEMBER_NO IN
+		<foreach collection="seqs" item="seq" index="index" open="("separator=","close=")">
+			#{member_no}
+		</foreach>
+	</delete>-->
+</mapper>

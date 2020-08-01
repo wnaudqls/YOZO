@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="Broadcast">
+
+<!-- 
+
+resultMap: 파라미터 이름을 통일시킬때 사용 
+DTO에서 만든 변수명과 DB에서 만든 변수명이 다를때 유용하게 사용가능
+Setter랑 비슷함(this.number = seq; 이런식으로 바꿀수 있으니)
+-->
+<resultMap type="BroadcastDto" id="BroadcastDtoMap">
+	<result property="BROADCAST_NO" column="BROADCAST_NO"/>
+	<result property="MEMBER_ID" column="MEMBER_ID"/>
+	<result property="BROADCAST_TITLE" column="BROADCAST_TITLE"/>
+	<result property="BROADCAST_CONTENT" column="BROADCAST_CONTENT"/>
+	<result property="BROADCAST_REGDATE" column="BROADCAST_REGDATE"/>
+	<result property="BROADCAST_VIEWCOUNT" column="BROADCAST_VIEWCOUNT"/>
+</resultMap>
+
+<!-- select문 만들어두고 내부를 하나라도 작성 안하면 오류남 -->
+  <select id="selectlist" resultType="BroadcastDto">
+  	SELECT *
+	FROM BROADCAST
+	<!-- 위에 있는 것들을 dto의 getter찾아서 값을 전달함 -->
+	
+	<!-- 
+		DAO -> MAPPER (Parameter Type)
+		MAPPER -> DAO (Result Type)
+	 -->
+  </select>
+  <!-- #{이름}: 해당 getter를 호출 -->
+  <select id="selectOne" parameterType="int" resultType="BroadcastDto">
+  	SELECT *
+	FROM BROADCAST
+	WHERE BROADCAST_NO = #{no}
+  </select>
+  <select id="insert" parameterType="dto" >
+  	INSERT INTO MDBOARD 
+	VALUES(MDBOARDSEQ.NEXTVAL, #{writer},#{title},#{content}, SYSDATE)
+  </select>
+  
+  <select id="update" parameterType="dto" >
+  	UPDATE MDBOARD SET TITLE = #{title}, CONTENT = #{content}
+  	WHERE SEQ = #{seq}
+  </select>
+  
+  <select id="delete" parameterType="dto" >
+  	DELETE FROM MDBOARD 
+  	  WHERE SEQ = #{seq}
+  </select>
+  <select id="muldel" parameterType="dto" >
+  	DELETE FROM MDBOARD 
+  	  WHERE SEQ IN
+  	   <foreach item="seq" collection="seqs"
+      open="(" separator="," close=")">
+      <!-- 
+    	  collection = 반복해서 불러올 collection 객체의 변수
+    	  item = collection의 값을 담을 변수명
+       -->
+  	  #{seq}
+  	  </foreach>
+  	  
+  </select>
+  
+</mapper>
