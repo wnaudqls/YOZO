@@ -97,7 +97,6 @@ section {
 
 <script type="text/javascript">
 
-
 	function total_price() {
 		var price = document.getElementById("goods_price").innerText;
 		var cnt = document.getElementById("count").value;
@@ -105,10 +104,8 @@ section {
 		var total_price = parseInt(price) * parseInt(cnt);
 		document.getElementById("total_price").innerText = total_price;
 		
-		
-
-	}
 	
+	}
 	function pay(){
 
 		var IMP = window.IMP; // 생략가능
@@ -119,7 +116,7 @@ section {
 		    pay_method : 'card',
 		    merchant_uid : 'merchant_' + new Date().getTime(),
 		    name : '주문명:결제테스트',
-		    amount : 14000,
+		    amount : 1000,
 		    buyer_email : 'iamport@siot.do',
 		    buyer_name : '구매자이름',
 		    buyer_tel : '010-1234-5678',
@@ -140,6 +137,16 @@ section {
 		});
 
 	};
+	/* 
+	$(function(){
+		init();
+		fn_image_file_view();
+	});
+	
+	fuction fn_image_file_view(){
+		location.href="image_file_view.do"
+	}
+	 */
 
  		
 </script>
@@ -196,8 +203,36 @@ section {
 		<hr>
 		<h1>상세설명</h1>
 		<div class="goods_image">
-			<p>${dto.goods_content }</p>
+		<c:forEach items="${list }" var="dto">
+			<div>
+				${dto.goods_photo }
+			</div>
+			<div>
+				${dto.goods_content }
+			</div>
+		
+		</c:forEach>
+			
 		</div>
+		
+		<!-- 댓글창  -->
+		<table>
+			<tr>
+				<th>닉네임<th>
+				<td><input type="text" value="문의사항을 입력해주세요."></td>
+				<td><input type="button" value="등록"/></td>
+			</tr>
+		<!-- 댓글리스트 & 대댓글 -->	
+			<tr>
+				<th>위에 그 닉네임</th>
+				<td>위에 문의사항 내용</td>
+				<td><input type="button" value="답글달기"></td>
+			</tr>
+			<tr>
+				
+				
+			</tr>
+		</table>
 	</section>
 
 	<!-- 푸터 -->

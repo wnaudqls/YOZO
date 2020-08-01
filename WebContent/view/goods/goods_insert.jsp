@@ -13,50 +13,49 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>굿즈 등록</title>
-test
+<title>굿즈 등록</title> test
 <style type="text/css">
 section {
-	height : 600px;
-	width:80%;
+	height: 600px;
+	width: 80%;
 	margin: 0 10%;
 }
-.btn{
-   width : 70px;
-   height : 35px;
-   background-color : #F5A9A9;
-   color : #FAFAFA;
-   border : 0;
-   outline: 0;
-   border-radius : 0.35em;
-   font-weight: bold;
-   cursor: pointer;
+
+.btn {
+	width: 70px;
+	height: 35px;
+	background-color: #F5A9A9;
+	color: #FAFAFA;
+	border: 0;
+	outline: 0;
+	border-radius: 0.35em;
+	font-weight: bold;
+	cursor: pointer;
 }
 
 /*goods_price 버튼 지우기*/
-input[name="goods_price"]::-webkit-outer-spin-button,
-input[name="goods_price"]::-webkit-inner-spin-button{
-	-webkit-appearance:none;
+input[name="goods_price"]::-webkit-outer-spin-button, input[name="goods_price"]::-webkit-inner-spin-button
+	{
+	-webkit-appearance: none;
 }
-#goods_name{
-	float:left;
+
+#goods_name {
+	float: left;
 	text-align: left;
 }
-#goods_etc{
-clear:both;
+
+#goods_etc {
+	clear: both;
 }
-#main_photo{
-	
-	width:200px;
-	height:200px;
-	}
 
-
-
-
+#main_photo {
+	width: 200px;
+	height: 200px;
+}
 </style>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath }/ckeditor/ckeditor.js "></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath }/ckeditor/ckeditor.js "></script>
 <!--  <script src="//cdn.ckeditor.com/4.14.1/full/ckeditor.js"></script> -->
 <script type="text/javascript">
 	
@@ -111,51 +110,54 @@ clear:both;
 
 
 <body>
-<section>
-<form action = "<%=request.getContextPath()%>/goods.do" enctype="multipart/form-data" method="post" id="goods_form">
-<input type="hidden" name="command" value="goodsinsertres">
-<input type="hidden" id="goods_main_photo" name="goods_main_photo">
-		<div id="goods_name">
-			<label>상품이름  :</label><input type="text" name="goods_title" required>	<br>
-			<label>수량 :</label> <input type="number" value="1" name="goods_quantity" min=1 max=1000 required><br>
-			<label>가격 :</label> <input type="number" name="goods_price" min=1 required><br>
-			<label>이미지 : </label><input id="goods_main_photo" type="file" name="goods_main_photo" onchange="filechange()"/>			
-		</div>
-		<div class="goods_photo">
-		<img src="" alt="대표이미지를 선택해주세요" id="img_main">
-			
-		</div>
-		<div id="goods_etc">
-<!-- 		<div class="goods_etc_input">
+	<section>
+		<form action="<%=request.getContextPath()%>/goods.do"
+			method="post" id="goods_form">
+			<input type="hidden" name="command" value="goodsinsertres"> 
+			<input type="hidden" id="goods_main_photo" name="goods_main_photo">
+			<div id="goods_name">
+				<label>상품이름 :</label><input type="text" name="goods_title" required>
+				<br> <label>수량 :</label> <input type="number" value="1"
+					name="goods_quantity" min=1 max=1000 required><br> <label>가격
+					:</label> <input type="number" name="goods_price" min=1 required><br>
+				<label>이미지 : </label><input id="goods_main_photo" type="file"
+					name="goods_main_photo" onchange="filechange()" />
+			</div>
+			<div class="goods_photo">
+				<img src="" alt="대표이미지를 선택해주세요" id="img_main">
+
+			</div>
+			<div id="goods_etc">
+				<!-- 		<div class="goods_etc_input">
 			<label>수량</label> <input type="number" placeholder="1" name="goods_quantity" min=1 max=1000 required>
 			<label>가격</label> <input type="number" name="goods_price" min=1 required>
 		</div> -->
-		<hr>
-		<div>
-			<textarea name="goods_content" id="editor"></textarea>
-<!-- 			<script type="text/javascript">
+				<hr>
+				<div>
+					<textarea name="goods_content" id="editor"></textarea>
+					<!-- 			<script type="text/javascript">
 			$(function(){
 			CKEDITOR.replace("editor"
 	/* 			filebrowserUploadUrl: '${pageContext.request.contextPath}/fileupload.do' */
 			);
 			});
 			</script> -->
-			<script type="text/javascript">
+					<script type="text/javascript">
             CKEDITOR.replace("editor",{
                 height: 300
             });
             </script>
-	
-		</div>
-		<div>
-			<input class="btn" type="button" value="취소"/>
-			<input class="btn" type="submit" value="등록"/>
-		</div>
 
-	</div>
-</form>
+				</div>
+				<div>
+					<input class="btn" type="button" value="취소" /> <input class="btn"
+						type="submit" value="등록" />
+				</div>
 
-</section>
+			</div>
+		</form>
+
+	</section>
 	<%@ include file="../../form/footer.jsp"%>
 
 </body>

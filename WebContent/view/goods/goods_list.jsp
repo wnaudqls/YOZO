@@ -168,120 +168,12 @@ section {
 
 <%@ include file="../../form/header.jsp" %>
 <body>
-<%--  병욱오빠가 만드신 html
-	<--	<section>
+	<section>
 			<div id="btns">
 				<input class="btn" type="button" value="등록" onclick="location.href='<%request.getContextPath(); %>/YORIZORI/goods.do?command=goodsinsertform'"/> 
 				<input class="btn" type="button" value="삭제" />
 			</div>
 		
-			<h2>제품보기</h2>
-			<div class="card">
-
-				<div class="top-section">
-					<img id="image-container" alt="" src="img/goods1.jpg">
-					<div class="nav">
-						<!-- onclick 하면 change_img()함수가 실행된다. -->
-						<img alt="" src="img/goods2.png" onclick="change_img(this)">
-						<img alt="" src="img/goods3.png" onclick="change_img(this)">
-						<img alt="" src="img/goods4.png" onclick="change_img(this)">
-					</div>
-					<div class="price">52,000 WON</div>
-				</div>
-
-
-				<div class="product-info">
-					<div class="name">YORIZORI 도마</div>
-					<div class="dis">'MUST HAVE' kitchen tools</div>
-					<!-- 장바구니 담기 링크 -->
-					<a class="btn_basket" href="#">장바구니에 담기</a>
-				</div>
-
-			</div>
-
-			<div class="card2">
-
-				<div class="top-section">
-					<img id="image-container" alt="" src="img/goods1.jpg">
-					<div class="nav">
-						<!-- onclick 하면 change_img()함수가 실행된다. -->
-						<img alt="" src="img/goods2.png" onclick="change_img(this)">
-						<img alt="" src="img/goods3.png" onclick="change_img(this)">
-						<img alt="" src="img/goods4.png" onclick="change_img(this)">
-					</div>
-					<div class="price">52,000 WON</div>
-				</div>
-
-
-				<div class="product-info">
-					<div class="name">YORIZORI 도마</div>
-					<div class="dis">'MUST HAVE' kitchen tools</div>
-					<!-- 장바구니 담기 링크 -->
-					<a class="btn_basket" href="#">장바구니에 담기</a>
-				</div>
-
-			</div>
-
-			<div class="card3">
-
-				<div class="top-section">
-					<img id="image-container" alt="" src="img/goods1.jpg">
-					<div class="nav">
-						<!-- onclick 하면 change_img()함수가 실행된다. -->
-						<img alt="" src="img/goods2.png" onclick="change_img(this)">
-						<img alt="" src="img/goods3.png" onclick="change_img(this)">
-						<img alt="" src="img/goods4.png" onclick="change_img(this)">
-					</div>
-					<div class="price">52,000 WON</div>
-				</div>
-
-
-				<div class="product-info">
-					<div class="name">YORIZORI 도마</div>
-					<div class="dis">'MUST HAVE' kitchen tools</div>
-					<!-- 장바구니 담기 링크 -->
-					<a class="btn_basket" href="#">장바구니에 담기</a>
-				</div>
-
-			</div>
-
-			<div class="card4">
-
-				<div class="top-section">
-					<img id="image-container" alt="" src="img/goods1.jpg">
-					<div class="nav">
-						<!-- onclick 하면 change_img()함수가 실행된다. -->
-						<img alt="" src="img/goods2.png" onclick="change_img(this)">
-						<img alt="" src="img/goods3.png" onclick="change_img(this)">
-						<img alt="" src="img/goods4.png" onclick="change_img(this)">
-					</div>
-					<div class="price">52,000 WON</div>
-				</div>
-
-
-				<div class="product-info">
-					<div class="name">YORIZORI 도마</div>
-					<div class="dis">'MUST HAVE' kitchen tools</div>
-					<!-- 장바구니 담기 링크 -->
-					<a class="btn_basket" href="#">장바구니에 담기</a>
-				</div>
-
-			</div>
-			
-
-
-
-			<script type="text/javascript">
-				/* 체크 */
-				var container = document.getElementById("image-container");
-				function change_img(image) {
-					container.src = image.src;
-				}
-			</script>
-
-		</section> -->
- --%>
-<section>
 <div class="goods_list">
 	<!--썸네일 / 제목 / 가격 / 장바구니담기버튼 -->
 
@@ -294,7 +186,7 @@ section {
 		</c:when>
 		
 		<c:otherwise>
-			<forEach items="${list }" var ="dto">
+		<c:forEach items="${list }" var="dto">
 			<div class="tablewrapper">
 		<table>
 				<tr>
@@ -311,13 +203,14 @@ section {
 						<input type="button" value="장바구니 담기"/>
 					</td>
 				</tr>
+	
 		</table>
 			
 			
 				
 			</div>
-			</forEach>
 			
+		</c:forEach>
 		</c:otherwise>
 	</c:choose>
 	

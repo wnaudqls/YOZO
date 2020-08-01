@@ -13,8 +13,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-
-</script>
 <body>
 <%@ include file ="../../form/header.jsp" %>
 
