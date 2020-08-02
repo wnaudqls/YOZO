@@ -122,7 +122,7 @@ public class GoodsController extends HttpServlet {
 		} else if (command.equals("answerinsert")) {
 			System.out.println("answerinsert왔어???왔냐구");
 
-			/* int goods_no = Integer.parseInt(request.getParameter("goods_no")); */
+			/*  int goods_no = Integer.parseInt(request.getParameter("goods_no")); */
 			// String member_id = (String)session.getAttribute("member_id");
 			String goods_re_content = request.getParameter("goods_re_content");
 

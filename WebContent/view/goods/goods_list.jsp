@@ -199,13 +199,14 @@ display: inline-block;} */
 </style>
 
 <%@ include file="../../form/header.jsp" %>
-${dto.member_nick }
 <body>
 	<section>
+			<c:if test="${dto.MEMBER_ROLE eq '관리자' }">
 			<div id="btns">
 				<input class="btn" type="button" value="등록" onclick="location.href='<%request.getContextPath(); %>/YORIZORI/goods.do?command=goodsinsertform'"/> 
 				<input class="btn" type="button" value="삭제" />
 			</div>
+			</c:if>
 		
 <div class="goods_list">
 	<!--썸네일 / 제목 / 가격 / 장바구니담기버튼 -->
