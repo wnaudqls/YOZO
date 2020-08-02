@@ -199,7 +199,7 @@ display: inline-block;} */
 </style>
 
 <%@ include file="../../form/header.jsp" %>
-<p>${dto.member_nick }sdsds</p>
+${dto.member_nick }
 <body>
 	<section>
 			<div id="btns">
