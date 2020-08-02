@@ -136,7 +136,7 @@
 	
 	function goPopup(){
 //	    var pop = window.open("../../popup/jusoPopup.jsp","pop","width=570,height=420, scrollbars=yes, resizable=yes"); 
-	    var pop = window.open("./jusoPopup.jsp","pop","width=570,height=420, scrollbars=yes, resizable=yes"); 
+	    var pop = window.open("view/user/jusoPopup.jsp","pop","width=570,height=420, scrollbars=yes, resizable=yes"); 
 	 
 	}
 	function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAddr, jibunAddr, zipNo, admCd, rnMgtSn, bdMgtSn

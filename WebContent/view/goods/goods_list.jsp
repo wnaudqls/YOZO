@@ -18,7 +18,8 @@
 
 <style type="text/css">
 section {
-	height: 600px;
+	margin: 50px 0;
+	/* height: 600px; */
 }
 
 #title {
@@ -152,23 +153,53 @@ section {
 	background: #333;
 }
 
+/*굿즈 목록 리스트 큰테두리*/
 .goods_list{
 	border: 1px solid black;
+	margin:0 10%;
+	
 }
-#warning{
+#warning{	/* warning이미지 */
 	width: 100px;
 	height :100px;
 	vertical-align: middle;
 }
-#message{
+#message{	/* warning 메시지 */
 	display : inline-block;
 	vertical-align: middle;
 }
-.tablewrapper{
-display: inline-block;}
+/* .tablewrapper{
+display: inline-block;} */
+.goods_card{
+	display:inline-block;
+	width: 250px;
+	height: 300px;
+	border : 1px solid black;
+	border-radius: 25px;
+	box-sizing: border-box;
+	margin: 50px;
+}
+.goods_card_img{	/* 이미지 감싸는 div */
+	
+	width: 250px;
+	height: 230px;
+	border-radius: 25px 25px 0 0;
+}
+.goods_img_tag{		/* 이미지 태그 */
+
+	border-radius: 25px 25px 0 0;
+	width: 250px;
+	height: 230px;
+}
+.goods_card_contents{
+	text-align:center;
+	width:250px;
+	height:70px;
+}
 </style>
 
 <%@ include file="../../form/header.jsp" %>
+<p>${dto.member_nick }sdsds</p>
 <body>
 	<section>
 			<div id="btns">
@@ -178,25 +209,38 @@ display: inline-block;}
 		
 <div class="goods_list">
 	<!--썸네일 / 제목 / 가격 / 장바구니담기버튼 -->
+	
 
 	<c:choose>
 		<c:when test="${empty list }">
 			<div>
-			<img id="warning" alt="warning" src="../../img/warning.jpg">
+			<img id="warning" alt="warning" src="/YORIZORI/img/warning.jpg">
 			<h1 id="message">등록된 상품이 존재하지 않습니다.</h1>
 			</div>
 		</c:when>
 		
 		<c:otherwise>
 		<c:forEach items="${list }" var="dto">
-			<div class="tablewrapper">
-		<table>
+			<div class="goods_card">
+				<div class="goods_card_img">
+					<%-- <a href="goods.do?command='goodsdetail'"><img src="/YORIZORI/ckstorage/images/${dto.goods_main_photo }" class="goods_img_tag" alt="굿즈메인사진"/></a> --%>	
+					<%-- <a href="goods.do?command='goodsdetail'"><img src="${path }/${dto.goods_main_photo }" class="goods_img_tag" alt="굿즈메인사진"/></a> --%>	
+					<a href="goods.do?command=goodsdetail&goods_no=${dto.goods_no }"><img src="imgtest/${dto.goods_main_photo }" class="goods_img_tag" alt="굿즈메인사진"/></a>	
+				</div>
+				<div class="goods_card_content">
+					<p>${dto.goods_title }</p>
+					<p>${dto.goods_price } 원</p>
+					<input type="button" value="장바구니 담기">
+				</div>
+			</div>
+	<%-- 	<table>
 				<tr>
-					<td><img src="${path }/${dto.goods_main_photo }"/></td>
+					<td><img src="/YORIZORI/ckstorage/images/${dto.goods_main_photo }"/></td>
 				</tr>
 				<tr>
 					<td>${dto.goods_title }</td>
 				</tr>
+				
 				<tr>
 					<td>${dto.goods_price }</td>
 				</tr>
@@ -206,11 +250,10 @@ display: inline-block;}
 					</td>
 				</tr>
 	
-		</table>
+		</table> --%>
 			
 			
 				
-			</div>
 			
 		</c:forEach>
 		</c:otherwise>

@@ -14,6 +14,12 @@
   	GOODS_CONTENT, GOODS_REGDATE
   	FROM GOODS
   </select>
+  <select id="selectOne" resultType="goodsDto">
+  		SELECT GOODS_NO, MEMBER_ID, GOODS_TITLE, GOODS_MAIN_PHOTO, GOODS_PRICE, GOODS_QUANTITY, 
+  	GOODS_CONTENT, GOODS_REGDATE
+  	FROM GOODS
+  	WHERE GOODS_NO=#{goods_no}
+  </select>
   
   
 

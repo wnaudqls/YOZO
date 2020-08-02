@@ -1,14 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <%
 	request.setCharacterEncoding("UTF-8");
 %>
 <%
 	response.setContentType("text/html charset=UTF-8");
 %>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,8 +23,8 @@
 }
 
 section {
-	height: 600px;
-}
+/* 	height: 600px;
+ */}
 /* product_view .img 시작 지점 */
 .product_view {
 	display: inline-block;
@@ -65,6 +63,7 @@ section {
 
 .product_image {
 	display: inline-block;
+	margin-right: 100px;
 }
 
 .btns_product_updown {
@@ -73,6 +72,7 @@ section {
 
 .product_wrap {
 	text-align: center;
+	
 }
 .btn{
    width : 70px;
@@ -94,20 +94,20 @@ section {
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.iamport.kr/js/iamport.payment-1.1.4.js" type="text/javascript"></script>
-
 <script type="text/javascript">
 
-	function total_price() {
-		var price = document.getElementById("goods_price").innerText;
-		var cnt = document.getElementById("count").value;
 		
+	function total_price() {
+		var cnt = document.getElementById("count").value;
+		var price = document.getElementById("goods_price").innerText;
 		var total_price = parseInt(price) * parseInt(cnt);
 		document.getElementById("total_price").innerText = total_price;
 		
 	
 	}
 	function pay(){
-
+		var cnt = document.getElementById("count").value;
+		var total=Number(${dto.goods_price})*Number(cnt)
 		var IMP = window.IMP; // 생략가능
 		IMP.init('imp92407375');
 
@@ -116,7 +116,7 @@ section {
 		    pay_method : 'card',
 		    merchant_uid : 'merchant_' + new Date().getTime(),
 		    name : '주문명:결제테스트',
-		    amount : 1000,
+		    amount : total,
 		    buyer_email : 'iamport@siot.do',
 		    buyer_name : '구매자이름',
 		    buyer_tel : '010-1234-5678',
@@ -158,7 +158,7 @@ section {
 		<div class="product_wrap">
 			<div class="product_image">
 				<!-- 썸네일   -->
-				<img src="${dto.goods_main_photo }" id="thumbnail" />
+				<img src="imgtest/${dto.goods_main_photo }" id="thumbnail" />
 			</div>
 			<div class="product_view">
 				<table id="product_preview">
@@ -169,27 +169,27 @@ section {
 					</caption>
 					<tbody>
 						<tr>
-							<th>판매가</th>
+							<th>판매가 </th>
 							<td id="goods_price">
-								<%-- ${dto.goods_price} --%>5000
+							 ${dto.goods_price} 
 							</td>
 						</tr>
 						<tr>
-							<th>제조사/공급사</th>
-							<td>California / YORIZORI</td>
+							<th>제조사/공급사  </th>
+							<td>&nbsp; Wonju / YORIZORI</td>
 						</tr>
 						<tr>
-							<th>구매 수량</th>
+							<th>구매 수량 </th>
 							<td><input type="number" min="1" value="1"
 								onchange="total_price();" id="count"></td>
 						</tr>
 						<tr>
-							<th>배송비</th>
-							<td>무료배송</td>
+							<th>배송비 </th>
+							<td>무료배송 </td>
 						</tr>
 						<tr>
-							<th>결제금액</th>
-							<td><span id="total_price"></span>원</td>
+							<th>결제금액 </th>
+							<td><span id="total_price"> ${dto.goods_price} </span>원</td>
 						</tr>
 					</tbody>
 
@@ -202,37 +202,9 @@ section {
 		</div>
 		<hr>
 		<h1>상세설명</h1>
-		<div class="goods_image">
-		<c:forEach items="${list }" var="dto">
-			<div>
-				${dto.goods_photo }
-			</div>
-			<div>
+		<div class="goods_content">
 				${dto.goods_content }
-			</div>
-		
-		</c:forEach>
-			
 		</div>
-		
-		<!-- 댓글창  -->
-		<table>
-			<tr>
-				<th>닉네임<th>
-				<td><input type="text" value="문의사항을 입력해주세요."></td>
-				<td><input type="button" value="등록"/></td>
-			</tr>
-		<!-- 댓글리스트 & 대댓글 -->	
-			<tr>
-				<th>위에 그 닉네임</th>
-				<td>위에 문의사항 내용</td>
-				<td><input type="button" value="답글달기"></td>
-			</tr>
-			<tr>
-				
-				
-			</tr>
-		</table>
 	</section>
 
 	<!-- 푸터 -->

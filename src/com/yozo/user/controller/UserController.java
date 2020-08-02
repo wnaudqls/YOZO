@@ -72,12 +72,13 @@ public class UserController extends HttpServlet {
 			
 			MemberDto rdto = dao.login(id, pw);
 			
-			System.out.println(rdto);
+			System.out.println(rdto+"sdsd");
 			
 			
 			if (rdto != null) {
-				session.setAttribute("dto", rdto);		
-				session.setMaxInactiveInterval(10*60);
+				//세션만들기
+				session.setAttribute("dto", rdto);			
+				session.setMaxInactiveInterval(10*60);	
 				
 				System.out.println("세션 정보 : "+ session);
 				
