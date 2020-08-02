@@ -1,23 +1,23 @@
 package com.yozo.admin.dao;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
-
-import com.yozo.admin.dto.AdminDto;
+import com.yozo.user.dto.MemberDto;
 
 
 public class AdminDao extends SqlMapConfig{
    private String namespace = "mapper.";
    
-   public List<AdminDto> selectList(){
-	  System.out.println("dao 입장");
+   public List<MemberDto> selectList(){
+	  System.out.println("dao list입장");
       SqlSession session = null;
-      List<AdminDto> list = null;
+      List<MemberDto> list = null;
       
       try {
-    	 System.out.println("dao");
+    	 System.out.println("dao list 중간");
          session = getSqlSessionFactory().openSession(false);
          list = session.selectList(namespace+"selectList");
       } catch (Exception e) {
@@ -28,8 +28,25 @@ public class AdminDao extends SqlMapConfig{
       }
       return list;
    }
+   public List<MemberDto> search(Map<String, String> map){
+	   System.out.println("search dao입장");
+	   SqlSession session = null;
+	   List<MemberDto> list = null;
+	   System.out.println(map.get("txt"));
+	   try {
+		System.out.println("search dao 중간");
+		session = getSqlSessionFactory().openSession(false);
+	    list = session.selectList(namespace+"search",map);
+	} catch (Exception e) {
+		System.out.println("dao search error");
+		e.printStackTrace();
+	} finally {
+		session.close();
+	}
+	   return list;
+   }
    
-   public int update(AdminDto dto) {
+   public int update(MemberDto dto) {
       SqlSession session = null;
       int res = 0;
       
