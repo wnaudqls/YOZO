@@ -4,7 +4,7 @@
 	<properties resource = "com/yozo/admin/db/db.properties"/>
 	
 	<typeAliases>
-		<typeAlias type="com.yozo.admin.dto.AdminDto" alias="dto"/>
+		<typeAlias type="com.yozo.user.dto.MemberDto" alias="dto"/>
 	</typeAliases>
 	
 	<environments default="development">
