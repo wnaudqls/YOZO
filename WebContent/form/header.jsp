@@ -32,12 +32,10 @@
         width: 300px;
         height: 100px;
     }
-    .recipe{
+     .recipe{
         width: 70px;
         height: 70px;
-        margin-left: 20px;
-       display: inline-block; 
-    }
+    } 
     .recipe_link{
     	width: 70px;
         height: 70px;
@@ -202,7 +200,9 @@ window.onclick = function(event){
         </div>
     </header>      
          <nav id="icon">
-            <a href="" class="recipe_link"><img class="recipe finger" alt="logo" src="/YORIZORI/img/recipebookicon.png"></a>
+            <a href="" class="recipe_link">
+            	<img class="recipe finger" alt="logo" src="/YORIZORI/img/recipebookicon.png">
+           	</a>
             <div class = "dropstreamdown">
                 <img onclick = "dropstream()" class="stream finger" alt="logo" src="/YORIZORI/img/broadcasticon.png">
                 <div id="dropstream_content" class = "dropstream_content">
