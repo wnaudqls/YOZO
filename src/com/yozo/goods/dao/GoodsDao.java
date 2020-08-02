@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import com.yozo.common.SqlMapConfig;
+import com.yozo.goods.dto.AnswerDto;
 import com.yozo.goods.dto.GoodsDto;
 
 public class GoodsDao extends SqlMapConfig {
@@ -29,7 +30,7 @@ public class GoodsDao extends SqlMapConfig {
 	}
 	
 	public List<GoodsDto> selectList(){
-		System.out.println("dao왔나?");
+		System.out.println("dao : selectList왔나?");
 		SqlSession session = null;
 		List<GoodsDto> list = null;
 		
@@ -44,7 +45,7 @@ public class GoodsDao extends SqlMapConfig {
 			session.close();
 		}
 
-		
+	
 		
 		return list;
 	}
@@ -109,6 +110,47 @@ public class GoodsDao extends SqlMapConfig {
 		}
 		return res;
 	}
+	
+	//댓글시작
+	
+	public List<AnswerDto> answerList(){
+		System.out.println("dao : selectList왔나?");
+		SqlSession session = null;
+		List<AnswerDto> list = null;
+		
+		
+		try {
+			session = getSqlSessionFactory().openSession(false);
+			list = session.selectList(namespace+"answerList");
+		} catch (Exception e) {
+			System.out.println("answerList 오류");
+			e.printStackTrace();
+		}finally {
+			session.close();
+		}
+
+	
+		return list;
+	}
+	
+	public int answerinsert(AnswerDto dto) {
+		SqlSession session = null;
+		int res = 0;
+		
+		try {
+			session = getSqlSessionFactory().openSession(false);
+			res = session.insert(namespace+"answerinsert");
+		} catch (Exception e) {
+			System.out.println("answerinsert오류");
+			e.printStackTrace();
+		}finally {
+			session.close();
+		}
+		return res;
+	}
+	
+	
+
 	
 
 }

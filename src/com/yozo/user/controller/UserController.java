@@ -40,6 +40,7 @@ public class UserController extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
 		
+		//세션객체 만들어줌
 		HttpSession session = request.getSession(true);
 
 
@@ -76,8 +77,9 @@ public class UserController extends HttpServlet {
 			
 			
 			if (rdto != null) {
+				//세션에 정보를 담아줬다 정보는 내 개인정보.
 				session.setAttribute("dto", rdto);		
-				session.setMaxInactiveInterval(10*60);
+				session.setMaxInactiveInterval(10*60); //시간은10분
 				
 				System.out.println("세션 정보 : "+ session);
 				

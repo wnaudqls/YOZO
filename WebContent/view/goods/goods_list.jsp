@@ -192,7 +192,7 @@ display: inline-block;}
 			<div class="tablewrapper">
 		<table>
 				<tr>
-					<td><img src="${path }/${dto.goods_main_photo }"/></td>
+					<td><img src="/YORIZORI/ckstorage/images/${dto.goods_main_photo }"/></td>
 				</tr>
 				<tr>
 					<td>${dto.goods_title }</td>
@@ -207,8 +207,6 @@ display: inline-block;}
 				</tr>
 	
 		</table>
-			
-			
 				
 			</div>
 			

@@ -12,110 +12,141 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.catalina.Session;
+
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.yozo.goods.biz.GoodsBiz;
+import com.yozo.goods.dto.AnswerDto;
 import com.yozo.goods.dto.GoodsDto;
 
 @WebServlet("/goods.do")
 public class GoodsController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-   
-    public GoodsController() {
-   
-    }
+	public GoodsController() {
 
+	}
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doPost(request, response);
 	}
 
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
 
 		System.out.println("정신차리지");
 		String command = request.getParameter("command");
 		System.out.println("[" + command + "]");
-		
+
 		GoodsBiz biz = new GoodsBiz();
-		
-		//굿즈 상품 등독
-		if(command.equals("goodsinsertres")) {
+
+		// 굿즈 상품 등독
+		if (command.equals("goodsinsertres")) {
 			System.out.println("goodsinsertres왔음");
-	
+
 			String goods_title = request.getParameter("goods_title");
 			int goods_quantity = Integer.parseInt(request.getParameter("goods_quantity"));
 			int goods_price = Integer.parseInt(request.getParameter("goods_price"));
 			String goods_content = request.getParameter("goods_content");
-			String goods_main_photo=request.getParameter("goods_main_photo");
-			
-			int res=0;
+			String goods_main_photo = request.getParameter("goods_main_photo");
+
+			int res = 0;
 
 			System.out.println(goods_content);
-			 res = biz.insert(new GoodsDto(1,"ID",goods_title,goods_price,goods_quantity, goods_content,null,goods_main_photo));
+			res = biz.insert(new GoodsDto(1, "ID", goods_title, goods_price, goods_quantity, goods_content, null,
+					goods_main_photo));
 
-			 
-			 if(res>0) {
-				 System.out.println("작성성공");
-				 dispatch("goods.do?command=goodslist", request, response);
-			 }else {
-				 jsResponse("작성 실패","goods_insertform", response);
-			 }
-			 
-			 
+			if (res > 0) {
+				System.out.println("작성성공");
+				dispatch("goods_do?command=goodslist", request, response);
+			} else {
+				jsResponse("작성 실패", "goods_insertform", response);
+			}
 
-		}else if(command.equals("goodsinsertform")) {
-			response.sendRedirect(request.getContextPath()+"/view/goods/goods_insert.jsp");
-		}else if(command.equals("goodslist")) {
+		} else if (command.equals("goodsinsertform")) {
+			response.sendRedirect(request.getContextPath() + "/view/goods/goods_insert.jsp");
+		} else if (command.equals("goodslist")) {
 
-			//db에서 값 가지고 오기!
+			// db에서 값 가지고 오기!
 			List<GoodsDto> list = biz.selectList();
 			request.setAttribute("list", list);
 			ServletContext scontext = getServletContext();
-			String savefile = "imgtest"; 
-			String realFolder =scontext.getRealPath(savefile);
+			String savefile = "imgtest";
+			String realFolder = scontext.getRealPath(savefile);
 			request.setAttribute("path", realFolder);
 			dispatch("/view/goods/goods_list.jsp", request, response);
-	
 		}
-		 //test
-		else if(command.equals("imgUpload")) {
+		// test
+		else if (command.equals("imgUpload")) {
 			System.out.println("imgUpload왔다잉");
 			System.out.println(request.getContentType());
 			String realFolder = "";
- 
-			String filename1 = "";	//업로드한 파일이름  	
-			int maxSize = 1024*1024*5; 	//파일 사이즈 설정: 5M
-		/*	String encType = "multipart/form-data"; 	*/
-			String savefile = "imgtest"; 
+
+			String filename1 = ""; // 업로드한 파일이름
+			int maxSize = 1024 * 1024 * 5; // 파일 사이즈 설정: 5M
+			/* String encType = "multipart/form-data"; */
+			String savefile = "imgtest";
 			ServletContext scontext = getServletContext();
-			System.out.println("scontext:"+scontext);
+			System.out.println("scontext:" + scontext);
 			realFolder = scontext.getRealPath(savefile);
-			System.out.println("realFolder"+realFolder);
-			
-			List<GoodsDto> list = biz.selectList();
-			request.setAttribute("list", list);
-			System.out.println(list);
-			dispatch("/view/goods/goods_list.jsp", request, response);
-			
+
+			System.out.println("realFolder" + realFolder);
+
+			try {
+				MultipartRequest multi = new MultipartRequest(request, realFolder, maxSize,
+						new DefaultFileRenamePolicy());
+				Enumeration<?> files = multi.getFileNames(); // 전송한 전체 파일이름들을 가져온다.
+				System.out.println("files" + files);
+				String file1 = (String) files.nextElement();
+				System.out.println("file1:" + file1);
+				// 파일명 중복이 발생했을 때 정책에 의해 뒤에 1,2,3 처럼 숫자가 붙어 고유 파일명을 생성한다
+				// 이때 생성된 이름을 FilesystemName이라고 하여 그 이름 정보를 가져온다.(중복 처리)
+				filename1 = multi.getFilesystemName(file1);
+			} catch (Exception e) {
+				System.out.println("이런 싸발면");
+				e.printStackTrace();
+			}
+
+			String fullpath = realFolder + "\\" + filename1;
+			System.out.println("fullpath:" + fullpath);
+
+		} else if (command.equals("answerinsert")) {
+			System.out.println("answerinsert왔어???왔냐구");
+
+			/* int goods_no = Integer.parseInt(request.getParameter("goods_no")); */
+			// String member_id = (String)session.getAttribute("member_id");
+			String goods_re_content = request.getParameter("goods_re_content");
+
+			/* goods_re 필요없고 / goods_re_no 필요없고 */
+			int res = biz.answerinsert(new AnswerDto(0, 0,"Id", goods_re_content, null, 0, 0, 0));
+
+			if (res > 0) {
+				System.out.println("댓글작성성공");
+				dispatch("/view/goods/goods_detail.jsp", request, response);
+			} else {
+				jsResponse("댓글 작성 실패", "goods_answer.jsp", response);
+			}
+
 		}
 	}
-	public void dispatch(String url, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
+
+
+	public void dispatch(String url, HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		RequestDispatcher dispatch = request.getRequestDispatcher(url);
 		dispatch.forward(request, response);
-		
+
 	}
+
 	public void jsResponse(String msg, String url, HttpServletResponse response) throws IOException {
-		String s = "<script type='text/javascript'>" +
-					"alert('"+msg+"');" +
-					"location.href='" + url + "';" +
-					"</script>";
+		String s = "<script type='text/javascript'>" + "alert('" + msg + "');" + "location.href='" + url + "';"
+				+ "</script>";
 		response.getWriter().append(s);
 	}
-	
-	
 
 }
