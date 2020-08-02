@@ -166,7 +166,7 @@ window.onclick = function(event){
 
 	var sessionVal = '${session}';
 	
-function {
+/* function {
 	alert(sessionVal);
 	if (sessionVal < 0) {
 		for (int i = 0; i > 7;i++){
@@ -176,7 +176,7 @@ function {
 			}
 		}
 	} 
-}
+} */
 
 
 </script>

@@ -62,15 +62,19 @@ public class GoodsController extends HttpServlet {
 
 			if (res > 0) {
 				System.out.println("작성성공");
-				dispatch("goods_do?command=goodslist", request, response);
+				dispatch("/goods.do?command=goodslist", request, response);
 			} else {
 				jsResponse("작성 실패", "goods_insertform", response);
 			}
 
-		} else if (command.equals("goodsinsertform")) {
-			response.sendRedirect(request.getContextPath() + "/view/goods/goods_insert.jsp");
-		} else if (command.equals("goodslist")) {
+		}
 
+		else if (command.equals("goodsinsertform")) {
+			response.sendRedirect(request.getContextPath() + "/view/goods/goods_insert.jsp");
+
+		}
+		// 굿즈 리스트
+		else if (command.equals("goodslist")) {
 			// db에서 값 가지고 오기!
 			List<GoodsDto> list = biz.selectList();
 			request.setAttribute("list", list);
@@ -80,7 +84,8 @@ public class GoodsController extends HttpServlet {
 			request.setAttribute("path", realFolder);
 			dispatch("/view/goods/goods_list.jsp", request, response);
 		}
-		// test
+
+		// 이미지 업로드
 		else if (command.equals("imgUpload")) {
 			System.out.println("imgUpload왔다잉");
 			System.out.println(request.getContentType());
@@ -130,11 +135,20 @@ public class GoodsController extends HttpServlet {
 			} else {
 				jsResponse("댓글 작성 실패", "goods_answer.jsp", response);
 			}
+		}
+
+		// 굿즈 상세페이지
+		else if (command.equals("goodsdetail")) {
+			int goods_no=Integer.parseInt(request.getParameter("goods_no"));
+			System.out.println(goods_no+"굿즈번호");
+			GoodsDto dto=biz.selectOne(goods_no);
+			request.setAttribute("dto", dto);
+			dispatch("/view/goods/goods_detail.jsp", request, response);
+			
 
 		}
-	}
-	
 
+	}
 
 	public void dispatch(String url, HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {

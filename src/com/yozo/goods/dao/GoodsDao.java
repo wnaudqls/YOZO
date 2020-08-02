@@ -61,7 +61,6 @@ public class GoodsDao extends SqlMapConfig {
 			System.out.println("selectOne 오류");
 			e.printStackTrace();
 		}finally {
-			session.commit();
 			session.close();
 		}
 		

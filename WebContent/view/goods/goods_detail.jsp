@@ -23,7 +23,10 @@
 }
 
 section {
-/*    height: 600px;
+
+
+/* 	height: 600px;
+
  */}
 /* product_view .img 시작 지점 */
 .product_view {
@@ -71,8 +74,7 @@ section {
 }
 
 .product_wrap {
-   text-align: center;
-   
+	text-align: center;
 }
 .btn{
    width : 70px;

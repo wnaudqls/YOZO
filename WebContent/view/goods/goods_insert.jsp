@@ -92,10 +92,10 @@ height:310px;
 				  console.log(value);
 				} */
 			var imgurl= document.getElementById("goods_main_photo").value;
-		$.ajax({
-				type:"POST",
-				url:"<%=request.getContextPath()%>/goods.do?command=imgUpload",
-			contentType : false, //header의 ContentType을 설정한다 
+		$.ajax({	
+			type:"POST",		
+			url:"<%=request.getContextPath()%>/goods.do?command=imgUpload",		
+			contentType : false, //header의 ContentType을 설정한다 	
 			processData : false,
 			data : formdata, //이미지 경로
 			success : function(msg) {
