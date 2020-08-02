@@ -253,8 +253,6 @@ ${dto.member_nick }
 		</table> --%>
 			
 			
-				
-			
 		</c:forEach>
 		</c:otherwise>
 	</c:choose>

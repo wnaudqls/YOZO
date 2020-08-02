@@ -16,6 +16,7 @@
 	<typeAliases>
 		<typeAlias type="com.yozo.user.dto.MemberDto" alias="memberDto"/>
 		<typeAlias type="com.yozo.goods.dto.GoodsDto" alias="goodsDto"/>
+		<typeAlias type="com.yozo.goods.dto.AnswerDto" alias="answerDto"/>
 		
 </typeAliases>
 	

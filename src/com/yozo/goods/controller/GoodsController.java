@@ -12,9 +12,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.catalina.Session;
+
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.yozo.goods.biz.GoodsBiz;
+import com.yozo.goods.dto.AnswerDto;
 import com.yozo.goods.dto.GoodsDto;
 
 @WebServlet("/goods.do")
@@ -115,6 +118,23 @@ public class GoodsController extends HttpServlet {
 
 			String fullpath = realFolder + "\\" + filename1;
 			System.out.println("fullpath:" + fullpath);
+
+		} else if (command.equals("answerinsert")) {
+			System.out.println("answerinsert왔어???왔냐구");
+
+			/* int goods_no = Integer.parseInt(request.getParameter("goods_no")); */
+			// String member_id = (String)session.getAttribute("member_id");
+			String goods_re_content = request.getParameter("goods_re_content");
+
+			/* goods_re 필요없고 / goods_re_no 필요없고 */
+			int res = biz.answerinsert(new AnswerDto(0, 0,"Id", goods_re_content, null, 0, 0, 0));
+
+			if (res > 0) {
+				System.out.println("댓글작성성공");
+				dispatch("/view/goods/goods_detail.jsp", request, response);
+			} else {
+				jsResponse("댓글 작성 실패", "goods_answer.jsp", response);
+			}
 		}
 
 		// 굿즈 상세페이지

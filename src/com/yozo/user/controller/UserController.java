@@ -40,6 +40,7 @@ public class UserController extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
 		
+		//세션객체 만들어줌
 		HttpSession session = request.getSession(true);
 
 
