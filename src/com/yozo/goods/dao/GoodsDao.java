@@ -112,7 +112,7 @@ public class GoodsDao extends SqlMapConfig {
 	
 	//댓글시작
 	
-	public List<AnswerDto> answerList(){
+	public List<AnswerDto> answerList(int goods_no){
 		System.out.println("dao : selectList왔나?");
 		SqlSession session = null;
 		List<AnswerDto> list = null;
@@ -122,7 +122,7 @@ public class GoodsDao extends SqlMapConfig {
 			session = getSqlSessionFactory().openSession(false);
 			list = session.selectList(namespace+"answerList");
 		} catch (Exception e) {
-			System.out.println("answerList 오류");
+			System.out.println("answerList 오류(다오)");
 			e.printStackTrace();
 		}finally {
 			session.close();
@@ -138,18 +138,17 @@ public class GoodsDao extends SqlMapConfig {
 		
 		try {
 			session = getSqlSessionFactory().openSession(false);
-			res = session.insert(namespace+"answerinsert");
+			System.out.println(dto);
+			res = session.insert(namespace+"answerinsert", dto);
 		} catch (Exception e) {
 			System.out.println("answerinsert오류");
 			e.printStackTrace();
 		}finally {
+			session.commit();
 			session.close();
 		}
 		return res;
 	}
-	
-	
-
 	
 
 }

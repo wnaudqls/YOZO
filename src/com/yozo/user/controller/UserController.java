@@ -77,9 +77,13 @@ public class UserController extends HttpServlet {
 			
 			
 			if (rdto != null) {
+		
+
 				//세션만들기
 				session.setAttribute("rdto", rdto);			
 				session.setMaxInactiveInterval(10*60);	
+
+
 				
 				System.out.println("세션 정보 : "+ session);
 				

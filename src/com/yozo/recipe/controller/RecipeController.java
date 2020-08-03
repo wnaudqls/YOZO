@@ -32,18 +32,19 @@ public class RecipeController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=utf-8");
-		
+		System.out.println("recipe.do왔다~");
 		String command=request.getParameter("command");
 		RecipeBiz biz=new RecipeBiz();
 		
 		//Json데이터 DB에 입력
 		if(command.equals("jsoninsert")) {
-			String[] rson=request.getParameterValues("rson");
+			System.out.println("jsoninsert!!왔다");
+			String rson=request.getParameter("rson");
 			List<RecipeDto> list=new ArrayList<RecipeDto>();
-			for(int i=0;i<rson.length;i++) {
+		//	for(int i=0;i<rson.length;i++) {
 				/*String[] arr=rson[i].split(regex)*/
-				System.out.println(list.get(i));
-			}
+				System.out.println(rson);
+		//	}
 		/*	int res=biz.insert();*/
 			
 		}

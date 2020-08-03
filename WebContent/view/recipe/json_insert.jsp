@@ -11,10 +11,12 @@
 <title>Insert title here</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
-function jsonLoad(){
-	$.getJSON("/json/recipe.json",function(data){
+
+function jsonload(){
+	alert("시작");
+	$.getJSON("/YORIZORI/json/recipes.json",function(data){
 		$.ajax({
-			url:"recipe.do",
+			url:"<%=request.getContextPath()%>/recipe.do",
 			method:"post",
 			data:{"rson":JSON.stringify(data),
 				"command":"jsoninsert"},
@@ -34,6 +36,6 @@ function jsonLoad(){
 </script>
 </head>
 <body>
-			<button type="button" value="Json을 DB로~" onclick="jsonLoad(i)"></button>
+			<button type="button" value="Json을 DB로~" onclick="jsonload()">Json을 DB로~</button>
 </body>
 </html>

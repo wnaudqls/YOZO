@@ -14,7 +14,7 @@
 <title>굿즈 상세</title>
 
 <style type="text/css">
-* {
+* {																																			
    position: relative;
    margin: 0;
    padding: 0;
@@ -109,7 +109,7 @@ section {
    }
    function pay(){
       var cnt = document.getElementById("count").value;
-      var total=Number(${dto.goods_price})*Number(cnt)
+      var total=Number(${dto.goods_price})*Number(cnt);
       var IMP = window.IMP; // 생략가능
       IMP.init('imp92407375');
 
