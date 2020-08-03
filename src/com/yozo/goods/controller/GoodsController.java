@@ -136,13 +136,12 @@ public class GoodsController extends HttpServlet {
 			System.out.println("answerinsert왔어???왔냐구");
 
 
+
 			int goods_no = Integer.parseInt(request.getParameter("goods_no"));
 			MemberDto test = (MemberDto)session.getAttribute("rdto");
 			String member_id = test.getMember_id();
 			
 			//String member_id = request.getParameter("member_id");
-
-
 
 			String goods_re_content = request.getParameter("goods_re_content");
 			System.out.println(goods_no + member_id + goods_re_content);

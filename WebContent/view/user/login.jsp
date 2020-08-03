@@ -13,6 +13,30 @@
 <title>로그인</title>
 
    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+   <script type="text/javascript">
+   
+   	//페이스북 로그인
+   window.fbAsyncInit = function() {
+	    FB.init({
+	      appId      : '{341938956832335}',
+	      cookie     : true,
+	      xfbml      : true,
+	      version    : '{7.0}'
+	    });
+	      
+	    FB.AppEvents.logPageView();   
+	      
+	  };
+
+	  (function(d, s, id){
+	     var js, fjs = d.getElementsByTagName(s)[0];
+	     if (d.getElementById(id)) {return;}
+	     js = d.createElement(s); js.id = id;
+	     js.src = "https://connect.facebook.net/en_US/sdk.js";
+	     fjs.parentNode.insertBefore(js, fjs);
+	   }(document, 'script', 'facebook-jssdk'));
+   
+   </script>
    <style type="text/css">
       
       .login{
@@ -31,8 +55,8 @@
    <br>
    <br>
    <br>
-      <h1>로그인</h1>	<form action="<%=request.getContextPath() %>/user.do" method="post">
-	<!-- <form action="/YORIZORI/view/user/emailSendAction.jsp" method="post"> -->
+      <h1>로그인</h1>	
+      <form action="<%=request.getContextPath() %>/user.do" method="post">
 		<input type="hidden" name="command" value="login">
 		<input type="text" name="id" placeholder="아이디를 입력하세요" > <br>
 		<input type="password" name="pw" placeholder="비밀번호를 입력하세요"> <br><br>

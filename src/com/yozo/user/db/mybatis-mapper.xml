@@ -50,8 +50,8 @@
 		 #{member_enabled} , #{member_phone}, #{member_addr}, #{member_role})
 	</insert>
 
-
-<!-- 	<select id="selectList" resultMap="MemberResultMap">
+<!-- 
+	<select id="selectList" resultMap="MemberResultMap">
 		SELECT MEMBER_ID, MEMBER_PW, MEMBER_NAME, MEMBER_NICK, MEMBER_BIRTH,
 			   MEMBER_EMAIL, MEMBER_ENABLED, MEMBER_PHONE, MEMBER_ADDR, MEMBER_ROLE
 		FROM MEMBER	   
@@ -80,7 +80,6 @@
 	<delete id="delete" parameterType="int">
 		DELETE FROM MEMBER
 		WHERE MEMBER_ID = #{MEMBER_ID}
-	</delete> -->
-
+	</delete> 
+ -->
 </mapper>
-

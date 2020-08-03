@@ -59,12 +59,14 @@
 <table id=schedule_table border="1">
 	
 	<tr>
-		<th>닉네임</th>
-		<th>이메일</th>
-		<th>예약시간</th>
-		<th>방송권한</th>
+		<th id = "">번호</th>
+		<th id = >닉네임</th>
+		<th id = "member_email">이메일</th>
+		<th id = "">예약시간</th>
+		<th id = "">방송권한</th>
 	<tr>
 	<tr>
+		<td>1</td>
 		<td>쩡쓰삔쓰현모쓰</td>
 		<td>banana</td>
 		<td>20-07-18 PM 6:00 ~ 7:00</td>
