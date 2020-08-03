@@ -14,7 +14,7 @@
         text-align: center;
         width: 100%;
         }
-   
+
     header{
         margin:0px;
     }
@@ -34,10 +34,15 @@
         width: 300px;
         height: 100px;
     }
-    .recipe{
+     .recipe{
         width: 70px;
         height: 70px;
+    } 
+    .recipe_link{
+    	width: 70px;
+        height: 70px;
         margin-left: 20px;
+        display: inline-block;
     }
     .stream{
         width: 70px;
@@ -173,7 +178,6 @@ window.onclick = function(event){
 //메뉴 클릭 시 로그인이 필요한 경우 로그인으로 이동 기능 작성 중 *************************
 
 
-
 //---------페이스북 로그인 확인 
 /* FB.getLoginStatus(function(response) {
                     if(response.status === 'connected') {
@@ -226,7 +230,9 @@ window.onclick = function(event){
 </header>    
 <!-- 네비게이션 아이콘  -->  
          <nav id="icon">
-            <img class="recipe finger" alt="logo" src="/YORIZORI/img/recipebookicon.png">
+            <a href="" class="recipe_link">
+            	<img class="recipe finger" alt="logo" src="/YORIZORI/img/recipebookicon.png">
+           	</a>
             <div class = "dropstreamdown">
                 <img onclick = "dropstream()" class="stream finger" alt="logo" src="/YORIZORI/img/broadcasticon.png">
                 <div id="dropstream_content" class = "dropstream_content">

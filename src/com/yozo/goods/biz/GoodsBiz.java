@@ -3,6 +3,7 @@ package com.yozo.goods.biz;
 import java.util.List;
 
 import com.yozo.goods.dao.GoodsDao;
+import com.yozo.goods.dto.AnswerDto;
 import com.yozo.goods.dto.GoodsDto;
 
 public class GoodsBiz {
@@ -24,6 +25,16 @@ public class GoodsBiz {
 	}
 	public int delete(int goods_dto) {
 		return 0;
+	}
+	
+	
+	//detail 댓글달기 시작 
+	public List<AnswerDto> answerList(){
+		return dao.answerList();
+	}
+	
+	public int answerinsert(AnswerDto dto) {
+		return dao.answerinsert(dto);
 	}
 	
 	

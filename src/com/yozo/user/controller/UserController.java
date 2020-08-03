@@ -40,6 +40,7 @@ public class UserController extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
 		
+		//세션객체 만들어줌
 		HttpSession session = request.getSession(true);
 
 
@@ -72,12 +73,14 @@ public class UserController extends HttpServlet {
 			
 			MemberDto rdto = dao.login(id, pw);
 			
-			System.out.println(rdto);
+			System.out.println(rdto+"sdsd");
 			
 			
 			if (rdto != null) {
+
 				session.setAttribute("rdto", rdto);		
 				session.setMaxInactiveInterval(10*60);
+
 				
 				System.out.println("세션 정보 : "+ session);
 				
