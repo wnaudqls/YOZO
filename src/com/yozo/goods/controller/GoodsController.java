@@ -135,20 +135,16 @@ public class GoodsController extends HttpServlet {
 		} else if (command.equals("answerinsert")) {
 			System.out.println("answerinsert왔어???왔냐구");
 
-
 			int goods_no = Integer.parseInt(request.getParameter("goods_no"));
 			MemberDto test = (MemberDto)session.getAttribute("rdto");
 			String member_id = test.getMember_id();
-			
-			//String member_id = request.getParameter("member_id");
-
-
-
 			String goods_re_content = request.getParameter("goods_re_content");
-			System.out.println(goods_no + member_id + goods_re_content);
+			String member_nick = request.getParameter("member_nick");
+			System.out.println("answerinsert에서 진짜로 content 뽑는다" + goods_re_content);
+			System.out.println(goods_no + member_id + goods_re_content + member_nick);
 
 			/* goods_re 필요없고 / goods_re_no 필요없고 */
-			int res = biz.answerinsert(new AnswerDto(1,goods_no,member_id,goods_re_content,null,1,1,0));
+			int res = biz.answerinsert(new AnswerDto(1,goods_no,member_id,goods_re_content,null,1,1,0, member_nick));
 			System.out.println("int res 지남 if 전");
 			if (res > 0) {
 				System.out.println("댓글작성성공");
@@ -159,8 +155,11 @@ public class GoodsController extends HttpServlet {
 			
 			//댓글 json형태로 바꿔주고 ajax로 보내기.....
 		}else if(command.equals("answerlist")) {
+			System.out.println("answerlist도착?");
+			int goods_no = Integer.parseInt(request.getParameter("goods_no"));
+			System.out.println("answerlistd에서" + goods_no);
 			
-			List<AnswerDto> list = biz.answerList();
+			List<AnswerDto> list = biz.answerList(goods_no);
 			request.setAttribute("list", list);
 			//번지수 댓글이 나옴
 			/* System.out.println(list.get(1)); */

@@ -41,3 +41,4 @@ VALUES(2,'ID','TEST2입니다','메인사진','600','3','내용물임',SYSDATE);
 delete  from goods;
 
 SELECT * FROM GOODS_SEQ;
+

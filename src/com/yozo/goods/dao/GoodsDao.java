@@ -37,7 +37,7 @@ public class GoodsDao extends SqlMapConfig {
 		
 		try {
 			session = getSqlSessionFactory().openSession(false);
-			list = session.selectList("goods.selectList");
+			list = session.selectList(namespace+"selectList");
 		} catch (Exception e) {
 			System.out.println("selectList 오류");
 			e.printStackTrace();
@@ -120,7 +120,7 @@ public class GoodsDao extends SqlMapConfig {
 		
 		try {
 			session = getSqlSessionFactory().openSession(false);
-			list = session.selectList(namespace+"answerList");
+			list = session.selectList(namespace+"answerList", goods_no);
 		} catch (Exception e) {
 			System.out.println("answerList 오류(다오)");
 			e.printStackTrace();

@@ -29,8 +29,8 @@ public class GoodsBiz {
 	
 	
 	//detail 댓글달기 시작 
-	public List<AnswerDto> answerList(){
-		return dao.answerList();
+	public List<AnswerDto> answerList(int goods_no){
+		return dao.answerList(goods_no);
 	}
 	
 	public int answerinsert(AnswerDto dto) {
