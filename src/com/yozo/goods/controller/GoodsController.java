@@ -1,8 +1,11 @@
 package com.yozo.goods.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -11,14 +14,22 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.catalina.Session;
+import org.json.simple.JSONObject;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.yozo.goods.biz.GoodsBiz;
 import com.yozo.goods.dto.AnswerDto;
 import com.yozo.goods.dto.GoodsDto;
+import com.yozo.user.dto.MemberDto;
+
+import net.sf.json.JSONArray;
 
 @WebServlet("/goods.do")
 public class GoodsController extends HttpServlet {
@@ -43,6 +54,7 @@ public class GoodsController extends HttpServlet {
 		System.out.println("[" + command + "]");
 
 		GoodsBiz biz = new GoodsBiz();
+		HttpSession session = request.getSession();
 
 		// 굿즈 상품 등독
 		if (command.equals("goodsinsertres")) {
@@ -118,23 +130,56 @@ public class GoodsController extends HttpServlet {
 
 			String fullpath = realFolder + "\\" + filename1;
 			System.out.println("fullpath:" + fullpath);
-
+			
+			//굿즈 상세보기 : 댓글등록
 		} else if (command.equals("answerinsert")) {
 			System.out.println("answerinsert왔어???왔냐구");
 
-			/*  int goods_no = Integer.parseInt(request.getParameter("goods_no")); */
-			// String member_id = (String)session.getAttribute("member_id");
+
+
+			int goods_no = Integer.parseInt(request.getParameter("goods_no"));
+			MemberDto test = (MemberDto)session.getAttribute("rdto");
+			String member_id = test.getMember_id();
+			
+			//String member_id = request.getParameter("member_id");
+
 			String goods_re_content = request.getParameter("goods_re_content");
+			System.out.println(goods_no + member_id + goods_re_content);
 
 			/* goods_re 필요없고 / goods_re_no 필요없고 */
-			int res = biz.answerinsert(new AnswerDto(0, 0,"Id", goods_re_content, null, 0, 0, 0));
-
+			int res = biz.answerinsert(new AnswerDto(1,goods_no,member_id,goods_re_content,null,1,1,0));
+			System.out.println("int res 지남 if 전");
 			if (res > 0) {
 				System.out.println("댓글작성성공");
 				dispatch("/view/goods/goods_detail.jsp", request, response);
 			} else {
 				jsResponse("댓글 작성 실패", "goods_answer.jsp", response);
 			}
+			
+			//댓글 json형태로 바꿔주고 ajax로 보내기.....
+		}else if(command.equals("answerlist")) {
+			
+			List<AnswerDto> list = biz.answerList();
+			request.setAttribute("list", list);
+			//번지수 댓글이 나옴
+			/* System.out.println(list.get(1)); */
+			
+			/* JSONObject obj = new JSONObject(); */
+			
+			/* obj.put("list", list); */
+			Gson gson = new Gson();
+			String str = gson.toJson(list);
+			
+			
+			System.out.println("컨트롤러에서 보낸다" +str);
+			
+			PrintWriter out = response.getWriter();
+			out.println(str);
+			
+			
+		
+			
+			
 		}
 
 		// 굿즈 상세페이지
@@ -151,7 +196,7 @@ public class GoodsController extends HttpServlet {
 	}
 
 	public void dispatch(String url, HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+			throws ServletException, IOException{
 		RequestDispatcher dispatch = request.getRequestDispatcher(url);
 		dispatch.forward(request, response);
 
