@@ -201,7 +201,8 @@ display: inline-block;} */
 <%@ include file="../../form/header.jsp" %>
 <body>
 	<section>
-			<c:if test="${dto.MEMBER_ROLE eq '관리자' }">
+			<c:if test="${rdto.member_role eq '관리자' }">
+			
 			<div id="btns">
 				<input class="btn" type="button" value="등록" onclick="location.href='<%request.getContextPath(); %>/YORIZORI/goods.do?command=goodsinsertform'"/> 
 				<input class="btn" type="button" value="삭제" />
