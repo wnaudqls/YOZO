@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -8,12 +8,17 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<style type="text/css">
+#answerlist {
+	border: 1px solid black;
+}
+</style>
 
-<!-- 댓글창  -->
-<section>
+	<!-- 댓글창  -->
+	<section>
 		<div class="container">
 			<form method="post" id="answerform" name="answerform">
-			<input type="hidden" name="goods_no" value="${dto.goods_no}"/>
+				<input type="hidden" name="goods_no" value="${dto.goods_no}" />
 				<div>
 					<div>
 						<span><strong>Comments</strong></span>
@@ -21,29 +26,25 @@
 					<div>
 						<table>
 							<tr>
-								<td>
-									<label>${rdto.member_nick}</label>
-									<textarea rows="3" cols="30" name="goods_re_content" id="comment" placeholder="Q&A"></textarea>
-									<br>
+								<td><label>${rdto.member_nick}</label> <textarea rows="3"
+										cols="30" name="goods_re_content" id="comment"
+										placeholder="Q&A"></textarea> <br>
 									<div>
-										<input type="button" value="등록" onclick="answer();"/>
-									</div>
-								</td>
+										<input type="button" value="등록" onclick="answer();" />
+									</div></td>
 							</tr>
 						</table>
 					</div>
 				</div>
-				
 			</form>
 		</div>
 		<div class="container">
 			<form id="answerlistform" name="answerlistform" method="post">
-				<div id="answerlist">
-				</div>
+				<div id="answerlist"></div>
 			</form>
 		</div>
-		
-		
+
+
 		<script type="text/javascript">
 		/* 댓글 등록하기(ajax)  */
 	
@@ -51,11 +52,13 @@
 			var params = $("#answerform").serialize();
 			$.ajax({
 				type : 'post',
-/* 				url : "<c:url value='/goods.do?command=answerinsert'/>", */
 				url : "<c:url value='/goods.do?command=answerinsert'/>",
 				data : params,
-				success : function(data{
+				success : function(data){
 						alert("통신성공")
+						getAnswerList();
+						document.getElementById("comment").value=" ";
+						
 				},
 				error : function(request,status,error){
 						alert("통신실패")
@@ -71,22 +74,33 @@
 		function getAnswerList(){
 			$.ajax({
 				type:'POST',
-				url : "<c:url value='/goods.do?command=answerlist>",
-				dataType : "json",
-				data : $("#answerform").serializ`e(),
+				url : "<c:url value='/goods.do?command=answerlist'/>",
+				data : $("#answerform").serialize(),
+				contentType : "JSON",
 				contentType : "charset=UTF-8",
 				success : function(data){
-					console.log(data);
-					var html = "";
-					var cCnt = data.length;
+					var result=JSON.parse(data)
+					alert(result[0].goods_re_content);
+		      	 			
 					
-					if(data.length > 0){
-						for(i = 0; i<data.lenght; i++){
+			
+				
+					var html = "";
+					var cCnt = result.length;
+		
+					alert(html);
+					alert(cCnt);
+		
+					
+					if(cCnt > 0){
+						
+						for(i = 0; i<cCnt; i++){
 							html += "<div>";
-							html += "<div><table>"+data[i].writer;
-							html += data[i].comment + "<tr><td></td></tr>";
+							html += "<div><table><strong>"+result[i].member_id+"</strong>";
+							html += result[i].goods_re_content + "<tr><td></td></tr>";
 							html += "</table><div>";
 							html += "</div>";
+							
 						}
 					}else {
 						html += "<div>"
@@ -95,19 +109,24 @@
 						html += "</div>";
 						
 					}
-					$("#cCnt").html(cCnt);
-					$("#answerList").html(html);
+					/* $("#cCnt").html(cCnt); */
+					$("#answerlist").html(html);
+					alert("html : " + html);
+					
 				},
 				error : function(request, status, error){
 					alert("goods_answer.jsp에서 댓글 불러오기 실패")
-					
+				
+					 
 				}
+				
+		
 			});
 		}
 		
 		</script>
-		
-</section>
+
+	</section>
 
 
 </body>

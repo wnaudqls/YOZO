@@ -18,9 +18,9 @@
 	http://docs.cksource.com /CKFinder_2.x/Developers_Guide/Java/Configuration/baseURL_and_baseDir
 	-->
 	<!-- YOZO : 플젝이름 -->
-	 <!-- <baseDir>C:\workspaces\workspace_semi\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\YOZO\ckstorage</baseDir> -->
+	  <baseDir>C:\workspaces\workspace_semi\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\YOZO\ckstorage</baseDir>
 	<!-- <baseDir>C:\Users\shm11\OneDrive\바탕 화면\sdsd</baseDir> -->
-	 <baseDir>C:\Git\YOZO\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\YOZO\ckstorage</baseDir>
+	<!--  <baseDir>C:\Git\YOZO\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\YOZO\ckstorage</baseDir> -->
 <!-- 	<baseDir>C:\workspaces\workspace_semi\YOZO\WebContent\ckstorage</baseDir> -->
 	<!-- 실질적인 프로젝트 이름 경로명 -->
 	<baseURL>\YORIZORI\ckstorage\</baseURL>

@@ -25,7 +25,8 @@
   <select id="answerList" resultType="answerDto">
   SELECT GOODS_RE_NO, GOODS_NO, MEMBER_ID, GOODS_RE_CONTENT, GOODS_RE_REGDATE, GOODS_RE_GROUPNO,
   GOODS_RE_SEQ, GOODS_RE_TITLETAB
-  
+  FROM GOODSRE
+  WHERE GOODS_NO = #{goods_no}
   </select>
 
  

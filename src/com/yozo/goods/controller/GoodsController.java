@@ -1,6 +1,7 @@
 package com.yozo.goods.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
@@ -18,6 +19,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.catalina.Session;
 import org.json.simple.JSONObject;
 
+import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.oreilly.servlet.MultipartRequest;
@@ -133,11 +135,15 @@ public class GoodsController extends HttpServlet {
 		} else if (command.equals("answerinsert")) {
 			System.out.println("answerinsert왔어???왔냐구");
 
+
 			int goods_no = Integer.parseInt(request.getParameter("goods_no"));
 			MemberDto test = (MemberDto)session.getAttribute("rdto");
 			String member_id = test.getMember_id();
 			
 			//String member_id = request.getParameter("member_id");
+
+
+
 			String goods_re_content = request.getParameter("goods_re_content");
 			System.out.println(goods_no + member_id + goods_re_content);
 
@@ -154,13 +160,22 @@ public class GoodsController extends HttpServlet {
 			//댓글 json형태로 바꿔주고 ajax로 보내기.....
 		}else if(command.equals("answerlist")) {
 			
-			
 			List<AnswerDto> list = biz.answerList();
 			request.setAttribute("list", list);
+			//번지수 댓글이 나옴
+			/* System.out.println(list.get(1)); */
+			
+			/* JSONObject obj = new JSONObject(); */
+			
+			/* obj.put("list", list); */
+			Gson gson = new Gson();
+			String str = gson.toJson(list);
 			
 			
+			System.out.println("컨트롤러에서 보낸다" +str);
 			
-			
+			PrintWriter out = response.getWriter();
+			out.println(str);
 			
 			
 		
@@ -182,7 +197,7 @@ public class GoodsController extends HttpServlet {
 	}
 
 	public void dispatch(String url, HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+			throws ServletException, IOException{
 		RequestDispatcher dispatch = request.getRequestDispatcher(url);
 		dispatch.forward(request, response);
 

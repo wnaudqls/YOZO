@@ -35,13 +35,14 @@ public class AnswerDto {
 
 
 
-	@Override
-	public String toString() {
-		return "AnswerDto [goods_re_no=" + goods_re_no + ", goods_no=" + goods_no + ", member_id=" + member_id
-				+ ", goods_re_content=" + goods_re_content + ", goods_re_regdate=" + goods_re_regdate
-				+ ", goods_re_groupno=" + goods_re_groupno + ", goods_re_seq=" + goods_re_seq + ", goods_re_titletab="
-				+ goods_re_titletab + "]";
-	}
+	/*
+	 * @Override public String toString() { return "AnswerDto [goods_re_no=" +
+	 * goods_re_no + ", goods_no=" + goods_no + ", member_id=" + member_id +
+	 * ", goods_re_content=" + goods_re_content + ", goods_re_regdate=" +
+	 * goods_re_regdate + ", goods_re_groupno=" + goods_re_groupno +
+	 * ", goods_re_seq=" + goods_re_seq + ", goods_re_titletab=" + goods_re_titletab
+	 * + "]"; }
+	 */
 
 
 	public int getGoods_re_no() {
