@@ -1,11 +1,13 @@
+<%@page import="com.yozo.user.dto.MemberDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>요리조리</title>
-
 <style type="text/css">
 	 body {
         margin: 0px;
@@ -126,9 +128,16 @@
 
     .show {display:block;}
     
-.finger{
+	.finger{
     	cursor: pointer;
     } 
+     #loginStatus {
+     	width: 300px;
+	    position: absolute;
+	    top: 25px;
+    	right: 100px;
+    }
+  
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
@@ -169,36 +178,57 @@ window.onclick = function(event){
 //메뉴 클릭 시 로그인이 필요한 경우 로그인으로 이동 기능 작성 중 *************************
 
 
-	var sessionVal = '${session}';
-	
-/* function {
-	alert(sessionVal);
-	if (sessionVal < 0) {
-		for (int i = 0; i > 7;i++){
-			var needLogin = document.getElementsByClass("useId")[i]
-			needLogin[i].click() {
-				location.href="user.do?command=loginform"
-			}
-		}
-	} 
-} */
-
+//---------페이스북 로그인 확인 
+/* FB.getLoginStatus(function(response) {
+                    if(response.status === 'connected') {
+                        document.querySelector('#authBtn').value = "Logout";
+                    } else {
+                        document.querySelector('#authBtn').value = "Login";
+                    }
+                })
+ */
 
 </script>
 </head>
 <body>
-<header id= header>
-        <img class="mainlogo finger" alt="logo" src="/YORIZORI/img/mainicon.png" onclick="location.href='<%request.getContextPath();%>/YORIZORI/view/main/main.jsp'">
-        <div class = "dropuserdown">
-            <img onclick = "dropuser()" class="usericon"alt="logo" src="/YORIZORI/img/usericon.png">
-            <div id="dropuser_content" class = "dropuser_content">
-                <a href="" class="useId">개인정보수정</a>
-                <a href="" class="useId">나의레시피</a>
-                <a href="" class="useId">장바구니</a>
-                <a href="" class="useId">우리집냉장고</a>
-            </div>
-        </div>
-    </header>      
+
+<% String sessId = session.getId(); %>
+<%
+	MemberDto dto = (MemberDto)session.getAttribute("rdto");
+%>
+<header id= header> <!-- 메인 아이콘, 유저아이콘 -->
+        <img id="mainicon" class="mainlogo finger" alt="logo" src="/YORIZORI/img/mainicon.png" onclick="location.href='<%request.getContextPath();%>/YORIZORI/view/main/main.jsp'"><br>
+  
+	
+		        
+
+
+<%
+	if (dto == null) {
+%>
+		<div class = "dropuserdown">
+				<img onclick = "location.href='<%request.getContextPath();%>/YORIZORI/user.do?command=loginform'" class="usericon" alt="logo" src="/YORIZORI/img/usericon.png">
+		</div>		
+<%
+	} else {
+%>
+    	<div class = "dropuserdown">
+		        	<span id="loginStatus">${rdto.member_nick } 님이 로그인하였습니다.</span>
+		            <img onclick = "dropuser()" class="usericon"alt="logo" src="/YORIZORI/img/usericon.png">
+		            <div id="dropuser_content" class = "dropuser_content">
+		                <a href="" class="useId">개인정보수정</a>
+		                <a href="" class="useId">나의레시피</a>
+		                <a href="" class="useId">장바구니</a>
+		                <a href="" class="useId">우리집냉장고</a>
+		            </div>
+       </div>
+    	
+<%
+	}
+%>    	 
+
+</header>    
+<!-- 네비게이션 아이콘  -->  
          <nav id="icon">
             <a href="" class="recipe_link">
             	<img class="recipe finger" alt="logo" src="/YORIZORI/img/recipebookicon.png">
@@ -215,5 +245,7 @@ window.onclick = function(event){
             <img class="goods finger" alt="logo" src="/YORIZORI/img/goodsicon.png" onclick="location.href='<%request.getContextPath();%>/YORIZORI/goods.do?command=goodslist'">
             <img class="map finger" alt="logo" src="/YORIZORI/img/mapicon.png">
         </nav>
+        
+        <!-- <input type="button" value="checking....." id="authBtn"> -->
 </body>
 </html>
