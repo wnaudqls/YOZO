@@ -6,6 +6,11 @@
 	width: 500px;
 	height: 500px;
 }
+#localvideo>div{
+	margin: 0 auto;
+	margin-left: 2%;
+	text-align: left;
+}
 #localvideo>div>h2{
 	width: 500px;
 	text-align: center;
