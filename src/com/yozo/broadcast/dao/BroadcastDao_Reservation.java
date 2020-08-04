@@ -4,17 +4,17 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
-import com.yozo.broadcast.dto.BroadcastDto;
+import com.yozo.broadcast.dto.BroadcastDto_Reservation;
 
-public class BroadcastDao extends Broadcast_SqlConfig {
-	private String namespace = "Broadcast.";
+public class BroadcastDao_Reservation extends Broadcast_Reservation_SqlConfig{
+	private String namespace = "Broadcast_Reservation.";
 
-	public List<BroadcastDto> selectList(String ymd) {
+	public List<BroadcastDto_Reservation> checklist(String id) {
 		SqlSession session = null;
-		List<BroadcastDto> list = null;
+		List<BroadcastDto_Reservation> list = null;
 		try {
 			session = getSqlSessionFactory().openSession(false);
-			list = session.selectList(namespace + "selectlist",ymd);
+			list = session.selectList(namespace + "selectlist",id);
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -25,15 +25,15 @@ public class BroadcastDao extends Broadcast_SqlConfig {
 
 	}
 
-	public BroadcastDto selectone(int seq) {
+	public BroadcastDto_Reservation selectone(int seq) {
 		SqlSession session = null;
-		BroadcastDto dto = null;
+		BroadcastDto_Reservation dto = null;
 		session = getSqlSessionFactory().openSession(false);
 		dto = session.selectOne(namespace + "selectOne", seq);
 		return dto;
 	}
 
-	public int insert(BroadcastDto dto) {
+	public int insert(BroadcastDto_Reservation dto) {
 		SqlSession session = null;
 		int res = 0;
 		try {
@@ -50,7 +50,7 @@ public class BroadcastDao extends Broadcast_SqlConfig {
 		return res;
 	}
 
-	public int update(BroadcastDto dto) {
+	public int update(BroadcastDto_Reservation dto) {
 		SqlSession session = null;
 		int res = 0;
 		try {

@@ -1,0 +1,38 @@
+#remotevideo>div>video{
+	width: 300px;
+	height: 300px;
+}
+#localvideo>div>video{
+	width: 500px;
+	height: 500px;
+}
+#localvideo>div>h2{
+	width: 500px;
+	text-align: center;
+	font-size: 20pt;
+	border: 1px solid black;
+}
+#remotevideo>div>h2{
+	width: 300px;
+	text-align: center;
+	font-size: 20pt;
+	border: 1px solid black;
+}
+#remotevideo>div{
+	margin: 0 auto;
+	margin-left: 2%;
+	float: left;
+}
+button{
+	text-align: center;
+	font-size: 16pt;
+	width: 120px;
+	height: 40px;
+	color: white;
+	background-color: #F5A9A9;
+	border: none;
+}
+
+#footer{
+margin-top: 33%;
+}
