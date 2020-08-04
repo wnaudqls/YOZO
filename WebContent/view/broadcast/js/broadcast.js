@@ -1,9 +1,13 @@
 var connection = new RTCMultiConnection();
 var remoteUserId = 'xyz';
+var name = document.getElementById('nickname').value;
+var openbutton = document.getElementById('btn-open-room');
+var joinbutton = document.getElementById('btn-join-room');
+var sharebutton = document.getElementById('share-room');
 
 //this line is VERY_important 중계해줄 서버 주소(시그널 서버)
-//connection.socketURL = 'https://192.168.110.33:3000/';
-	connection.socketURL = 'https://rtcmulticonnection.herokuapp.com:443/';
+//connection.socketURL = 'https://192.168.1.17:9001/';
+connection.socketURL = 'https://rtcmulticonnection.herokuapp.com:443/';
 /*
 
 ICE: Interacitve Connectivity Establishment의 약어이고, STUN과 TURN을 활용해서
@@ -58,19 +62,32 @@ connection.sdpConstraints.mandatory = {
 
 var localvideo = document.getElementById('localvideo');
 var remotevideo = document.getElementById('remotevideo');
-
+var maxClient = document.getElementById('maxClient');
 //최대인원(방 개설인원 포함)
-connection.maxParticipantsAllowed = 5;
+//connection.maxParticipantsAllowed = 2;
+if(maxClient){
+	if((maxClient.value == null || maxClient.value == '')
+	&&connection.maxParticipantsAllowed >= 100){
+		
+	connection.maxParticipantsAllowed = prompt("최대인원을 설정하세요.");
+	while(isNaN(connection.maxParticipantsAllowed)){
+		connection.maxParticipantsAllowed = prompt("최대인원을 다시 설정하세요.");
+	}
+		console.log("최대인원수: "+connection.maxParticipantsAllowed);
+	}
+}
 
+//maxClient.value = connection.maxParticipantsAllowed;
 connection.extra = {
 //이름, 지역, 유저의 id를 불러오는 곳
-	fullName: prompt("이름을 입력하세요.")
+	fullName: name
 }
 
 connection.onstream = function(event) {
 	var h2 = document.createElement("h2");
 	var video = event.mediaElement;
 	video.id = event.streamid;
+	
 	//video 객체 생성 해주는 명렁어
 	if (event.type == 'local') {
 		//자기 자신의 화면일 경우
@@ -79,10 +96,22 @@ connection.onstream = function(event) {
 		//localvideo에 div 상속
 		div.appendChild(video);
 		//localvideo의 자식요소로 추가
-		h2.innerHTML = event.extra.fullName;
+		
 		//h2.HTML 값을 위에 connection.extra의 fullName 값을 넣음
 		div.appendChild(h2);
 		//div에 h2 상속
+		console.log("이름: "+name);
+		console.log(connection.maxParticipantsAllowed);
+		while(name == null || name == ''  || name == ' ' || name == undefined){
+			event.extra.fullName = prompt("이름을 입력하세요.");
+			if(event.extra.fullName != null || event.extra.fullName != ''  || event.extra.fullName != ' ' || event.extra.fullName != undefined){
+				name = event.extra.fullName;
+				false;
+			}
+		}
+			h2.innerHTML = event.extra.fullName;
+		
+   		 //window.open(broadUrl);
 	}
 	if (event.type == 'remote') {
 		var div = document.createElement('div');
@@ -112,8 +141,8 @@ connection.onstreamended = function(event) {
 var roomid = document.getElementById("roomid");
 //방이름 설정
 
-
-document.getElementById('btn-open-room').onclick = function() {
+if(openbutton){
+openbutton.onclick = function() {
 	//btn-open-room 클릭시
 	this.disabled = true;
 	console.log(roomid.value);
@@ -130,29 +159,38 @@ document.getElementById('btn-open-room').onclick = function() {
 				//오류발생시
 				alert("다음과 같은 이유로 방을 생성할 수 없습니다.\n오류: " + error);
 				document.getElementById('btn-open-room').disabled = false;
-				document.getElementById('btn-join-room').disabled = false;
 				//버튼 활성화
 				return;
 			}
+			var div = document.querySelector('#localvideo>div');
+			var div2 = document.createElement('div');
+			var broadUrl = 'https://192.168.1.17/YORIZORI/broadcast.do?command=watch&roomid=' + roomid;
+			/*var a = document.createElement('a');
+			a.setAttribute('href', broadUrl, "id", "share");
+			div.appendChild(a);*/
+			var a = '<input type="text"value="'+broadUrl+'" id="share" hidden>';
+			div.appendChild(div2);
+			div2.innerHTML = a;
 		});
-document.getElementById('btn-join-room').disabled = true;
 		//일정시간마다 반복해주는 setInterval 함수 단위는 mill
 		setInterval(function(){
-			connection.getAllParticipants().forEach(function(participantId) {
-			    var user = connection.peers[participantId];
-				//연결된 객체의 id를 배열로 저장
-			
-			   // var h2 = document.getElementById('#clientnumber').value;
-			    //alert(h2 + ' connected with you.');
-			});
-			var clnum = document.getElementById('clientnumber');
-			var numberOfUsers = connection.getAllParticipants().length;
-			clnum.innerHTML = "현재 접속한 유저 숫자: " + numberOfUsers;
-		},1000);
+		
+			var clnum = document.querySelector('#clientnumber');
+				connection.getAllParticipants().forEach(function(participantId) {
+				    var user = connection.peers[participantId];
+					var hisFullName  = user.extra.fullName;
+					var hisUID = user.userid;
+					
+				});
+				 var numberOfUsers = connection.getAllParticipants().length;
+					clnum.innerHTML = "최대 인원수: "+(connection.maxParticipantsAllowed-1) + "<br>구경꾼들: " +numberOfUsers+"명";
+				},5000);
 	}
 	
-};
-document.getElementById('btn-join-room').onclick = function() {
+	};
+}
+if(joinbutton){
+joinbutton.onclick = function() {
 	//btn-join-room 클릭시
 	this.disabled = true;
 	//비활성화
@@ -165,7 +203,6 @@ document.getElementById('btn-join-room').onclick = function() {
 		connection.join(roomid.value, function(isRoomJoined, roomid, error){
 			if(error){
 				document.getElementById('btn-join-room').disabled = false;
-				document.getElementById('btn-open-room').disabled = false;
 				alert("해당 오류로 인해 접속할 수 없습니다.\n오류: "+error);
 				/*
 					var localvideo = document.getElementById("localvideo");
@@ -174,7 +211,7 @@ document.getElementById('btn-join-room').onclick = function() {
 					if(localvideo && localvideo.childNodes){
 						localvideo.removeChild(video);
 				}*/
-				document.getElementById('btn-open-room').disabled = true;
+
 				return;	
 			}
 			//일정시간마다 반복해주는 setInterval 함수 단위는 mill
@@ -183,13 +220,87 @@ document.getElementById('btn-join-room').onclick = function() {
 				    var user = connection.peers[participantId];
 				    //자신을 제외한 현재 연결한 객체들을 저장함
 				});
-				var clnum = document.querySelector('#clientnumber');
-				var numberOfUsers = connection.getAllParticipants().length;
-				clnum.innerHTML = "현재 접속한 유저 숫자: " + numberOfUsers;
-			},1000);
+					var clnum = document.querySelector('#clientnumber');
+					var numberOfUsers = connection.getAllParticipants().length;
+					clnum.innerHTML = "구경꾼들: " + numberOfUsers +"명";;
+				},1000);
+			});
+		}
+	
+	
+	};
+}
+if(sharebutton){
+	sharebutton.onclick = function(){
+		var share = document.getElementById('share');
+		if(!share){
+		alert("먼저 방을 만들고 진행하세요");
+		}else{
+			share.hidden = "";
+			//숨김속성 삭제
+		 	share.select();
+			//share 선택
+		 	document.execCommand("Copy");
+			//복사명령을 내림
+			alert("주소가 복사되었습니다.");
+			
+			share.hidden = "hidden";
+			//그리고 다시 숨김
+		}
+	};
+}
+(function() {
+    var params = {},
+        r = /([^&=]+)=?([^&]*)/g;
+
+    function d(s) {
+        return decodeURIComponent(s.replace(/\+/g, ' '));
+    }
+    var match, search = window.location.search;
+    while (match = r.exec(search.substring(1)))
+        params[d(match[1])] = d(match[2]);
+    window.params = params;
+})();
+
+ // auto join room
+if(params.roomid) {
+    // 파라미터로 받은 방의 이름값이 있을경우
+	joinbutton.disabled = true;
+	//참가버튼 비활성화
+	roomid.value = params.roomid;
+	//파라미터로 받은 roomid의 값을 input roomid의 값에다 쳐박아둠
+	roomid.disabled = true;
+	//그리고 비활성화
+    connection.join(params.roomid,function(isRoomJoined, roomid, error){
+	//받은 파라미터 값으로 join 시도
+			if(error){
+				document.getElementById('btn-join-room').disabled = false;
+				alert("해당 오류로 인해 접속할 수 없습니다.\n오류: "+error);
+				/*
+					var localvideo = document.getElementById("localvideo");
+					var video = document.querySelector('#localvideo div')
+				
+					if(localvideo && localvideo.childNodes){
+						localvideo.removeChild(video);
+				}*/
+				connection.closeSocket();
+				return;
+			}//일정시간마다 반복해주는 setInterval 함수 단위는 mill
+			setInterval(function(){
+				
+				connection.getAllParticipants().forEach(function(participantId) {
+				    var user = connection.peers[participantId];
+					var hisUID = user.userid;
+
+				});
+				 
+					var clnum = document.querySelector('#clientnumber');
+					var numberOfUsers = connection.getAllParticipants().length;
+					clnum.innerHTML = "구경꾼들: " + numberOfUsers +"명";;
+				},1000);
+	
 		});
-	}
-};
+}
 
 
 

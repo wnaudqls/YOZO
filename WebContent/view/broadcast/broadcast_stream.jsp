@@ -31,10 +31,14 @@
 
 </head>
 <body>
-
+<%@include file="../../form/header.jsp"%>
+<input type="text" value="${rdto.member_nick}" id="nickname" hidden="">
 	<input type="text" id="roomid" placeholder="방 이름을 입력하세요. ">
 	<button id="btn-open-room">생성하기</button>
-	<button id="btn-join-room">들어가기</button>
+	<button id="share-room">링크공유</button>
+	<div>
+		<input type="number" id="maxClient" disabled="disabled" hidden="">
+	</div>
 	<hr>
 	내 화면
 	<div>

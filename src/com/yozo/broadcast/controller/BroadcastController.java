@@ -36,13 +36,12 @@ public class BroadcastController extends HttpServlet {
 		if(command.equals("broadcast")) {
 			dispatch(url + "broadcast_list.jsp", request, response);
 		}
-		if(command.equals("list")) {
+		else if(command.equals("list")) {
 			String time = request.getParameter("time");//radio의 값을 가져온다 이말임.
 			List<BroadcastDto> list = biz.selectList(time);
 			//그 시간대에 해당하는 방송 리스트들을 보여주는 selectList
 			request.setAttribute("list", list);
 			dispatch(url + "broadcast_selectlist.jsp", request, response);
-			
 		}else if(command.equals("checklist")) {
 			String name = request.getParameter("name");
 				List<BroadcastDto_Reservation> list = biz.checklist(name);
@@ -65,7 +64,7 @@ public class BroadcastController extends HttpServlet {
 			System.out.println(id);
 			int res = biz.insert(new BroadcastDto_Reservation(1,null,"Y",id));
 			if(res > 0) {
-				sendmessage("예약완료", "broadcast.do?command=checklist", response);
+				sendmessage("예약완료", "broadcast.do?command=checklist&name="+id, response);
 			}else {
 				sendmessage("예약실패", "broadcast.do?command=selectone&no="+no, response);
 			}

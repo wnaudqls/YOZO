@@ -35,6 +35,8 @@ height: 50px;
 		</div>
 			<h1><%=year%>년 <%=month%>월 <%=date%>일 <%=time.substring(8, 10)%>시 방송목록들</h1>
 <input type="hidden" name="command" value="reserve">
+<input hidden="" name="name" value="${rdto.member_id }">
+<!-- 현재 접속한 유저의 id를 전송하는 목적으로 사용 -->
 	<table border="1" >
 	<tr>
 		<th>번호</th>
