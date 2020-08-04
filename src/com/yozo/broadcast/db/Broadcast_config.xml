@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
+<configuration>
+<properties resource="com/yozo/broadcast/db/db.properties"></properties>
+<typeAliases>
+	<typeAlias type="com.yozo.broadcast.dto.BroadcastDto" alias="dto"/>
+</typeAliases>
+<!-- mapper(connection)설정 -->
+ <environments default="development">
+    <environment id="development">
+      <transactionManager type="JDBC"/>
+      <dataSource type="POOLED">
+        <property name="driver" value="${driver}"/>
+        <property name="url" value="${url}"/>
+        <property name="username" value="${username}"/>
+        <property name="password" value="${password}"/>
+      </dataSource>
+    </environment>
+  </environments>
+  <mappers>
+  	<mapper resource="com/yozo/broadcast/db/Broadcast_mapper.xml"/>
+  </mappers>
+</configuration>
