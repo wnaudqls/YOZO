@@ -29,9 +29,10 @@
 
 </head>
 <body>
-
+<%@include file="../../form/header.jsp"%>
+<hr>
+<input value="${rdto.member_nick}" id="nickname" hidden="">
 	<input type="text" id="roomid" placeholder="방 이름을 입력하세요. ">
-	<button id="btn-open-room">생성하기</button>
 	<button id="btn-join-room">들어가기</button>
 	<hr>
 	내 화면
@@ -46,9 +47,9 @@
 
 	<script type="text/javascript" src="view/broadcast/js/broadcast.js">
 </script>
-
+<div id="footer">
 	<%@include file="../../form/footer.jsp"%>
-
+</div>
 
 </body>
 <!-- 
@@ -60,5 +61,4 @@
 <style type="text/css">
 @import url("view/broadcast/css/broadcast.css");
 </style>
-
 </html>
