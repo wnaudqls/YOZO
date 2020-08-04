@@ -18,7 +18,9 @@
     header{
         margin:0px;
     }
-
+	section{
+		margin-top: 150px;
+	}
     #header{
         text-align: center;
     }

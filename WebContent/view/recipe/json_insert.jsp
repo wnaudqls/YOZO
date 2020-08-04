@@ -14,7 +14,7 @@
 
 function jsonload(){
 	alert("시작");
-	$.getJSON("/YORIZORI/json/recipes.json",function(data){
+	$.getJSON("/YORIZORI/json/recipes100.json",function(data){
 		$.ajax({
 			url:"<%=request.getContextPath()%>/recipe.do",
 			method:"post",
