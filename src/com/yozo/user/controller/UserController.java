@@ -122,6 +122,10 @@ public class UserController extends HttpServlet {
 			 */
 			
 			
+
+			session.invalidate();
+			response.sendRedirect("user.do?command=main");
+
 			
 		} else if (command.equals("joinform")) {
 			System.out.println("JOINFORM.......입성");
@@ -181,7 +185,7 @@ public class UserController extends HttpServlet {
 			
 			
 			 MemberDto dto = new
-			 MemberDto(0,id,pw,name,nick,email,"OO",true,"N",phone,addr,"회원");
+			 MemberDto(0,id,pw,name,nick,email,null,true,"N",phone,addr,"회원");
 			 
 			 System.out.println("controller dto = "+dto);
 			 
@@ -199,7 +203,36 @@ public class UserController extends HttpServlet {
 			
 		
 		
-		} else if (command.equals("sendEmail")) {
+		} else if (command.equals("sns_join")){
+			System.out.println("join입성");
+			
+			
+			
+			 String id = request.getParameter("id"); 
+			 String nick = request.getParameter("nick"); 
+			 String name = request.getParameter("name");
+			 String pw = request.getParameter("pw"); 
+			 String email = request.getParameter("email"); 
+			 
+			 
+			System.out.println(id + nick+ name + pw + email);
+			
+			 MemberDto dto = new MemberDto(0,id,pw,name,nick,email,"null",true,"N","null","null","회원");
+			 
+			 System.out.println("controller dto = "+dto);
+			 
+			 boolean res = dao.insert(dto);
+			 
+			 if (res) { 
+				 PrintWriter out = response.getWriter();
+				 out.println("<script>alert('계정이 등록 되었습니다.'); </script>");
+				 response.sendRedirect("/YORIZORI/view/user/login.jsp"); 
+			 } else { 
+				 PrintWriter out = response.getWriter();
+				 out.println("<script>alert('계정이 등록 되지 않았습니다.'); </script>");
+				 response.sendRedirect("history.back()"); 
+			 }
+		}else if (command.equals("sendEmail")) {
 			
 
 			Properties props = System.getProperties();
@@ -245,7 +278,7 @@ public class UserController extends HttpServlet {
 
 	            String code = request.getParameter("random"); //인증번호 값 받기
 	            request.setAttribute("code", code);
-	            msg.setText("인증번호는 "+code+" 입니다.\n 정확하게 입력해 주세요.", "UTF-8");
+	            msg.setText("인증번호는 ["+code+"] 입니다.\n 정확하게 입력해 주세요.", "UTF-8");
 	             
 	            // 이메일 헤더 
 	            msg.setHeader("content-Type", "text/html");
