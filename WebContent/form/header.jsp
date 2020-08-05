@@ -192,9 +192,11 @@ window.onclick = function(event){
 </head>
 <body>
 
-<% String sessId = session.getId(); %>
 <%
 	MemberDto dto = (MemberDto)session.getAttribute("rdto");
+	String kakaonickname = request.getParameter("kakaonickname");
+    session.setAttribute("kakaonickname", kakaonickname);
+
 %>
 <header id= header> <!-- 메인 아이콘, 유저아이콘 -->
         <img id="mainicon" class="mainlogo finger" alt="logo" src="/YORIZORI/img/mainicon.png" onclick="location.href='<%request.getContextPath();%>/YORIZORI/view/main/main.jsp'"><br>
@@ -204,28 +206,44 @@ window.onclick = function(event){
 
 
 <%
-	if (dto == null) {
+	if (dto == null && kakaonickname == null) {
 %>
 		<div class = "dropuserdown">
 				<img onclick = "location.href='<%request.getContextPath();%>/YORIZORI/user.do?command=loginform'" class="usericon" alt="logo" src="/YORIZORI/img/usericon.png">
 		</div>		
 <%
-	} else {
+	} else if (dto != null) {
 %>
     	<div class = "dropuserdown">
 		        	<span id="loginStatus">${rdto.member_nick } 님이 로그인하였습니다.</span>
 		            <img onclick = "dropuser()" class="usericon"alt="logo" src="/YORIZORI/img/usericon.png">
 		            <div id="dropuser_content" class = "dropuser_content">
-		                <a href="" class="useId">개인정보수정</a>
-		                <a href="" class="useId">나의레시피</a>
-		                <a href="" class="useId">장바구니</a>
-		                <a href="" class="useId">우리집냉장고</a>
+		                <a href="">개인정보수정</a>
+		                <a href="">나의레시피</a>
+		                <a href="">장바구니</a>
+		                <a href="">우리집냉장고</a>
+		                <a href="<%request.getContextPath();%>/YORIZORI/user.do?command=logout">로그아웃</a>
 		            </div>
        </div>
-    	
+<%
+	} else if (kakaonickname != null) {
+%>
+	<div class = "dropuserdown">
+		        	<span id="loginStatus"><%=" (카카오톡) "+session.getAttribute("kakaonickname")%>님이 로그인하였습니다.</span>
+		            <img onclick = "dropuser()" class="usericon"alt="logo" src="/YORIZORI/img/usericon.png">
+		            <div id="dropuser_content" class = "dropuser_content">
+		                <a href="">개인정보수정</a>
+		                <a href="">나의레시피</a>
+		                <a href="">장바구니</a>
+		                <a href="">우리집냉장고</a>
+		                <a href="<%request.getContextPath();%>/YORIZORI/user.do?command=logout">로그아웃</a>
+		            </div>
+       </div>
+
+
 <%
 	}
-%>    	 
+%>
 
 </header>    
 <!-- 네비게이션 아이콘  -->  
@@ -236,9 +254,9 @@ window.onclick = function(event){
             <div class = "dropstreamdown">
                 <img onclick = "dropstream()" class="stream finger" alt="logo" src="/YORIZORI/img/broadcasticon.png">
                 <div id="dropstream_content" class = "dropstream_content">
-                    <a href="" class="useId">방송하기</a>
-                    <a href="" >시청하기</a>
-                    <a href="" class="useId">예약하기</a>
+                    <a href="">방송하기</a>
+                    <a href="">시청하기</a>
+                    <a href="">예약하기</a>
                 </div>
             </div>
             <!--유정 goods onclick 건들임 -->
