@@ -25,7 +25,7 @@ border : 1px solid black;
 }
 	/*상단부*/
 	.section_top{
-	height:500px;
+	height:550px;
 	text-align: center;
 	}
 	.main_img_wrap{
@@ -40,12 +40,9 @@ border : 1px solid black;
 	}
 	.recipe_info{
 		width:500px;
-		height:500px;
+		height:200px;
 		display: inline-block;
 	}
-	
-	
-	
 	/*하단부*/
 /* 	.recipe_order, .add_comment {
 		text-align: center;
@@ -54,8 +51,12 @@ border : 1px solid black;
 		text-align: left;
 	} */
 	.section_top{
-	
-	text-align: center;
+		text-align: center;
+	}
+	.recipe_material{
+		width:500px;
+		height:300px;
+		display: inline-block;
 	}
 
 </style>
@@ -76,11 +77,21 @@ border : 1px solid black;
 			<p><b>종류 : </b>${dto.recipe_kind }</p>
 			<p><b>테마 : </b>${dto.recipe_theme }</p>
 		</div>
+		<div class="recipe_material">
 			<input type="button" value="레시피 읽어주기" onclick="voice_service()">	
 			<p><b>재료 : </b>${dto.recipe_material } </p>
+		</div>
 	</div>
 	<div class="section_bottom">
-	
+		<div class="recipe_wrap">
+			<div class="recipe_image">
+				<h3>레시피</h3>
+			</div>
+			<div class="recipe_content">
+				
+			</div>
+		</div>
+			
 	</div>	
 	
 	

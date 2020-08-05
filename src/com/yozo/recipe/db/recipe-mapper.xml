@@ -20,7 +20,7 @@
 			#{i.recipe_material_one},
 			#{i.recipe_theme},
 			#{i.recipe_kind},
-			#{i.material},
+			#{i.recipe_material},
 			#{i.recipe_likecount}
 			)
 		</foreach>
