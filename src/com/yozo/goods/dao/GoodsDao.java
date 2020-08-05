@@ -1,6 +1,8 @@
 package com.yozo.goods.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -83,6 +85,7 @@ public class GoodsDao extends SqlMapConfig {
 			System.out.println("update오류");
 			e.printStackTrace();
 		}finally {
+			session.commit();
 			session.close();
 		}
 		
@@ -90,6 +93,7 @@ public class GoodsDao extends SqlMapConfig {
 		return res;
 	}
 	
+	//굿즈 게시글 하나 삭제
 	public int delete(int goods_no) {
 		SqlSession session = null;
 		int res = 0;
@@ -108,6 +112,30 @@ public class GoodsDao extends SqlMapConfig {
 			session.close();
 		}
 		return res;
+	}
+	
+	//굿즈 게시글 여러개 삭제 
+	public int multiDelete(String[] goods_no) {
+		SqlSession session  = null;
+		int count = 0;
+		//스트링 타입으로 스트링 배열 보낼 거!
+		Map<String, String[]> map = new HashMap<>();
+		map.put("goods_nos", goods_no);
+		
+		
+		try {
+			session = getSqlSessionFactory().openSession(false);
+			count = session.delete(namespace+"muldelete", map);
+			if(count == goods_no.length) {
+				session.commit();
+			}
+		} catch (Exception e) {
+			System.out.println("goodsdao에서 멀딜 오류");
+			e.printStackTrace();
+		}finally {
+			session.close();
+		}
+		return count;
 	}
 	
 	//댓글시작
@@ -161,6 +189,7 @@ public class GoodsDao extends SqlMapConfig {
 			System.out.println("goodsdao에서 answerdelete오류");
 			e.printStackTrace();
 		}finally {
+			session.commit();
 			session.close();
 		}
 		
@@ -178,6 +207,7 @@ public class GoodsDao extends SqlMapConfig {
 			System.out.println("goodsdao에서 rereplyupdate오류");
 			e.printStackTrace();
 		}finally {
+			session.commit();
 			session.close();
 		}
 		

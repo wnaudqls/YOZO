@@ -105,6 +105,8 @@ public class GoodsDto {
 				+ ", goods_price=" + goods_price + ", goods_quantity=" + goods_quantity + ", goods_content="
 				+ goods_content + ", goods_regdate=" + goods_regdate + ", goods_main_photo=" + goods_main_photo + "]";
 	}
+	
+	//update 
 
 	
 	

@@ -44,6 +44,7 @@
 		<hr>
 		<div class="container">
 			<form id="answerlistform" name="answerlistform" method="post">
+			<input type="hidden" name="member_nick" value="${rdto.member_nick }">
 				<div id="answerlist"></div>
 
 			</form>
@@ -154,9 +155,10 @@
 				/* var str = "<textarea></textarea>"; */
 
 				//디브 , 텍스트에어리어 생성
+			
 				var newDiv = document.createElement("div");
 				newDiv.className = 'adminre';
-				var txt = document.createTextNode("관리자 ");
+				var txt = document.createTextNode("ㄴ관리자 ");
 				var newTextarea = document.createElement("textarea");
 				newTextarea.setAttribute("name", "goods_re_content");
 				
@@ -196,7 +198,7 @@
  											//여기 다시보기
  										alert("i:"+i);
 										var content = document.getElementsByName("goods_re_content")[1].value;
-										alert("content : "+ content);
+										alert("content :" + content);
 										console.log(content);
 											$.ajax({
 												type : 'post',
