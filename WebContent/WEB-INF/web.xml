@@ -32,5 +32,23 @@
   <url-pattern>/ckfinder/core/connector/java/connector.java</url-pattern>
 </servlet-mapping>  
 <!-- ckfinder end -->
+ <!-- 
+https로 자동연결해주는 web 설정
+하지만 이 전에 인증서를 넣어줘야하기 때문에 주석처리
+ -->
+ <!--  
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>SSL Forward</web-resource-name>
+			<url-pattern>/*</url-pattern>
+		</web-resource-collection>
+		<user-data-constraint>
+			<transport-guarantee>CONFIDENTIAL</transport-guarantee>
+		</user-data-constraint>
+	</security-constraint>
+	
+	/*는	 모든 경로는 http가 접근못하게 설정
+	-->
+	
 
 </web-app>

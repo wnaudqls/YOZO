@@ -135,6 +135,7 @@ public class GoodsController extends HttpServlet {
 		} else if (command.equals("answerinsert")) {
 			System.out.println("answerinsert왔어???왔냐구");
 
+
 			int goods_no = Integer.parseInt(request.getParameter("goods_no"));
 			MemberDto test = (MemberDto)session.getAttribute("rdto");
 			String member_id = test.getMember_id();

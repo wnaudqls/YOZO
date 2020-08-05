@@ -18,7 +18,9 @@
     header{
         margin:0px;
     }
-
+	section{
+		margin-top: 150px;
+	}
     #header{
         text-align: center;
     }
@@ -107,6 +109,8 @@
         background-color:white;
     }
     .dropstream_content {
+    	opacity: 0.85;
+  		z-index: 1;
         display: none;
         position: absolute;
         margin-right: 500px;
@@ -236,9 +240,9 @@ window.onclick = function(event){
             <div class = "dropstreamdown">
                 <img onclick = "dropstream()" class="stream finger" alt="logo" src="/YORIZORI/img/broadcasticon.png">
                 <div id="dropstream_content" class = "dropstream_content">
-                    <a href="" class="useId">방송하기</a>
-                    <a href="" >시청하기</a>
-                    <a href="" class="useId">예약하기</a>
+                    <a href="/YORIZORI/broadcast.do?command=stream" class="useId">방송하기</a>
+                    <a href="/YORIZORI/broadcast.do?command=watch" >시청하기</a>
+                    <a href="/YORIZORI/broadcast.do?command=broadcast" class="useId">예약하기</a>
                 </div>
             </div>
             <!--유정 goods onclick 건들임 -->
