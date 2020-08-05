@@ -21,7 +21,6 @@ section {
 	margin: 50px 0;
 	/* height: 600px; */
 }
-
 #title {
 	font-size: 25px;
 	text-align: center;

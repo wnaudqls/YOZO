@@ -38,12 +38,14 @@ public class RecipeController extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=utf-8");
 		System.out.println("recipe.do왔다~");
 		String command = request.getParameter("command");
 		RecipeBiz biz = new RecipeBiz();
 		HttpSession session=request.getSession();
+		
 		//레시피 리스트
 		if(command.equals("recipe_list")) {
 			System.out.println("controller_recipe_list");
@@ -66,6 +68,30 @@ public class RecipeController extends HttpServlet {
 			RecipeDto dto=biz.selectOne(recipe_no);
 			request.setAttribute("dto", dto);
 			System.out.println(dto);
+			
+			List<String> detail=new ArrayList<String>();
+			List<String> material=new ArrayList<String>();
+			
+			JsonElement element_detail=JsonParser.parseString(dto.getRecipe_detail());
+			JsonElement element_material=JsonParser.parseString(dto.getRecipe_material());
+			
+			JsonArray tmp_detail=element_detail.getAsJsonArray();
+				for(int i=0;i<tmp_detail.size();i++) {
+					detail.add(tmp_detail.get(i).getAsString());
+				}
+				
+			JsonArray tmp_material=element_material.getAsJsonArray();
+				for(int i=0;i<tmp_material.size();i++) {
+					material.add(tmp_material.get(i).getAsString());
+				}
+				
+				System.out.println("detail: "+detail);
+				System.out.println(detail.get(0));
+				System.out.println("material: "+material);
+				request.setAttribute("detail", detail);
+				request.setAttribute("material", material);
+				
+			
 			dispatch("/view/recipe/recipe_detail.jsp", request, response);
 		}
 		//레시피 작성
