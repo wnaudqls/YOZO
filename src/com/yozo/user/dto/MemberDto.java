@@ -37,6 +37,15 @@ public class MemberDto {
 		this.member_role = member_role;
 	}
 	
+	public MemberDto(int member_no, String member_id, String member_pw, String member_name, String member_nick, String member_email) {
+		this.member_no = member_no;
+		this.member_id = member_id;
+		this.member_pw = member_pw;
+		this.member_name = member_name;
+		this.member_nick = member_nick;
+		this.member_email = member_email;
+	}
+
 	public int getMember_no() {
 		return member_no;
 	}
@@ -132,6 +141,8 @@ public class MemberDto {
 	public void setMember_role(String member_role) {
 		this.member_role = member_role;
 	}
+	
+
 
 	@Override
 	public String toString() {
@@ -141,6 +152,7 @@ public class MemberDto {
 				+ ", member_enabled=" + member_enabled + ", member_phone=" + member_phone + ", member_addr="
 				+ member_addr + ", member_role=" + member_role + "]";
 	}
+
 
 
 	

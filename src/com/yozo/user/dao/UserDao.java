@@ -53,7 +53,7 @@ public class UserDao extends SqlMapConfig{
 		MemberDto rdto = null;
 		MemberDto dto = new MemberDto();
 		dto.setMember_nick(member_nick);
-		
+		 
 		
 		session = getSqlSessionFactory().openSession(true);
 		rdto = session.selectOne(namespace+".nickcheck",dto);
