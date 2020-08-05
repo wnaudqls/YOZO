@@ -139,14 +139,13 @@ public class GoodsController extends HttpServlet {
 			int goods_no = Integer.parseInt(request.getParameter("goods_no"));
 			MemberDto test = (MemberDto)session.getAttribute("rdto");
 			String member_id = test.getMember_id();
-			
-			//String member_id = request.getParameter("member_id");
-
 			String goods_re_content = request.getParameter("goods_re_content");
-			System.out.println(goods_no + member_id + goods_re_content);
+			String member_nick = request.getParameter("member_nick");
+			System.out.println("answerinsert에서 진짜로 content 뽑는다" + goods_re_content);
+			System.out.println(goods_no + member_id + goods_re_content + member_nick);
 
 			/* goods_re 필요없고 / goods_re_no 필요없고 */
-			int res = biz.answerinsert(new AnswerDto(1,goods_no,member_id,goods_re_content,null,1,1,0));
+			int res = biz.answerinsert(new AnswerDto(1,goods_no,member_id,goods_re_content,null,1,1,0, member_nick));
 			System.out.println("int res 지남 if 전");
 			if (res > 0) {
 				System.out.println("댓글작성성공");
@@ -157,8 +156,11 @@ public class GoodsController extends HttpServlet {
 			
 			//댓글 json형태로 바꿔주고 ajax로 보내기.....
 		}else if(command.equals("answerlist")) {
+			System.out.println("answerlist도착?");
+			int goods_no = Integer.parseInt(request.getParameter("goods_no"));
+			System.out.println("answerlistd에서" + goods_no);
 			
-			List<AnswerDto> list = biz.answerList();
+			List<AnswerDto> list = biz.answerList(goods_no);
 			request.setAttribute("list", list);
 			//번지수 댓글이 나옴
 			/* System.out.println(list.get(1)); */
@@ -170,7 +172,7 @@ public class GoodsController extends HttpServlet {
 			String str = gson.toJson(list);
 			
 			
-			System.out.println("컨트롤러에서 보낸다" +str);
+			System.out.println("answerlist컨트롤러에서 보낸다" +str);
 			
 			PrintWriter out = response.getWriter();
 			out.println(str);
@@ -189,7 +191,34 @@ public class GoodsController extends HttpServlet {
 			request.setAttribute("dto", dto);
 			dispatch("/view/goods/goods_detail.jsp", request, response);
 			
-
+		
+		//관리자 댓글 
+		}else if(command.equals("goodsadminre")) {
+			System.out.println("관리자댓글입력컨트롤러왔나요?");
+			
+			int goods_re_no = Integer.parseInt(request.getParameter("greno"));
+			String goods_re_content = request.getParameter("goods_re_content");
+			//관리자 닉네임이나 아이디 뭐 받아올 때 쓰려고.....흠 확실x
+			MemberDto admin = (MemberDto)session.getAttribute("rdto");
+			String member_nick = admin.getMember_nick();
+			String member_id = admin.getMember_id();
+		
+			System.out.println("goodsadminre : " + member_nick + goods_re_content);
+			
+			//int res = biz.rereplyinsert(new AnserDto(1,goods_no, member_id, goods_re_content,null,goods_re_groupno, goods_re_seq, goods_re_titletab));
+			AnswerDto dto = new AnswerDto(1,0, member_id, goods_re_content,null,0, 0, 0,member_nick);
+			int res = biz.answerProc(dto);
+			System.out.println("goodsadminre int res 지났고 if 전");
+			if(res>0) {
+				System.out.println("관리자님이 문의하신 댓글에 답변을 등록하였습니다.");
+				dispatch("/view/goods/goods_detail.jsp", request, response);
+			}else {
+				jsResponse("관리자 답변 실패함 싸발.", "goods_answer.jsp", response);
+			}
+			 
+		
+	
+			
 		}
 
 	}

@@ -37,5 +37,22 @@ public class GoodsBiz {
 		return dao.answerinsert(dto);
 	}
 	
+	//관리자 댓글 끼어서 달기
+	public int rereplyinsert(AnswerDto dto) {
+		return dao.rereplyinsert(dto);
+	}
+	
+	public int rereplyupdate(int goods_re_no) {
+		return dao.rereplyupdate(goods_re_no);
+				
+	}
+	public int answerProc(AnswerDto dto) {
+		
+		int rereplyupdate = dao.rereplyupdate(dto.getGoods_re_no());
+		int rereplyinsert = dao.rereplyinsert(dto);
+		
+		return rereplyupdate + rereplyinsert;
+		
+	}
 	
 }
