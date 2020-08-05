@@ -132,7 +132,7 @@
 	<section>
 		<!-- 상단부 -->
 		<div id="upload_title">
-			<input type="button" value="사진업로드" onclick="#">
+			<input id="goods_main_photo" type="file" name="recipe_main_photo" onchange="filechange(event)" />
 		</div>
 		<!--유정) 제목, 대표재료 , 재료 , +버튼 큰 디브로 묶음 -->
 		<div id="on_add">
