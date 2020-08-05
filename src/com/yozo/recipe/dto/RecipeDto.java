@@ -21,6 +21,8 @@ public class RecipeDto {
 		
 		
 		
+		public RecipeDto() {
+		}
 		public RecipeDto(int recipe_no, String recipe_main_photo, String member_id, String recipe_title,
 				String recipe_detail, DATE recipe_regdate, int recipe_readcount, String recipe_material_one,
 				int recipe_theme, int recipe_kind, String material, int recipe_likecount) {

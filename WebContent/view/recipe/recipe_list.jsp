@@ -41,7 +41,7 @@
 <br>
 <br>
 
-<div>
+<div class="">
 	<b>통합 검색 : </b><input type="text" id="search" placeholder="레시피, 작성자, 재료"> 
 	<input type="button" value="검색하기" onclick="location.href='#'"> 
 	<input type="button" value="등록" onclick="location.href='#'">
@@ -69,109 +69,6 @@
 			<td> 가정식 <input type="checkbox"></td>
 		</tr>
 	</table>
-	<br>
-	<br>
-	<br>
-	<br>
-	<table> 
-		<tr>
-			<td><b>TOP1</b></td>
-			<td><b>TOP2</b></td>
-			<td><b>TOP3</b></td>
-		</tr>
-		<tr>
-			<td><img alt="top1" class="top" src="./img/img04.png"></td>
-			<td><img alt="top2" class="top" src="./img/img04.png"></td>
-			<td><img alt="top3" class="top" src="./img/img04.png"></td>
-		</tr>
-		<tr>
-			<td>제목1</td>			
-			<td>제목2</td>			
-			<td>제목3</td>			
-		</tr>
-		<tr>
-			<td>따봉</td>			
-			<td>따봉</td>			
-			<td>따봉</td>			
-		</tr>
-	</table>
-	
-	<table> 
-		<tr>
-			<td><img class="recipe_img" src="./img/img04.png"></td>
-			<td><img class="recipe_img" src="./img/img04.png"></td>
-			<td><img class="recipe_img" src="./img/img04.png"></td>
-			<td><img class="recipe_img" src="./img/img04.png"></td>
-			<td><img class="recipe_img" src="./img/img04.png"></td>
-		</tr>
-		<tr>
-			<td>제목1</td>			
-			<td>제목2</td>			
-			<td>제목3</td>			
-			<td>제목3</td>			
-			<td>제목3</td>			
-		</tr>
-		<tr>
-			<td>따봉</td>			
-			<td>따봉</td>			
-			<td>따봉</td>			
-			<td>따봉</td>			
-			<td>따봉</td>			
-		</tr>
-	</table>
-	<table> 
-		<tr>
-			<td><img class="recipe_img" src="./img/img04.png"></td>
-			<td><img class="recipe_img" src="./img/img04.png"></td>
-			<td><img class="recipe_img" src="./img/img04.png"></td>
-			<td><img class="recipe_img" src="./img/img04.png"></td>
-			<td><img class="recipe_img" src="./img/img04.png"></td>
-		</tr>
-		<tr>
-			<td>제목1</td>			
-			<td>제목2</td>			
-			<td>제목3</td>			
-			<td>제목3</td>			
-			<td>제목3</td>			
-		</tr>
-		<tr>
-			<td>따봉</td>			
-			<td>따봉</td>			
-			<td>따봉</td>			
-			<td>따봉</td>			
-			<td>따봉</td>			
-		</tr>
-	</table>
-	<table> 
-		<tr>
-			<td><img class="recipe_img" src="./img/img04.png"></td>
-			<td><img class="recipe_img" src="./img/img04.png"></td>
-			<td><img class="recipe_img" src="./img/img04.png"></td>
-			<td><img class="recipe_img" src="./img/img04.png"></td>
-			<td><img class="recipe_img" src="./img/img04.png"></td>
-		</tr>
-		<tr>
-			<td>제목1</td>			
-			<td>제목2</td>			
-			<td>제목3</td>			
-			<td>제목3</td>			
-			<td>제목3</td>			
-		</tr>
-		<tr>
-			<td>따봉</td>			
-			<td>따봉</td>			
-			<td>따봉</td>			
-			<td>따봉</td>			
-			<td>따봉</td>			
-		</tr>
-	</table>
-
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
 	
 </div>
 
