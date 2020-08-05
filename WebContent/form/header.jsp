@@ -211,7 +211,7 @@ window.onclick = function(event){
 
 
 <%
-	if (dto == null && kakaonickname == null) {
+	if (dto == null) {
 %>
 		<div class = "dropuserdown">
 				<img onclick = "location.href='<%request.getContextPath();%>/YORIZORI/user.do?command=loginform'" class="usericon" alt="logo" src="/YORIZORI/img/usericon.png">
@@ -230,25 +230,9 @@ window.onclick = function(event){
 		                <a href="<%request.getContextPath();%>/YORIZORI/user.do?command=logout">로그아웃</a>
 		            </div>
        </div>
-<%
-	} else if (kakaonickname != null) {
-%>
-	<div class = "dropuserdown">
-		        	<span id="loginStatus"><%=" (카카오톡) "+session.getAttribute("kakaonickname")%>님이 로그인하였습니다.</span>
-		            <img onclick = "dropuser()" class="usericon"alt="logo" src="/YORIZORI/img/usericon.png">
-		            <div id="dropuser_content" class = "dropuser_content">
-		                <a href="">개인정보수정</a>
-		                <a href="">나의레시피</a>
-		                <a href="">장바구니</a>
-		                <a href="">우리집냉장고</a>
-		                <a href="<%request.getContextPath();%>/YORIZORI/user.do?command=logout">로그아웃</a>
-		            </div>
-       </div>
-
-
-<%
+ <%
 	}
-%>
+ %>
 
 </header>    
 <!-- 네비게이션 아이콘  -->  

@@ -3,6 +3,64 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="recipe">
+   <insert id="jsonInsert" parameterType="java.util.List">
+      <foreach collection="list" item="i" index="index"
+         open="INSERT ALL" separator=" " close="SELECT * FROM DUAL">
+         into
+         RECIPE
+         VALUES
+         (
+         GET_SEQ,
+         #{i.recipe_main_photo},
+         #{i.member_id},
+         #{i.recipe_title},
+         #{i.recipe_detail},
+         sysdate,
+         #{i.recipe_readcount},
+         #{i.recipe_material_one},
+         #{i.recipe_theme},
+         #{i.recipe_kind},
+         #{i.recipe_material},
+         #{i.recipe_likecount}
+         )
+      </foreach>
+   </insert>
+   
+   <select id="selectList" resultType="recipeDto">
+      SELECT 
+      RECIPE_NO,
+      RECIPE_MAIN_PHOTO,
+      MEMBER_ID,
+      RECIPE_TITLE,
+      RECIPE_DETAIL,
+      RECIPE_REGDATE,
+      RECIPE_READCOUNT,
+      RECIPE_MATERIAL_ONE,
+      CATE_THEME_NO,
+      CATE_KIND_NO,
+      RECIPE_MATERIAL,
+      RECIPE_LIKECOUNT 
+      FROM RECIPE
+   </select>
+   <select id="selectOne" resultType="recipeDto" >      
+      SELECT 
+      RECIPE_NO,
+      RECIPE_MAIN_PHOTO,
+      MEMBER_ID,
+      RECIPE_TITLE,
+      RECIPE_DETAIL,
+      RECIPE_REGDATE,
+      RECIPE_READCOUNT,
+      RECIPE_MATERIAL_ONE,
+      CATE_THEME_NO,
+      CATE_KIND_NO,
+      RECIPE_MATERIAL,
+      RECIPE_LIKECOUNT
+      FROM RECIPE 
+      WHERE RECIPE_NO= #{recipe_no}
+   </select>
+   
+<!-- =======
 	<insert id="jsonInsert" parameterType="java.util.List">
 		<foreach collection="list" item="i" index="index"
 			open="INSERT ALL" separator=" " close="SELECT * FROM DUAL">
@@ -63,4 +121,5 @@
 		WHERE RECIPE_NO= #{recipe_no}
 	</select>
 	
+>>>>>>> branch 'develop' of https://github.com/shm1113/YOZO.git -->
 </mapper>

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 	request.setCharacterEncoding("UTF-8");
 %>
@@ -116,91 +116,146 @@ section {
 }
 
 /*굿즈 목록 리스트 큰테두리*/
-.goods_list{
-	border: 1px solid black;
-	margin:0 10%;
-	
+.goods_list {
+	/* border: 1px solid black; */
+	margin: 0 10%;
 }
-#warning{	/* warning이미지 */
+
+#warning { /* warning이미지 */
 	width: 100px;
-	height :100px;
+	height: 100px;
 	vertical-align: middle;
 }
-#message{	/* warning 메시지 */
-	display : inline-block;
+
+#message { /* warning 메시지 */
+	display: inline-block;
 	vertical-align: middle;
 }
 /* .tablewrapper{
 display: inline-block;} */
-.goods_card{
-	display:inline-block;
+.goods_card {
+	display: inline-block;
 	width: 250px;
 	height: 300px;
-	border : 1px solid black;
+	border: 1px solid black;
 	border-radius: 25px;
 	box-sizing: border-box;
 	margin: 50px;
 }
-.goods_card_img{	/* 이미지 감싸는 div */
-	
-	width: 250px;
-	height: 230px;
-	border-radius: 25px 25px 0 0;
-}
-.goods_img_tag{		/* 이미지 태그 */
 
+#checkbox { /*체크박스 */
+	width: 17px;
+	height: 17px;
+	margin-top: 10px;
+}
+
+#goods_card_wrapper { /* 상품카드 감싸는 div  */
+	float: left;
+	
+}
+
+.goods_card_img { /* 이미지 감싸는 div */
+	width: 250px;
+	height: 230px;
+	border-radius: 25px 25px 0 0;
+}
+
+.goods_img_tag { /* 이미지 태그 */
 	border-radius: 25px 25px 0 0;
 	width: 250px;
 	height: 230px;
 }
-.goods_card_contents{
-	text-align:center;
-	width:250px;
-	height:70px;
+
+.goods_card_contents {
+	text-align: center;
+	width: 250px;
+	height: 70px;
 }
-.nosection{ /* 내용없을때 기본크기주기 */
-height:400px;
+
+.nosection { /* 내용없을때 기본크기주기 */
+	height: 400px;
 }
 </style>
 
-<%@ include file="../../form/header.jsp" %>
+<%@ include file="../../form/header.jsp"%>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+	function alldel() {
+		alert("정말로 전체삭제하시겠습니까?");
+		var chks = document.getElementsByName("chk");
+
+	}
+
+	$(function() {
+		$("#muldelform").submit(function() {
+			if ($("#muldelform input:checked").length == 0) {
+				alert("하나 이상 체크해주시기 바랍니다. 관 리 자 님 ");
+				return false;
+			}
+		})
+	})
+</script>
 <body>
 	<section>
-			<c:if test="${rdto.member_role eq '관리자' }">
-			
-			<div id="btns">
-				<input class="btn" type="button" value="등록" onclick="location.href='<%request.getContextPath(); %>/YORIZORI/goods.do?command=goodsinsertform'"/> 
-				<input class="btn" type="button" value="삭제" />
-			</div>
-			</c:if>
-		
-<div class="goods_list">
-	<!--썸네일 / 제목 / 가격 / 장바구니담기버튼 -->
-	
 
-	<c:choose>
-		<c:when test="${empty list }">
-			<div class="nosection">
-			<img id="warning" alt="warning" src="/YORIZORI/img/warning.jpg">
-			<h1 id="message">등록된 상품이 존재하지 않습니다.</h1>
-			</div>
-		</c:when>
-		
-		<c:otherwise>
-		<c:forEach items="${list }" var="dto">
-			<div class="goods_card">
-				<div class="goods_card_img">
-					<%-- <a href="goods.do?command='goodsdetail'"><img src="/YORIZORI/ckstorage/images/${dto.goods_main_photo }" class="goods_img_tag" alt="굿즈메인사진"/></a> --%>	
-					<%-- <a href="goods.do?command='goodsdetail'"><img src="${path }/${dto.goods_main_photo }" class="goods_img_tag" alt="굿즈메인사진"/></a> --%>	
-					<a href="goods.do?command=goodsdetail&goods_no=${dto.goods_no }"><img src="imgtest/${dto.goods_main_photo }" class="goods_img_tag" alt="굿즈메인사진"/></a>	
+		<form action="<%=request.getContextPath()%>/goods.do" method="post"
+			id="muldelform">
+			<input type="hidden" name="command" value="muldel" /> <input
+				type="hidden" name="goods_no" value="${dto.goods_no}" />
+			<c:if test="${rdto.member_role eq '관리자' }">
+
+				<div id="btns">
+					<input class="btn" type="button" value="등록"
+						onclick="location.href='<%request.getContextPath();%>/YORIZORI/goods.do?command=goodsinsertform'" />
+					<input class="btn" type="submit" value="삭제" /> <input class="btn"
+						type="button" value="전체삭제" onclick="alldel();" />
 				</div>
-				<div class="goods_card_content">
-					<p>${dto.goods_title }</p>
-					<p>${dto.goods_price } 원</p>
-					<input type="button" value="장바구니 담기">
-				</div>
-			</div>
-	<%-- 	<table>
+			</c:if>
+
+
+
+			<div class="goods_list">
+				<!--썸네일 / 제목 / 가격 / 장바구니담기버튼 -->
+
+
+				<c:choose>
+					<c:when test="${empty list }">
+						<div class="nosection">
+							<img id="warning" alt="warning" src="/YORIZORI/img/warning.jpg">
+							<h1 id="message">등록된 상품이 존재하지 않습니다.</h1>
+						</div>
+					</c:when>
+
+					<c:otherwise>
+						<c:forEach items="${list }" var="dto">
+
+							<div id="goods_card_wrapper">
+								<div>
+									<c:if test="${rdto.member_role eq '관리자' }">
+										<input type="checkbox" id="checkbox" name="chk"
+											value="${dto.goods_no }">
+									</c:if>
+								</div>
+
+
+								<div class="goods_card">
+									<div class="goods_card_img">
+										<%-- <a href="goods.do?command='goodsdetail'"><img src="/YORIZORI/ckstorage/images/${dto.goods_main_photo }" class="goods_img_tag" alt="굿즈메인사진"/></a> --%>
+										<%-- <a href="goods.do?command='goodsdetail'"><img src="${path }/${dto.goods_main_photo }" class="goods_img_tag" alt="굿즈메인사진"/></a> --%>
+										<a
+											href="goods.do?command=goodsdetail&goods_no=${dto.goods_no }"><img
+											src="imgtest/${dto.goods_main_photo }" class="goods_img_tag"
+											alt="굿즈메인사진" /></a>
+									</div>
+									<div class="goods_card_content">
+										<p>${dto.goods_title }</p>
+										<p>${dto.goods_price }원</p>
+										<input type="button" value="장바구니 담기">
+									</div>
+								</div>
+							</div>
+
+							<%-- 	<table>
 				<tr>
 					<td><img src="/YORIZORI/ckstorage/images/${dto.goods_main_photo }"/></td>
 				</tr>
@@ -218,18 +273,17 @@ height:400px;
 				</tr>
 	
 		</table> --%>
-			
-			
-		</c:forEach>
-		</c:otherwise>
-	</c:choose>
-	
-</div>
-</section>
+						</c:forEach>
+					</c:otherwise>
+				</c:choose>
+
+			</div>
+		</form>
+	</section>
 	<!-- 푸터 -->
-	
-	
-	
-<%@ include file="../../form/footer.jsp" %>
+
+
+
+	<%@ include file="../../form/footer.jsp"%>
 </body>
 </html>

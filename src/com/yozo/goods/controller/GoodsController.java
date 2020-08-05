@@ -240,15 +240,16 @@ public class GoodsController extends HttpServlet {
 			String goods_main_photo  = request.getParameter("goods_main_photo");
 			String goods_content = request.getParameter("goods_content");
 			
+			
 			System.out.println("굿즈 업뎃 res 값 가져오나 ? : "+ goods_no + member_id + goods_title + goods_quantity + goods_price + goods_main_photo + goods_content);
 
 			GoodsDto dto = new GoodsDto(goods_no, member_id, goods_title,goods_price, goods_quantity, goods_content, null, goods_main_photo);
 			int res = biz.update(dto);
 			if(res>0) {
 				System.out.println("굿즈수정성공");
-				dispatch("/goods.do?command=goodslist", request, response);
+				jsResponse("상품을 성공적으로 등록하였습니다.", "goods.do?command=goodslist", response);
 			}else {
-				jsResponse("굿즈 수정 실패 싸발적으로다가 .", "/view/goods/goods_list.jsp", response);
+				jsResponse("상품을 등록하는데 실패하였습니다.", "goods.do?command=goodslist", response);
 			
 				
 			}
@@ -270,10 +271,24 @@ public class GoodsController extends HttpServlet {
 			int res = biz.delete(goods_no);
 			if(res>0) {
 				System.out.println("굿즈삭제성공!");
-				dispatch("/goods.do?command=goodslist", request, response);
+				jsResponse("상품을 성공적으로 삭제하였습니다.", "goods.do?command=goodslist", response);
 			}else {
 				System.out.println("굿즈삭제싸발적으로실패");
-				jsResponse("굿즈삭제실패 싸발!","/view/goods/goods_list.jsp", response);
+				jsResponse("굿즈삭제실패 싸발!","goods.do?command=goodslist", response);
+			}
+			
+		//굿즈 여러개 삭제! 체크박스 
+		}else if(command.equals("muldel")){
+			System.out.println("굿즈 멀딜 컨트롤러 왔나요");
+			String[] goods_no = request.getParameterValues("chk");
+			int res = biz.multiDelete(goods_no);
+			
+			if(res >0) {
+				System.out.println("굿즈멀딜삭제성공!");
+				jsResponse("선택하신 상품을 삭제하였습니다.", "goods.do?command=goodslist", response);
+			}else {
+				System.out.println("굿즈멀딜삭제실패!!으악!!!");
+				jsResponse("삭제하는데 실패하였습니다. 다시시도해주세요.", "goods.do?command=goodslist", response);
 			}
 			
 		}
