@@ -16,10 +16,7 @@ public class RecipeBiz {
 		return dao.selectList();
 	}
 	public RecipeDto selectOne(int recipe_no) {
-		RecipeDto dto= dao.selectOne(recipe_no);
-		dto.setRecipe_kind(dao.selectKind(dto.getRecipe_kind()));
-		dto.setRecipe_theme(dao.selectTheme(dto.getRecipe_theme()));
-		return dto;
+		return dao.selectOne(recipe_no);
 	}
 	public int update(RecipeDto dto) {
 		return dao.update(dto);
