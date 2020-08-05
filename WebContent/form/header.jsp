@@ -28,6 +28,7 @@
         text-align: center;
     }
     .dropuserdown{
+   	 	 z-index: 1;
          position: absolute;
          right: 20px;
          top: 20px;
