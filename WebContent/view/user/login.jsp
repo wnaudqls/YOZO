@@ -51,7 +51,6 @@
                                 type: "POST",
 		  	    			
                                 success : function(userRes){
-                                    alert("회원가입 성공")
                                     $.ajax({
                                         url: "<c:url value='/user.do?command=login'/>",
                                         data: {"id" : id,
@@ -63,7 +62,6 @@
                                     })
                                 },
                                 error : function(userRes){
-                                    alert("회원가입 에러")		
                                     	
                                     $.ajax({
                                         url: "<c:url value='/user.do?command=login'/>",
