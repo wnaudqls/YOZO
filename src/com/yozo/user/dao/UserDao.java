@@ -17,8 +17,7 @@ public class UserDao extends SqlMapConfig{
 		dto.setMember_id(member_id);
 		dto.setMember_pw(member_pw);
 		
-		
-		//System.out.println(dto.getMember_pw());
+		 
 		
 		
 

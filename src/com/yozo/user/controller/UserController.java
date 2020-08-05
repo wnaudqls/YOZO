@@ -60,6 +60,8 @@ public class UserController extends HttpServlet {
 			RequestDispatcher dispatch = request.getRequestDispatcher("view/user/login.jsp");
 			dispatch.forward(request, response);	// 3 code이름을 받아온 값 info에 전달(option에서 받아온 주소)
 			
+			
+			
 		} else if (command.equals("login")) {
 			System.out.println("login입성........입성");
 			String id = request.getParameter("id");
@@ -69,11 +71,9 @@ public class UserController extends HttpServlet {
 			MemberDto dto = new MemberDto();
 			dto.setMember_id(id);
 			dto.setMember_pw(pw);
-			System.out.println("id = " +id);
 			
 			MemberDto rdto = dao.login(id, pw);
 			
-			System.out.println(rdto+"sdsd");
 			
 			
 			if (rdto != null) {
@@ -100,31 +100,33 @@ public class UserController extends HttpServlet {
 				
 				
 			} else {
+				
+				
+				
 				System.out.println("로그인 실패");
-				
-				response.sendRedirect("user.do?command=loginform");
-				
 
+//				out.println("<script>");
+//				out.psrintln("alert('계정정보를 확인해 주세요.');");
+//				out.println("</script>");
+				String s = "<script type='text/javascript'>" + "alert('ID, PW를 확인해 주세요');" + "location.href='view/user/login.jsp';"
+						+ "</script>";
+				response.getWriter().append(s);
+				
 				/*
-				 * out.println(); out.
-				 * println("<html><head></head><script type=\"text/javascript\" src=\"https://code.jquery.com/jquery-3.5.1.min.js\"></script><script type=\"text/javascript\">"
-				 * ); out.println("alert('아이디 or 비밀번호를 확인해 주세요')");
-				 * out.println("</script></html>");
+				 * RequestDispatcher dispatch =
+				 * request.getRequestDispatcher("user.do?command=loginform");
+				 * dispatch.forward(request, response);
 				 */
-
 				
 			}
 			
 			
-			/* 로그아웃
-			 * else { session = request.getSession(); session.invalidate();
-			 * System.out.println("로그아웃"); }
-			 */
+		
 			
-			
+		} else if (command.equals("logout")) {
 
-			session.invalidate();
 			response.sendRedirect("user.do?command=main");
+			session.invalidate();
 
 			
 		} else if (command.equals("joinform")) {
