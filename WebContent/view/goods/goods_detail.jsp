@@ -157,6 +157,9 @@ section {
    <%@include file="../../form/header.jsp"%>
    <section class="section">
       <!-- 쇼핑몰 상세보기 시작점  -->
+      <form action="" mehtod="post">
+      <input type="hidden" name="command" value="goodsupdate"/>
+      <input type="hidden" name="goods_no" value="${dto.goods_no}"/>
       <div class="product_wrap">
          <div class="product_image">
             <!-- 썸네일   -->
@@ -200,8 +203,15 @@ section {
          <div>
             <input class="btn" type="button" value="장바구니"/>
             <input class="btn" type="button" value="구매하기" onclick="pay();"/>
+        	<c:if test="${rdto.member_role eq '관리자' }">
+        		<div>
+        			<input class="btn" type="submit" value="수정"/>
+        			<input class="btn" type="button" value="삭제" onclick="location.href='<%=request.getContextPath()%>/goods.do?command=goodsdelete&goods_no=${dto.goods_no}'"/>
+        		</div>
+        	</c:if>
          </div>
       </div>
+      </form>
       <hr>
       <h1>상세설명</h1>
       <div class="goods_content">
