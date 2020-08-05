@@ -8,6 +8,7 @@ public class RecipeDto {
 		private String recipe_main_photo;
 		private String member_id;
 		private String recipe_title;
+		private String recipe_photo;
 		private String recipe_detail;
 		private DATE recipe_regdate;
 		private int recipe_readcount;
@@ -21,13 +22,15 @@ public class RecipeDto {
 			// TODO Auto-generated constructor stub
 		}
 		public RecipeDto(int recipe_no, String recipe_main_photo, String member_id, String recipe_title,
-				String recipe_detail, DATE recipe_regdate, int recipe_readcount, String recipe_material_one,
-				int recipe_theme, int recipe_kind, String recipe_material, int recipe_likecount) {
+				String recipe_photo, String recipe_detail, DATE recipe_regdate, int recipe_readcount,
+				String recipe_material_one, int recipe_theme, int recipe_kind, String recipe_material,
+				int recipe_likecount) {
 			super();
 			this.recipe_no = recipe_no;
 			this.recipe_main_photo = recipe_main_photo;
 			this.member_id = member_id;
 			this.recipe_title = recipe_title;
+			this.recipe_photo = recipe_photo;
 			this.recipe_detail = recipe_detail;
 			this.recipe_regdate = recipe_regdate;
 			this.recipe_readcount = recipe_readcount;
@@ -60,6 +63,12 @@ public class RecipeDto {
 		}
 		public void setRecipe_title(String recipe_title) {
 			this.recipe_title = recipe_title;
+		}
+		public String getRecipe_photo() {
+			return recipe_photo;
+		}
+		public void setRecipe_photo(String recipe_photo) {
+			this.recipe_photo = recipe_photo;
 		}
 		public String getRecipe_detail() {
 			return recipe_detail;
@@ -112,17 +121,12 @@ public class RecipeDto {
 		@Override
 		public String toString() {
 			return "RecipeDto [recipe_no=" + recipe_no + ", recipe_main_photo=" + recipe_main_photo + ", member_id="
-					+ member_id + ", recipe_title=" + recipe_title + ", recipe_detail=" + recipe_detail
-					+ ", recipe_regdate=" + recipe_regdate + ", recipe_readcount=" + recipe_readcount
-					+ ", recipe_material_one=" + recipe_material_one + ", recipe_theme=" + recipe_theme
-					+ ", recipe_kind=" + recipe_kind + ", recipe_material=" + recipe_material + ", recipe_likecount="
-					+ recipe_likecount + "]";
+					+ member_id + ", recipe_title=" + recipe_title + ", recipe_photo=" + recipe_photo
+					+ ", recipe_detail=" + recipe_detail + ", recipe_regdate=" + recipe_regdate + ", recipe_readcount="
+					+ recipe_readcount + ", recipe_material_one=" + recipe_material_one + ", recipe_theme="
+					+ recipe_theme + ", recipe_kind=" + recipe_kind + ", recipe_material=" + recipe_material
+					+ ", recipe_likecount=" + recipe_likecount + "]";
 		}
-		
-		
-		
-		
-		
 		
 		
 		
