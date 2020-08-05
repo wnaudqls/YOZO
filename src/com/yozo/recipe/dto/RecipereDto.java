@@ -12,6 +12,13 @@ public class RecipereDto {
 	private int recipe_re_seq;
 	private int recipe_re_titletab;
 	private String member_id;
+	
+	
+	
+	
+	
+	public RecipereDto() {
+	}
 	public RecipereDto(int recipe_re_no, int recipe_no, String recipe_re_content, Date recipe_re_regdate,
 			int recipe_re_groupno, int recipe_re_seq, int recipe_re_titletab, String member_id) {
 		super();

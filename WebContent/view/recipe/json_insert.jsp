@@ -16,7 +16,7 @@ function jsonload(){
 	alert("시작");
 	$.getJSON("/YORIZORI/json/recipes100.json",function(data){
 		$.ajax({
-			url:"<%=request.getContextPath()%>/recipe.do",
+			url:"<%=request.getContextPath()%>/json.do",
 			method:"post",
 			data:{"rson":JSON.stringify(data),
 				"command":"jsoninsert"},

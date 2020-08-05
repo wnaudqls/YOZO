@@ -55,43 +55,6 @@ section {
 	font-family: "montserrat";
 }
 
-
-.card {
-	width: 360px;
-	background-color: #C6FF70;
-	position: absolute;
-	top: 50%;
-	left: 25%;
-	transform: translate(-50%, -50%);
-}
-
-.card2 {
-	width: 360px;
-	background-color: #C6FF70;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-}
-
-.card3 {
-	width: 360px;
-	background-color: #C6FF70;
-	position: absolute;
-	top: 50%;
-	left: 75%;
-	transform: translate(-50%, -50%);
-}
-
-.card4 {
-	width: 360px;
-	background-color: #C6FF70;
-	position: absolute;
-	top: 100%;
-	left: 25%;
-	transform: translate(-50%, -50%);
-}
-
 .top-section {
 	height: 310px;
 	overflow: hidden;

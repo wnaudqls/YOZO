@@ -28,6 +28,7 @@
         text-align: center;
     }
     .dropuserdown{
+   	 	 z-index: 1;
          position: absolute;
          right: 20px;
          top: 20px;
@@ -236,9 +237,7 @@ window.onclick = function(event){
 </header>    
 <!-- 네비게이션 아이콘  -->  
          <nav id="icon">
-            <a href="" class="recipe_link">
-            	<img class="recipe finger" alt="logo" src="/YORIZORI/img/recipebookicon.png">
-           	</a>
+            	<img onclick = "location.href='<%request.getContextPath();%>/YORIZORI/recipe.do?command=recipe_list'" class="recipe finger" alt="logo" src="/YORIZORI/img/recipebookicon.png">
             <div class = "dropstreamdown">
                 <img onclick = "dropstream()" class="stream finger" alt="logo" src="/YORIZORI/img/broadcasticon.png">
                 <div id="dropstream_content" class = "dropstream_content">
