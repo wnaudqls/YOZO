@@ -149,6 +149,57 @@ public class GoodsDao extends SqlMapConfig {
 		}
 		return res;
 	}
+	//원댓글삭제
+	public int answerdelete(int goods_re_no) {
+		SqlSession session =  null;
+		int res =0;
+		
+		try {
+			session = getSqlSessionFactory().openSession(false);
+			res = session.delete(namespace+"answerdelete", goods_re_no);
+		} catch (Exception e) {
+			System.out.println("goodsdao에서 answerdelete오류");
+			e.printStackTrace();
+		}finally {
+			session.close();
+		}
+		
+		return res;
+	}
+	//끼어드는 곳 , 즉 댓글이 들어갈 공간을 만들어줌
+	public int rereplyupdate(int goods_re_no) {
+		SqlSession session = null;
+		int res = 0;
+		
+		try {
+			session = getSqlSessionFactory().openSession(false);
+			res = session.update(namespace+"rereplyupdate", goods_re_no);
+		} catch (Exception e) {
+			System.out.println("goodsdao에서 rereplyupdate오류");
+			e.printStackTrace();
+		}finally {
+			session.close();
+		}
+		
+		return res;
+	}
+	
+	//관리자의 댓글
+	public int rereplyinsert(AnswerDto dto) {
+		SqlSession session = null;
+		int res = 0 ;
+		
+		try {
+			session = getSqlSessionFactory().openSession(false);
+			res = session.insert(namespace+"rereplyinsert", dto);
+		} catch (Exception e) {
+			System.out.println("goodsdao에서 rereplyInsert오류 ");
+			e.printStackTrace();
+		}finally {
+			session.close();
+		}
+		return res;
+	}
 	
 
 }

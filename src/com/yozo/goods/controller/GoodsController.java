@@ -171,7 +171,7 @@ public class GoodsController extends HttpServlet {
 			String str = gson.toJson(list);
 			
 			
-			System.out.println("컨트롤러에서 보낸다" +str);
+			System.out.println("answerlist컨트롤러에서 보낸다" +str);
 			
 			PrintWriter out = response.getWriter();
 			out.println(str);
@@ -190,7 +190,34 @@ public class GoodsController extends HttpServlet {
 			request.setAttribute("dto", dto);
 			dispatch("/view/goods/goods_detail.jsp", request, response);
 			
-
+		
+		//관리자 댓글 
+		}else if(command.equals("goodsadminre")) {
+			System.out.println("관리자댓글입력컨트롤러왔나요?");
+			
+			int goods_re_no = Integer.parseInt(request.getParameter("greno"));
+			String goods_re_content = request.getParameter("goods_re_content");
+			//관리자 닉네임이나 아이디 뭐 받아올 때 쓰려고.....흠 확실x
+			MemberDto admin = (MemberDto)session.getAttribute("rdto");
+			String member_nick = admin.getMember_nick();
+			String member_id = admin.getMember_id();
+		
+			System.out.println("goodsadminre : " + member_nick + goods_re_content);
+			
+			//int res = biz.rereplyinsert(new AnserDto(1,goods_no, member_id, goods_re_content,null,goods_re_groupno, goods_re_seq, goods_re_titletab));
+			AnswerDto dto = new AnswerDto(1,0, member_id, goods_re_content,null,0, 0, 0,member_nick);
+			int res = biz.answerProc(dto);
+			System.out.println("goodsadminre int res 지났고 if 전");
+			if(res>0) {
+				System.out.println("관리자님이 문의하신 댓글에 답변을 등록하였습니다.");
+				dispatch("/view/goods/goods_detail.jsp", request, response);
+			}else {
+				jsResponse("관리자 답변 실패함 싸발.", "goods_answer.jsp", response);
+			}
+			 
+		
+	
+			
 		}
 
 	}
