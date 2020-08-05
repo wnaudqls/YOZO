@@ -29,13 +29,30 @@ public class GoodsBiz {
 	
 	
 	//detail 댓글달기 시작 
-	public List<AnswerDto> answerList(){
-		return dao.answerList();
+	public List<AnswerDto> answerList(int goods_no){
+		return dao.answerList(goods_no);
 	}
 	
 	public int answerinsert(AnswerDto dto) {
 		return dao.answerinsert(dto);
 	}
 	
+	//관리자 댓글 끼어서 달기
+	public int rereplyinsert(AnswerDto dto) {
+		return dao.rereplyinsert(dto);
+	}
+	
+	public int rereplyupdate(int goods_re_no) {
+		return dao.rereplyupdate(goods_re_no);
+				
+	}
+	public int answerProc(AnswerDto dto) {
+		
+		int rereplyupdate = dao.rereplyupdate(dto.getGoods_re_no());
+		int rereplyinsert = dao.rereplyinsert(dto);
+		
+		return rereplyupdate + rereplyinsert;
+		
+	}
 	
 }

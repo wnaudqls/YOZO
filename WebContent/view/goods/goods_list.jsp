@@ -196,12 +196,16 @@ display: inline-block;} */
 	width:250px;
 	height:70px;
 }
+.nosection{ /* 내용없을때 기본크기주기 */
+height:400px;
+}
 </style>
 
 <%@ include file="../../form/header.jsp" %>
 <body>
 	<section>
-			<c:if test="${dto.MEMBER_ROLE eq '관리자' }">
+			<c:if test="${rdto.member_role eq '관리자' }">
+			
 			<div id="btns">
 				<input class="btn" type="button" value="등록" onclick="location.href='<%request.getContextPath(); %>/YORIZORI/goods.do?command=goodsinsertform'"/> 
 				<input class="btn" type="button" value="삭제" />
@@ -214,7 +218,7 @@ display: inline-block;} */
 
 	<c:choose>
 		<c:when test="${empty list }">
-			<div>
+			<div class="nosection">
 			<img id="warning" alt="warning" src="/YORIZORI/img/warning.jpg">
 			<h1 id="message">등록된 상품이 존재하지 않습니다.</h1>
 			</div>

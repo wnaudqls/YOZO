@@ -77,17 +77,16 @@ public class UserController extends HttpServlet {
 			
 			
 			if (rdto != null) {
+				//세션만들기
+				session.setAttribute("rdto", rdto);			
+				session.setMaxInactiveInterval(10*60);	
 
-				session.setAttribute("rdto", rdto);		
-				session.setMaxInactiveInterval(10*60);
-
-				
 				System.out.println("세션 정보 : "+ session);
 				
 				PrintWriter out = response.getWriter();
 				out.println("<script type='text/javascript'>alert('계정이 등록 되었습니다'); </script>");
 				
-				request.setAttribute("sessionStatus", session);
+				request.setAttribute("session", session);
 				
 				RequestDispatcher dispatch = request.getRequestDispatcher("user.do?command=main");
 				dispatch.forward(request, response);
@@ -122,10 +121,11 @@ public class UserController extends HttpServlet {
 			 * System.out.println("로그아웃"); }
 			 */
 			
-		} else if (command.equals("logout")) {	
 			
+
 			session.invalidate();
 			response.sendRedirect("user.do?command=main");
+
 			
 		} else if (command.equals("joinform")) {
 			System.out.println("JOINFORM.......입성");

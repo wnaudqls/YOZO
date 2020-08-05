@@ -1,5 +1,14 @@
 package com.yozo.recipe.biz;
 
-public class RecipeBiz {
+import java.util.List;
 
+import com.yozo.recipe.dao.RecipeDao;
+import com.yozo.recipe.dto.RecipeDto;
+
+public class RecipeBiz {
+	RecipeDao dao=new RecipeDao();
+	
+	public int jsonInsert(List<RecipeDto> list) {
+		return dao.jsonInsert(list);
+	}
 }
