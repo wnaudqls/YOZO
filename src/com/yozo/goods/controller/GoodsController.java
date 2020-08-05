@@ -235,5 +235,5 @@ public class GoodsController extends HttpServlet {
 				+ "</script>";
 		response.getWriter().append(s);
 	}
-
+                  
 }
