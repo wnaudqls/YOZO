@@ -32,6 +32,7 @@ ON DELETE CASCADE
 );
 
 SELECT * FROM RECIPE
+
 ORDER BY RECIPE_NO DESC
 DELETE FROM RECIPE
 
@@ -45,5 +46,7 @@ BEGIN
 	RETURN RECIPE_SEQ.NEXTVAL;
 END;
 /
+
+update recipe set recipe_title='레시피 찹스테이크~' where recipe_no=27
 
 

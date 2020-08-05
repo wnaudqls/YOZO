@@ -75,7 +75,7 @@ public class JsonController extends HttpServlet {
 						try {
 							//if(tmp.get("recipe_title").getAsString()!=null && tmp.get("recipe_writer").getAsString()!=null && tmp.get("material").getAsJsonArray().toString()!=null&&tmp.get("recipe_step").getAsJsonArray().toString()!=null ) {
 							String recipe_title=tmp.get("recipe_title").getAsString();
-							String recipe_main_img=tmp.get("recipe_title").getAsString();
+							String recipe_main_img=tmp.get("recipe_main_img").getAsString();
 							String recipe_writer=tmp.get("recipe_writer").getAsString();
 							String material=tmp.get("material").getAsJsonArray().toString();
 							String recipe_step=tmp.get("recipe_step").getAsJsonArray().toString();

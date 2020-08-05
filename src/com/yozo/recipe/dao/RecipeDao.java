@@ -69,6 +69,40 @@ public class RecipeDao extends SqlMapConfig {
 		return dto;
 	}
 	
+	public String selectKind(int recipe_kind) {
+		String kind="";
+		SqlSession session=null;
+		System.out.println("여기는 DAO의 selectKind");
+		
+		try {
+			session=getSqlSessionFactory().openSession(false);
+			kind=session.selectOne(namespace+"selectKind",recipe_kind);
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("selectKind오류");
+		}finally {
+			session.close();
+		}
+		return kind;
+	}
+	
+	public String selectTheme(int recipe_theme) {
+		String theme="";
+		SqlSession session=null;
+		System.out.println("여기는 DAO의 selectTheme");
+		
+		try {
+			session=getSqlSessionFactory().openSession(false);
+			theme=session.selectOne(namespace+"selectTheme",recipe_theme);
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("selectTheme오류");
+		}finally {
+			session.close();
+		}
+		return theme;
+	}
+	
 	public int update(RecipeDto dto) {
 		int res=0;
 		SqlSession session=null;

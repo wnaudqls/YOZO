@@ -1,4 +1,4 @@
-package com.yozo.recipe.controller;
+			package com.yozo.recipe.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -59,6 +59,15 @@ public class RecipeController extends HttpServlet {
 			
 			
 		}
+		//레시피 상세
+		else if(command.equals("recipe_detail")) {
+			System.out.println("controller_recipe_detai");
+			int recipe_no=Integer.parseInt(request.getParameter("recipe_no"));
+			RecipeDto dto=biz.selectOne(recipe_no);
+			request.setAttribute("dto", dto);
+			System.out.println(dto);
+			dispatch("/view/recipe/recipe_detail.jsp", request, response);
+		}
 		//레시피 작성
 		else if(command.equals("recipe_insert")) {
 			System.out.println("controller_recipe_insert");
@@ -70,6 +79,8 @@ public class RecipeController extends HttpServlet {
 		//레시피 삭제
 		else if(command.equals("recipe_delete")) {
 			System.out.println("controller_recipe_delete");
+			
+			
 		}
 
 	}

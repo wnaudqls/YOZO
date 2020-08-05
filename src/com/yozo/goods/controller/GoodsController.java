@@ -65,11 +65,12 @@ public class GoodsController extends HttpServlet {
 			int goods_price = Integer.parseInt(request.getParameter("goods_price"));
 			String goods_content = request.getParameter("goods_content");
 			String goods_main_photo = request.getParameter("goods_main_photo");
-
+			MemberDto rdto= (MemberDto)session.getAttribute("rdto");
+			String id=rdto.getMember_id();
 			int res = 0;
 
 			System.out.println(goods_content);
-			res = biz.insert(new GoodsDto(1, "ID", goods_title, goods_price, goods_quantity, goods_content, null,
+			res = biz.insert(new GoodsDto(1,id, goods_title, goods_price, goods_quantity, goods_content, null,
 					goods_main_photo));
 
 			if (res > 0) {
