@@ -65,7 +65,7 @@ height:310px;
 <script type="text/javascript" src="${pageContext.request.contextPath }/ckeditor/ckeditor.js "></script>
 <!--  <script src="//cdn.ckeditor.com/4.14.1/full/ckeditor.js"></script> -->
 <script type="text/javascript">
-		window.onload = function filechange(event){
+		function filechange(event){
 		 	//파일의 전체경로를 가져오기위한 javascript		
 				var filePath = document.getElementById("goods_main_photo").value;
 				alert("filePath:"+filePath);
@@ -125,7 +125,7 @@ height:310px;
 
 				</div>																							
 				<div class="goods_photo">
-					<img src="" alt="대표이미지를 선택해주세요" id="img_main" >
+					<img src="imgtest/${dto.goods_main_photo }" alt="대표이미지를 선택해주세요" id="img_main" >
 				</div>
 			</div>
 			<div class="goods_etc">

@@ -38,7 +38,7 @@
  <!--굿즈 멀티딜리트 -->
  <delete id="muldelete" parameterType="map">
  	DELETE FROM GOODS
- 	WHETE GOODS_NO IN 
+ 	WHERE GOODS_NO IN 
  		<foreach item="goods_no" collection="goods_nos" open="(" separator="," close=")">
  			#{goods_no}
  		</foreach>
