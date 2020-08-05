@@ -65,19 +65,25 @@ public class GoodsController extends HttpServlet {
 			int goods_price = Integer.parseInt(request.getParameter("goods_price"));
 			String goods_content = request.getParameter("goods_content");
 			String goods_main_photo = request.getParameter("goods_main_photo");
-			MemberDto rdto= (MemberDto)session.getAttribute("rdto");
-			String id=rdto.getMember_id();
+
+		
+			MemberDto id = (MemberDto)session.getAttribute("rdto");
+			String member_id = id.getMember_id();
+			
+
 			int res = 0;
 
 			System.out.println(goods_content);
-			res = biz.insert(new GoodsDto(1,id, goods_title, goods_price, goods_quantity, goods_content, null,
+
+			res = biz.insert(new GoodsDto(1, member_id, goods_title, goods_price, goods_quantity, goods_content, null,
+
 					goods_main_photo));
 
 			if (res > 0) {
-				System.out.println("작성성공");
+				System.out.println("굿즈작성성공");
 				dispatch("/goods.do?command=goodslist", request, response);
 			} else {
-				jsResponse("작성 실패", "goods_insertform", response);
+				jsResponse("굿즈작성 실패", "goods_insertform.jsp", response);
 			}
 
 		}
@@ -140,6 +146,7 @@ public class GoodsController extends HttpServlet {
 			int goods_no = Integer.parseInt(request.getParameter("goods_no"));
 			MemberDto test = (MemberDto)session.getAttribute("rdto");
 			String member_id = test.getMember_id();
+
 			String goods_re_content = request.getParameter("goods_re_content");
 			String member_nick = request.getParameter("member_nick");
 			System.out.println("answerinsert에서 진짜로 content 뽑는다" + goods_re_content);
@@ -220,6 +227,55 @@ public class GoodsController extends HttpServlet {
 		
 	
 			
+		}else if(command.equals("goodsupdateres")) {
+			System.out.println("굿즈업데이트res왔다");
+			int goods_no = Integer.parseInt(request.getParameter("goods_no"));
+			
+			MemberDto admin = (MemberDto)session.getAttribute("rdto");
+			String member_id = admin.getMember_id();
+			
+			String goods_title = request.getParameter("goods_title");
+			int goods_quantity = Integer.parseInt(request.getParameter("goods_quantity"));
+			int goods_price = Integer.parseInt(request.getParameter("goods_price"));
+			String goods_main_photo  = request.getParameter("goods_main_photo");
+			String goods_content = request.getParameter("goods_content");
+			
+			System.out.println("굿즈 업뎃 res 값 가져오나 ? : "+ goods_no + member_id + goods_title + goods_quantity + goods_price + goods_main_photo + goods_content);
+
+			GoodsDto dto = new GoodsDto(goods_no, member_id, goods_title,goods_price, goods_quantity, goods_content, null, goods_main_photo);
+			int res = biz.update(dto);
+			if(res>0) {
+				System.out.println("굿즈수정성공");
+				dispatch("/goods.do?command=goodslist", request, response);
+			}else {
+				jsResponse("굿즈 수정 실패 싸발적으로다가 .", "/view/goods/goods_list.jsp", response);
+			
+				
+			}
+			
+					 
+		}else if(command.equals("goodsupdate")) {
+			System.out.println("굿즈업데이트왔다");
+			int goods_no = Integer.parseInt(request.getParameter("goods_no"));
+			System.out.println("goods_no :" + goods_no);
+			GoodsDto dto = biz.selectOne(goods_no);
+			request.setAttribute("dto", dto);
+			dispatch("/view/goods/goods_update.jsp", request, response);
+		}
+		//굿즈하나삭제
+		else if(command.equals("goodsdelete")) {
+			System.out.println("굿즈딜리트컨트롤러왔음");
+			int goods_no = Integer.parseInt(request.getParameter("goods_no"));
+			
+			int res = biz.delete(goods_no);
+			if(res>0) {
+				System.out.println("굿즈삭제성공!");
+				dispatch("/goods.do?command=goodslist", request, response);
+			}else {
+				System.out.println("굿즈삭제싸발적으로실패");
+				jsResponse("굿즈삭제실패 싸발!","/view/goods/goods_list.jsp", response);
+			}
+			
 		}
 
 	}
@@ -238,3 +294,4 @@ public class GoodsController extends HttpServlet {
 	}
 
 }
+

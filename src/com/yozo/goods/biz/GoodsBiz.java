@@ -21,10 +21,14 @@ public class GoodsBiz {
 		return dao.selectOne(goods_no);
 	}
 	public int update(GoodsDto dto) {
-		return 0;
+		return dao.update(dto);
 	}
-	public int delete(int goods_dto) {
-		return 0;
+	public int delete(int goods_no) {
+		return dao.delete(goods_no);
+	}
+	
+	public int multiDelete(String[] goods_no) {
+		return dao.multiDelete(goods_no);
 	}
 	
 	
