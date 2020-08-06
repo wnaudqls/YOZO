@@ -8,5 +8,6 @@
 </head>
 <body>
 <a href="<%=request.getContextPath()%>/admin.do?command=list">asdf</a>
+<a href="<%=request.getContextPath()%>/admin.do?command=broadcastlist">sadsa</a>
 </body>
 </html>

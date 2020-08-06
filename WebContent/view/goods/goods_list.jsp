@@ -137,7 +137,7 @@ display: inline-block;} */
 .goods_card {
 	display: inline-block;
 	width: 250px;
-	height: 300px;
+	/* height: 300px; */
 	border: 1px solid black;
 	border-radius: 25px;
 	box-sizing: border-box;
@@ -174,6 +174,14 @@ display: inline-block;} */
 
 .nosection { /* 내용없을때 기본크기주기 */
 	height: 400px;
+}
+
+.off-screen {
+	display: none;
+}
+
+.paging {
+	position: relative;
 }
 </style>
 
@@ -217,7 +225,6 @@ display: inline-block;} */
 			<input type="hidden" name="command" value="muldel" /> <input
 				type="hidden" name="goods_no" value="${dto.goods_no}" />
 			<c:if test="${rdto.member_role eq '관리자' }">
-
 				<div id="btns">
 					<input class="btn" type="button" value="등록"
 						onclick="location.href='<%request.getContextPath();%>/YORIZORI/goods.do?command=goodsinsertform'" />
@@ -225,25 +232,29 @@ display: inline-block;} */
 						type="button" value="전체삭제" onclick="alldel();" />
 				</div>
 			</c:if>
+		</form>
 
+		<!-- value="?"값을 바꿔주면 한페이지 당 게시글 수를 조절 가능  -->
+		<form action="" id="setRows">
+			<input type="hidden" name="rowPerPage" value="4">
+		</form>
 
+		<div id="products" class="goods_list">
+			<!--썸네일 / 제목 / 가격 / 장바구니담기버튼 -->
+			<c:choose>
+				<c:when test="${empty list }">
+					<div class="nosection">
+						<img id="warning" alt="warning" src="/YORIZORI/img/warning.jpg">
+						<h1 id="message">등록된 상품이 존재하지 않습니다.</h1>
+					</div>
+				</c:when>
 
-			<div class="goods_list">
-				<!--썸네일 / 제목 / 가격 / 장바구니담기버튼 -->
+				<c:otherwise>
+					<c:forEach items="${list }" var="dto">
 
+						<div id="goods_card_wrapper">
 
-				<c:choose>
-					<c:when test="${empty list }">
-						<div class="nosection">
-							<img id="warning" alt="warning" src="/YORIZORI/img/warning.jpg">
-							<h1 id="message">등록된 상품이 존재하지 않습니다.</h1>
-						</div>
-					</c:when>
-
-					<c:otherwise>
-						<c:forEach items="${list }" var="dto">
-
-							<div id="goods_card_wrapper">
+							<div class="goods_card eval-contents">
 								<div>
 									<c:if test="${rdto.member_role eq '관리자' }">
 										<input type="checkbox" id="checkbox" name="chk"
@@ -251,48 +262,39 @@ display: inline-block;} */
 									</c:if>
 								</div>
 
-
-								<div class="goods_card">
-									<div class="goods_card_img">
-										<%-- <a href="goods.do?command='goodsdetail'"><img src="/YORIZORI/ckstorage/images/${dto.goods_main_photo }" class="goods_img_tag" alt="굿즈메인사진"/></a> --%>
-										<%-- <a href="goods.do?command='goodsdetail'"><img src="${path }/${dto.goods_main_photo }" class="goods_img_tag" alt="굿즈메인사진"/></a> --%>
-										<a
-											href="goods.do?command=goodsdetail&goods_no=${dto.goods_no }"><img
-											src="imgtest/${dto.goods_main_photo }" class="goods_img_tag"
-											alt="굿즈메인사진" /></a>
-									</div>
-									<div class="goods_card_content">
-										<p>${dto.goods_title }</p>
-										<p>${dto.goods_price }원</p>
-										<input type="button" value="장바구니 담기">
-									</div>
+								<div class="goods_card_img">
+									<%-- <a href="goods.do?command='goodsdetail'"><img src="/YORIZORI/ckstorage/images/${dto.goods_main_photo }" class="goods_img_tag" alt="굿즈메인사진"/></a> --%>
+									<%-- <a href="goods.do?command='goodsdetail'"><img src="${path }/${dto.goods_main_photo }" class="goods_img_tag" alt="굿즈메인사진"/></a> --%>
+									<a
+										href="goods.do?command=goodsdetail&goods_no=${dto.goods_no }"><img
+										src="imgtest/${dto.goods_main_photo }" class="goods_img_tag"
+										alt="굿즈메인사진" /></a>
+								</div>
+								<div class="goods_card_content">
+									<p>${dto.goods_title }</p>
+									<p>${dto.goods_price }원</p>
+									<form
+										action="<%request.getContextPath();%>/YORIZORI/CartInsert.do?"
+										method="POST">
+										<input type="hidden" name="memberId"
+											value="${rdto.member_id }" /> <input type="hidden"
+											name="goods_no" value="${dto.goods_no }" /> <input
+											type="hidden" name="goods_title" value="${dto.goods_title }" />
+										<input type="hidden" name="goods_price"
+											value="${dto.goods_price }" /> <input type="number"
+											name="amount" value="1" /> <input type="hidden"
+											name="goods_main_photo" value="${dto.goods_main_photo }" />
+										<input type="submit" value="장바구니 담기" />
+									</form>
 								</div>
 							</div>
+						</div>
 
-							<%-- 	<table>
-				<tr>
-					<td><img src="/YORIZORI/ckstorage/images/${dto.goods_main_photo }"/></td>
-				</tr>
-				<tr>
-					<td>${dto.goods_title }</td>
-				</tr>
-				
-				<tr>
-					<td>${dto.goods_price }</td>
-				</tr>
-				<tr>
-					<td>
-						<input type="button" value="장바구니 담기"/>
-					</td>
-				</tr>
-	
-		</table> --%>
-						</c:forEach>
-					</c:otherwise>
-				</c:choose>
+					</c:forEach>
+				</c:otherwise>
+			</c:choose>
+		</div>
 
-			</div>
-		</form>
 	</section>
 	<!-- 푸터 -->
 
@@ -300,4 +302,72 @@ display: inline-block;} */
 
 	<%@ include file="../../form/footer.jsp"%>
 </body>
+<script>
+	var $setRows = $('#setRows');
+
+	$setRows
+			.submit(function(e) {
+				e.preventDefault();
+				var rowPerPage = $('[name="rowPerPage"]').val() * 1;// 1 을  곱하여 문자열을 숫자형로 변환
+
+				//				console.log(typeof rowPerPage);
+
+				var zeroWarning = 'Sorry, but we cat\'t display "0" rows page. + \nPlease try again.'
+				if (!rowPerPage) {
+					alert(zeroWarning);
+					return;
+				}
+				$('#nav').remove();
+				var $products = $('#products');
+
+				$products.after('<div id="nav" class="paging">');
+
+				var $tr = $($products).find('.eval-contents');
+				var rowTotals = $tr.length;
+
+				var pageTotal = Math.ceil(rowTotals / rowPerPage);
+				var i = 0;
+
+				for (; i < pageTotal; i++) {
+					$('<a href="#"></a>').attr('rel', i).html(i + 1).appendTo(
+							'#nav');
+				}
+
+				$tr.addClass('off-screen').slice(0, rowPerPage).removeClass(
+						'off-screen');
+
+				var $pagingLink = $('#nav a');
+				$pagingLink.on('click', function(evt) {
+					evt.preventDefault();
+					var $this = $(this);
+					if ($this.hasClass('active')) {
+						return;
+					}
+					$pagingLink.removeClass('active');
+					$this.addClass('active');
+
+					// 0 => 0(0*4), 4(0*4+4)
+					// 1 => 4(1*4), 8(1*4+4)
+					// 2 => 8(2*4), 12(2*4+4)
+					// 시작 행 = 페이지 번호 * 페이지당 행수
+					// 끝 행 = 시작 행 + 페이지당 행수
+
+					var currPage = $this.attr('rel');
+					var startItem = currPage * rowPerPage;
+					var endItem = startItem + rowPerPage;
+
+					$tr.css('opacity', '0.0').addClass('off-screen').slice(
+							startItem, endItem).removeClass('off-screen')
+							.animate({
+								opacity : 1
+							}, 100);
+
+				});
+
+				$pagingLink.filter(':first').addClass('active');
+
+			});
+
+	$setRows.submit();
+</script>
 </html>
