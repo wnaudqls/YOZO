@@ -235,8 +235,9 @@ window.onclick = function(event){
 		                <a href="<%request.getContextPath();%>/YORIZORI/user.do?command=logout">로그아웃</a>
 		            </div>
        </div>
+
  <%
-	}
+ 	}
  %>
 
 </header>    
