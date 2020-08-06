@@ -225,7 +225,12 @@ window.onclick = function(event){
 		            <div id="dropuser_content" class = "dropuser_content">
 		                <a href="">개인정보수정</a>
 		                <a href="">나의레시피</a>
-		                <a href="">장바구니</a>
+		                <a href="" class="useId">
+			                <form action="<%request.getContextPath();%>/YORIZORI/list.do?">
+							    <input type="hidden" name="memberId" id="memberId" value="${rdto.member_id }"/>
+							    <input type="submit" value="나의 장바구니"/>
+							</form>
+						</a>
 		                <a href="">우리집냉장고</a>
 		                <a href="<%request.getContextPath();%>/YORIZORI/user.do?command=logout">로그아웃</a>
 		            </div>
@@ -249,7 +254,7 @@ window.onclick = function(event){
             </div>
             <!--유정 goods onclick 건들임 -->
             <img class="goods finger" alt="logo" src="/YORIZORI/img/goodsicon.png" onclick="location.href='<%request.getContextPath();%>/YORIZORI/goods.do?command=goodslist'">
-            <img class="map finger" alt="logo" src="/YORIZORI/img/mapicon.png">
+            <img class="map finger" alt="logo" src="/YORIZORI/img/mapicon.png" onclick = "location.href = '<%request.getContextPath();%>/YORIZORI/view/map/map.jsp'">
         </nav>
         
         <!-- <input type="button" value="checking....." id="authBtn"> -->
