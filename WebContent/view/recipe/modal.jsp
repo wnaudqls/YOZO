@@ -1,3 +1,11 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+	<%
+	request.setCharacterEncoding("UTF-8");
+%>
+<%
+	response.setContentType("text/html charset=UTF-8");
+%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <script>
 var slideIndex = 1;
@@ -13,36 +21,54 @@ function currentSlide(n) {
 function showSlides(n) {
   var i;
   var slides = document.getElementsByClassName("mySlides");
-  var dots = document.getElementsByClassName("dot");
+  //var dots = document.getElementsByClassName("dot");
   if (n > slides.length) {slideIndex = 1}    
-  if (n < 1) {slideIndex = slides.length}
-  for (i = 0; i < slides.length; i++) {
+  if (n < 1) {slideIndex = slides.length}	//끝보다 높으면 1페이지
+  for (i = 0; i < slides.length; i++) {	//1보다낮으면  끝페이지
       slides[i].style.display = "none";  
   }
-  for (i = 0; i < dots.length; i++) {
-      dots[i].className = dots[i].className.replace(" active", "");
-  }
+  //for (i = 0; i < dots.length; i++) {
+  //    dots[i].className = dots[i].className.replace(" active", "");
+ // }
   slides[slideIndex-1].style.display = "block";  
-  dots[slideIndex-1].className += " active";
+  //dots[slideIndex-1].className += " active";
 }
 </script>
 
 <div class="slideshow-container">
 
 					<!-- Modal content -->
-					<div class="modal-content" style="text-align: center; width:1159px; height:100%; margin:0; padding:0; position: re">
+					<div class="modal-content" style="text-align: center; width:1159px; height:100%; margin:0; padding:0; position: relative;">
 		
-						<div class="slideshow-container" style="text-align: center; width:1159px; height:430px; margin:0 auto; padding:0;">
-							<c:forEach items="${detail }" var="content" varStatus="status">
-								<div class="mySlides fade">
-									<div class="numbertext">${status.index+1}/${fn:length(detail) }</div>
-									<img src="/YORIZORI/img/recipe/speaker4.png" alt="ㄴㄴ" style="width: 1050px; height: 330px;">
-									<div class="text" style="width: 100%; height: 80px;">${content}</div>
-								</div>
-							</c:forEach>
+						<div class="slideshow-container" style="text-align: center; width:1159px; height:490px; margin:0 auto; padding:0; position: relative;">
+								<div class="mySlides fade" style="position: relative;">
+								<c:set target="${detail}" var="d" />
 
-						
-						</div>
+									<div class="numbertext" >1/${fn:length(d) }</div>
+									<!-- <img src="/YORIZORI/img/recipe/speaker4.png" alt="recipe_img" style="width: 1050px; height: 330px;"> -->
+									<div class="text" style="width: 30%;height: 124px;position: absolute;margin-top: 160px;left: 36%;top: 18px;">
+											<b>----명령어----</b><br>
+											<ul>
+												<li><b>다음</b> : 다음 순서의 레시피를 읽어줍니다<br></li>
+												<li><b>이전</b> : 이전 순서의 레시피를 읽어줍니다<br></li>
+												<li><b>다시</b> : 현재 순서의 레시피를 읽어줍니다<br></li>
+												<li><b>그만</b> : 음성 안내를 종료합니다<br></li>
+												<span style="text-decoration: underline;"><b>※ 명령어를 천천히 말해주세요</b></span>
+											</ul>
+										<!-- 	<b>다음</b> : 다음 순서의 레시피를 읽어줍니다<br>
+											<b>이전</b> : 이전 순서의 레시피를 읽어줍니다<br>
+											<b>다시</b> : 현재 순서의 레시피를 읽어줍니다<br> 
+										<b>그만</b> : 음성 안내를 종료합니다<br>
+											<span style="text-decoration: underline;"><b>※ 명령어를 천천히 말해주세요</b></span> -->
+									</div>
+								</div>
+					 	<c:forEach items="${detail }" var="content" varStatus="status">
+								<div class="mySlides fade">
+									<div class="numbertext">${status.index+2}/${fn:length(detail) }</div>
+									<img src="/YORIZORI/img/recipe/speaker4.png" alt="recipe_img" style="width: 1050px; height: 330px;">
+									<div class="text" style="width: 100%; height: 124px;">${content}</div>
+								</div>
+							</c:forEach> 
 
 					</div>
 
