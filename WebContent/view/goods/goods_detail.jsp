@@ -117,7 +117,7 @@ section {
           pg : 'html5_inicis', // version 1.1.0부터 지원.
           pay_method : 'card',
           merchant_uid : 'merchant_' + new Date().getTime(),
-          name : '주문명:결제테스트',
+          name : '${dto.goods_title }',
           amount : total,
           buyer_email : 'iamport@siot.do',
           buyer_name : '구매자이름',
@@ -157,7 +157,7 @@ section {
    <%@include file="../../form/header.jsp"%>
    <section class="section">
       <!-- 쇼핑몰 상세보기 시작점  -->
-      <form action="" mehtod="post">
+      <form action="" method="post">
       <input type="hidden" name="command" value="goodsupdate"/>
       <input type="hidden" name="goods_no" value="${dto.goods_no}"/>
       <div class="product_wrap">
@@ -173,6 +173,10 @@ section {
                   </details>
                </caption>
                <tbody>
+               	  <tr>
+               	  	<th>제품명</th>
+               	  	<td>${dto.goods_title }</td>
+               	  </tr>
                   <tr>
                      <th>판매가 </th>
                      <td id="goods_price">

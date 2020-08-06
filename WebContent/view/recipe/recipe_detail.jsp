@@ -14,7 +14,7 @@
 <script type="text/javascript">
 
  function voice_service() {
-	window.open("voice_service.jsp","레시피 읽어주기!","width=1700, height=1080, left=100, top=0") 
+	window.open("/YORIZORI/view/recipe/moda.jsp","레시피 읽어주기!","width=1500, height=1080, left=100, top=0") 
  }
 
 
@@ -43,8 +43,8 @@ border : 1px solid black;
 		margin-block-start: 0.83em;
 	}
 	.main_img{
-		width:500px;
-		height:500px;
+		width:400px;
+		height:400px;
 		
 	}
 	.recipe_info{
@@ -67,6 +67,7 @@ border : 1px solid black;
 		height:200px;
 		overflow: auto;
 		border:1px solid black;
+		line-height: 1.5em;
 	}
 	.recipe_image_wrap{
 		border: 1px solid black;
@@ -75,6 +76,7 @@ border : 1px solid black;
 		width:80%;
 	}
 	.speech_wrap{
+		margin-top:30px;
 		height:50px;
 		position: relative;
 		width:300px;
@@ -96,7 +98,7 @@ border : 1px solid black;
 		left:-7px;
 		top:3px;
 	}
-	/*음성제어 텍스트*/
+	/*음성제어버튼 텍스트*/
 	.speech_text{
 		/* display:inline-block */
 		font: small-caps bold 24px/1 sans-serif;
@@ -104,14 +106,21 @@ border : 1px solid black;
 		top: -8px;
 	}
 	.recipe_content{
+		display:inline-block;
+		width:80%;
+		margin: 15px 0;
 		text-align: center;
-		font: small-caps  24px/1 sans-serif;
+		font: small-caps  18px/1 sans-serif;
 	}
+	.recipe_content span{
+			line-height:1.5em;
+	}
+	
+
 </style>
-
-
 </head>
 <body>
+
 <%@ include file="../../form/header.jsp" %>
 <!-- 레시피 정보 --> 
 	<div class="section_top">
@@ -126,7 +135,7 @@ border : 1px solid black;
 				<p><b>테마 : </b>${dto.recipe_theme }</p>
 			</div>
 			<div class="speech_wrap">
-				<button type="button" onclick="voice_service()" class="speech_button">
+				<button type="button" onclick="voice_service()" class="speech_button" >
 				<img class="speech_icon" src="/YORIZORI/img/recipe/speaker4.png"/>
 				<span class="speech_text">음성제어 시작하기</span>
 				</button>
@@ -151,39 +160,19 @@ border : 1px solid black;
 			</div>
 			<!-- 단계별 래시피 글 -->
 			<div class="recipe_content">
-						${d}
+						<span>${d}</span>
 			</div>
 		</div>
 			
 	</c:forEach>
 	</div>	
 
-<!-- 레시피 순서  -->
-
-	
-	<!-- <div class="recipe_order">
-		<h3>레시피</h3>
-		<img alt="레시피1" src="./img/img04.png">
-		<br>
-		<span>1. 레시피 순서1</span> 	
-	</div>
-	<div class="recipe_order">
-		<img alt="레시피2" src="./img/img04.png">
-		<br>
-		<span>1. 레시피 순서2</span>		
-	</div>
-	<br>
-	
-	<div class="add_comment">
-		<input type="text" id="comment" placeholder="내용을 입력하세요">
-		<input type="button" id="add_comment" value="덧글 작성"	>
-	</div> -->
-	
-
 
 
 <%@ include file="../../form/footer.jsp" %>
 </body>
+
+
 </html>
 
 

@@ -144,8 +144,15 @@ public class GoodsController extends HttpServlet {
 
 
 			int goods_no = Integer.parseInt(request.getParameter("goods_no"));
-			MemberDto test = (MemberDto)session.getAttribute("rdto");
-			String member_id = test.getMember_id();
+			String member_id="";
+			try {
+				MemberDto test = (MemberDto)session.getAttribute("rdto");
+				member_id = test.getMember_id();
+			} catch (Exception e) {
+				System.out.println("헐");
+				jsResponse("로그인을 해주세요","/YORIZORI/view/user/login.jsp", response);
+				e.printStackTrace();
+			}
 
 			String goods_re_content = request.getParameter("goods_re_content");
 			String member_nick = request.getParameter("member_nick");
@@ -207,9 +214,19 @@ public class GoodsController extends HttpServlet {
 			int goods_re_no = Integer.parseInt(request.getParameter("greno"));
 			String goods_re_content = request.getParameter("goods_re_content");
 			//관리자 닉네임이나 아이디 뭐 받아올 때 쓰려고.....흠 확실x
-			MemberDto admin = (MemberDto)session.getAttribute("rdto");
-			String member_nick = admin.getMember_nick();
-			String member_id = admin.getMember_id();
+			String member_nick="";
+			String member_id="";
+		
+			if((MemberDto)session.getAttribute("rdto")!=null) {
+				MemberDto admin = (MemberDto)session.getAttribute("rdto");
+				member_nick = admin.getMember_nick();
+				member_id = admin.getMember_id();
+			}else {
+				jsResponse("로그인 해주세요", "/view/user/login.jsp", response);
+				
+			}
+	
+		
 		
 			System.out.println("goodsadminre : " + member_nick + goods_re_content);
 			
@@ -307,6 +324,8 @@ public class GoodsController extends HttpServlet {
 				+ "</script>";
 		response.getWriter().append(s);
 	}
+
+
 
 }
 
