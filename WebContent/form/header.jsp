@@ -254,7 +254,7 @@ window.onclick = function(event){
             </div>
             <!--유정 goods onclick 건들임 -->
             <img class="goods finger" alt="logo" src="/YORIZORI/img/goodsicon.png" onclick="location.href='<%request.getContextPath();%>/YORIZORI/goods.do?command=goodslist'">
-            <img class="map finger" alt="logo" src="/YORIZORI/img/mapicon.png">
+            <img class="map finger" alt="logo" src="/YORIZORI/img/mapicon.png" onclick = "location.href = '<%request.getContextPath();%>/YORIZORI/view/map/map.jsp'">
         </nav>
         
         <!-- <input type="button" value="checking....." id="authBtn"> -->

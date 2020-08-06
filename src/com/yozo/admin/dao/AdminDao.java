@@ -5,11 +5,13 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
+
+import com.yozo.common.SqlMapConfig;
 import com.yozo.user.dto.MemberDto;
 
 
 public class AdminDao extends SqlMapConfig{
-   private String namespace = "mapper.";
+   private String namespace = "admin-mapper.";
    
    public List<MemberDto> selectList(){
 	  System.out.println("dao list입장");
@@ -28,15 +30,32 @@ public class AdminDao extends SqlMapConfig{
       }
       return list;
    }
-   public List<MemberDto> search(Map<String, String> map){
+//   public MemberDto selectOne(int member_no) {
+//	   System.out.println("dao selectOne입장");
+//	   SqlSession session = null;
+//	   MemberDto dto = null;
+//	   
+//	   try {
+//		session = getSqlSessionFactory().openSession(true);
+//		   dto = session.selectOne(namespace+"selectOne",member_no);
+//	} catch (Exception e) {
+//		// TODO Auto-generated catch block
+//		e.printStackTrace();
+//	} finally {
+//		session.close();
+//	}
+//	   return dto;
+//	   
+//   }
+   public List<MemberDto> search(String txt){
 	   System.out.println("search dao입장");
 	   SqlSession session = null;
 	   List<MemberDto> list = null;
-	   System.out.println(map.get("txt"));
+	  
 	   try {
 		System.out.println("search dao 중간");
 		session = getSqlSessionFactory().openSession(false);
-	    list = session.selectList(namespace+"search",map);
+	    list = session.selectList(namespace+"search",txt);
 	} catch (Exception e) {
 		System.out.println("dao search error");
 		e.printStackTrace();
@@ -47,15 +66,23 @@ public class AdminDao extends SqlMapConfig{
    }
    
    public int update(MemberDto dto) {
+	  System.out.println("업데이트 입장");
       SqlSession session = null;
       int res = 0;
       
       try {
+    	  System.out.println("중간");
          session = getSqlSessionFactory().openSession(false);
-         res = session.update(namespace+"update",dto);
+         System.out.println(dto.getMember_role());
+         System.out.println(session);
+         res = session.update("admin-mapper.update",dto);
+         System.out.println(res);
+         System.out.println("왓냐?");
       } catch (Exception e) {
          e.printStackTrace();
       } finally {
+    	 session.commit();
+    	 System.out.println("병신이냐");
          session.close();
       }
       return res;
@@ -97,4 +124,5 @@ public class AdminDao extends SqlMapConfig{
       
       return count;
    }
+  
 }

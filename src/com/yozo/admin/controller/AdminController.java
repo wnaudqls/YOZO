@@ -1,10 +1,7 @@
 package com.yozo.admin.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,10 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.json.simple.JSONObject;
-
 import com.yozo.admin.dao.AdminDao;
 import com.yozo.user.dto.MemberDto;
+
+
 
 @WebServlet("/admin.do")
 public class AdminController extends HttpServlet {
@@ -31,7 +28,7 @@ public class AdminController extends HttpServlet {
     	   
         request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html; charset=UTF-8");
-        
+   
         //HttpSession session = request.getSession(true);
 
         System.out.println("컨트롤러 입장");
@@ -42,9 +39,30 @@ public class AdminController extends HttpServlet {
             List<MemberDto> list = dao.selectList();
             request.setAttribute("list", list);
             dispatch(url+"user_list.jsp", request, response);
+        
         } else if (command.equals("update")) {
-        	int member_no = Integer.parseInt(request.getParameter("member_no"));
-        	String member_role = request.getParameter("member_role");
+        	String txt =request.getParameter("member_id");
+        	String txt2 = request.getParameter("member_role");
+        	MemberDto dto = new MemberDto();
+        	if(txt2.equals("회원")) {
+        		dto.setMember_role("관리자");
+        	} else {
+        		dto.setMember_role("회원");
+        	}
+        	System.out.println("member_role : " + txt2);
+        	System.out.println("member_id : "+txt);
+        	
+        	int res = dao.update(dto);
+        	System.out.println("컨트롤러 res : "+ res);
+        	if(res > 0) {
+        		jsResponse("변경성공", request.getContextPath()+"/admin.do?command=list", response);
+        	} else if(res == 0){
+        		jsResponse("변경실패", request.getContextPath()+"/admin.do?command=list", response);
+        	} else {
+        		jsResponse("이건뭐냐", request.getContextPath()+"/admin.do?command=list", response);
+        	}
+        	
+        	
         	
         } else if (command.equals("delete")) {
         	int member_no = Integer.parseInt(request.getParameter("member_no"));
@@ -54,29 +72,15 @@ public class AdminController extends HttpServlet {
         	} else {
         		response.sendRedirect("admin.do?command=list");
         	}
+        
         } else if (command.equals("search")) {
         	System.out.println("search 입장");
-			/*
-			 * int member_no = Integer.parseInt(request.getParameter("member_no")); String
-			 * member_id = request.getParameter("member_id"); String member_nick =
-			 * request.getParameter("member_nick"); String member_name =
-			 * request.getParameter("member_name"); String member_addr =
-			 * request.getParameter("member_addr");
-			 */
-        	String txt=request.getParameter("txt");
+        	String txt=request.getParameter("member_id");
         	System.out.println("Sdsd"+txt);
-        	Map<String, String> map = new HashMap<String, String>();
-        	map.put("txt", txt);
-        	List<MemberDto> list = dao.search(map);
-        	JSONObject obj = new JSONObject();
-        	
-//        	obj.put("member_id",member_id);
-//        	obj.put("member_nick",member_nick);
-//        	obj.put("member_name",member_name);
-//        	obj.put("member_addr",member_addr);
-        	
-        	PrintWriter out = response.getWriter();
-        	out.println(obj.toJSONString());
+        	List<MemberDto> list = dao.search(txt);
+        	System.out.println("여기는왓냐?");
+        	request.setAttribute("list", list);
+        	dispatch("view/admin/user_list.jsp", request, response);
         	
         }
      }
@@ -97,5 +101,13 @@ public class AdminController extends HttpServlet {
            e.printStackTrace();
         } 
      }
+     
+     public void jsResponse(String msg, String url, HttpServletResponse response) throws IOException {
+ 		String s = "<script type='text/javascript'>" + "alert('" + msg + "');" + "location.href='" + url + "';"
+ 				+ "</script>";
+ 		response.getWriter().append(s);
+ 	}
+     
+     
 
 }
