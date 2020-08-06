@@ -1,0 +1,73 @@
+h1{
+	text-align: left;
+}
+
+#clientnumber{
+	float: right;
+}
+
+
+#calendar {
+	/*겹치는 부분 제건*/
+	border-collapse: collapse;
+	border: 1px solid gray;	
+	margin-left: 30px;
+}
+
+#calendar th {
+	width: 115px;
+	border: 1px solid gray;
+}
+
+#calendar td {
+	width: 115px;
+	height: 115px;
+	border: 1px solid gray;
+	text-align: left;
+	vertical-align: top;
+	position: relative;
+}
+
+a {
+	text-decoration: none;
+}
+#list{
+	position: static;
+	border: 1px solid black;
+	float: right;
+	width: 500px;
+	height: 750px;
+	text-align: left;
+}
+
+#btn1,#btn2{
+	margin-top: 770px;
+	text-align: center;
+	font-size: 16pt;
+	width: 120px;
+	height: 40px;
+	color: white;
+	background-color: #F5A9A9;
+	border: none;
+}
+#btn1{
+	
+	position: absolute;
+	margin-left: 56%;
+
+}
+#btn2{
+	position: absolute;
+	margin-left: 49%;
+}
+#btn1:disabled{
+	background-color: gray;
+}
+
+#title{
+	text-align: left;
+	margin-left: 30px;
+}
+#down{
+margin-top: 14%;
+}

@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace = "admin-mapper">
-<resultMap type="memberDto" id="MemberDto">
-	<result property = "MEMBER_NO" column = "MEMBER_NO"/>
-	<result property = "MEMBER_ID" column = "MEMBER_ID"/>
-	<result property = "MEMBER_PW" column = "MEMBER_PW"/>
-	<result property = "MEMBER_NAME" column = "MEMEBER_NAME"/>
-	<result property = "MEMBER_NICK" column = "MEMEBER_NICK"/>
-	<result property = "MEMBER_EMAIL" column = "MEMBER_EMAIL"/>
-	<result property = "MEMBER_EMAIL_HASH" column = "MEMBER_EMAIL_HASH"/>
-	<result property = "MEMBER_EMAIL_CHECKED" column = "MEMBER_EMAIL_CHECKED"/>
-	<result property = "MEMBER_ENABLED" column = "MEMEBER_ENABLED"/>
-	<result property = "MEMBER_PHONE" column = "MEMBER_PHONE"/>
-	<result property = "MEMBER_ADDR" column = "MEMBER_ADDR"/>
-	<result property = "MEMBER_ROLE" column = "MEMBER_ROLE"/>
-</resultMap>
+<mapper namespace = "admin">
+<!-- <resultMap type="memberDto" id="memberDtoMap">
+	<result property = "member_no" column = "MEMBER_NO"/>
+	<result property = "member_id" column = "MEMBER_ID"/>
+	<result property = "member_pw" column = "MEMBER_PW"/>
+	<result property = "member_name" column = "MEMEBER_NAME"/>
+	<result property = "member_nick" column = "MEMEBER_NICK"/>
+	<result property = "member_email" column = "MEMBER_EMAIL"/>
+	<result property = "member_email_hash" column = "MEMBER_EMAIL_HASH"/>
+	<result property = "member_email_checked" column = "MEMBER_EMAIL_CHECKED"/>
+	<result property = "member_enabled" column = "MEMEBER_ENABLED"/>
+	<result property = "member_phone" column = "MEMBER_PHONE"/>
+	<result property = "member_addr" column = "MEMBER_ADDR"/>
+	<result property = "member_role" column = "MEMBER_ROLE"/>
+</resultMap> -->
 	<select id="selectList" resultType="memberDto">
 		SELECT MEMBER_NO, MEMBER_ID, MEMBER_NICK, MEMBER_NAME, MEMBER_ADDR, MEMBER_ROLE  FROM MEMBER
 	</select>
@@ -29,11 +29,11 @@
 			ORDER BY SEQ DESC
 		]]>
 	</select> -->
-	<select id="search" resultType ="memberDto" parameterType="String">
+	<select id="search" resultType="memberDto" parameterType="String">
 		SELECT MEMBER_NO, MEMBER_ID, MEMBER_NICK, MEMBER_NAME, MEMBER_ADDR, MEMBER_ROLE FROM MEMBER WHERE MEMBER_ID LIKE '%'||#{txt}||'%'
 	</select>
-	<update id ="update" parameterType="memberDto" >
-		UPDATE MEMBER SET MEMBER_ROLE = #{member_role} WHERE MEMBER_NO = #{member_no}
+	<update id ="update" parameterType="MemberDto">
+		UPDATE MEMBER SET MEMBER_ROLE = #{member_role} WHERE MEMBER_ID = #{member_id}
 	</update>
 	<!-- <delete id = "delete">
 		DELETE FROM MEMBER WHERE MEMBER_NO = #{member_no}

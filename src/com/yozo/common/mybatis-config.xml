@@ -7,10 +7,14 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+	
 
 		<!-- DB접속정보 값을 가지고 있는 파일 설정 -->
 	<properties resource="com/yozo/common/db.properties"/>	
 	
+	<settings>
+		<setting name="jdbcTypeForNull" value="NULL"></setting>
+	</settings>
 	
 		<!-- 모델(DTO)을 연결해주는 별칭을 설정한다. <mapper/>영역에서 전역적으로 사용할 수 있다 -->
 	<typeAliases>
@@ -18,6 +22,10 @@
 		<typeAlias type="com.yozo.goods.dto.GoodsDto" alias="goodsDto"/>
 		<typeAlias type="com.yozo.goods.dto.AnswerDto" alias="answerDto"/>
 		<!-- <typeAlias type="com.yozo.admin.dto.BroadcastDto" alias="broadcastDto"/> -->
+
+		<typeAlias type="com.yozo.recipe.dto.RecipeDto" alias="recipeDto"/>
+		<typeAlias type="com.yozo.recipe.dto.RecipereDto" alias="recipereDto"/>
+		
 </typeAliases>
 	
 	
@@ -48,6 +56,8 @@
 			<mapper resource="com/yozo/goods/db/goods-mapper.xml"/>
 			<mapper resource="com/yozo/admin/db/admin-mapper.xml"/>
 			<!-- <mapper resource="com/yozo/admin/db/adminbroadcast-mapper.xml"/>-->
+			<mapper resource="com/yozo/recipe/db/recipe-mapper.xml"/>
+
 		</mappers>
 	
 	
