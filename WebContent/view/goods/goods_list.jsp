@@ -181,9 +181,23 @@ display: inline-block;} */
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
 	function alldel() {
-		alert("정말로 전체삭제하시겠습니까?");
+		var msg = "정말로 전체삭제를 하시겠습니까? 확인을 누르시면 전체체크됩니다.";
+		var flag = confirm(msg);
+		if(flag==true) {
+			allchk();
+		}else {
+			alert("삭제가 취소되었습니다.")
+		}
+		
+	}
+	
+	function allchk(){
 		var chks = document.getElementsByName("chk");
-
+		console.log(chks);
+		for(var i = 0; i < chks.length; i++){
+			chks[i].checked = true;
+		}
+		alert("삭제하시려면 삭제버튼을 눌러주세요.");
 	}
 
 	$(function() {
