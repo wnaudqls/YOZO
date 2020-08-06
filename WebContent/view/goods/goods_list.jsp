@@ -21,6 +21,7 @@ section {
 	margin: 50px 0;
 	/* height: 600px; */
 }
+
 #title {
 	font-size: 25px;
 	text-align: center;
@@ -42,7 +43,7 @@ section {
 
 #btns {
 	text-align: right;
-	margin-right: 50px;
+	margin-right: 400px;
 }
 
 /* 리스트 상품들 */
@@ -151,7 +152,6 @@ display: inline-block;} */
 
 #goods_card_wrapper { /* 상품카드 감싸는 div  */
 	float: left;
-	
 }
 
 .goods_card_img { /* 이미지 감싸는 div */
@@ -183,18 +183,18 @@ display: inline-block;} */
 	function alldel() {
 		var msg = "정말로 전체삭제를 하시겠습니까? 확인을 누르시면 전체체크됩니다.";
 		var flag = confirm(msg);
-		if(flag==true) {
+		if (flag == true) {
 			allchk();
-		}else {
+		} else {
 			alert("삭제가 취소되었습니다.")
 		}
-		
+
 	}
-	
-	function allchk(){
+
+	function allchk() {
 		var chks = document.getElementsByName("chk");
 		console.log(chks);
-		for(var i = 0; i < chks.length; i++){
+		for (var i = 0; i < chks.length; i++) {
 			chks[i].checked = true;
 		}
 		alert("삭제하시려면 삭제버튼을 눌러주세요.");

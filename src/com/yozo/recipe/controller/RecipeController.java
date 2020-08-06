@@ -97,6 +97,8 @@ public class RecipeController extends HttpServlet {
 		//레시피 작성
 		else if(command.equals("recipe_insert")) {
 			System.out.println("controller_recipe_insert");
+			//여기서 등록된 값을 받아주어 db로 저장시켜야함!
+			
 		}
 		//레시피 수정
 		else if(command.equals("recipe_update")) {
@@ -106,7 +108,10 @@ public class RecipeController extends HttpServlet {
 		else if(command.equals("recipe_delete")) {
 			System.out.println("controller_recipe_delete");
 			
-			
+		//레시피 작성 폼
+		}else if(command.equals("recipeinsertform")) {
+			System.out.println("레시피 인서트 폼왔음");
+			response.sendRedirect(request.getContextPath() + "/view/goods/recipe_insert.jsp");
 		}
 
 	}

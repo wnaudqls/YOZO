@@ -80,14 +80,14 @@ public class GoodsController extends HttpServlet {
 					goods_main_photo));
 
 			if (res > 0) {
-				System.out.println("굿즈작성성공");
-				dispatch("/goods.do?command=goodslist", request, response);
+				System.out.println("상품등록성공했음");
+				jsResponse("상품을 성공적으로 등록하였습니다.", "goods_insertform.jsp", response);
 			} else {
-				jsResponse("굿즈작성 실패", "goods_insertform.jsp", response);
+				jsResponse("상품을 등록하는데 실패하였습니다.", "goods_insertform.jsp", response);
 			}
 
 		}
-
+		//굿즈 인서트 폼
 		else if (command.equals("goodsinsertform")) {
 			response.sendRedirect(request.getContextPath() + "/view/goods/goods_insert.jsp");
 

@@ -48,7 +48,7 @@ td {
 }
 /*굿즈 목록 리스트 큰테두리*/
 .recipe_list {
-	border: 1px solid black;
+	/* border: 1px solid black; *//* 유정이가 없앰...없앤게 더 이쁜 거 같아요 */ 
 	margin: 0 5%;
 }
 
@@ -124,28 +124,56 @@ td {
 .list_card_title_a {
 	margin-top: 10px;
 }
-.off-screen{
-	display:none;
+
+.off-screen {
+	display: none;
 }
+
+.btn { /* 버튼  */
+	width: 70px;
+	height: 35px;
+	background-color: #F5A9A9;
+	color: #FAFAFA;
+	border: 0;
+	outline: 0;
+	border-radius: 0.35em;
+	font-weight: bold;
+	cursor: pointer;
+}
+#btns { /* 버튼들 */
+	text-align: right;
+	margin-right: 250px;
+}
+
+.paging a{ /* 페이징 번호 */
+	font-size: 25px;
+	padding: 7px;
+
+	
+}
+
+
+
+
 </style>
 
 </head>
 <body>
 	<%@ include file="../../form/header.jsp"%>
-
 	<section>
 		<c:if test="${rdto.member_role eq '관리자' }">
 
 			<div id="btns">
 				<input class="btn" type="button" value="등록"
 					onclick="location.href='<%request.getContextPath();%>/YORIZORI/
-.do?command=goodsinsertform'" />
+.do?command=recipeinsertform'" />
 				<input class="btn" type="button" value="삭제" />
+				<input class="btn" type="button" value="전체삭제"/>
 			</div>
 		</c:if>
 
 		<form action="" id="setRows">
-			<input type="hidden" name="rowPerPage" value="10">
+			<input type="hidden" name="rowPerPage" value="12">
 		</form>
 
 		<div class="recipe_list" id="products">
@@ -160,7 +188,7 @@ td {
 
 				<c:otherwise>
 					<c:forEach items="${list }" var="dto">
-						<div class="list_card eval-contents" >
+						<div class="list_card eval-contents">
 							<div class="list_card_img">
 								<a
 									href="recipe.do?command=recipe_detail&recipe_no=${dto.recipe_no }"><img
@@ -190,7 +218,7 @@ td {
 
 		</div>
 	</section>
-<script>
+	<script>
 	var $setRows = $('#setRows');
 
 	$setRows
