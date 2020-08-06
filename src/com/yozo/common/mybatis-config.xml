@@ -17,7 +17,7 @@
 		<typeAlias type="com.yozo.user.dto.MemberDto" alias="memberDto"/>
 		<typeAlias type="com.yozo.goods.dto.GoodsDto" alias="goodsDto"/>
 		<typeAlias type="com.yozo.goods.dto.AnswerDto" alias="answerDto"/>
-		
+		<!-- <typeAlias type="com.yozo.admin.dto.BroadcastDto" alias="broadcastDto"/> -->
 </typeAliases>
 	
 	
@@ -46,6 +46,8 @@
 		<mappers>
 			<mapper resource="com/yozo/user/db/mybatis-mapper.xml"/>
 			<mapper resource="com/yozo/goods/db/goods-mapper.xml"/>
+			<mapper resource="com/yozo/admin/db/admin-mapper.xml"/>
+			<!-- <mapper resource="com/yozo/admin/db/adminbroadcast-mapper.xml"/>-->
 		</mappers>
 	
 	
