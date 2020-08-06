@@ -1,0 +1,30 @@
+h1{
+	text-align: left;
+}
+table{
+	width:600px; 
+	height: 150px;
+	
+}
+td{
+text-align: left;
+}
+textarea {
+	resize: none;
+}
+#btn2{
+	margin: 0 auto;
+	font-size: 16pt;
+	width: 120px;
+	height: 40px;
+	color: white;
+	background-color: #F5A9A9;
+	border: none;
+	
+}
+#footer{
+	margin-top: 196px;
+}
+#btn2{
+	margin-right: 100px;
+}

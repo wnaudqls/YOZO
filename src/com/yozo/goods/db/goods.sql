@@ -33,7 +33,21 @@ INSERT INTO GOODS
 VALUES(1,'ID','TEST입니다','썸네일','500','2','내용물',SYSDATE);
 
 INSERT INTO GOODS
-VALUES(2,'ID','TEST2입니다','메인사진','600','3','내용물임',SYSDATE);
+VALUES(2,'quddnraka','TEST2입니다','메인사진','600','3','내용물임',SYSDATE);
+
+INSERT INTO GOODS
+VALUES(3,'quddnraka','TEST3입니다','메인사진','600','3','내용물임',SYSDATE);
+
+INSERT INTO GOODS
+VALUES(4,'quddnraka','TEST4입니다','메인사진','600','3','내용물임',SYSDATE);
+
+INSERT INTO GOODS
+VALUES(6,'quddnrka','TEST52입니다','메인사진','600','3','내용물임',SYSDATE);
+
+
+
+INSERT INTO GOODS
+VALUES(GOODS_SEQ.NEXTVAL,'asdf','TEST2입니다','메인사진','600','3','내용물임',SYSDATE);
 
  	SELECT GOODS_NO, MEMBER_ID, GOODS_TITLE, GOODS_MAIN_PHOTO, GOODS_PRICE, GOODS_QUANTITY, 
   	GOODS_CONTENT, GOODS_REGDATE

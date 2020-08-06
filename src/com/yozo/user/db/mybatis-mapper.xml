@@ -16,12 +16,13 @@
 	<result property="Member_phone" column="Member_phone"/>
 	<result property="Member_addr" column="Member_addr"/>
 	<result property="Member_role" column="Member_role"/>
+	<result property="Member_sns" column="Member_sns"/>
 </resultMap>
 
 	<select id="login" parameterType="MemberDto" resultType="MemberDto">
 			
 		SELECT MEMBER_NO, MEMBER_ID, MEMBER_PW, MEMBER_NAME, MEMBER_NICK,
-		       MEMBER_EMAIL, MEMBER_EMAIL_HASH, MEMBER_EMAIL_CHECKED, MEMBER_ENABLED, MEMBER_PHONE, MEMBER_ADDR, MEMBER_ROLE	
+		       MEMBER_EMAIL, MEMBER_EMAIL_HASH, MEMBER_EMAIL_CHECKED, MEMBER_ENABLED, MEMBER_PHONE, MEMBER_ADDR, MEMBER_ROLE
 		FROM MEMBER
 		WHERE MEMBER_ID = #{member_id}
 		AND MEMBER_PW = #{member_pw}
