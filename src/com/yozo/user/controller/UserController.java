@@ -91,32 +91,13 @@ public class UserController extends HttpServlet {
 				RequestDispatcher dispatch = request.getRequestDispatcher("user.do?command=main");
 				dispatch.forward(request, response);
 				
-				/* 사용자 권한 관련 if문
-				 * if (rdto.getMember_role().equals("ADMIN")) {
-				 * response.sendRedirect("index.jsp?"); }
-				 */
-				
-				
-				
-				
 			} else {
 				
-				
-				
 				System.out.println("로그인 실패");
-
-//				out.println("<script>");
-//				out.psrintln("alert('계정정보를 확인해 주세요.');");
-//				out.println("</script>");
+				
 				String s = "<script type='text/javascript'>" + "alert('ID, PW를 확인해 주세요');" + "location.href='view/user/login.jsp';"
 						+ "</script>";
 				response.getWriter().append(s);
-				
-				/*
-				 * RequestDispatcher dispatch =
-				 * request.getRequestDispatcher("user.do?command=loginform");
-				 * dispatch.forward(request, response);
-				 */
 				
 			}
 			
@@ -205,8 +186,8 @@ public class UserController extends HttpServlet {
 			
 		
 		
-		} else if (command.equals("sns_join")){
-			System.out.println("join입성");
+		} else if (command.equals("kakao_join")){
+			System.out.println("Kjoin입성");
 			
 			
 			
@@ -234,6 +215,36 @@ public class UserController extends HttpServlet {
 				 out.println("<script>alert('계정이 등록 되지 않았습니다.'); </script>");
 				 response.sendRedirect("history.back()"); 
 			 }
+			 
+		} else if (command.equals("naver_join")){
+			System.out.println("Njoin입성");
+			
+			
+			
+			String id = request.getParameter("id"); 
+			String nick = request.getParameter("nick"); 
+			String name = request.getParameter("name");
+			String pw = request.getParameter("pw"); 
+			String email = request.getParameter("email"); 
+			
+			
+			System.out.println(id + nick+ name + pw + email);
+			
+			MemberDto dto = new MemberDto(0,id,pw,name,nick,email,"null",true,"N","null","null","회원");
+			
+			System.out.println("controller dto = "+dto);
+			
+			boolean res = dao.insert(dto);
+			
+			if (res) { 
+				PrintWriter out = response.getWriter();
+				out.println("<script>alert('계정이 등록 되었습니다.'); </script>");
+				response.sendRedirect("/YORIZORI/view/user/login.jsp"); 
+			} else { 
+				PrintWriter out = response.getWriter();
+				out.println("<script>alert('계정이 등록 되지 않았습니다.'); </script>");
+				response.sendRedirect("history.back()"); 
+			}
 		}else if (command.equals("sendEmail")) {
 			
 
