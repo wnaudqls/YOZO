@@ -207,8 +207,11 @@ public class GoodsController extends HttpServlet {
 			dispatch("/view/goods/goods_detail.jsp", request, response);
 			
 		
-		//관리자 댓글 
-		}else if(command.equals("goodsadminre")) {
+		 
+		}
+		
+		//관리자 댓글
+			else if(command.equals("goodsadminre")) {
 			System.out.println("관리자댓글입력컨트롤러왔나요?");
 			
 			int goods_re_no = Integer.parseInt(request.getParameter("greno"));
@@ -240,11 +243,10 @@ public class GoodsController extends HttpServlet {
 			}else {
 				jsResponse("관리자 답변 실패함 싸발.", "goods_answer.jsp", response);
 			}
-			 
-		
-	
+		}
 			
-		}else if(command.equals("goodsupdateres")) {
+			//굿즈업데이트 
+			else if(command.equals("goodsupdateres")) {
 			System.out.println("굿즈업데이트res왔다");
 			int goods_no = Integer.parseInt(request.getParameter("goods_no"));
 			

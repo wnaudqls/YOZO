@@ -258,7 +258,7 @@ img {vertical-align: middle;}
 /*------------------------------------------------------------*/
 
 </style>
-<script type="text/javascript" src="js/jquery-3.5.1.min.js"></script>
+<!-- <script type="text/javascript" src="js/jquery-3.5.1.min.js"></script> -->
 <script type="text/javascript">
 
 	var i = 0;
@@ -283,6 +283,7 @@ img {vertical-align: middle;}
 		speech.pitch =1;
 		/*읽어준다*/
 		window.speechSynthesis.speak(speech);
+		SpeechToText();
 	}
 
 	function SpeechToText() {
@@ -299,12 +300,13 @@ img {vertical-align: middle;}
 		// 음성인식이 실행 될 때 실행됨
 		recognition.onstart = function() {
 //			alert("음성인식 실행됨?")
-			action.innerHTML = "<small>듣고 있어요...</small>";
+			alert("이제 말해주세요~");
+			//action.innerHTML = "<small>듣고 있어요...</small>";
 		};
 		// 음성인식이 끝나고 실행됨
 		recognition.onspeechend = function() {
 //			alert("음성인식 끝남?");
-			action.innerHTML = "<small>더 말하시려면 버튼을 눌러주세요...</small>";
+			//action.innerHTML = "<small>더 말하시려면 버튼을 눌러주세요...</small>";
 			recognition.stop();
 		}
 
@@ -315,8 +317,10 @@ img {vertical-align: middle;}
 		recognition.onresult = function(event) {
 			//음성을 text 로 변환된 값
 			var transcript = event.results[i][0].transcript;
+			alert(i);
 			/* TextToSpeech(transcript); */
 			i=i+1;
+			console.log(transcript);
 //			alert(i);
 //			alert(transcript);
 			/* if(transcript=="다음"){
@@ -348,38 +352,43 @@ img {vertical-align: middle;}
 				i++;
 			} */
 			if(transcript.trim()=="다음"){
+				plusSlides(+1);
 				var txt=document.querySelectorAll('.text');
 				j++;
+				alert(txt[j].innerText);
 //				alert(txt[j].innerText);
 				//recognition.pause();
 				//recognition.resume();
-				plusSlides(+1);
-				recognition.stop();
+				//recognition.stop();
+				//recognition.abort();
 				TextToSpeech(txt[j].innerText);
 				//recognition.getVoices();
 				//recognition.start();
-				SpeechToText();
+				//SpeechToText();
+				//recognition.start();
 				
 			}else if(transcript.trim()=="이전"){
+				plusSlides(-1)
 				var txt=document.querySelectorAll('.text');
 				j--;
 //				alert(txt[j].innerText);
-				//recognition.onpause();
-				plusSlides(-1)
-				recognition.stop();
+				//recognition.pause();
+				//recognition.stop();
+				//recognition.abort();
 				TextToSpeech(txt[j].innerText);
 				//recognition.onresume();
 				//recognition.start();
-				SpeechToText();
+				//SpeechToText();
 			}else if(transcript.trim()=="다시"){
 				var txt=document.querySelectorAll('.text');
 //				alert(txt[j].innerText);
-				//recognition.onpause();
-				recognition.stop();
+				//recognition.pause();
+				//recognition.stop();
+				//recognition.abort();
 				TextToSpeech(txt[j].innerText);
 				//recognition.start();
 				//recognition.onresume();
-				SpeechToText();
+				//SpeechToText();
 				
 			}else if(transcript.trim()=="그만"){
 				TextToSpeech('안녕히가세요~');
@@ -387,11 +396,12 @@ img {vertical-align: middle;}
 				close_pop();
 			}else{
 				//recognition.pause();
-	 			recognition.stop();
+	 			//recognition.stop();
+	 			//recognition.abort();
 				TextToSpeech('똑바로 다시 말해주세요...');
 				//recognition.start(); 
 				//recognition.resume();
-				SpeechToText();
+				//SpeechToText();
 //				alert("다시말해주세요")
 			}
 			/* //변환된 text의 정확도
@@ -407,6 +417,7 @@ img {vertical-align: middle;}
 
 		// 음성인식 시작
 		recognition.start();
+		
 		//alert("음성인식시작?")
 	}
 	
@@ -476,14 +487,14 @@ img {vertical-align: middle;}
 							$('#myModal').show();
 							//TextToSpeech("어서오세요 준비되시면 다음을 외쳐주세요");
 							alert("어서오세요 준비되시면 다음을 외쳐주세요!!")
-							//showSlides(1);
+							//showSlides(0);
 							SpeechToText();//STT실행
 							
 						}
 						//팝업창에서 닫기 버튼을 눌렀을 때
 						function close_pop(flag) {
-							recognition.stop();
 							$('#myModal').hide();
+							recognition.stop();
 						};
 					</script>
 
