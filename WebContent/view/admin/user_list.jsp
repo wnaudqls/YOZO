@@ -57,7 +57,7 @@
 </style>
 </head>
 <body>
-<%@ include file="/form/header.jsp" %>
+<%@ include file="../../form/header.jsp" %>
 
 <div id="user_list">
 
@@ -110,7 +110,7 @@ List<MemberDto> list = (List<MemberDto>)request.getAttribute("list");
 	      	}
 	         %>
 	      </td>
-      	<td><input type="button" value="수정" onclick="location.href='/YORIZORI/admin.do?command=update&member_id=<%=memberDto.getMember_id() %>&member_role=<%=memberDto.getMember_role()%>'"></td>
+      	<td><input type="button" value="수정" onclick="location.href='admin.do?command=update&member_id=<%=memberDto.getMember_id() %>&member_role=<%=memberDto.getMember_role()%>'"></td>
    </tr>
   
 <%
@@ -136,7 +136,7 @@ List<MemberDto> list = (List<MemberDto>)request.getAttribute("list");
 
 </div>
 
-<%@ include file="/form/footer.jsp" %>
+<%@ include file="../../form/footer.jsp" %>
 </body>
 <script>
 var $setRows = $('#setRows');
