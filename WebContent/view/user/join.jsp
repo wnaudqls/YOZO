@@ -20,7 +20,6 @@
 		if (doc.value.trim() == "" || doc.value == null) {
 			alert("아이디를 입력해 주세요!");
 		} else {
-			alert(doc.value)
 			open("/YORIZORI/user.do?command=idcheck&id="+doc.value,
 					"",
 					"width=200, height=200");
@@ -33,7 +32,6 @@
 		if (doc.value.trim() == "" || doc.value == null) {
 			alert("닉네임를 입력해 주세요!");
 		} else {
-			alert(doc.value)
 			open("/YORIZORI/user.do?command=nickcheck&nick="+doc.value,
 					"",
 					"width=200, height=200");
