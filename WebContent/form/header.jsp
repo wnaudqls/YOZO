@@ -228,13 +228,19 @@ window.onclick = function(event){
 		            <div id="dropuser_content" class = "dropuser_content">
 		                <a href="">개인정보수정</a>
 		                <a href="">나의레시피</a>
-		                <a href="">장바구니</a>
+		                <a href="" class="useId">
+			                <form action="<%request.getContextPath();%>/YORIZORI/list.do?">
+							    <input type="hidden" name="memberId" id="memberId" value="${rdto.member_id }"/>
+							    <input type="submit" value="나의 장바구니"/>
+							</form>
+						</a>
 		                <a href="">우리집냉장고</a>
 		                <a href="<%request.getContextPath();%>/YORIZORI/user.do?command=logout">로그아웃</a>
 		            </div>
        </div>
+
  <%
-	}
+ 	}
  %>
 
 </header>    

@@ -6,47 +6,67 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-</head>
-<body>
-	<style type="text/css">
+<style>
 .container {
 	text-align: left;
 }
+#comment{
+	resize: none;
+	width:60%;
+}
+.
+.btn_reply{
+	height:34px;
+}
+.container_bottom{
+	text-align: left;
+}
+.reply_wrap{
+	height:34px;
+}
 </style>
+</head>
+<body>
 	<script type="text/javascript"
 		src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
 	<!-- 댓글창  -->
 	<section>
-		<div class="container">
+		<div class="container_top">
 			<form method="post" id="answerform" name="answerform">
-				<input type="hidden" name="goods_no" value="${dto.goods_no}" /> <input
-					type="hidden" name="member_nick" value="${rdto.member_nick}" />
+				<input type="hidden" name="goods_no" value="${dto.goods_no}" /> 
+				<input type="hidden" name="member_nick" value="${rdto.member_nick}" />
 				<div>
+				
 					<div>
 						<span><strong>Comments</strong></span>
 					</div>
 					<div>
 						<table>
 							<tr>
-								<td><label>${rdto.member_nick}</label> <textarea rows="3"
-										cols="30" name="goods_re_content" id="comment"
-										placeholder="Q&A"></textarea> <br>
-									<div>
-										<input type="button" value="등록" onclick="answer();" />
-									</div></td>
+								<td>
+									<div class="replay_wrap">
+									<label>${rdto.member_nick}</label> 
+									<textarea rows="2"
+											cols="30" name="goods_re_content" id="comment"
+											placeholder="Q&A">
+									</textarea>
+										<input class="btn_reply" type="button" value="등록" onclick="answer();" />
+									</div>
+								</td>
 							</tr>
 						</table>
 					</div>
+					
 				</div>
 			</form>
 		</div>
 		<hr>
-		<div class="container">
+		<div class="container_bottom">
 			<form id="answerlistform" name="answerlistform" method="post">
-			<input type="hidden" name="member_nick" value="${rdto.member_nick }">
-				<div id="answerlist"></div>
-
+					<input type="hidden" name="member_nick" value="${rdto.member_nick }">
+					<div id="answerlist">
+					</div>
 			</form>
 		</div>
 
@@ -62,7 +82,7 @@
 					data : $("#answerform").serialize(),
 					success : function(data) {
 						alert("통신성공")
-						getAnswerList();
+						getAnswerList();	//리스트 가져오기 메소드
 						document.getElementById("comment").value = " ";
 
 					},
@@ -101,7 +121,7 @@
 										ele += "<div class='rereplybox' value="+result[i].goods_re_no+">";
 										ele += "<strong>"
 												+ result[i].member_nick
-												+ "</strong>";
+												+ " : </strong>";
 										ele += result[i].goods_re_content
 												+ "<input type='button' value='댓글' class='rebtn' onclick='rereply("
 												+ i + ");'>";
@@ -131,7 +151,7 @@
 
 						});
 			}
-
+			//대댓글, i는 몇번쨰 댓글인지
 			function rereply(i) {
 				/* alert("rereply실행!") */
 				/* 	 		var div1 = document.getElementsByClassName(".rereplybox");
@@ -177,7 +197,7 @@
 				var plz = document.getElementsByClassName("rereplybox")[i];
 				/* alert(i); */
 				$(".rereplybox")[i].insertBefore(newDiv, plz.childNodes[3]);
-
+				//이벤트 생성
 				newButton
 						.addEventListener(
 								'click',
@@ -190,7 +210,7 @@
 							/* 		var greno = $(this).parent(".rereplybox")
 											.get(i).val(); */
 									/* var greno = document.getElementsByClassName("rereplybox").value; */
-									var greno = $(this).parent().parent().attr("value");
+									var greno = $(this).parent().parent().attr("value");	//
 									/* console.log(greno);
 									console.log("this : " + this);
  */
@@ -202,8 +222,10 @@
 										console.log(content);
 											$.ajax({
 												type : 'post',
-												url : "<c:url value='/goods.do?command=goodsadminre&greno="+greno+"'/>",
-												data : {'goods_re_content' : content},
+												url : "<c:url value='/goods.do'/>",
+												data : {'goods_re_content' : content,
+														'command' : 'goodsadminre',
+														'greno' :gereno},
 												dataType : "json",
 												success : function(data) {
 													alert("관리자댓글 : 통신성공")

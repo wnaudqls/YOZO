@@ -37,6 +37,11 @@ public class MemberDto {
 		this.member_role = member_role;
 	}
 
+	public MemberDto(String member_id, String member_role) {
+		this.member_id = member_id;
+		this.member_role = member_role;
+	}
+
 	
 	public MemberDto(int member_no, String member_id, String member_pw, String member_name, String member_nick, String member_email) {
 		this.member_no = member_no;
