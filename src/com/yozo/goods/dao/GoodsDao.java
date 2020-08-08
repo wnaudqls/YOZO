@@ -120,7 +120,7 @@ public class GoodsDao extends SqlMapConfig {
 		int count = 0;
 		//스트링 타입으로 스트링 배열 보낼 거!
 		Map<String, String[]> map = new HashMap<>();
-		map.put("goods_nos", goods_no);
+		map.put("goods_no", goods_no);
 		
 		
 		try {

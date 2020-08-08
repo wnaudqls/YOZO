@@ -61,13 +61,13 @@
 					url : "<c:url value='/goods.do?command=answerinsert'/>",
 					data : $("#answerform").serialize(),
 					success : function(data) {
-						alert("통신성공")
+						alert("댓글을 성공적으로 등록하였습니다.")
 						getAnswerList();
 						document.getElementById("comment").value = " ";
 
 					},
 					error : function(request, status, error) {
-						alert("통신실패")
+						alert("댓글을 등록하는데 실패하였습니다. 다시 시도하여주십시오.")
 					}
 				});
 			}

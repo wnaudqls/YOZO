@@ -107,6 +107,21 @@ border : 1px solid black;
 		text-align: center;
 		font: small-caps  24px/1 sans-serif;
 	}
+	
+	/* yj */
+	.btn{
+   width : 70px;
+   height : 35px;
+   background-color : #F5A9A9;
+   color : #FAFAFA;
+   border : 0;
+   outline: 0;
+   border-radius : 0.35em;
+   font-weight: bold;
+   cursor: pointer;
+
+}
+	
 </style>
 <script type="text/javascript" src="resources/js/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
@@ -202,6 +217,12 @@ border : 1px solid black;
 				<ul class="material_list">
 				<c:forEach items="${material }" var="m" varStatus="status"><li>${m }</li>  </c:forEach> 
 				</ul>
+			</div>
+			<div>
+				<c:if test="${rdto.member_role eq '관리자' }">
+					<input class="btn" type="button" value="수정"/>
+					<input class="btn" type="button" value="삭제"/>
+				</c:if>
 			</div>
 		</div>
 

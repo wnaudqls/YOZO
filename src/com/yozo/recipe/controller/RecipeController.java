@@ -55,7 +55,7 @@ public class RecipeController extends HttpServlet {
 			}else {
 				System.out.println("list어딨어ㅡㅡ");
 			}
-			System.out.println(list.get(0));
+			/* System.out.println(list.get(0)); */
 			request.setAttribute("list", list);
 			dispatch("/view/recipe/recipe_list.jsp", request, response);
 			
@@ -107,11 +107,39 @@ public class RecipeController extends HttpServlet {
 		//레시피 삭제
 		else if(command.equals("recipe_delete")) {
 			System.out.println("controller_recipe_delete");
+			int recipe_no = Integer.parseInt(request.getParameter("recipe_no"));
+			
+			int res = biz.delete(recipe_no);
+			if(res>0) {
+				System.out.println("레시피 하나 삭제성공");
+				jsResponse("레시피를 성공적으로 삭제하였습니다.", "/recipe.do?command=recipe_list", response);
+			}else {
+				System.out.println("레시피 하나 삭제실패");
+				jsResponse("레시피를 삭제하는데 실패하였습니다.", "/recipe.do?command=recipe_list", response);
+			}
 			
 		//레시피 작성 폼
 		}else if(command.equals("recipeinsertform")) {
-			System.out.println("레시피 인서트 폼왔음");
+			System.out.println("controller_recipe_insertform");
 			response.sendRedirect(request.getContextPath() + "/view/goods/recipe_insert.jsp");
+		
+		//레시피 여러개 삭제
+		}else if(command.contentEquals("recipemuldel")) {
+			System.out.println("controller_recipe_muldel");
+			String[] recipe_no = request.getParameterValues("chk");
+			System.out.println(recipe_no+ "레시피 번호 오냐? 오냐고 와라!!!!");
+			
+			int res = biz.multiDelte(recipe_no);
+			
+			if(res>0) {
+				System.out.println("레시피 멀티 딜리트 성공");
+				jsResponse("선택하신 레시피를 성공적으로 삭제하였습니다.", "recipe.do?command=recipe_list", response);
+			}else {
+				System.out.println("레시피 멀티 딜리트 실패");
+				jsResponse("레시피를 삭제하는데 실패하였습니다.", "recipe.do?command=recipe_list", response);
+			}
+			
+			
 		}
 
 	}
