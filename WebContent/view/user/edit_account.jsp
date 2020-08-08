@@ -8,6 +8,8 @@
 <head>
 <meta charset="UTF-8">
 <title>개인정보수정</title>
+  
+  
 
 	<script type="text/javascript" src="https://code다른 페이지 이동 session.jquery.com/jquery-3.5.1.min.js"></script>
 	
@@ -40,18 +42,7 @@
 			})  
 
 	});
-	$(function() {
-		$('#pwchk').blur(function(){
-			   if($('#pw').val() != $('#pwchk').val()){
-			    	if($('#pwchk').val()!=''){
-				    alert("비밀번호가 일치하지 않습니다.");
-			    	    $('#pwchk').val('');
-			          $('#pwchk').focus();
-			       }
-			    }
-			})  
 
-	});
 
 
 	
@@ -76,8 +67,9 @@
 
 	
 	</script>
-	
-	<style type="text/css">
+
+
+  	<style type="text/css">
 		
 		body {
 			text-align: center;
@@ -103,10 +95,8 @@
 	
 	
 	</style>
-	
-	
-	
-</head>
+  
+  
 <body>
 <%@ include file="../../form/header.jsp" %>
 <br>
@@ -124,49 +114,49 @@
    }
 %>
 
-	<div>
-	<h1>개인정보수정</h1>
-		<form action="<%=request.getContextPath() %>/user.do" name="form" id="form" method="post">
-		<input type="hidden" name="command" value="update" >
-		<table>
-	
+   <div>
+   <h1>개인정보수정</h1>
+      <form action="<%=request.getContextPath() %>/user.do" name="form" id="form" method="post">
+      <input type="hidden" name="command" value="update" >
+      <table>
+   
 <tr>
-				<td class="col">닉네임 : </td><td><input type="text" id="nick" name="nick" placeholder="닉네임을 입력해 주세요"></td><td><input type="button" value="중복확인" onclick="nickCheck()"></td>
+            <td class="col">닉네임 : </td><td><input type="text" id="nick" name="nick" placeholder="닉네임을 입력해 주세요"></td><td><input type="button" value="중복확인" onclick="nickCheck()"></td>
 </tr>
 <tr>
-				<td class="col">비밀번호 : </td><td><input type="password" id="pw" name="pw" placeholder="비밀번호를 입력해 주세요"></td>
+            <td class="col">비밀번호 : </td><td><input type="password" id="pw" name="pw" placeholder="비밀번호를 입력해 주세요"></td>
 </tr>
 <tr>
-				<td class="col">비밀번호<br> 확인 : </td><td> <input type="password" id="pwchk" placeholder="비밀번호를 다시 입력해 주세요"></td>
+            <td class="col">비밀번호<br> 확인 : </td><td> <input type="password" id="pwchk" placeholder="비밀번호를 다시 입력해 주세요"></td>
 </tr>
 <tr>
-				<td class="col" class="asdf">주소 : </td> <td class="asdf"> 
-				<input type="hidden" id="confmKey" name="confmKey" value=""  >
-				<input type="text" id="zip_no" name="zip_no" placeholder="우편번호" readonly="readonly" value=""> </td> <td><input type="button" value="주소 검색" onclick="goPopup();"> </td>
+            <td class="col" class="asdf">주소 : </td> <td class="asdf"> 
+            <input type="hidden" id="confmKey" name="confmKey" value=""  >
+            <input type="text" id="zip_no" name="zip_no" placeholder="우편번호" readonly="readonly" value=""> </td> <td><input type="button" value="주소 검색" onclick="goPopup();"> </td>
 </tr>
 <tr>
-				<td></td><td colspan="2"><input type="text" id="road_addr_part1" name="road_addr_part1" placeholder="도로명 주소" readonly="readonly" value=""></td>	
+            <td></td><td colspan="2"><input type="text" id="road_addr_part1" name="road_addr_part1" placeholder="도로명 주소" readonly="readonly" value=""></td>   
 </tr>
 <tr>
-				<td></td><td colspan="2"><input type="text" id="road_addr_part2" name="road_addr_part2" placeholder="상세주소 1" readonly="readonly" value=""></td>
+            <td></td><td colspan="2"><input type="text" id="road_addr_part2" name="road_addr_part2" placeholder="상세주소 1" readonly="readonly" value=""></td>
 </tr>
 <tr>
-				<td></td><td colspan="2"><input type="text" id="addr_detail" name="addr_detail" placeholder="상세주소 2" readonly="readonly" value=""></td>
+            <td></td><td colspan="2"><input type="text" id="addr_detail" name="addr_detail" placeholder="상세주소 2" readonly="readonly" value=""></td>
 </tr>
 <tr>
-				<td class="col">전화번호 : </td> <td colspan="2"> <input type="text" id="phone" name="phone"></td> 
+            <td class="col">전화번호 : </td> <td colspan="2"> <input type="text" id="phone" name="phone"></td> 
 </tr>
-		</table>
-		<input type="submit" id="updateBtn" value="가입하기"">
-		
-		</form>
-	</div>
-	<br>
-	<br>
-	<br>
-	<br>
+      </table>
+      <input type="submit" id="updateBtn" value="가입하기"">
+      
+      </form>
+   </div>
+   <br>
+   <br>
+   <br>
+   <br>
 
-	<%@ include file="../../form/footer.jsp" %>
+   <%@ include file="../../form/footer.jsp" %>
 
 </body>
-</html>	
+</html> 

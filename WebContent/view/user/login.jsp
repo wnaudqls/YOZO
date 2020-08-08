@@ -106,7 +106,7 @@
 	</style>
 </head>
 <body>
-	<%@ include file="../../form/header.jsp"%>
+	<%@ include file="/form/header.jsp"%>
 
 	<div class="login">
 		<br> <br> <br> <br>

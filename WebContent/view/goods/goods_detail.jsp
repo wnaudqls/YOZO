@@ -155,7 +155,7 @@ section {
 </script>
 <body> 
    
-   <%@include file="../../form/header.jsp"%>
+   <%@include file="/form/header.jsp"%>
    <section class="section">
       <!-- 쇼핑몰 상세보기 시작점  -->
       <form action="" method="post">
@@ -211,7 +211,7 @@ section {
         	<c:if test="${rdto.member_role eq '관리자' }">
         		<div>
         			<input class="btn" type="submit" value="수정"/>
-        			<input class="btn" type="button" value="삭제" onclick="location.href='<%=request.getContextPath()%>/goods.do?command=goodsdelete&goods_no=${dto.goods_no}'"/>
+        			<input class="btn" type="button" value="삭제" onclick="location.href='<%=request.getContextPath()%>/YORIZORI/goods.do?command=goodsdelete&goods_no=${dto.goods_no}'"/>
         		</div>
         	</c:if>
          </div>
@@ -224,8 +224,8 @@ section {
       </div>
    </section>
    
-   <%@ include file="./goods_answer.jsp" %>
+   <%@ include file="/view/goods/goods_answer.jsp" %>
    <!-- 푸터 -->
-   <%@ include file="../../form/footer.jsp"%>
+   <%@ include file="/form/footer.jsp"%>
 </body>
 </html>

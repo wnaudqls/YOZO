@@ -43,6 +43,7 @@ public class RecipeController extends HttpServlet {
 		response.setContentType("text/html; charset=utf-8");
 		System.out.println("recipe.do왔다~");
 		String command = request.getParameter("command");
+		System.out.println(command);
 		RecipeBiz biz = new RecipeBiz();
 		HttpSession session=request.getSession();
 		
@@ -55,8 +56,15 @@ public class RecipeController extends HttpServlet {
 			}else {
 				System.out.println("list어딨어ㅡㅡ");
 			}
+
+
+			System.out.println(list);
+
+
 			/* System.out.println(list.get(0)); */
+
 			request.setAttribute("list", list);
+			System.out.println(list);
 			dispatch("/view/recipe/recipe_list.jsp", request, response);
 			
 			
@@ -140,6 +148,15 @@ public class RecipeController extends HttpServlet {
 			}
 			
 			
+		} else if(command.equals("recipe_search")) {
+			System.out.println("search controller 입장");
+			String txt = request.getParameter("recipe_title");
+			System.out.println(txt);
+			List<RecipeDto> list = biz.search(txt);
+			System.out.println("search controller 중간");
+			request.setAttribute("list", list);
+			dispatch("/view/recipe/recipe_list.jsp", request, response);
+			System.out.println(list);
 		}
 
 	}

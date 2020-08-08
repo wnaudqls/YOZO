@@ -109,7 +109,7 @@ height:310px;
 	}
 </script>
 </head>
-<%@ include file="../../form/header.jsp"%>
+<%@ include file="/form/header.jsp"%>
 <body>
 	<section>
 		<form action="<%=request.getContextPath()%>/goods.do" method="post" id="goods_form">
@@ -125,7 +125,7 @@ height:310px;
 
 				</div>																							
 				<div class="goods_photo">
-					<img src="imgtest/${dto.goods_main_photo }" alt="대표이미지를 선택해주세요" id="img_main" >
+					<img src="/YORIZORI/imgtest/${dto.goods_main_photo }" alt="대표이미지를 선택해주세요" id="img_main" >
 				</div>
 			</div>
 			<div class="goods_etc">
@@ -153,6 +153,6 @@ height:310px;
 			</div>
 		</form>
 	</section>
-	<%@ include file="../../form/footer.jsp"%>
+	<%@ include file="/form/footer.jsp"%>
 </body>
 </html>
