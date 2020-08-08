@@ -119,7 +119,27 @@ public class RecipeDao extends SqlMapConfig {
 		}
 		return res;
 	}
-	
+
+
+	public List<RecipeDto> search(String txt) {
+		System.out.println("search dao 입장");
+		SqlSession session = null;
+		List<RecipeDto> list = null;
+		
+		try {
+			System.out.println("search dao 중간");
+			session = getSqlSessionFactory().openSession(false);
+			list = session.selectList(namespace+"search", txt);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return list;
+	}
+
+
 	public int multiDelete(String[] recipe_no) {
 		SqlSession session = null;
 		int count = 0;
@@ -142,5 +162,6 @@ public class RecipeDao extends SqlMapConfig {
 		return count;
 	}
 	
+
 
 }

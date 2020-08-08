@@ -56,7 +56,13 @@ public class RecipeController extends HttpServlet {
 			}else {
 				System.out.println("list어딨어ㅡㅡ");
 			}
+
+
+			System.out.println(list);
+
+
 			/* System.out.println(list.get(0)); */
+
 			request.setAttribute("list", list);
 			System.out.println(list);
 			dispatch("/view/recipe/recipe_list.jsp", request, response);
