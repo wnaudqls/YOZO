@@ -511,6 +511,7 @@ img {vertical-align: middle;}
 			</div>
 
 		</div>
+
 		<div class="section_bottom">
 
 			<h2>레시피</h2>
@@ -528,6 +529,7 @@ img {vertical-align: middle;}
 				</div>
 
 			</c:forEach>
+
 		</div>
 
 

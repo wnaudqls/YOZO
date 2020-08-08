@@ -62,6 +62,9 @@
         height: 70px;
         margin-left: 80px;
     }
+    .admin finger{
+    	float:left;
+    }
     .usericon {
         background-color:white;
         color: white;
@@ -257,6 +260,10 @@ window.onclick = function(event){
             <!--유정 goods onclick 건들임 -->
             <img class="goods finger" alt="logo" src="/YORIZORI/img/goodsicon.png" onclick="location.href='<%request.getContextPath();%>/YORIZORI/goods.do?command=goodslist'">
             <img class="map finger" alt="logo" src="/YORIZORI/img/mapicon.png" onclick = "location.href = '<%request.getContextPath();%>/YORIZORI/view/map/map.jsp'">
+            <c:if test="${rdto.member_role eq '관리자' }">
+            	<img class="admin finger" alt="logo" src="/YORIZORI/img/mapicon.png" onclick="location.href='<%=request.getContextPath()%>/admin.do?command=list'">
+            </c:if>
+            
         </nav>
         
         <!-- <input type="button" value="checking....." id="authBtn"> -->

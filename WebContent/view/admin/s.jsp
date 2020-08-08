@@ -7,7 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<a href="<%=request.getContextPath()%>/admin.do?command=list">asdf</a>
-<a href="<%=request.getContextPath()%>/admin.do?command=broadcastlist">sadsa</a>
+	<input type="button" value ="button" onclick ="location.href='<%request.getContextPath();%>/admin.do?command=list'">
 </body>
 </html>
