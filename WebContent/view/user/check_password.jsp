@@ -48,11 +48,11 @@ section{
 
 </style>
 <body>
-<%@ include file ="../../form/header.jsp" %>
+<%@ include file ="/form/header.jsp" %>
 	<section>
 	<div id="find">
 		<div>
-			<img id="warning"alt="warning" src="./img/warning.jpg">
+			<img id="warning"alt="warning" src="/YORIZORI/img/warning.jpg">
 			<span><b id="message">비밀번호 확인</b></span>
 		</div>
 		<div>
@@ -64,7 +64,7 @@ section{
 	
 	</section>
 
-<%@ include file="../../form/footer.jsp" %>
+<%@ include file="/form/footer.jsp" %>
 
 </body>
 </html>

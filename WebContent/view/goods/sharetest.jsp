@@ -86,12 +86,12 @@
 			+ encodeURIComponent(linkUrl));
 </script>
 <body>
-	<%@ include file="../../form/header.jsp"%>
+	<%@ include file="/form/header.jsp"%>
 
 	<!-- 	<li><a href="#" id="btn_share01"
 		onclick="snsSubmit('facebook', '');">페이스북공유</a></li> -->
 
 
-	<%@ include file="../../form/footer.jsp"%>
+	<%@ include file="/form/footer.jsp"%>
 </body>
 </html>

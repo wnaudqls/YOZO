@@ -15,10 +15,10 @@
 //socket.io 불러옴
 </script>
 -->
-<script src="view/broadcast/js/RTCMultiConnection.min.js">
+<script src="/YORIZORI/view/broadcast/js/RTCMultiConnection.min.js">
 	//RTCMultiConnection api 불러옴
 </script>
-<script src="view/broadcast/js/socket.io.js">
+<script src="/YORIZORI/view/broadcast/js/socket.io.js">
 </script>
 
 
@@ -29,7 +29,7 @@
 
 </head>
 <body>
-<%@include file="../../form/header.jsp"%>
+<%@include file="/form/header.jsp"%>
 <hr>
 <input value="${rdto.member_nick}" id="nickname" hidden="">
 	<input type="text" id="roomid" placeholder="방 이름을 입력하세요. ">
@@ -45,10 +45,10 @@
 	상대방 화면
 	<div id="remotevideo"></div>
 
-	<script type="text/javascript" src="view/broadcast/js/broadcast.js">
+	<script type="text/javascript" src="/YORIZORI/view/broadcast/js/broadcast.js">
 </script>
 <div id="footer">
-	<%@include file="../../form/footer.jsp"%>
+	<%@include file="/form/footer.jsp"%>
 </div>
 
 </body>

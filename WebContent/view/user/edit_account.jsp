@@ -93,7 +93,7 @@ section {
 	});
 </script>
 <body>
-	<%@ include file="../../form/header.jsp"%>
+	<%@ include file="/form/header.jsp"%>
 	<section>
 		
 		<!--팝업 -->
@@ -102,7 +102,7 @@ section {
 		</div>
 			<div id="popmenu">
 				<div>
-					<img id="warning" alt="warning" src="./img/warning.jpg"> <b
+					<img id="warning" alt="warning" src="/YORIZORI/img/warning.jpg"> <b
 						id="message">비밀번호 변경</b>
 				</div>
 				<table id="changetable">
@@ -122,7 +122,7 @@ section {
 		
 		<div id="wrapperinfo">
 			<div>
-				<img id="warning" alt="warning" src="./img/warning.jpg"> <b
+				<img id="warning" alt="warning" src="/YORIZORI/img/warning.jpg"> <b
 					id="message">개인정보수정</b>
 			</div>
 			<table id="editmyinfo">
@@ -174,7 +174,7 @@ section {
 			</div>
 		</div>
 	</section>
-	<%@ include file="../../form/footer.jsp"%>
+	<%@ include file="/form/footer.jsp"%>
 
 </body>
 </html>

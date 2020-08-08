@@ -168,8 +168,8 @@
 
     .show {display:block;}
 </style>
-<!-- <script type="text/javascript" src="../resouces/js/jquery-3.5.1.min.js"></script> -->
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js">\</script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
 
 	$(document).ready(function() {
@@ -227,16 +227,16 @@
 </script>
 </head>
 <body>
-<%@ include file="../../form/header.jsp" %>
+<%@ include file="/form/header.jsp" %>
     <div class="search">
         <input type="search" name="search" placeholder="레시피 검색">
         <button class="btn">검색</button>
         
     </div>
-    <video oncontextmenu="return false;" id="myVideo" height = "600"width="100%" autoplay muted loop ">
+    <video oncontextmenu="return false;" id="myVideo" height = "600"width="100%" autoplay muted loop>
         <source src="<%=request.getContextPath()%>/img/main/main_video.mp4" type="video/mp4">
     </video>
-  <%@ include file="../../form/footer.jsp" %>
+  <%@ include file="/form/footer.jsp" %>
 </body>
 
 </html>
