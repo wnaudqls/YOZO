@@ -14,7 +14,6 @@
 	resize: none;
 	width:60%;
 }
-.
 .btn_reply{
 	height:34px;
 }
@@ -75,6 +74,7 @@
 			/* 댓글 등록하기(ajax)  */
 
 			/* var params = $("#answerform").serialize(); 이렇게 하면 안돼 */
+			//일반댓글등록
 			function answer() {
 				$.ajax({
 					type : 'post',
@@ -94,7 +94,7 @@
 
 			/* 초기 페이지 로딩시 댓글 불러오기 */
 			$(function() {
-				getAnswerList();
+				getAnswerList();	
 
 			});
 
@@ -119,9 +119,14 @@
 									for (i = 0; i < cCnt; i++) {
 										ele += "<div id='divdiv'>";
 										ele += "<div class='rereplybox' value="+result[i].goods_re_no+">";
-										ele += "<strong>"
-												+ result[i].member_nick
-												+ " : </strong>";
+										ele += "<strong>";
+											if(result[i].goods_re_titletab>0){
+												for(var j=0;j<result[i].goods_re_titletab;j++){
+													ele+="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+												}
+													ele+="┗&nbsp;";
+											}
+												ele+= result[i].member_nick + " : </strong>";
 										ele += result[i].goods_re_content
 												+ "<input type='button' value='댓글' class='rebtn' onclick='rereply("
 												+ i + ");'>";
@@ -196,7 +201,8 @@
 
 				var plz = document.getElementsByClassName("rereplybox")[i];
 				/* alert(i); */
-				$(".rereplybox")[i].insertBefore(newDiv, plz.childNodes[3]);
+				alert(plz.childNodes[3]+"[3]??");//undefind[3]??
+				$(".rereplybox")[i].insertBefore(newDiv, plz.childNodes[3]);//왜3이지??
 				//이벤트 생성
 				newButton
 						.addEventListener(
@@ -204,28 +210,30 @@
 								function(event) {
 									alert("관리자버튼얍얍");
 									alert("i : " + i); // 0 , 1 잘 들어옴
+									alert("evenet? :"+event);
 
 									/* var greno = document.getElementsByClassName("rereplybox")[i].val; */
 									/* var greno = $(".rereplybox")[i].val(); */
 							/* 		var greno = $(this).parent(".rereplybox")
+							
 											.get(i).val(); */
 									/* var greno = document.getElementsByClassName("rereplybox").value; */
-									var greno = $(this).parent().parent().attr("value");	//
+									var greno = $(this).parent().parent().attr("value");	//부모댓글의 번호 
 									/* console.log(greno);
 									console.log("this : " + this);
  */
-									alert("greno :" + greno);
+									alert("greno :" + greno); //부모 댓글 번호 
  											//여기 다시보기
  										alert("i:"+i);
-										var content = document.getElementsByName("goods_re_content")[1].value;
-										alert("content :" + content);
+										var content = document.getElementsByName("goods_re_content")[1].value; //1번지 textarea의 값을 content에 저장?
+										alert(" 1번지 textarea의 값  content :" + content);
 										console.log(content);
 											$.ajax({
 												type : 'post',
 												url : "<c:url value='/goods.do'/>",
 												data : {'goods_re_content' : content,
 														'command' : 'goodsadminre',
-														'greno' :gereno},
+														'greno' :greno},
 												dataType : "json",
 												success : function(data) {
 													alert("관리자댓글 : 통신성공")

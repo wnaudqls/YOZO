@@ -207,7 +207,7 @@ window.onclick = function(event){
 
 %>
 <header id= header> <!-- 메인 아이콘, 유저아이콘 -->
-        <img id="mainicon" class="mainlogo finger" alt="logo" src="/YORIZORI/img/mainicon.png" onclick="location.href='<%request.getContextPath();%>/YORIZORI/view/main/main.jsp'"><br>
+        <img id="mainicon" class="mainlogo finger" alt="logo" src="/YORIZORI/img/mainicon.png" onclick="location.href='http://qclass.iptime.org:8787/YORIZORI/view/main/main.jsp'"><br>
   
 	
 		        
@@ -221,7 +221,7 @@ window.onclick = function(event){
 		</div>		
 <%
 	} else if (dto != null) {
-%>
+%><form action="<%request.getContextPath();%>/YORIZORI/list.do?">
     	<div class = "dropuserdown">
 		        	<span id="loginStatus">${rdto.member_nick } 님이 로그인하였습니다.</span>
 		            <img onclick = "dropuser()" class="usericon"alt="logo" src="/YORIZORI/img/usericon.png">
@@ -229,15 +229,16 @@ window.onclick = function(event){
 		                <a href="">개인정보수정</a>
 		                <a href="">나의레시피</a>
 		                <a href="" class="useId">
-			                <form action="<%request.getContextPath();%>/YORIZORI/list.do?">
+			                
 							    <input type="hidden" name="memberId" id="memberId" value="${rdto.member_id }"/>
 							    <input type="submit" value="나의 장바구니"/>
-							</form>
+							
 						</a>
 		                <a href="">우리집냉장고</a>
 		                <a href="<%request.getContextPath();%>/YORIZORI/user.do?command=logout">로그아웃</a>
 		            </div>
        </div>
+       </form>
 
  <%
  	}

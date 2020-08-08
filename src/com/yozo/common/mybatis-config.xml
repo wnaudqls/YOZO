@@ -23,6 +23,7 @@
 		<typeAlias type="com.yozo.goods.dto.AnswerDto" alias="answerDto"/>
 		<typeAlias type="com.yozo.recipe.dto.RecipeDto" alias="recipeDto"/>
 		<typeAlias type="com.yozo.recipe.dto.RecipereDto" alias="recipereDto"/>
+		<typeAlias type="com.yozo.broadcast.dto.BroadcastDto" alias="broadcastdto"/>
 		
 
 </typeAliases>
