@@ -10,7 +10,7 @@
 <title>예약목록들</title>
 </head>
 <body>
-<%@include file="../../form/header.jsp" %>
+<%@include file="/form/header.jsp" %>
 <h1>예약한 목록들</h1>
 	<table border="1">
 		<tr>
@@ -33,7 +33,7 @@
 	</c:forEach>
 	</table>
 		<div id="down">
-		<%@include file="../../form/footer.jsp" %>
+		<%@include file="/form/footer.jsp" %>
 	</div>
 </body>
 <style type="text/css">

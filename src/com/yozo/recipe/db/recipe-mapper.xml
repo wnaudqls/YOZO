@@ -88,9 +88,6 @@
    			#{recipe_no}
    		</foreach>
    </delete>
-
-   
-
 	<insert id="jsonInsert" parameterType="java.util.List">
 		<foreach collection="list" item="i" index="index"
 			open="INSERT ALL" separator=" " close="SELECT * FROM DUAL">

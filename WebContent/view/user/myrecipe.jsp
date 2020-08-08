@@ -95,7 +95,7 @@ section {
 
 </style>
 <body>
-	<%@ include file="../../form/header.jsp"%>
+	<%@ include file="/form/header.jsp"%>
 	<section>
 		<div id="title">작성자 님의 레시피</div>
 		<div id="btns">
@@ -106,7 +106,7 @@ section {
 			<div class="chk">
 				<input class= "chkbox" type="checkbox" /><br />
 			</div>
-			<a><img class="recipepics" alt="recipe1" src="./img/recipe1.jpg"></a>
+			<a><img class="recipepics" alt="recipe1" src="/YORIZORI/img/recipe1.jpg"></a>
 			<div class="titleandlike">
 				<div><b>레시피명</b></div>
 				<div>따봉따봉!</div>
@@ -116,7 +116,7 @@ section {
 			<div class="chk">
 				<input  class= "chkbox" type="checkbox" /><br />
 			</div>
-			<a><img class="recipepics" alt="recipe2" src="./img/recipe1.jpg"></a>
+			<a><img class="recipepics" alt="recipe2" src="/YORIZORI/img/recipe1.jpg"></a>
 			<div class="titleandlike">
 				<div><b>레시피명</b></div>
 				<div>따봉따봉!</div>
@@ -126,7 +126,7 @@ section {
 			<div class="chk">
 				<input class= "chkbox" type="checkbox" /><br />
 			</div>
-			<a><img class="recipepics" alt="recipe3" src="./img/recipe1.jpg"></a>
+			<a><img class="recipepics" alt="recipe3" src="/YORIZORI/img/recipe1.jpg"></a>
 			<div class="titleandlike">
 				<div><b>레시피명</b></div>
 				<div>따봉따봉!</div>
@@ -136,7 +136,7 @@ section {
 			<div class="chk">
 				<input class= "chkbox" type="checkbox" /><br />
 			</div>
-			<a><img class="recipepics" alt="recipe4" src="./img/recipe1.jpg"></a>
+			<a><img class="recipepics" alt="recipe4" src="/YORIZORI/img/recipe1.jpg"></a>
 			<div class="titleandlike">
 				<div><b>레시피명</b></div>
 				<div>따봉따봉!</div>
@@ -147,7 +147,7 @@ section {
 			<div class="chk">
 				<input class= "chkbox" type="checkbox" /><br />
 			</div>
-			<a><img class="recipepics" alt="recipe4" src="./img/recipe1.jpg"></a>
+			<a><img class="recipepics" alt="recipe4" src="/YORIZORI/img/recipe1.jpg"></a>
 			<div class="titleandlike">
 				<div><b>레시피명</b></div>
 				<div>따봉따봉!</div>
@@ -157,7 +157,7 @@ section {
 			<div class="chk">
 				<input class= "chkbox" type="checkbox" /><br />
 			</div>
-			<a><img class="recipepics" alt="recipe4" src="./img/recipe1.jpg"></a>
+			<a><img class="recipepics" alt="recipe4" src="/YORIZORI/img/recipe1.jpg"></a>
 			<div class="titleandlike">
 				<div><b>레시피명</b></div>
 				<div>따봉따봉!</div>
@@ -167,7 +167,7 @@ section {
 			<div class="chk">
 				<input class= "chkbox" type="checkbox" /><br />
 			</div>
-			<a><img class="recipepics" alt="recipe4" src="./img/recipe1.jpg"></a>
+			<a><img class="recipepics" alt="recipe4" src="/YORIZORI/img/recipe1.jpg"></a>
 			<div class="titleandlike">
 				<div><b>레시피명</b></div>
 				<div>따봉따봉!</div>
@@ -177,7 +177,7 @@ section {
 			<div class="chk">
 				<input class= "chkbox" type="checkbox" /><br />
 			</div>
-			<a><img class="recipepics" alt="recipe4" src="./img/recipe1.jpg"></a>
+			<a><img class="recipepics" alt="recipe4" src="/YORIZORI/img/recipe1.jpg"></a>
 			<div class="titleandlike">
 				<div><b>레시피명</b></div>
 				<div>따봉따봉!</div>
@@ -191,7 +191,7 @@ section {
 		</div> -->
 
 	</section>
-	<%@ include file="../../form/footer.jsp"%>
+	<%@ include file="/form/footer.jsp"%>
 
 </body>
 </html>

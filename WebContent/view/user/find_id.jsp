@@ -35,7 +35,7 @@ section{
 
 </style>
 <body>
-<%@ include file ="../../form/header.jsp" %>
+<%@ include file ="/form/header.jsp" %>
 <section>
 <div id="box">
 	<span><b class="message">이메일이 발송되었습니다.</b></span><br/>
@@ -46,7 +46,7 @@ section{
 
 </section>
 
-<%@ include file ="../../form/footer.jsp" %>
+<%@ include file ="/form/footer.jsp" %>
 
 </body>
 </html>

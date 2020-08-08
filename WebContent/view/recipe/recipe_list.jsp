@@ -169,8 +169,7 @@ input#recipe_search{
 
 </head>
 <body>
-	<%@ include file="../../form/header.jsp"%>
-
+	<%@ include file="/form/header.jsp"%>
 	<section>
 
 		<div class="search">
@@ -221,11 +220,18 @@ input#recipe_search{
 										href="recipe.do?command=recipe_detail&recipe_no=${dto.recipe_no }">${dto.recipe_title }</a>
 									』
 								</div>
-								<div class="list_card_like">
-									<img
-										onclick="location.href='recipe.do?command=recipe_detail&recipe_no=${dto.recipe_no }'"
-										class="like_icon" src="/YORIZORI/img/recipe/like_icon.png" />
-									<span class="like_text">${dto.recipe_likecount}</span>
+								<div class="list_card_content">
+									<div class="list_card_title">
+										<br> 『<a class="list_card_title_a"
+											href="recipe.do?command=recipe_detail&recipe_no=${dto.recipe_no }">${dto.recipe_title }</a>
+										』
+									</div>
+									<div class="list_card_like">
+										<img
+											onclick="location.href='/YORIZORI/recipe.do?command=recipe_detail&recipe_no=${dto.recipe_no }'"
+											class="like_icon" src="/YORIZORI/img/recipe/like_icon.png" />
+										<span class="like_text">${dto.recipe_likecount}</span>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -304,9 +310,9 @@ input#recipe_search{
 
 			});
 
-	$setRows.submit();
-</script>
-	<%@ include file="../../form/footer.jsp"%>
+		$setRows.submit();
+	</script>
+	<%@ include file="/form/footer.jsp"%>
 
 </body>
 

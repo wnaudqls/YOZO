@@ -109,7 +109,7 @@ height:310px;
 	}
 </script>
 </head>
-<%@ include file="../../form/header.jsp"%>
+<%@ include file="/form/header.jsp"%>
 <body>
 	<section>
 		<form action="<%=request.getContextPath()%>/goods.do" method="post" id="goods_form">
@@ -151,6 +151,6 @@ height:310px;
 			</div>
 		</form>
 	</section>
-	<%@ include file="../../form/footer.jsp"%>
+	<%@ include file="/form/footer.jsp"%>
 </body>
 </html>

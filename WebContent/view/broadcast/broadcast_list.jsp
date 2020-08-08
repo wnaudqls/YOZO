@@ -22,7 +22,7 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 </head>
 <body>
-<%@include file="../../form/header.jsp" %>
+<%@include file="/form/header.jsp" %>
 <hr>
 	<h1 id="title">방송 예약하기</h1>
 	<%
@@ -84,12 +84,12 @@
 	<table id="calendar">
 		<caption>
 			<!--화살표 두개 : 년도가 바뀌는 거고 화살표 하나 : 월이 바뀌는거야 -->
-			<a href="broadcast.do?command=broadcast&year=<%=year-1%>&month=<%=month%>">▼</a>
-			 <a href="broadcast.do?command=broadcast&year=<%=year%>&month=<%=month - 1%>">↓</a> 
+			<a href="/YORIZORI/broadcast.do?command=broadcast&year=<%=year-1%>&month=<%=month%>">▼</a>
+			 <a href="/YORIZORI/broadcast.do?command=broadcast&year=<%=year%>&month=<%=month - 1%>">↓</a> 
 				<span class="y"><%=year%></span>년 
 				<span class="m"><%=month%></span>월 
-				<a href="broadcast.do?command=broadcast&year=<%=year%>&month=<%=month + 1%>">↑</a> 
-				<a href="broadcast.do?command=broadcast&year=<%=year + 1%>&month=<%=month%>">▲</a>
+				<a href="/YORIZORI/broadcast.do?command=broadcast&year=<%=year%>&month=<%=month + 1%>">↑</a> 
+				<a href="/YORIZORI/broadcast.do?command=broadcast&year=<%=year + 1%>&month=<%=month%>">▲</a>
 
 		</caption>
 		<tr>
@@ -127,7 +127,7 @@
 				  <a class="countview" href="javascript:void(0);" onclick="select(<%=year%>, <%=month%>, <%=i%>);">
 					 <%=i%>
 				 </a> 
-				<a href="broadcast_list.jsp?year=<%=year%>&month=<%=month%>&date=<%=i%>"></a>
+				<a href="/YORIZORI/broadcast_list.jsp?year=<%=year%>&month=<%=month%>&date=<%=i%>"></a>
 				<div class="clist">	
 				</div>
 			</td>
@@ -150,7 +150,7 @@
 	</table>
 
 	<div id="down">
-		<%@include file="../../form/footer.jsp" %>
+		<%@include file="/form/footer.jsp" %>
 	</div>
 	<%-- 
 	<%@include file="./broadcast_selectlist.jsp" %>
@@ -160,7 +160,7 @@
 @import url("view/broadcast/css/normal.css");
 </style>
 
-<script type="text/javascript" src="<%=request.getContextPath()%>/view/broadcast/js/broadcast_check.js">
+<script type="text/javascript" src="<%=request.getContextPath()%>/YORIZORI/view/broadcast/js/broadcast_check.js">
 </script>
 
 </html>
