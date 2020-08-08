@@ -169,7 +169,7 @@
     .show {display:block;}
 </style>
 <!-- <script type="text/javascript" src="../resouces/js/jquery-3.5.1.min.js"></script> -->
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js">\</script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
 
 	$(document).ready(function() {
@@ -223,16 +223,48 @@
 		        	}
 		    	}
 			}
-
+function jsp_go(f){
+	f.action = "recipe.do"
+	f.submit
+}
 </script>
 </head>
 <body>
 <%@ include file="../../form/header.jsp" %>
+<div class="search">
+		<form  action="/YORIZORI/recipe.do" method="post">
+			<input type="hidden" name="command" value="recipe_search">
+			<input type="text" placeholder ="레시피 검색" id="recipe_search" name = "recipe_title">
+			<input type="submit" value="검색" class="btn">
+		</form>
+</div>		
+		
+		
+			<!--<fieldset>
+		
+			
+				<legend class = " hidden">레시피 검색 필드 </legend>			
+				<label class = "hidden">검색분류</label>
+				<select name ="f" >
+					<option value="title">제목</option>
+					<option value="recipeDetail">내용검색</option>
+				</select>
+				<label class="hidden" >검색어</label>
+				<input type="text" name="q" value =""/>
+				<input class= "btn-btn-search" type= "submit" value="검색" >
+
+			</fieldset>-->
+						
+
+
+
+
+<!-- 
     <div class="search">
         <input type="search" name="search" placeholder="레시피 검색">
         <button class="btn">검색</button>
-        
-    </div>
+    </div> -->
+    
     <video oncontextmenu="return false;" id="myVideo" height = "600"width="100%" autoplay muted loop ">
         <source src="<%=request.getContextPath()%>/img/main/main_video.mp4" type="video/mp4">
     </video>

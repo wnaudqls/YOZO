@@ -125,9 +125,12 @@ td {
 	margin-top: 10px;
 }
 
+
+
 .off-screen {
 	display: none;
 }
+
 
 .btn { /* 버튼  */
 	width: 70px;

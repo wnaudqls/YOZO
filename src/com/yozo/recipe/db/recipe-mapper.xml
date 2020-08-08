@@ -3,7 +3,6 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="recipe">
-
    <delete id="muldelete" parameterType="map">
    	DELETE FROM RECIPE
    	WHERE RECIPE_NO IN 
@@ -71,4 +70,21 @@
 		FROM RECIPE 
 		WHERE RECIPE_NO= #{recipe_no}
 	</select>
+     <select id="search" resultType="recipeDto" parameterType="String">
+     SELECT 
+      RECIPE_NO,
+      RECIPE_MAIN_PHOTO,
+      MEMBER_ID,
+      RECIPE_TITLE,
+      RECIPE_DETAIL,
+      RECIPE_REGDATE,
+      RECIPE_READCOUNT,
+      RECIPE_MATERIAL_ONE,
+      CATE_THEME_NO,
+      CATE_KIND_NO,
+      RECIPE_MATERIAL,
+      RECIPE_LIKECOUNT 
+      FROM RECIPE
+      WHERE RECIPE_TITLE LIKE '%'||#{txt}||'%'
+   </select>
 </mapper>
