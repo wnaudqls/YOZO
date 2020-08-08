@@ -51,6 +51,7 @@ foreign key(MEMBER_ID) references member(MEMBER_ID);
 
 select * from cart where member_id = 'admin';
 select * from goods;
+select * from cart;
 
 delete from cart where member_id = 'admin';
 ROLLBACK

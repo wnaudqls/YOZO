@@ -124,8 +124,46 @@ td {
 .list_card_title_a {
 	margin-top: 10px;
 }
-.off-screen{
-	display:none;
+/* 페이징 css */
+.off-screen {
+	display: none;
+}
+
+/* 검색창 css */
+.search {
+	width: 36%;
+	/* height: 40px; */
+	margin: 10px auto;
+	min-width: 100%;
+	/* position: absolute; */
+	/* margin-top: 17%; */
+	z-index: 1;
+}
+
+[name="search"] {
+	width: 500px;
+	height: 50px;
+	font-size: 30px;
+}
+
+.btn {
+	height: 50px;
+	line-height: 56px;
+	background-color: #F5A9A9;
+	color: #FAFAFA;
+}
+
+.search img {
+	width: 70px;
+	height: 35px;
+	border-right: 1px solid #c2c2c2;
+	border-top: 1px solid #c2c2c2;
+	border-bottom: 1px solid #c2c2c2;
+	cursor: pointer;
+}
+input#recipe_search{
+	height: 45px;
+	
 }
 </style>
 
@@ -134,6 +172,16 @@ td {
 	<%@ include file="../../form/header.jsp"%>
 
 	<section>
+
+		<div class="search">
+			<form action="/YORIZORI/recipe.do" method="post">
+				<input type="hidden" name="command" value="recipe_search"> <input
+					type="text" placeholder="레시피 검색" id="recipe_search"
+					name="recipe_title"> <input type="submit" value="검색"
+					class="btn">
+			</form>
+		</div>
+
 		<c:if test="${rdto.member_role eq '관리자' }">
 
 			<div id="btns">
@@ -160,7 +208,7 @@ td {
 
 				<c:otherwise>
 					<c:forEach items="${list }" var="dto">
-						<div class="list_card eval-contents" >
+						<div class="list_card eval-contents">
 							<div class="list_card_img">
 								<a
 									href="recipe.do?command=recipe_detail&recipe_no=${dto.recipe_no }"><img
@@ -190,7 +238,7 @@ td {
 
 		</div>
 	</section>
-<script>
+	<script>
 	var $setRows = $('#setRows');
 
 	$setRows
