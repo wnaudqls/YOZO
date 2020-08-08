@@ -267,7 +267,6 @@ window.onclick = function(event){
             <c:if test="${rdto.member_role eq '관리자' }">
             	<img class="admin finger" alt="logo" src="/YORIZORI/img/mapicon.png" onclick="location.href='<%=request.getContextPath()%>/admin.do?command=list'">
             </c:if>
-            
         </nav>
         
         <!-- <input type="button" value="checking....." id="authBtn"> -->
