@@ -43,6 +43,18 @@ foreign key(MEMBER_ID) references member(MEMBER_ID);
 -- member의 userid와 cart의 userid가 같고, product의 product_id와 cart의 product_id가 같을때
 -- 즉, 회원의 아이디와 상품을 사려는 회원이 같고, 상품의 번호와 카트의 번호가 같을때 
 
+
+
+
+
+
+
+
+
+
+
+
+
   select MEMBER_NAME, GOODS_TITLE, GOODS_PRICE, amount, GOODS_PRICE*amount money
   from member m, goods p, cart c
   where m.MEMBER_ID=c.MEMBER_ID and p.GOODS_NO=c.GOODS_NO;
@@ -51,6 +63,7 @@ foreign key(MEMBER_ID) references member(MEMBER_ID);
 select * from cart;
 select * from cart where member_id = 'admin';
 select * from goods;
+select * from cart;
 
 delete from cart where member_id = 'admin';
 ROLLBACK

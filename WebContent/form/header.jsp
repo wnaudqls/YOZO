@@ -205,8 +205,6 @@ window.onclick = function(event){
 
 <%
 	MemberDto dto = (MemberDto)session.getAttribute("rdto");
-	String kakaonickname = request.getParameter("kakaonickname");
-    session.setAttribute("kakaonickname", kakaonickname);
 
 %>
 <header id= header> <!-- 메인 아이콘, 유저아이콘 -->
@@ -219,8 +217,10 @@ window.onclick = function(event){
 <%
 	if (dto == null) {
 %>
+
+
 		<div class = "dropuserdown">
-				<img onclick = "location.href='<%request.getContextPath();%>/YORIZORI/user.do?command=loginform'" class="usericon" alt="logo" src="/YORIZORI/img/usericon.png">
+				<img onclick = "location.href='<%=request.getContextPath()%>/user.do?command=loginform'" class="usericon" alt="logo" src="/YORIZORI/img/usericon.png">
 		</div>		
 <%
 	} else if (dto != null) {
@@ -229,9 +229,10 @@ window.onclick = function(event){
 		        	<span id="loginStatus">${rdto.member_nick } 님이 로그인하였습니다.</span>
 		            <img onclick = "dropuser()" class="usericon"alt="logo" src="/YORIZORI/img/usericon.png">
 		            <div id="dropuser_content" class = "dropuser_content">
-		                <a href="">개인정보수정</a>
+		                <a href="<%request.getContextPath();%>/YORIZORI/user.do?command=updateform">개인정보수정</a>
 		                <a href="">나의레시피</a>
 		                <a href="" class="useId">
+
 			                
 							    <input type="hidden" name="memberId" id="memberId" value="${rdto.member_id }"/>
 							    <input type="submit" value="나의 장바구니"/>
@@ -266,7 +267,6 @@ window.onclick = function(event){
             <c:if test="${rdto.member_role eq '관리자' }">
             	<img class="admin finger" alt="logo" src="/YORIZORI/img/mapicon.png" onclick="location.href='<%=request.getContextPath()%>/admin.do?command=list'">
             </c:if>
-            
         </nav>
         
         <!-- <input type="button" value="checking....." id="authBtn"> -->
