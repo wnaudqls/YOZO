@@ -57,7 +57,9 @@ public class RecipeController extends HttpServlet {
 				System.out.println("list어딨어ㅡㅡ");
 			}
 
+
 			System.out.println(list);
+
 
 			/* System.out.println(list.get(0)); */
 

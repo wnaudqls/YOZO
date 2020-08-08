@@ -29,6 +29,7 @@ public class RecipeBiz {
 		return dao.search(txt);
 	}
 
+
 	public int multiDelte(String[] recipe_no) {
 		return dao.multiDelete(recipe_no);
 
