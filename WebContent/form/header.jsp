@@ -186,27 +186,17 @@ window.onclick = function(event){
     }
 }
 
-//메뉴 클릭 시 로그인이 필요한 경우 로그인으로 이동 기능 작성 중 *************************
 
-
-//---------페이스북 로그인 확인 
-/* FB.getLoginStatus(function(response) {
-                    if(response.status === 'connected') {
-                        document.querySelector('#authBtn').value = "Logout";
-                    } else {
-                        document.querySelector('#authBtn').value = "Login";
-                    }
-                })
- */
 
 </script>
 </head>
 <body>
 
-<%
-	MemberDto dto = (MemberDto)session.getAttribute("rdto");
+<% MemberDto dto = (MemberDto)session.getAttribute("rdto");
 
 %>
+
+
 <header id= header> <!-- 메인 아이콘, 유저아이콘 -->
         <img id="mainicon" class="mainlogo finger" alt="logo" src="/YORIZORI/img/mainicon.png" onclick="location.href='http://qclass.iptime.org:8787/YORIZORI/view/main/main.jsp'"><br>
   
@@ -263,7 +253,7 @@ window.onclick = function(event){
             </div>
             <!--유정 goods onclick 건들임 -->
             <img class="goods finger" alt="logo" src="/YORIZORI/img/goodsicon.png" onclick="location.href='<%request.getContextPath();%>/YORIZORI/goods.do?command=goodslist'">
-            <img class="map finger" alt="logo" src="/YORIZORI/img/mapicon.png" onclick = "location.href = '<%request.getContextPath();%>/YORIZORI/view/map/map.jsp'">
+            <img class="map finger" alt="logo" src="/YORIZORI/img/mapicon.png" onclick = "location.href = '<%request.getContextPath();%>/YORIZORI/user.do?command=moveMap'">
             <c:if test="${rdto.member_role eq '관리자' }">
             	<img class="admin finger" alt="logo" src="/YORIZORI/img/mapicon.png" onclick="location.href='<%=request.getContextPath()%>/admin.do?command=list'">
             </c:if>

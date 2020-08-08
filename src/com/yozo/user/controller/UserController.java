@@ -79,20 +79,22 @@ public class UserController extends HttpServlet {
 			if (rdto != null) {
 				//세션만들기
 				session.setAttribute("rdto", rdto);			
-				session.setMaxInactiveInterval(10*60);	
+				session.setMaxInactiveInterval(1000*60);	
 
-				System.out.println("세션 정보 : "+ session);
+				System.out.println("세션 정보 : "+ session.getId());
+				System.out.println("세션 정보 : "+ session.getCreationTime());
+				System.out.println("세션 정보 : "+ session.getMaxInactiveInterval());
 				
 				PrintWriter out = response.getWriter();
 				out.println("<script type='text/javascript'>alert('계정이 등록 되었습니다'); </script>");
 				
-				request.setAttribute("session", session);
 				
 				RequestDispatcher dispatch = request.getRequestDispatcher("user.do?command=main");
 				dispatch.forward(request, response);
 				
 			} else {
-				
+				session.setAttribute("rdto", rdto);			
+				session.setMaxInactiveInterval(1000*60);
 				System.out.println("로그인 실패");
 				
 				String s = "<script type='text/javascript'>" + "alert('ID, PW를 확인해 주세요');" + "location.href='view/user/login.jsp';"
@@ -101,8 +103,17 @@ public class UserController extends HttpServlet {
 				
 			}
 			
+		} else if (command.equals("moveMap")) {
 			
-		
+			//RequestDispatcher dispatch = request.getRequestDispatcher("/view/map/map.jsp");
+			//dispatch.forward(request, response);
+			
+			/*
+			 * session.setAttribute("rdto", rdto); session.setMaxInactiveInterval(1000*60);
+			 */
+			
+			System.out.println("컨트롤러 무브맵");
+			response.sendRedirect("/YORIZORI/view/map/map.jsp");
 			
 		} else if (command.equals("logout")) {
 
@@ -245,7 +256,8 @@ public class UserController extends HttpServlet {
 		} else if (command.equals("updateform")) {
 			
 			
-			 response.sendRedirect("/YORIZORI/view/user/edit_account.jsp");
+			 RequestDispatcher dispatch = request.getRequestDispatcher("/view/user/edit_account");
+			 dispatch.forward(request, response);
 			
 			
 			

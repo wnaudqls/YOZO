@@ -9,7 +9,7 @@
 <meta charset="UTF-8">
 <title>개인정보수정</title>
 
-	<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+	<script type="text/javascript" src="https://code다른 페이지 이동 session.jquery.com/jquery-3.5.1.min.js"></script>
 	
 	<script type="text/javascript">
 	var rnum=0;

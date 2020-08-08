@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@page import="com.yozo.user.dto.MemberDto"%>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -46,6 +48,7 @@
 #pagination .on {font-weight: bold; cursor: default;color:#777;}
 </style>
 <body>
+<% MemberDto rdto = (MemberDto)session.getAttribute("rdto"); %>
  <div class="map_wrap">
         <div id= "map" style= "width:100%; height:100%; position:relative; overflow:hidden;">
         </div>
