@@ -43,7 +43,7 @@ section {
 
 #btns {
 	text-align: right;
-	margin-right: 50px;
+	margin-right: 400px;
 }
 
 /* 리스트 상품들 */
@@ -115,11 +115,10 @@ section {
 .btn_basket:hover {
 	background: #333;
 }
-
-/*굿즈 목록 리스트 큰테두리*/
+*굿즈 목록 리스트 큰테두리*/
 .goods_list {
-	/* border: 1px solid black; */
-	margin: 0 10%;
+	border: 1px solid red;
+	/* 	margin: 0 10%; */
 }
 
 #warning { /* warning이미지 */
@@ -141,7 +140,7 @@ display: inline-block;} */
 	border: 1px solid black;
 	border-radius: 25px;
 	box-sizing: border-box;
-	margin: 50px;
+	margin-top: 50px;
 }
 
 #checkbox { /*체크박스 */
@@ -150,14 +149,14 @@ display: inline-block;} */
 	margin-top: 10px;
 }
 
-#goods_card_wrapper { /* 상품카드 감싸는 div  */
-	float: left;
-}
-
+/* #goods_card_wrapper { /* 상품카드 감싸는 div  */
+/* 	float: left; */
+/* } */
 .goods_card_img { /* 이미지 감싸는 div */
 	width: 250px;
 	height: 230px;
 	border-radius: 25px 25px 0 0;
+
 }
 
 .goods_img_tag { /* 이미지 태그 */
@@ -183,31 +182,41 @@ display: inline-block;} */
 .paging {
 	position: relative;
 }
+.list_card{
+display: inline-block;
+}
+
+#muldelform{
+	/* border: 1px solid red; */
+	width : 300px;
+	height : 330px;
+}
 </style>
 
 <%@ include file="../../form/header.jsp"%>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
 	function alldel() {
-		var msg = "정말로 전체삭제를 하시겠습니까? 확인을 누르시면 전체체크됩니다.";
+		var msg = "정말로 전체삭제를 하시겠습니까? 삭제버튼을 누르시면 삭제됩니다.";
 		var flag = confirm(msg);
-		if(flag==true) {
+		if (flag == true) {
 			allchk();
-		}else {
+			/* location.href="/YORIZORI/goods.do?command=muldel&goods_no=${dto.goods_no}" */
+		} else {
 			alert("삭제가 취소되었습니다.")
 		}
-		
-	}
-	
-	function allchk(){
-		var chks = document.getElementsByName("chk");
-		console.log(chks);
-		for(var i = 0; i < chks.length; i++){
-			chks[i].checked = true;
-		}
-		alert("삭제하시려면 삭제버튼을 눌러주세요.");
+
 	}
 
+	function allchk() {
+		var chks = document.getElementsByName("chk");
+		console.log(chks);
+		for (var i = 0; i < chks.length; i++) {
+			chks[i].checked = true;
+		}
+		/* 		location.href="/YORIZORI/goods.do?command=muldel&goods_no=${dto.goods_no}" */
+	}
+/* 
 	$(function() {
 		$("#muldelform").submit(function() {
 			if ($("#muldelform input:checked").length == 0) {
@@ -215,32 +224,31 @@ display: inline-block;} */
 				return false;
 			}
 		})
-	})
+	}) */
+	
+	function confirmchk(){
+	var chks = document.getElementsByName("chk");
+	console.log(chks);
+	if($("#muldelform input:checked").length == 0){
+		alert("하나 이상 체크해주시기 바랍니다.");
+	}else{
+		$("#muldelform").submit();
+	}
+};
 </script>
 <body>
 	<section>
-
-		<form action="<%=request.getContextPath()%>/goods.do" method="post"
-			id="muldelform">
-			<input type="hidden" name="command" value="muldel" /> <input
-				type="hidden" name="goods_no" value="${dto.goods_no}" />
-			<c:if test="${rdto.member_role eq '관리자' }">
-				<div id="btns">
-					<input class="btn" type="button" value="등록"
-						onclick="location.href='<%request.getContextPath();%>/YORIZORI/goods.do?command=goodsinsertform'" />
-					<input class="btn" type="submit" value="삭제" /> <input class="btn"
-						type="button" value="전체삭제" onclick="alldel();" />
-				</div>
-			</c:if>
-		</form>
-
-		<!-- value="?"값을 바꿔주면 한페이지 당 게시글 수를 조절 가능  -->
-		<form action="" id="setRows">
-			<input type="hidden" name="rowPerPage" value="4">
-		</form>
-
+		<c:if test="${rdto.member_role eq '관리자' }">
+			<div id="btns">
+				<input class="btn" type="button" value="등록"
+					onclick="location.href='<%request.getContextPath();%>/YORIZORI/goods.do?command=goodsinsertform'" />
+				<input class="btn" type="submit" value="삭제" onclick="confirmchk();"/> <input type="hidden"
+					name="goods_no" value="${dto.goods_no }" /> <input class="btn"
+					type="button" value="전체삭제" onclick="alldel();" />
+			</div>
+		</c:if>
 		<div id="products" class="goods_list">
-			<!--썸네일 / 제목 / 가격 / 장바구니담기버튼 -->
+
 			<c:choose>
 				<c:when test="${empty list }">
 					<div class="nosection">
@@ -251,9 +259,13 @@ display: inline-block;} */
 
 				<c:otherwise>
 					<c:forEach items="${list }" var="dto">
+						<div class="list_card">
+						<form action="<%=request.getContextPath()%>/goods.do"
+							method="post" id="muldelform">
+							<input type="hidden" name="command" value="muldel" /> <input
+								type="hidden" name="goods_no" value="${dto.goods_no}" />
 
-						<div id="goods_card_wrapper">
-
+							<!--썸네일 / 제목 / 가격 / 장바구니담기버튼 -->
 							<div class="goods_card eval-contents">
 								<div>
 									<c:if test="${rdto.member_role eq '관리자' }">
@@ -262,6 +274,7 @@ display: inline-block;} */
 									</c:if>
 								</div>
 
+
 								<div class="goods_card_img">
 									<%-- <a href="goods.do?command='goodsdetail'"><img src="/YORIZORI/ckstorage/images/${dto.goods_main_photo }" class="goods_img_tag" alt="굿즈메인사진"/></a> --%>
 									<%-- <a href="goods.do?command='goodsdetail'"><img src="${path }/${dto.goods_main_photo }" class="goods_img_tag" alt="굿즈메인사진"/></a> --%>
@@ -269,39 +282,54 @@ display: inline-block;} */
 										href="goods.do?command=goodsdetail&goods_no=${dto.goods_no }"><img
 										src="imgtest/${dto.goods_main_photo }" class="goods_img_tag"
 										alt="굿즈메인사진" /></a>
-								</div>
-								<div class="goods_card_content">
 									<p>${dto.goods_title }</p>
 									<p>${dto.goods_price }원</p>
-									<form
-										action="<%request.getContextPath();%>/YORIZORI/CartInsert.do?"
-										method="POST">
-										<input type="hidden" name="memberId"
-											value="${rdto.member_id }" /> <input type="hidden"
-											name="goods_no" value="${dto.goods_no }" /> <input
-											type="hidden" name="goods_title" value="${dto.goods_title }" />
-										<input type="hidden" name="goods_price"
-											value="${dto.goods_price }" /> <input type="number"
-											name="amount" value="1" /> <input type="hidden"
-											name="goods_main_photo" value="${dto.goods_main_photo }" />
-										<input type="submit" value="장바구니 담기" />
-									</form>
 								</div>
 							</div>
-						</div>
 
+
+						</form>
+						<form
+							action="<%request.getContextPath();%>/YORIZORI/CartInsert.do"
+							method="POST">
+							<input type="hidden" name="memberId" value="${rdto.member_id }" />
+							<input type="hidden" name="goods_no" value="${dto.goods_no }" />
+							<input type="hidden" name="goods_title"
+								value="${dto.goods_title }" /> <input type="hidden"
+								name="goods_price" value="${dto.goods_price }" /> <input
+								type="hidden" name="amount" value="1" /> <input type="hidden"
+								name="goods_main_photo" value="${dto.goods_main_photo }" /> <input
+								type="submit" value="장바구니 담기" />
+						</form>
+						</div>
 					</c:forEach>
 				</c:otherwise>
 			</c:choose>
-		</div>
 
+		</div>
+		<%-- <form action="<%request.getContextPath();%>/YORIZORI/CartInsert.do"
+				method="POST">
+				<input type="text" name="memberId" value="${rdto.member_id }" />
+				<input type="text" name="goods_no" value="${dto.goods_no }" /> <input
+					type="text" name="goods_title" value="${dto.goods_title }" /> <input
+					type="text" name="goods_price" value="${dto.goods_price }" /> <input
+					type="text" name="amount" value="1" /> <input type="text"
+					name="goods_main_photo" value="${dto.goods_main_photo }" /> <input
+					type="submit" value="장바구니 담기" />
+			</form> --%>
 	</section>
+
+
+	<form action="" id="setRows">
+		<input type="hidden" name="rowPerPage" value="8">
+	</form>
 	<!-- 푸터 -->
 
 
 
-	<%@ include file="../../form/footer.jsp"%>
 </body>
+<div id="paging"></div>
+<%@ include file="../../form/footer.jsp"%>
 <script>
 	var $setRows = $('#setRows');
 
@@ -319,8 +347,8 @@ display: inline-block;} */
 				}
 				$('#nav').remove();
 				var $products = $('#products');
-
-				$products.after('<div id="nav" class="paging">');
+				var $products2 = $("#paging");
+				$products2.after('<div id="nav" class="paging">');
 
 				var $tr = $($products).find('.eval-contents');
 				var rowTotals = $tr.length;

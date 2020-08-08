@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.yozo.goods.biz.CartService;
+import com.yozo.goods.dao.CartDAO;
 
 /**
  * Servlet implementation class CartDeleteController
@@ -31,6 +32,10 @@ public class CartDeleteController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
+		CartDAO dao = new CartDAO();
+		
+		System.out.println("카트딜리트컨트롤러왔음");
+		String command = request.getParameter("command");
 		
 		String memberId = request.getParameter("memberId");
 		int goods_no = Integer.parseInt(request.getParameter("goods_no"));
@@ -38,7 +43,7 @@ public class CartDeleteController extends HttpServlet {
 		int result = new CartService().cartDelete(memberId, goods_no); 
 		
     	String loc = "";
-		String msg = result >0 ? "성공": "실패!";
+		String msg = result >0 ? "삭제하는데 성공하였습니다.": "삭제하는데 실패하였습니다.";
 		if(result > 0) {
 			loc = "/goods.do?command=goodslist"; 
 		
@@ -51,6 +56,23 @@ public class CartDeleteController extends HttpServlet {
 		request.setAttribute("loc", loc);
 		
 		request.getRequestDispatcher("/view/goods/msg.jsp").forward(request, response);
+		
+		if(command.equals("cartmuldel")) {
+			String [] chk = request.getParameterValues("chk");
+			String member_Id = request.getParameter("memberId");
+			System.out.println("chk : " + chk + "member_Id :" + member_Id);
+			
+			int res = dao.multiDelete(member_Id, chk);
+			if(res > 0) {
+				System.out.println("삭제완료");
+			}else {
+				
+			}
+			
+		}
 	}
+	
+	
+	
 
 }

@@ -11,7 +11,7 @@ import com.yozo.user.dto.MemberDto;
 
 
 public class AdminDao extends SqlMapConfig{
-   private String namespace = "admin-mapper.";
+   private String namespace = "admin.";
    
    public List<MemberDto> selectList(){
 	  System.out.println("dao list입장");
@@ -22,6 +22,7 @@ public class AdminDao extends SqlMapConfig{
     	 System.out.println("dao list 중간");
          session = getSqlSessionFactory().openSession(false);
          list = session.selectList(namespace+"selectList");
+         System.out.println(list.get(0).getMember_id());
       } catch (Exception e) {
     	 System.out.println("dao errors");
          e.printStackTrace();
@@ -69,13 +70,14 @@ public class AdminDao extends SqlMapConfig{
 	  System.out.println("업데이트 입장");
       SqlSession session = null;
       int res = 0;
+      System.out.println("아이디" +dto.getMember_id());
       
       try {
     	  System.out.println("중간");
          session = getSqlSessionFactory().openSession(false);
          System.out.println(dto.getMember_role());
          System.out.println(session);
-         res = session.update("admin-mapper.update",dto);
+         res = session.update("admin.update",dto);
          System.out.println(res);
          System.out.println("왓냐?");
       } catch (Exception e) {

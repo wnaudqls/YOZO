@@ -28,16 +28,24 @@
 
 
 </script>
+
+<style type="text/css">
+	
+	#nickform {
+		text-align: center;
+	}
+</style>
+
 </head>
 <body>
 <%
 	String nicknotused = request.getParameter("nicknotused");
 %>
-
-	<table border="1">
+<div id="nickform">
+	<table>
 		<tr>
 			<td>
-				<input type="text" name="nick"/>
+				<input type="text" name="nick" readonly="readonly"/>
 			</td>
 		</tr>
 		<tr>
@@ -49,7 +57,7 @@
 			</td>
 		</tr>		
 	</table>
-	
+	</div>
 
 
 </body>

@@ -1,8 +1,11 @@
 package com.yozo.recipe.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import org.apache.commons.collections.map.HashedMap;
 import org.apache.ibatis.session.SqlSession;
 
 import com.yozo.common.SqlMapConfig;
@@ -116,7 +119,7 @@ public class RecipeDao extends SqlMapConfig {
 		}
 		return res;
 	}
-	
+
 	public List<RecipeDto> search(String txt) {
 		System.out.println("search dao 입장");
 		SqlSession session = null;
@@ -134,5 +137,29 @@ public class RecipeDao extends SqlMapConfig {
 		}
 		return list;
 	}
+
+	public int multiDelete(String[] recipe_no) {
+		SqlSession session = null;
+		int count = 0;
+		Map<String, String[]> map = new HashMap<>();
+		map.put("recipe_no", recipe_no);
+		
+		try {
+			session = getSqlSessionFactory().openSession(false);
+			count = session.delete(namespace+"muldelete", map);
+			if(count == recipe_no.length) {
+				session.commit();
+			}
+		} catch (Exception e) {
+			System.out.println("recipe dao에서 muldel오류");
+			e.printStackTrace();
+		}finally {
+			session.close();
+		}
+		
+		return count;
+	}
+	
+
 
 }
