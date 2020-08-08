@@ -259,6 +259,7 @@ img {vertical-align: middle;}
 
 </style>
 <!-- <script type="text/javascript" src="js/jquery-3.5.1.min.js"></script> -->
+
 <script type="text/javascript">
 
 	var i = 0;
@@ -283,7 +284,7 @@ img {vertical-align: middle;}
 		speech.pitch =1;
 		/*읽어준다*/
 		window.speechSynthesis.speak(speech);
-		SpeechToText();
+		//SpeechToText();
 	}
 
 	function SpeechToText() {
@@ -298,6 +299,7 @@ img {vertical-align: middle;}
 
 		recognition.continuous = true;
 		// 음성인식이 실행 될 때 실행됨
+		
 		recognition.onstart = function() {
 //			alert("음성인식 실행됨?")
 			alert("이제 말해주세요~");
@@ -313,7 +315,10 @@ img {vertical-align: middle;}
 		//계속대기 할 수 있는걸 찾아야되고
 		// 음성인식 결과를 반환할 때 사용된다.
 		
-		alert("음성인식 시작합니다~");
+		recognition.onerror = function(event) {
+			  console.log('error', event);
+			  recognition.start("다시시작");
+			};
 		recognition.onresult = function(event) {
 			//음성을 text 로 변환된 값
 			var transcript = event.results[i][0].transcript;
@@ -358,7 +363,7 @@ img {vertical-align: middle;}
 				alert(txt[j].innerText);
 //				alert(txt[j].innerText);
 				//recognition.pause();
-				//recognition.resume();
+				recognition.resume();
 				//recognition.stop();
 				//recognition.abort();
 				TextToSpeech(txt[j].innerText);
@@ -367,12 +372,13 @@ img {vertical-align: middle;}
 				//SpeechToText();
 				//recognition.start();
 				
+				
 			}else if(transcript.trim()=="이전"){
 				plusSlides(-1)
 				var txt=document.querySelectorAll('.text');
 				j--;
 //				alert(txt[j].innerText);
-				//recognition.pause();
+				recognition.pause();
 				//recognition.stop();
 				//recognition.abort();
 				TextToSpeech(txt[j].innerText);
@@ -382,7 +388,7 @@ img {vertical-align: middle;}
 			}else if(transcript.trim()=="다시"){
 				var txt=document.querySelectorAll('.text');
 //				alert(txt[j].innerText);
-				//recognition.pause();
+				recognition.pause();
 				//recognition.stop();
 				//recognition.abort();
 				TextToSpeech(txt[j].innerText);
@@ -417,7 +423,6 @@ img {vertical-align: middle;}
 
 		// 음성인식 시작
 		recognition.start();
-		
 		//alert("음성인식시작?")
 	}
 	
@@ -428,7 +433,7 @@ img {vertical-align: middle;}
 
 	<%@ include file="../../form/header.jsp"%>
 	<!-- 레시피 정보 -->
-
+8
 	<div class="section_top">
 		<div class="main_img_wrap">
 			<img class="main_img" alt="title_img" src="${dto.recipe_main_photo }">
@@ -463,9 +468,8 @@ img {vertical-align: middle;}
 			       <!--          <p style="text-align: center;"><span style="font-size: 14pt;"><b><span style="font-size: 24pt;">공지</span></b></span></p>
 			                <p style="text-align: center; line-height: 1.5;"><br />여기에 내용</p> -->
 			                <%@ include file="/view/recipe/modal.jsp"%>
-			                
-			                
-			                
+			           
+			               
 			            <div style="cursor:pointer;background-color:#DDDDDD;text-align: center;padding-bottom: 10px;padding-top: 10px;" onClick="close_pop();">
 			                <span class="pop_bt" style="font-size: 13pt;" >닫기         </span>
 			            </div>

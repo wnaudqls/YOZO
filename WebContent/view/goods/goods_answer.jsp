@@ -158,6 +158,7 @@
 			}
 			//대댓글, i는 몇번쨰 댓글인지
 			function rereply(i) {
+			alert("rereply(i):"+i)
 				/* alert("rereply실행!") */
 				/* 	 		var div1 = document.getElementsByClassName(".rereplybox");
 				 alert(div);
