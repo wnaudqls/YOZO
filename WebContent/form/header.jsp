@@ -2,11 +2,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
+
+  
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="shortcut icon" href="./img/favicon/yozofavicon.ico" type="image/x-icon">
 <title>요리조리</title>
 <style type="text/css">
 	 body {
@@ -61,6 +64,9 @@
         width: 70px;
         height: 70px;
         margin-left: 80px;
+    }
+    .admin finger{
+    	float:left;
     }
     .usericon {
         background-color:white;
@@ -202,7 +208,7 @@ window.onclick = function(event){
 
 %>
 <header id= header> <!-- 메인 아이콘, 유저아이콘 -->
-        <img id="mainicon" class="mainlogo finger" alt="logo" src="/YORIZORI/img/mainicon.png" onclick="location.href='<%request.getContextPath();%>/YORIZORI/view/main/main.jsp'"><br>
+        <img id="mainicon" class="mainlogo finger" alt="logo" src="/YORIZORI/img/mainicon.png" onclick="location.href='http://qclass.iptime.org:8787/YORIZORI/view/main/main.jsp'"><br>
   
 	
 		        
@@ -218,7 +224,7 @@ window.onclick = function(event){
 		</div>		
 <%
 	} else if (dto != null) {
-%>
+%><form action="<%request.getContextPath();%>/YORIZORI/list.do?">
     	<div class = "dropuserdown">
 		        	<span id="loginStatus">${rdto.member_nick } 님이 로그인하였습니다.</span>
 		            <img onclick = "dropuser()" class="usericon"alt="logo" src="/YORIZORI/img/usericon.png">
@@ -226,15 +232,17 @@ window.onclick = function(event){
 		                <a href="<%request.getContextPath();%>/YORIZORI/user.do?command=updateform">개인정보수정</a>
 		                <a href="">나의레시피</a>
 		                <a href="" class="useId">
-			                <form action="<%=request.getContextPath()%>/list.do?">
+
+			                
 							    <input type="hidden" name="memberId" id="memberId" value="${rdto.member_id }"/>
 							    <input type="submit" value="나의 장바구니"/>
-							</form>
+							
 						</a>
 		                <a href="">우리집냉장고</a>
 		                <a href="<%request.getContextPath();%>/YORIZORI/user.do?command=logout">로그아웃</a>
 		            </div>
        </div>
+       </form>
 
  <%
  	}
@@ -256,6 +264,10 @@ window.onclick = function(event){
             <!--유정 goods onclick 건들임 -->
             <img class="goods finger" alt="logo" src="/YORIZORI/img/goodsicon.png" onclick="location.href='<%request.getContextPath();%>/YORIZORI/goods.do?command=goodslist'">
             <img class="map finger" alt="logo" src="/YORIZORI/img/mapicon.png" onclick = "location.href = '<%request.getContextPath();%>/YORIZORI/view/map/map.jsp'">
+            <c:if test="${rdto.member_role eq '관리자' }">
+            	<img class="admin finger" alt="logo" src="/YORIZORI/img/mapicon.png" onclick="location.href='<%=request.getContextPath()%>/admin.do?command=list'">
+            </c:if>
+            
         </nav>
         
         <!-- <input type="button" value="checking....." id="authBtn"> -->

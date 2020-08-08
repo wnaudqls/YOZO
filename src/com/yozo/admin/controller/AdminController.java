@@ -4,11 +4,13 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.yozo.admin.dao.AdminDao;
 import com.yozo.user.dto.MemberDto;
@@ -38,12 +40,16 @@ public class AdminController extends HttpServlet {
         if(command.equals("list")) {
             List<MemberDto> list = dao.selectList();
             request.setAttribute("list", list);
+            System.out.println("디스패치 가기전 list 사이즈" +list.size());
             dispatch(url+"user_list.jsp", request, response);
         
         } else if (command.equals("update")) {
         	String txt =request.getParameter("member_id");
         	String txt2 = request.getParameter("member_role");
+        	
+        	System.out.println(txt + txt2);
         	MemberDto dto = new MemberDto();
+        	dto.setMember_id(txt);
         	if(txt2.equals("회원")) {
         		dto.setMember_role("관리자");
         	} else {
