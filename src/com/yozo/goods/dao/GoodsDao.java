@@ -222,6 +222,11 @@ public class GoodsDao extends SqlMapConfig {
 		try {
 			session = getSqlSessionFactory().openSession(false);
 			res = session.insert(namespace+"rereplyinsert", dto);
+			if(res>0) {
+				session.commit();
+			}else {
+				System.out.println("입력실패요ㅠ");
+			}
 		} catch (Exception e) {
 			System.out.println("goodsdao에서 rereplyInsert오류 ");
 			e.printStackTrace();

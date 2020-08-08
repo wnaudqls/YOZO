@@ -57,4 +57,4 @@ ROLLBACK
 commit
 
 insert into cart(member_id, goods_no, goods_title, goods_main_photo, goods_price, money, amount)
-values('admin', 1, 'TEST입니다', '썸네일', 500, 500 , 1);
+values('shm1113', 1, 'TEST입니다', '썸네일', 500, 500 , 1);
