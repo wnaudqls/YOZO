@@ -207,12 +207,10 @@ public class UserController extends HttpServlet {
 			 boolean res = dao.insert(dto);
 			 
 			 if (res) { 
-				 PrintWriter out = response.getWriter();
-				 out.println("<script>alert('계정이 등록 되었습니다.'); </script>");
+				 
 				 response.sendRedirect("/YORIZORI/view/user/login.jsp"); 
 			 } else { 
-				 PrintWriter out = response.getWriter();
-				 out.println("<script>alert('계정이 등록 되지 않았습니다.'); </script>");
+
 				 response.sendRedirect("history.back()"); 
 			 }
 			 
@@ -237,15 +235,29 @@ public class UserController extends HttpServlet {
 			boolean res = dao.insert(dto);
 			
 			if (res) { 
-				PrintWriter out = response.getWriter();
-				out.println("<script>alert('계정이 등록 되었습니다.'); </script>");
+
 				response.sendRedirect("/YORIZORI/view/user/login.jsp"); 
 			} else { 
-				PrintWriter out = response.getWriter();
-				out.println("<script>alert('계정이 등록 되지 않았습니다.'); </script>");
+
 				response.sendRedirect("history.back()"); 
 			}
-		}else if (command.equals("sendEmail")) {
+			
+		} else if (command.equals("updateform")) {
+			
+			
+			 response.sendRedirect("/YORIZORI/view/user/edit_account");
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+		} else if (command.equals("sendEmail")) {
 			
 
 			Properties props = System.getProperties();
