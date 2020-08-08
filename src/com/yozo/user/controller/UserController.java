@@ -245,7 +245,7 @@ public class UserController extends HttpServlet {
 		} else if (command.equals("updateform")) {
 			
 			
-			 response.sendRedirect("/YORIZORI/view/user/edit_account");
+			 response.sendRedirect("/YORIZORI/view/user/edit_account.jsp");
 			
 			
 			

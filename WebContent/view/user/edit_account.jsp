@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
     
 <% request.setCharacterEncoding("UTF-8");%>
-<% response.setContentType("text/html charset=UTF-8");%>
 
 <!DOCTYPE html>
 <html>
@@ -22,9 +21,7 @@
 		if (doc.value.trim() == "" || doc.value == null) {
 			alert("닉네임를 입력해 주세요!");
 		} else {
-			open("/YORIZORI/user.do?command=nickcheck&nick="+doc.value,
-					"",
-					"width=200, height=200");
+			open("/YORIZORI/user.do?command=nickcheck&nick="+doc.value, "", "width=200, height=200");
 		}
 	}
 		
