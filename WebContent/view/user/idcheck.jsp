@@ -28,13 +28,20 @@
 
 
 </script>
+<style type="text/css">
+	
+	#idform {
+		text-align: center;
+	}
+</style>
 </head>
 <body>
 <%
 	String idnotused = request.getParameter("idnotused");
 %>
 
-	<table border="1">
+<div id="idform">
+	<table>
 		<tr>
 			<td>
 				<input type="text" name="id"/>
@@ -49,7 +56,7 @@
 			</td>
 		</tr>		
 	</table>
-	
+	</div>
 
 
 </body>

@@ -63,7 +63,7 @@
             <div id="pagination"></div>
         </div>
     </div>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5fd97c285bc2fd92bcc414317fce278e&libraries=services"></script>
+<script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=ddb44644a1255220b68bd61afbc6251d&libraries=services"></script>
  <script>
     // 마커를 담을 배열입니다
     var markers = [];

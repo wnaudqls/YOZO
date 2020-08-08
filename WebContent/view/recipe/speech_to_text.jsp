@@ -72,6 +72,22 @@ function SpeechToText() {
      recognition.start();
 }
 
+	function next(){
+		
+	}
+	
+	function before(){
+		
+	}
+	
+	function repeat(){
+		
+	}
+	
+	function voiceend(){
+		
+	}
+
 </script>
 </head>
 <body>

@@ -56,3 +56,6 @@ delete  from goods;
 
 SELECT * FROM GOODS_SEQ;
 
+
+SELECT 
+

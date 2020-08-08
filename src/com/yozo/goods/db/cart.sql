@@ -48,7 +48,7 @@ foreign key(MEMBER_ID) references member(MEMBER_ID);
   where m.MEMBER_ID=c.MEMBER_ID and p.GOODS_NO=c.GOODS_NO;
   
   insert 
-
+select * from cart;
 select * from cart where member_id = 'admin';
 select * from goods;
 

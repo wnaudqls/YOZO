@@ -59,6 +59,15 @@
       FROM RECIPE 
       WHERE RECIPE_NO= #{recipe_no}
    </select>
+
+<!--레시피 멀티 딜리트 -->
+   <delete id="muldelete" parameterType="map">
+   	DELETE FROM RECIPE
+   	WHERE RECIPE_NO IN 
+   		<foreach item="recipe_no" collection="recipe_no" open="(" separator="," close=")">
+   			#{recipe_no}
+   		</foreach>
+   </delete>
    
  -->
 	<insert id="jsonInsert" parameterType="java.util.List">
