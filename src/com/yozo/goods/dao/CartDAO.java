@@ -80,27 +80,6 @@ public class CartDAO {
 		return result;
 	}
 
-	public int cartDelete(Connection conn, String memberId, int goods_no) {
-		int result = 0;
-		PreparedStatement pstmt = null;
-		String sql = "delete from cart where member_id = ? and goods_no = ?";
-
-		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, memberId);
-			pstmt.setInt(2, goods_no);
-		
-			result = pstmt.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}finally {
-			close(pstmt);
-		}
-		System.out.println(result);
-		return result;
-	}
-
-	
 	public int multiDelete(String member_id, String[] goods_no) {
 		int res = 0;
 		Connection conn = getConnection();
@@ -146,5 +125,63 @@ public class CartDAO {
 			}
 		}
 		return res;
+	}
+
+	public CartDTO cartInsertList(Connection conn, String memberId, int goods_no) {
+		CartDTO cartSearch = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+
+		String sql = "select * from cart where member_id = ? and goods_no = ?";
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, memberId);
+			pstmt.setInt(2, goods_no);
+
+			rset = pstmt.executeQuery();
+
+			if (rset.next()) {
+				cartSearch = new CartDTO();
+
+				cartSearch.setMember_id(rset.getString("member_id"));
+				cartSearch.setGoods_no(rset.getInt("goods_no"));
+				cartSearch.setGoods_title(rset.getString("goods_title"));
+				cartSearch.setGoods_main_photo(rset.getString("goods_main_photo"));
+				cartSearch.setGoods_price(rset.getInt("goods_price"));
+				cartSearch.setMoney(rset.getInt("money"));
+				cartSearch.setAmount(rset.getInt("amount"));
+			}
+			System.out.println(cartSearch);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return cartSearch;
+		
+	}
+
+	public int cartUpdate(Connection conn, String memberId, int goods_no, int amount, int addAmount) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = "update cart set amount=? where member_id = ? and goods_no = ?";
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, amount+addAmount);
+			pstmt.setString(2, memberId);
+			pstmt.setInt(3, goods_no);
+		
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		System.out.println(result);
+		return result;
 	}
 }

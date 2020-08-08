@@ -29,9 +29,16 @@ public class CartService {
 		return result;
 	}
 
-	public int cartDelete(String memberId, int goods_no) {
+	public CartDTO cartInsertList(String memberId, int goods_no) {
 		Connection conn = getConnection();
-		int result = cartDao.cartDelete(conn, memberId, goods_no);
+		CartDTO cartSearch = cartDao.cartInsertList(conn, memberId, goods_no);
+		close(conn);
+		return cartSearch;
+	}
+
+	public int cartUpdate(String memberId, int goods_no, int amount, int amount2) {
+		Connection conn = getConnection();
+		int result = cartDao.cartUpdate(conn, memberId, goods_no, amount, amount2);
 		if(result>0) commit(conn);
 		else rollback(conn);
 		close(conn);
