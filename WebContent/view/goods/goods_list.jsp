@@ -184,12 +184,14 @@ display: inline-block;} */
 }
 .list_card{
 display: inline-block;
+	width : 300px;
+	height : 380px;
 }
 
 #muldelform{
 	/* border: 1px solid red; */
-	width : 300px;
-	height : 330px;
+/* 	width : 300px;
+	height : 330px; */
 }
 </style>
 
