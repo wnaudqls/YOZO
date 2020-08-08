@@ -51,6 +51,14 @@ public class MemberDto {
 		this.member_nick = member_nick;
 		this.member_email = member_email;
 	}
+	
+	public MemberDto(int member_no, String member_id, String member_nick, String member_name, String member_addr) {
+		this.member_no = member_no;
+		this.member_id = member_id;
+		this.member_nick = member_nick;
+		this.member_name = member_name;
+		this.member_addr = member_addr;
+	}
 
 	public int getMember_no() {
 		return member_no;

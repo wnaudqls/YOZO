@@ -24,8 +24,7 @@ public class RecipeBiz {
 	public int delete(int recipe_no) {
 		return dao.delete(recipe_no);
 	}
-
-	public List<RecipeDto> search(String txt) {
-		return dao.search(txt);
+	public int multiDelte(String[] recipe_no) {
+		return dao.multiDelete(recipe_no);
 	}
 }

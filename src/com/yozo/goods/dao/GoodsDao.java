@@ -120,7 +120,7 @@ public class GoodsDao extends SqlMapConfig {
 		int count = 0;
 		//스트링 타입으로 스트링 배열 보낼 거!
 		Map<String, String[]> map = new HashMap<>();
-		map.put("goods_nos", goods_no);
+		map.put("goods_no", goods_no);
 		
 		
 		try {
@@ -222,6 +222,11 @@ public class GoodsDao extends SqlMapConfig {
 		try {
 			session = getSqlSessionFactory().openSession(false);
 			res = session.insert(namespace+"rereplyinsert", dto);
+			if(res>0) {
+				session.commit();
+			}else {
+				System.out.println("입력실패요ㅠ");
+			}
 		} catch (Exception e) {
 			System.out.println("goodsdao에서 rereplyInsert오류 ");
 			e.printStackTrace();

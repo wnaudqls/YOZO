@@ -80,14 +80,14 @@ public class GoodsController extends HttpServlet {
 					goods_main_photo));
 
 			if (res > 0) {
-				System.out.println("굿즈작성성공");
-				dispatch("/goods.do?command=goodslist", request, response);
+				System.out.println("상품등록성공했음");
+				jsResponse("상품을 성공적으로 등록하였습니다.", "goods.do?command=goodslist", response);
 			} else {
-				jsResponse("굿즈작성 실패", "goods_insertform.jsp", response);
+				jsResponse("상품을 등록하는데 실패하였습니다.", "goods.do?command=goodslist", response);
 			}
 
 		}
-
+		//굿즈 인서트 폼
 		else if (command.equals("goodsinsertform")) {
 			response.sendRedirect(request.getContextPath() + "/view/goods/goods_insert.jsp");
 
@@ -144,8 +144,15 @@ public class GoodsController extends HttpServlet {
 
 
 			int goods_no = Integer.parseInt(request.getParameter("goods_no"));
-			MemberDto test = (MemberDto)session.getAttribute("rdto");
-			String member_id = test.getMember_id();
+			String member_id="";
+			try {
+				MemberDto test = (MemberDto)session.getAttribute("rdto");
+				member_id = test.getMember_id();
+			} catch (Exception e) {
+				System.out.println("헐");
+				jsResponse("로그인을 해주세요","/YORIZORI/view/user/login.jsp", response);
+				e.printStackTrace();
+			}
 
 			String goods_re_content = request.getParameter("goods_re_content");
 			String member_nick = request.getParameter("member_nick");
@@ -200,16 +207,29 @@ public class GoodsController extends HttpServlet {
 			dispatch("/view/goods/goods_detail.jsp", request, response);
 			
 		
-		//관리자 댓글 
-		}else if(command.equals("goodsadminre")) {
+		 
+		}
+		
+		//관리자 댓글
+			else if(command.equals("goodsadminre")) {
 			System.out.println("관리자댓글입력컨트롤러왔나요?");
 			
 			int goods_re_no = Integer.parseInt(request.getParameter("greno"));
 			String goods_re_content = request.getParameter("goods_re_content");
 			//관리자 닉네임이나 아이디 뭐 받아올 때 쓰려고.....흠 확실x
-			MemberDto admin = (MemberDto)session.getAttribute("rdto");
-			String member_nick = admin.getMember_nick();
-			String member_id = admin.getMember_id();
+			String member_nick="";
+			String member_id="";
+		
+			if((MemberDto)session.getAttribute("rdto")!=null) {
+				MemberDto admin = (MemberDto)session.getAttribute("rdto");
+				member_nick = admin.getMember_nick();
+				member_id = admin.getMember_id();
+			}else {
+				jsResponse("로그인 해주세요", "/view/user/login.jsp", response);
+				
+			}
+	
+		
 		
 			System.out.println("goodsadminre : " + member_nick + goods_re_content);
 			
@@ -223,11 +243,10 @@ public class GoodsController extends HttpServlet {
 			}else {
 				jsResponse("관리자 답변 실패함 싸발.", "goods_answer.jsp", response);
 			}
-			 
-		
-	
+		}
 			
-		}else if(command.equals("goodsupdateres")) {
+			//굿즈업데이트 
+			else if(command.equals("goodsupdateres")) {
 			System.out.println("굿즈업데이트res왔다");
 			int goods_no = Integer.parseInt(request.getParameter("goods_no"));
 			
@@ -281,6 +300,7 @@ public class GoodsController extends HttpServlet {
 		}else if(command.equals("muldel")){
 			System.out.println("굿즈 멀딜 컨트롤러 왔나요");
 			String[] goods_no = request.getParameterValues("chk");
+			System.out.println(goods_no + "굿즈엔오 안오나봐 어뜩해");
 			int res = biz.multiDelete(goods_no);
 			
 			if(res >0) {
@@ -307,6 +327,8 @@ public class GoodsController extends HttpServlet {
 				+ "</script>";
 		response.getWriter().append(s);
 	}
+
+
 
 }
 

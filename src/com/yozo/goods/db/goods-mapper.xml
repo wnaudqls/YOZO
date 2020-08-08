@@ -16,7 +16,7 @@
   </select>
   <!-- 굿즈 detail -->
   <select id="selectOne" resultType="goodsDto">
-  		SELECT GOODS_NO, MEMBER_ID, GOODS_TITLE, GOODS_MAIN_PHOTO, GOODS_PRICE, GOODS_QUANTITY, 
+  	SELECT GOODS_NO, MEMBER_ID, GOODS_TITLE, GOODS_MAIN_PHOTO, GOODS_PRICE, GOODS_QUANTITY, 
   	GOODS_CONTENT, GOODS_REGDATE
   	FROM GOODS
   	WHERE GOODS_NO=#{goods_no}
@@ -39,7 +39,7 @@
  <delete id="muldelete" parameterType="map">
  	DELETE FROM GOODS
  	WHERE GOODS_NO IN 
- 		<foreach item="goods_no" collection="goods_nos" open="(" separator="," close=")">
+ 		<foreach item="goods_no" collection="goods_no" open="(" separator="," close=")">
  			#{goods_no}
  		</foreach>
  </delete>
@@ -55,24 +55,33 @@
  <!-- 사용자댓글인서트(원댓글) -->
   <insert id="answerinsert" parameterType="answerDto">
 	INSERT INTO GOODSRE
-	VALUES(GOODSRE_SEQ.NEXTVAL,#{goods_no}, #{member_id}, #{goods_re_content}, SYSDATE, GOODSRE_NSEQ.NEXTVAL,#{goods_re_seq}, #{goods_re_titletab})  
+	VALUES(GOODSRE_SEQ.NEXTVAL,
+	#{goods_no},
+	#{member_id},
+	#{goods_re_content},
+	SYSDATE,
+	GOODSRE_NSEQ.NEXTVAL,
+	#{goods_re_seq},
+	#{goods_re_titletab})  
   </insert>
   
   <!-- 관리자 댓글이 끼어들기 할 공간 만들어줌  -->
   <update id="rereplyupdate" parameterType="int">
   	UPDATE GOODSRE SET GOODS_RE_SEQ = GOODS_RE_SEQ + 1
-  	WHERE GOODS_RE_GROUPNO = (SELECT GOODS_RE_GROUPNO FROM GOODSRE WHERE GOODS_RE_NO = #{goods_re_no}
+  	WHERE GOODS_RE_GROUPNO = (SELECT GOODS_RE_GROUPNO FROM GOODSRE WHERE GOODS_RE_NO = #{goods_re_no})
   	AND GOODS_RE_SEQ > (SELECT GOODS_RE_SEQ FROM GOODSRE WHERE GOODS_RE_NO = #{goods_re_no})                              
   </update>
 <!-- 관리자댓글 인서트(대댓글) -->
 <insert id="rereplyinsert" parameterType="answerDto">
-	INSERT INTO GOODSRE
-	VALUES(GOODSRE_SEQ.NEXTVAL, 
-		(SELECT GOODS_NO FROM GOODSRE WHERE GOODS_RE_NO = #{goods_re_no}),
-		#{member_id}, #{goods_re_content}, SYSDATE, 
-		(SELECT GOODS_RE_GROUPNO FROM GOODSRE WHERE GOODS_RE_NO = #{goods_re_no}),
-		(SELECT GOODS_RE_SEQ+1, FROM GOODSRE WHERE GOODS_RE_NO = #{goods_re_no}),
-		(SELECT TITLETAB+1 FROM GOODSRE WHERE GOODS_RE_NO = #{goods_re_no})
+	INSERT INTO GOODSRE  
+	VALUES(GOODSRE_SEQ.NEXTVAL,  
+		(SELECT GOODS_NO FROM GOODSRE WHERE GOODS_RE_NO = #{goods_re_no}), 
+		#{member_id}, 
+		#{goods_re_content}, 
+		SYSDATE,  
+		(SELECT GOODS_RE_GROUPNO FROM GOODSRE WHERE GOODS_RE_NO = #{goods_re_no}), 
+		(SELECT GOODS_RE_SEQ+1 FROM GOODSRE WHERE GOODS_RE_NO = #{goods_re_no}),
+		(SELECT GOODS_RE_TITLETAB+1 FROM GOODSRE WHERE GOODS_RE_NO = #{goods_re_no})
 		)
 </insert>                                                                                                       
  
