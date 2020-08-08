@@ -214,12 +214,6 @@ input#recipe_search{
 									src="${dto.recipe_main_photo }" class="list_img_tag"
 									alt="레시피메인사진" /></a>
 							</div>
-							<div class="list_card_content">
-								<div class="list_card_title">
-									<br> 『<a class="list_card_title_a"
-										href="recipe.do?command=recipe_detail&recipe_no=${dto.recipe_no }">${dto.recipe_title }</a>
-									』
-								</div>
 								<div class="list_card_content">
 									<div class="list_card_title">
 										<br> 『<a class="list_card_title_a"
@@ -233,7 +227,6 @@ input#recipe_search{
 										<span class="like_text">${dto.recipe_likecount}</span>
 									</div>
 								</div>
-							</div>
 						</div>
 
 
