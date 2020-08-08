@@ -48,11 +48,11 @@ section {
 	
 </style>
 <body>
-<%@ include file ="../../form/header.jsp" %>
+<%@ include file ="/form/header.jsp" %>
 <section>
 	<div class="find">
 		<div class="findmessage">
-			<img class="warning" alt="warning" src="./img/warning.jpg" >
+			<img class="warning" alt="warning" src="/YORIZORI/img/warning.jpg" >
 			<span><b class="message">아이디 찾기</b></span>
 		</div>
 		<div>
@@ -65,7 +65,7 @@ section {
 		<br/>
 	<div class="find">
 	<div class="findmessage">
-		<img class="warning" alt="warning" src="./img/warning.jpg">
+		<img class="warning" alt="warning" src="/YORIZORI/img/warning.jpg">
 		<span><b class="message">비밀번호 찾기</b></span>
 	</div>
 		<div>
@@ -77,6 +77,6 @@ section {
 		
 	</div>
 </section>
-<%@ include file="../../form/footer.jsp" %>
+<%@ include file="/form/footer.jsp" %>
 </body>
 </html>

@@ -49,11 +49,11 @@
 
 </style>
 <body>
-<%@ include file ="../../form/header.jsp" %>
+<%@ include file ="/form/header.jsp" %>
 <section>
 <div id="box">
 	<div>
-	<img id="warning" alt="warning" src="./img/warning.jpg">
+	<img id="warning" alt="warning" src="/YORIZORI/img/warning.jpg">
 	<span><b id="message">새로운 비밀번호를 입력해주세요.</b></span><br/>
 	</div>
 	<span>변경할 비밀번호 : <input class="inputbox" type="text" placeholder="변경할 비밀번호를 입력해주세요."/></span><br/>
@@ -64,6 +64,6 @@
 
 
 </section>
-<%@ include file ="../../form/footer.jsp" %>
+<%@ include file ="/form/footer.jsp" %>
 </body>
 </html>

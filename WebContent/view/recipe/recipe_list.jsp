@@ -203,7 +203,7 @@ td {
 </script>
 </head>
 <body>
-	<%@ include file="../../form/header.jsp"%>
+	<%@ include file="/form/header.jsp"%>
 	<section>
 			<c:if test="${rdto.member_role eq '관리자' }">
 
@@ -251,7 +251,7 @@ td {
 									</div>
 									<div class="list_card_like">
 										<img
-											onclick="location.href='recipe.do?command=recipe_detail&recipe_no=${dto.recipe_no }'"
+											onclick="location.href='/YORIZORI/recipe.do?command=recipe_detail&recipe_no=${dto.recipe_no }'"
 											class="like_icon" src="/YORIZORI/img/recipe/like_icon.png" />
 										<span class="like_text">${dto.recipe_likecount}</span>
 									</div>
@@ -339,7 +339,7 @@ td {
 
 		$setRows.submit();
 	</script>
-	<%@ include file="../../form/footer.jsp"%>
+	<%@ include file="/form/footer.jsp"%>
 
 </body>
 

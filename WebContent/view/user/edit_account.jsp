@@ -8,6 +8,8 @@
 <head>
 <meta charset="UTF-8">
 <title>개인정보수정</title>
+  
+  
 
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 	
@@ -40,18 +42,7 @@
 			})  
 
 	});
-	$(function() {
-		$('#pwchk').blur(function(){
-			   if($('#pw').val() != $('#pwchk').val()){
-			    	if($('#pwchk').val()!=''){
-				    alert("비밀번호가 일치하지 않습니다.");
-			    	    $('#pwchk').val('');
-			          $('#pwchk').focus();
-			       }
-			    }
-			})  
 
-	});
 
 
 	
@@ -77,7 +68,25 @@
 	
 	</script>
 	
-	<style type="text/css">
+<script type="text/javascript">
+	/* 	function changepw(){
+	 window.open("change_password.jsp", "비밀번호변경팝업창", "width = 500px, height = 500px, left=715, top = 250")
+	
+	 }  */
+
+	$(function() {
+		$("#popbutton").click(function() {
+			$("#popup").fadeIn();
+			$("#popmenu").fadeIn();
+		});
+	 	$("#popup").click(function() {
+			$("#popup").fadeOut();
+			$("#popmenu").fadeOut();
+		}); 
+	});
+</script>
+
+  	<style type="text/css">
 		
 		body {
 			text-align: center;
@@ -103,6 +112,45 @@
 	
 	
 	</style>
+  
+  
+<body>
+	<%@ include file="/form/header.jsp"%>
+	<section>
+		
+		<!--팝업 -->
+		<!-- #popup은 그냥 뒷배경박스일 뿐  -->
+		<div id="popup">
+		</div>
+			<div id="popmenu">
+				<div>
+					<img id="warning" alt="warning" src="/YORIZORI/img/warning.jpg"> <b
+						id="message">비밀번호 변경</b>
+				</div>
+				<table id="changetable">
+					<tr>
+						<td>기존 비밀번호 :</td>
+						<td><input type="text" placeholder="입력해주세요." /></td>
+					</tr>
+					<tr>
+						<td>변경할 비밀번호 :</td>
+						<td><input type="text" placeholder="입력해주세요." /></td>
+					</tr>
+				</table>
+				<div>
+					<input class="btn" type="button" value="변경" />
+				</div>
+			</div>
+		
+		<div id="wrapperinfo">
+			<div>
+				<img id="warning" alt="warning" src="/YORIZORI/img/warning.jpg"> <b
+					id="message">개인정보수정</b>
+			</div>
+			<table id="editmyinfo">
+				<tr>
+=======
+
 	
 	
 	
@@ -114,7 +162,6 @@
 <br>
 
 <%!
-
    int random = 0;
 
    public int getRandom(){
@@ -166,7 +213,7 @@
 	<br>
 	<br>
 
-	<%@ include file="../../form/footer.jsp" %>
+	<%@ include file="/form/footer.jsp"%>
 
 </body>
 </html>	

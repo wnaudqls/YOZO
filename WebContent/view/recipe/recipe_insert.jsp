@@ -127,7 +127,7 @@
 </script>
 </head>
 <body>
-	<%@ include file="../../form/header.jsp"%>
+	<%@ include file="/form/header.jsp"%>
 	<!--유정)섹션추가 -->
 	<section>
 		<!-- 상단부 -->
@@ -181,7 +181,7 @@
 								<option>주먹</option>
 						</select>
 					
-	</div>
+					</div>
 
 		<!-- 			<tr> -->
 
@@ -269,7 +269,7 @@
 	</section>
 
 
-	<%@ include file="../../form/footer.jsp"%>
+	<%@ include file="/form/footer.jsp"%>
 </body>
 </html>
 
