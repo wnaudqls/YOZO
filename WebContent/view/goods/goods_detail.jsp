@@ -157,7 +157,7 @@ section {
    <%@include file="../../form/header.jsp"%>
    <section class="section">
       <!-- 쇼핑몰 상세보기 시작점  -->
-      <form action="" mehtod="post">
+      <form action="<%=request.getContextPath()%>/goods.do" mehtod="post">
       <input type="hidden" name="command" value="goodsupdate"/>
       <input type="hidden" name="goods_no" value="${dto.goods_no}"/>
       <div class="product_wrap">
