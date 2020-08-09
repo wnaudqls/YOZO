@@ -229,8 +229,7 @@ input#recipe_search {
 								</div>
 						</div>
 
-
-
+						</div>
 
 					</c:forEach>
 				</c:otherwise>
