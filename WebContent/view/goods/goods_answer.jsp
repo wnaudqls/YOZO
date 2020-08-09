@@ -10,18 +10,22 @@
 .container {
 	text-align: left;
 }
-#comment{
+
+#comment {
 	resize: none;
-	width:60%;
+	width: 60%;
 }
-.btn_reply{
-	height:34px;
+
+.btn_reply {
+	height: 34px;
 }
-.container_bottom{
+
+.container_bottom {
 	text-align: left;
 }
-.reply_wrap{
-	height:34px;
+
+.reply_wrap {
+	height: 34px;
 }
 </style>
 </head>
@@ -33,10 +37,10 @@
 	<section>
 		<div class="container_top">
 			<form method="post" id="answerform" name="answerform">
-				<input type="hidden" name="goods_no" value="${dto.goods_no}" /> 
-				<input type="hidden" name="member_nick" value="${rdto.member_nick}" />
+				<input type="hidden" name="goods_no" value="${dto.goods_no}" /> <input
+					type="hidden" name="member_nick" value="${rdto.member_nick}" />
 				<div>
-				
+
 					<div>
 						<span><strong>Comments</strong></span>
 					</div>
@@ -45,27 +49,26 @@
 							<tr>
 								<td>
 									<div class="replay_wrap">
-									<label>${rdto.member_nick}</label> 
-									<textarea rows="2"
-											cols="30" name="goods_re_content" id="comment"
-											placeholder="Q&A">
+										<label>${rdto.member_nick}</label>
+										<textarea rows="2" cols="30" name="goods_re_content"
+											id="comment" placeholder="Q&A">
 									</textarea>
-										<input class="btn_reply" type="button" value="등록" onclick="answer();" />
+										<input class="btn_reply" type="button" value="등록"
+											onclick="answer();" />
 									</div>
 								</td>
 							</tr>
 						</table>
 					</div>
-					
+
 				</div>
 			</form>
 		</div>
 		<hr>
 		<div class="container_bottom">
 			<form id="answerlistform" name="answerlistform" method="post">
-					<input type="hidden" name="member_nick" value="${rdto.member_nick }">
-					<div id="answerlist">
-					</div>
+				<input type="hidden" name="member_nick" value="${rdto.member_nick }">
+				<div id="answerlist"></div>
 			</form>
 		</div>
 
@@ -95,14 +98,14 @@
 
 			/* 초기 페이지 로딩시 댓글 불러오기 */
 			$(function() {
-				getAnswerList();	
+				getAnswerList();
 
 			});
 
 			function getAnswerList() {
 
-				
-						$.ajax({
+				$
+						.ajax({
 							type : 'POST',
 							url : "<c:url value='/goods.do?command=answerlist&goods_no=${dto.goods_no}'/>",
 							data : $("#answerform").serialize(),
@@ -121,13 +124,14 @@
 										ele += "<div id='divdiv'>";
 										ele += "<div class='rereplybox' value="+result[i].goods_re_no+">";
 										ele += "<strong>";
-											if(result[i].goods_re_titletab>0){
-												for(var j=0;j<result[i].goods_re_titletab;j++){
-													ele+="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
-												}
-													ele+="┗&nbsp;";
+										if (result[i].goods_re_titletab > 0) {
+											for (var j = 0; j < result[i].goods_re_titletab; j++) {
+												ele += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
 											}
-												ele+= result[i].member_nick + " : </strong>";
+											ele += "┗&nbsp;";
+										}
+										ele += result[i].member_nick
+												+ " : </strong>";
 										ele += result[i].goods_re_content
 												+ "<input type='button' value='댓글' class='rebtn' onclick='rereply("
 												+ i + ");'>";
@@ -159,7 +163,7 @@
 			}
 			//대댓글, i는 몇번쨰 댓글인지
 			function rereply(i) {
-			alert("rereply(i):"+i)
+				alert("rereply(i):" + i)
 				/* alert("rereply실행!") */
 				/* 	 		var div1 = document.getElementsByClassName(".rereplybox");
 				 alert(div);
@@ -182,13 +186,12 @@
 				/* var str = "<textarea></textarea>"; */
 
 				//디브 , 텍스트에어리어 생성
-			
 				var newDiv = document.createElement("div");
 				newDiv.className = 'adminre';
 				var txt = document.createTextNode("ㄴ관리자 ");
 				var newTextarea = document.createElement("textarea");
 				newTextarea.setAttribute("name", "goods_re_content");
-				
+
 				newDiv.appendChild(txt);
 				newDiv.appendChild(newTextarea);
 
@@ -203,52 +206,51 @@
 
 				var plz = document.getElementsByClassName("rereplybox")[i];
 				/* alert(i); */
-				alert(plz.childNodes[3]+"[3]??");//undefind[3]??
+				alert(plz.childNodes[3] + "[3]??");//undefind[3]??
 				$(".rereplybox")[i].insertBefore(newDiv, plz.childNodes[3]);//왜3이지??
 				//이벤트 생성
-				newButton
-						.addEventListener(
-								'click',
-								function(event) {
-									alert("관리자버튼얍얍");
-									alert("i : " + i); // 0 , 1 잘 들어옴
-									alert("evenet? :"+event);
+				newButton.addEventListener('click', function(event) {
+					alert("관리자버튼얍얍");
+					alert("i : " + i); // 0 , 1 잘 들어옴
+					alert("evenet? :" + event);
 
-									/* var greno = document.getElementsByClassName("rereplybox")[i].val; */
-									/* var greno = $(".rereplybox")[i].val(); */
-							/* 		var greno = $(this).parent(".rereplybox")
-							
-											.get(i).val(); */
-									/* var greno = document.getElementsByClassName("rereplybox").value; */
-									var greno = $(this).parent().parent().attr("value");	//부모댓글의 번호 
-									/* console.log(greno);
-									console.log("this : " + this);
- */
-									alert("greno :" + greno); //부모 댓글 번호 
- 											//여기 다시보기
- 										alert("i:"+i);
-										var content = document.getElementsByName("goods_re_content")[1].value; //1번지 textarea의 값을 content에 저장?
-										alert(" 1번지 textarea의 값  content :" + content);
-										console.log(content);
-											$.ajax({
-												type : 'post',
-												url : "<c:url value='/goods.do'/>",
-												data : {'goods_re_content' : content,
-														'command' : 'goodsadminre',
-														'greno' :greno},
-												dataType : "json",
-												success : function(data) {
-													alert("관리자댓글 : 통신성공")
-												},
-												error : function(request,
-														status, error) {
-													alert("관리자댓글 : 통신실패");
-													/* console.log("greno"); */
-													
-												}
-											});
+					/* var greno = document.getElementsByClassName("rereplybox")[i].val; */
+					/* var greno = $(".rereplybox")[i].val(); */
+					/* 		var greno = $(this).parent(".rereplybox")
+					
+									.get(i).val(); */
+					/* var greno = document.getElementsByClassName("rereplybox").value; */
+					var greno = $(this).parent().parent().attr("value"); //부모댓글의 번호 
+					/* console.log(greno);
+					console.log("this : " + this);
+					 */
+					alert("greno :" + greno); //부모 댓글 번호 
+					//여기 다시보기
+					alert("i:" + i);
+					var content = document
+							.getElementsByName("goods_re_content")[1].value; //1번지 textarea의 값을 content에 저장?
+					alert(" 1번지 textarea의 값  content :" + content);
+					console.log(content);
+					$.ajax({
+						type : 'post',
+						url : "<c:url value='/goods.do'/>",
+						data : {
+							'goods_re_content' : content,
+							'command' : 'goodsadminre',
+							'greno' : greno
+						},
+						dataType : "json",
+						success : function(data) {
+							alert("관리자댓글 : 통신성공")
+						},
+						error : function(request, status, error) {
+							alert("관리자댓글 : 통신실패");
+							/* console.log("greno"); */
 
-								});
+						}
+					});
+
+				});
 			};
 		</script>
 

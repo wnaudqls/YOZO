@@ -142,5 +142,20 @@ public class RecipeDao extends SqlMapConfig {
 		return count;
 	}
 	
+	public int insert(RecipeDto dto) {
+		SqlSession session = null;
+		int res = 0;
+		try {
+			session = getSqlSessionFactory().openSession(false);
+			res = session.insert(namespace+"recipe_insert", dto);
+		} catch (Exception e) {
+			System.out.println("recipe dao에서 insert오류");
+			e.printStackTrace();
+		}finally {
+			session.close();
+		}
+		
+		return res;
+	}
 
 }

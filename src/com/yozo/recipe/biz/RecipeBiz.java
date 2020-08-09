@@ -27,4 +27,8 @@ public class RecipeBiz {
 	public int multiDelte(String[] recipe_no) {
 		return dao.multiDelete(recipe_no);
 	}
+	
+	public int insert(RecipeDto dto) {
+		return dao.insert(dto);
+	}
 }

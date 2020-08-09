@@ -8,6 +8,8 @@
 	response.setContentType("text/html charset=UTF-8");
 %>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -106,7 +108,7 @@
 }
 /*1*/
 #mainphoto_wrapper {
-/* 	border: 1px solid red; */
+	/* 	border: 1px solid red; */
 	display: inline-block;
 }
 
@@ -144,8 +146,9 @@
 	cursor: pointer;
 	color: #FAFAFA;
 }
-.recipe_photo{
-	width : 400px;
+
+.recipe_photo {
+	width: 400px;
 	height: 400px;
 }
 </style>
@@ -159,14 +162,7 @@
 						function() {
 							$("#add_material_wrapper")
 									.append(
-											$("<div class='newmaterial'>재료 : <input type='text' placeholder='재료 이름'>"
-													+ " "
-													+ "<input type='number' placeholder='수량' class='quantity'>"
-													+ " "
-													+ "<select class='unit'>"
-													+ "<option>단위</option><option>g</option><option>컵</option>"
-													+ "<option>아빠숟가락</option><option>웅큼</option><option>주먹</option></select>"
-													+ " "
+											$("<div class='newmaterial'>재료 : <input type='text' placeholder='재료 이름' name='recipe_material'/>"
 													+ "<input type='button' value='-' onclick='delete_material(this);'>"
 													+ "</div>"));
 						});
@@ -176,8 +172,8 @@
 						function() {
 							$("#add_recipe_wrapper")
 									.append(
-											$("<div><br/><input type='file' onclick='newrecipe_upload("+i+")' id='newrecipe_image"+i+"'><br/><br/>"
-													+"<div><img class='recipe_photo image_container"+i+"'/></div><br/>" + "<textarea rows='5' cols='70'></textarea></div>"));
+											$("<div><br/><input type='file' onchange='newrecipe_upload("+i+")' id='newrecipe_image"+i+"'><br/><br/>"
+													+"<div><img class='recipe_photo' id='image_container"+i+"' value='"+i+"' /></div><br/>" + "<textarea rows='5' cols='70' name='recipe_detail'></textarea></div>"));
 							i++;
 						});
 
@@ -242,131 +238,143 @@
 				reader.readAsDataURL(event.target.files[0]);
 			} 
 			
-			function newrecipe_upload(i){
+			function newrecipe_upload(i, event){
 				alert("i:" + i)
 				var filePath = document.getElementById("newrecipe_image"+i).value;
 				alert("filePath:" + filePath);
 				
 				var reader = new FileReader();
 				reader.onload = function(i){
-					var imgtag2 = document.getElementsByClassName("image_container"+i);
+					var imgtag2 = document.getElementById("image_container"+i);
 					imgtag2.setAttribute("src", event.target.result);
 					
 				}
 				reader.readAsDataURL(event.target.files[0]);
 			}
 			
-			
-			
-/* 			function recipe_image(i){
-				var filePath = document.getElementById("recipe_image"+i).value;
-				alert("filePath:" + filePath);
-				
-				var reader = new FileReader();
-				reader.onload = function(i){
-					var imgdivtag = document.getElementById("image_container"+i);
-					imgdivtag.setAttribute("src", event.target.result);
-					
-				}
-				reader.readAsDataURL(event.target.files[0]);
+	 
+	 function imgupload(){
+		 $.ajax({
+			type : 'post',
+			url : "<c:url value='/recipe.do?command=imgupload'/>",
+			data : formdata,
+			success : function(msg){
+				alert(msg);
+				alert("레시피 이미지 업로드 성공");
+				$("#recipeinsertform").submit();
+			},
+			error : function(request,status,error){
+				alert("레시피 이미지 업로드 실패")
 				
 			}
-	 */
+		 
+			 });
+		 
+	 }
 </script>
 </head>
 <body>
 	<%@ include file="../../form/header.jsp"%>
 	<!--유정)섹션추가 -->
 	<!-- 상단부 -->
-<form action="<%=request.getContextPath()%>/recipe.do" method="post">
-<input type="hidden" name="command" value="recipe_insertres"/>
+	<form action="<%=request.getContextPath()%>/recipe.do" method="post"
+		id="recipeinsertform">
+		<input type="hidden" name="command" value="recipe_insert" /> <input
+			type="hidden" name="recipe_no" value="${dto.recipe_no }">
 
-	<div class="section_top">
-		<div id="mainphoto_wrapper">
-			<div id="upload_title">
-				<input type="file" id="recipe_main_photo"
-					onchange="recipe_thumbnail(event);" />
-			</div>
-			<div class="recipe_photo">
-				<img class="recipe_photo" alt="대표이미지를 선택해주세요." id="recipe_img_main_container">
-			</div>
-		</div>
-		<!--유정) 제목, 대표재료 , 재료 , +버튼 큰 디브로 묶음 -->
-		<div id="on_add">
-			<div id="category_wrapper">
-				<input id="inputtitle" type="text" placeholder="제목을 입력해주세요." name="recipe_title"/>
-				<div id="select_wrapper">
-					<select id="large_category" name="cate_theme">
-						<option>한식
-						<option>일식
-						<option>중식
-						<option>양식
-						<option>퓨전
-						<option>분식
-						<option>간식
-					</select> <select id="small_category" name="cate_kind">
-						<option>자취생요리
-						<option>야식
-						<option>다이어트
-						<option>술안주
-						<option>간편식
-						<option>디저트
-						<option>가족
-					</select>
+
+
+		<div class="section_top">
+			<div id="mainphoto_wrapper">
+				<div id="upload_title">
+					<input type="file" id="recipe_main_photo"
+						onchange="recipe_thumbnail(event);" name="recipe_main_photo" />
+				</div>
+				<div class="recipe_photo">
+					<img class="recipe_photo" alt="대표이미지를 선택해주세요."
+						id="recipe_img_main_container">
 				</div>
 			</div>
+			<!--유정) 제목, 대표재료 , 재료 , +버튼 큰 디브로 묶음 -->
+			<div id="on_add">
+				<div id="category_wrapper">
+					<input id="inputtitle" type="text" placeholder="제목을 입력해주세요."
+						name="recipe_title" />
+					<div id="select_wrapper">
+						<select id="large_category" name="cate_theme">
+							<option>한식
+							<option>일식
+							<option>중식
+							<option>양식
+							<option>퓨전
+							<option>분식
+							<option>간식
+						</select> <select id="small_category" name="cate_kind">
+							<option>자취생요리
+							<option>야식
+							<option>다이어트
+							<option>술안주
+							<option>간편식
+							<option>디저트
+							<option>가족
+						</select>
+					</div>
+				</div>
 
-			<div id="add_material_wrapper">
-				<div>
-					★ 대표재료 : <input type="text" placeholder="재료 이름" name="recipe_material_name"> <input
-						type="number" placeholder="수량" class="quantity" name="recipe_material_quantitye">
-						 <select class="unit" name="recipe_material_unit">
+				<div id="add_material_wrapper">
+					<div>
+						★ 대표재료 : <input type="text" placeholder="재료 이름"
+							name="recipe_material_one">
+						<!--  <input
+						type="number" placeholder="수량" class="quantity" name="main_material_quantity">
+						 <select class="unit" name="main_material_unit">
 						<option>단위</option>
 						<option>g</option>
 						<option>컵</option>
 						<option>아빠숟가락</option>
 						<option>웅큼</option>
 						<option>주먹</option>
-					</select>
+					</select> -->
+					</div>
+				</div>
+				<div>
+					<input type="button" alt="add_material" value="+" id="addmaterial">
+				</div>
+
+			</div>
+		</div>
+
+
+		<!-- 하단부 -->
+		<div id="under_add">
+			<h3>레시피</h3>
+			<div id="add_recipe_wrapper">
+				<div id="upload_pic">
+					<input type="file" onchange="recipe_image_upload(event);"
+						id="recipe_image" name="recipe_photo" />
+				</div>
+				<div class="recipe_photo">
+					<img class="recipe_photo" alt="이미지를 선택해주세요" id="image_container">
+				</div>
+				<br>
+				<textarea rows="5" cols="70" name="recipe_detail"></textarea>
+				<br>
+
+			</div>
+			<div>
+				<input id="add_recipe" type="button" alt="add_order" value="+">
+			</div>
+			<div id="under_add_create">
+
+				<div>
+					<input class="btn" type="button" value="취소" onclick="" /> <input
+						class="btn" type="submit" value="작성하기" onclick="imgupload();" />
+
 				</div>
 			</div>
-			<div>
-				<input type="button" alt="add_material" value="+" id="addmaterial">
-			</div>
 
 		</div>
-	</div>
-
-
-	<!-- 하단부 -->
-	<div id="under_add">
-		<h3>레시피</h3>
-		<div id="add_recipe_wrapper">
-			<div id="upload_pic">
-				<input type="file" onchange="recipe_image_upload(event);" id="recipe_image"/>
-			</div>
-			<div class="recipe_photo">
-				<img class="recipe_photo" alt="이미지를 선택해주세요" id="image_container">
-			</div>
-			<br>
-			<textarea rows="5" cols="70"></textarea>
-			<br>
-
-		</div>
-		<div>
-			<input id="add_recipe" type="button" alt="add_order" value="+">
-		</div>
-		<div id="under_add_create">
-
-			<div>
-				<input class="btn" type="button" value="취소" onclick="#" /> <input
-					class="btn" type="button" value="작성하기" onclick="#" />
-
-			</div>
-		</div>
-
-	</div>
-</form>
+	</form>
 	<%@ include file="../../form/footer.jsp"%>
 </body>
 </html>
