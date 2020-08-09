@@ -12,111 +12,7 @@
 <link rel="shortcut icon" href="./img/favicon/yozofavicon.ico" type="image/x-icon">
 <title>요리조리</title>
 <style type="text/css">
-	 body {
-        margin: 0px;
-        text-align: center;
-        width: 100%;
-        }
-
-    header{
-        margin:0px;
-    }
-	section{
-		margin-top: 150px;
-	}
-    #header{
-        text-align: center;
-    }
-    #icon{
-        text-align: center;
-    }
-    .dropuserdown{
-   	 	 z-index: 1;
-         position: absolute;
-         right: 20px;
-         top: 20px;
-    }
-    .mainlogo{
-        width: 300px;
-        height: 100px;
-    }
-     .recipe{
-        width: 70px;
-        height: 70px;
-    } 
-    .recipe_link{
-    	width: 70px;
-        height: 70px;
-        margin-left: 20px;
-        display: inline-block;
-    }
-    .stream{
-        width: 70px;
-        height: 70px;
-        margin-left: 80px;
-    }
-    .goods{
-        width: 70px;
-        height: 70px;
-        margin-left: 80px;
-    }
-    .map{
-        width: 70px;
-        height: 70px;
-        margin-left: 80px;
-    }
-    .admin finger{
-    	float:left;
-    }
-    .usericon {
-        background-color:white;
-        color: white;
-        padding: 0px;
-        font-size: 16px;
-        border: none;
-        cursor: pointer;
-    }
-    .usericon:hover, .usericon:focus {
-        background-color: white;
-    }
-    .dropuser_content {
-        display: none;
-        position: absolute;
-        background-color : #F5A9A9;
-        min-width: 160px;
-        overflow: auto;
-        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    }
-
-    .dropuser_content a {
-        color:white;
-        padding: 12px 16px;
-        text-decoration: none;
-        display: block;
-        float:left;
-    }
-
-    .dropuser_content a:hover {background-color: black}
-
-    .show {display:block;}
-
-    .dropstreamdown {
-        position: relative;
-        display: inline-block;
-    }
-    .stream {
-        background-color:white;
-        color: white;
-        padding: 0px;
-        font-size: 16px;
-        border: none;
-        cursor: pointer;
-    }
-    .stream:hover, .stream:focus {
-        background-color:white;
-    }
-    .dropstream_content {
-    	opacity: 0.85;
+	    	opacity: 0.85;
   		z-index: 1;
         display: none;
         position: absolute;
@@ -143,10 +39,10 @@
     	cursor: pointer;
     } 
      #loginStatus {
-     	width: 270px;
+     	width: 300px;
 	    position: absolute;
 	    top: 25px;
-    	right: 85px;
+    	right: 100px;
     }
   
 </style>
