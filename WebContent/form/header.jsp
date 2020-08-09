@@ -82,27 +82,17 @@ window.onclick = function(event){
     }
 }
 
-//메뉴 클릭 시 로그인이 필요한 경우 로그인으로 이동 기능 작성 중 *************************
 
-
-//---------페이스북 로그인 확인 
-/* FB.getLoginStatus(function(response) {
-                    if(response.status === 'connected') {
-                        document.querySelector('#authBtn').value = "Logout";
-                    } else {
-                        document.querySelector('#authBtn').value = "Login";
-                    }
-                })
- */
 
 </script>
 </head>
 <body>
 
-<%
-	MemberDto dto = (MemberDto)session.getAttribute("rdto");
+<% MemberDto dto = (MemberDto)session.getAttribute("rdto");
 
 %>
+
+
 <header id= header> <!-- 메인 아이콘, 유저아이콘 -->
         <img id="mainicon" class="mainlogo finger" alt="logo" src="/YORIZORI/img/mainicon.png" onclick="location.href='http://qclass.iptime.org:8787/YORIZORI/view/main/main.jsp'"><br>
   
@@ -121,25 +111,26 @@ window.onclick = function(event){
 		</div>		
 <%
 	} else if (dto != null) {
-%><form action="<%request.getContextPath();%>/YORIZORI/list.do?">
+%>			                <form action="<%request.getContextPath();%>/YORIZORI/list.do?">
+
     	<div class = "dropuserdown">
 		        	<span id="loginStatus"><b>${rdto.member_nick }</b> 님이 로그인하였습니다.</span>
 		            <img onclick = "dropuser()" class="usericon"alt="logo" src="/YORIZORI/img/usericon.png">
 		            <div id="dropuser_content" class = "dropuser_content">
 		                <a href="<%request.getContextPath();%>/YORIZORI/user.do?command=updateform">개인정보수정</a>
+		                <input type="hidden" name="member_no" value="${rdto.member_no }"><!-- 현승 수정 -->
 		                <a href="">나의레시피</a>
+			                <form action="<%request.getContextPath();%>/YORIZORI/list.do?"><!-- 현승 수정 -->
 		                <a href="" class="useId">
-
-			                
 							    <input type="hidden" name="memberId" id="memberId" value="${rdto.member_id }"/>
 							    <input type="submit" value="나의 장바구니"/>
-							
 						</a>
 		                <a href="">우리집냉장고</a>
 		                <a href="<%request.getContextPath();%>/YORIZORI/user.do?command=logout">로그아웃</a>
 		            </div>
        </div>
-       </form>
+</form>
+
 
  <%
  	}
@@ -160,7 +151,7 @@ window.onclick = function(event){
             </div>
             <!--유정 goods onclick 건들임 -->
             <img class="goods finger" alt="logo" src="/YORIZORI/img/goodsicon.png" onclick="location.href='<%request.getContextPath();%>/YORIZORI/goods.do?command=goodslist'">
-            <img class="map finger" alt="logo" src="/YORIZORI/img/mapicon.png" onclick = "location.href = '<%request.getContextPath();%>/YORIZORI/view/map/map.jsp'">
+            <img class="map finger" alt="logo" src="/YORIZORI/img/mapicon.png" onclick = "location.href = '<%request.getContextPath();%>/YORIZORI/user.do?command=moveMap'">
             <c:if test="${rdto.member_role eq '관리자' }">
             	<img class="admin finger" alt="logo" src="/YORIZORI/img/mapicon.png" onclick="location.href='<%=request.getContextPath()%>/admin.do?command=list'">
             </c:if>
