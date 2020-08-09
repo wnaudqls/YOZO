@@ -233,5 +233,6 @@ section {
 	<%@ include file="/view/goods/goods_answer.jsp"%>
 	<!-- 푸터 -->
 	<%@ include file="/form/footer.jsp"%>
+
 </body>
 </html>

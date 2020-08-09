@@ -131,6 +131,11 @@ public class RecipeController extends HttpServlet {
 		// 레시피 수정
 		else if (command.equals("recipe_update")) {
 			System.out.println("controller_recipe_update");
+			int recipe_no = Integer.parseInt(request.getParameter("recipe_no"));
+			System.out.println("recipe_ no : " + recipe_no);
+			RecipeDto dto = biz.selectOne(recipe_no);
+			request.setAttribute("dto", dto);
+			dispatch("/view/recipe/recipe_update.jsp", request, response);
 		}
 		// 레시피 삭제
 		else if (command.equals("recipe_delete")) {
@@ -176,6 +181,7 @@ public class RecipeController extends HttpServlet {
 			request.setAttribute("list", list);
 			dispatch("/view/recipe/recipe_list.jsp", request, response);
 			System.out.println(list);
+
 		}
 
 	}

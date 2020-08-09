@@ -113,6 +113,7 @@ td {
 .list_card_like {
 	position: relative;
 	height: 50px;
+	text-overflow: ellipsis;
 }
 /*제목들어가는칸*/
 .list_card_title {
@@ -226,7 +227,6 @@ input#recipe_search {
 										class="like_icon" src="/YORIZORI/img/recipe/like_icon.png" />
 									<span class="like_text">${dto.recipe_likecount}</span>
 								</div>
-							</div>
 						</div>
 
 

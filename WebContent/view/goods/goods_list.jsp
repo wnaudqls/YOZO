@@ -115,10 +115,10 @@ section {
 .btn_basket:hover {
 	background: #333;
 }
-*굿즈 목록 리스트 큰테두리*/
+/*굿즈 목록 리스트 큰테두리*/
 .goods_list {
 	border: 1px solid red;
-	/* 	margin: 0 10%; */
+ 	 	margin: 0 5%;  
 }
 
 #warning { /* warning이미지 */
@@ -184,12 +184,15 @@ display: inline-block;} */
 }
 .list_card{
 display: inline-block;
+	width : 300px;
+	height : 380px;
+	margin:50px;
 }
 
 #muldelform{
 	/* border: 1px solid red; */
-	width : 300px;
-	height : 330px;
+/* 	width : 300px;
+	height : 330px; */
 }
 </style>
 

@@ -36,6 +36,7 @@ border : 1px solid black;
 	.section_bottom{
 		margin-top:5%;
 		text-align: center;
+		text-align: ce
 	}
 	.main_img_wrap{
 		width:500px;
@@ -97,18 +98,20 @@ border : 1px solid black;
 		height:40px;
 		position:relative;
 		left:-7px;
-		top:3px;
+		top:0px;
 	}
 	/*음성제어 텍스트*/
 	.speech_text{
 		/* display:inline-block */
 		font: small-caps bold 24px/1 sans-serif;
 		position: relative;
-		top: -8px;
+		top: 6px;
 	}
 	.recipe_content{
 		text-align: center;
 		font: small-caps  24px/1 sans-serif;
+		width:80%;
+		margin:0 auto;
 	}
 	
 	/* yj */
@@ -259,9 +262,180 @@ img {vertical-align: middle;}
 /*------------------------------------------------------------*/
 
 </style>
-<!-- <script type="text/javascript" src="js/jquery-3.5.1.min.js"></script> -->
-
+<script type="text/javascript" src="js/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
+
+   var i = 0;
+   var j=0;
+   // while 문으로 TextToSpeech가 SpeechToText를 감싼다 두 함수 모두 recipe_step이 끝날때까지 도는데 와일문안에 SpeechToText문의 value값을 if문으로 멈춰 || 정지 || 스탑 || , 재생||시작|| 등, 반복||다시||...,이전||전에꺼||전꺼||등..., 다음||다음꺼||담꺼||...,
+   //if문이 끝나면 다시 while문이 돌면서 recipe_step부분을 끝낸다. 끝내고 난뒤에는 다시 재생할까요? 를 TextToSpeech를 통해서 출력하고 그에 대한 답이 아니야||됐어||꺼져||괜찮아||면 함수를 종료하고 응||그래||다시||한번더 면 while문을 다시돌린다.
+   //하나하나 씩 speech값을 받아서 넘어간다
+   function TextToSpeech(s) {
+      /*       let msg = document.getElementById("text-to-speech").innerHTML; */
+      let msg = s;
+      /*Web Speech API의 SpeechSynthesis는 음성 서비스의 컨트롤러 인터페이스로 이를 사용하여 장치에서 사용할 수 있는 합성 음성에 대한 정보를 가져오고, 음성 재생 등의 역할을 수행할 수 있게 해준다.*/
+      let speech = new SpeechSynthesisUtterance();
+      /*읽어줄 언어*/
+      speech.lang = "ko-KR";
+      /*id가 text-to-speech인 value값을 담아줌*/
+      speech.text = msg;
+
+
+      speech.volume = 100;
+      /*재생속도 1 = 정상속도 */
+      speech.rate = 0.9;
+      /*읽어주는 음의 높낮이 1 ~ 100*/
+      speech.pitch =1;
+      /*읽어준다*/
+      window.speechSynthesis.speak(speech);
+      //SpeechToText();
+   }
+
+   function SpeechToText() {
+      
+      //output의 참조값
+      var output = document.getElementById("output");
+      // action의 참조값
+      var action = document.getElementById("action");
+      // 새로운 음성 객체 생성
+      var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
+      var recognition = new SpeechRecognition();
+
+
+      recognition.continuous = true;
+      // 음성인식이 실행 될 때 실행됨
+      
+      recognition.onstart = function() {
+//         alert("음성인식 실행됨?")
+         alert("이제 말해주세요~");
+         //action.innerHTML = "<small>듣고 있어요...</small>";
+      };
+      // 음성인식이 끝나고 실행됨
+      recognition.onspeechend = function() {
+//         alert("음성인식 끝남?");
+         //action.innerHTML = "<small>더 말하시려면 버튼을 눌러주세요...</small>";
+         recognition.stop();
+      }
+
+      //계속대기 할 수 있는걸 찾아야되고
+      // 음성인식 결과를 반환할 때 사용된다.
+      
+      recognition.onerror = function(event) {
+           console.log('error', event);
+           recognition.start("다시시작");
+         };
+      recognition.onresult = function(event) {
+         //음성을 text 로 변환된 값
+         var transcript = event.results[i][0].transcript;
+         alert(i);
+         /* TextToSpeech(transcript); */
+         i=i+1;
+         console.log(transcript);
+//         alert(i);
+//         alert(transcript);
+         /* if(transcript=="다음"){
+            var txt=document.querySelectorAll('.text');
+            j++;
+            alert(txt[j].innerText);
+            TextToSpeech(txt[j].innerText);
+            plusSlides(+1);
+            i++;
+            
+         }else if(transcript=="이전"){
+            var txt=document.querySelectorAll('.text');
+            j--;
+            alert(txt[j].innerText);
+            TextToSpeech(txt[j].innerText);
+            plusSlides(-1)
+            i++;
+         }else if(transcript=="다시"){
+            var txt=document.querySelectorAll('.text');
+            alert(txt[j].innerText);
+            TextToSpeech(txt[j].innerText);
+            i++;
+         }else if(transcript=="그만할래"){
+            TextToSpeech('안녕히가세요~');
+            return 0;
+         }else{
+            
+            TextToSpeech('똑바로 다시 말해주세요...');
+            i++;
+         } */
+         if(transcript.trim()=="다음"){
+            plusSlides(+1);
+            var txt=document.querySelectorAll('.text');
+            j++;
+            alert(txt[j].innerText);
+//            alert(txt[j].innerText);
+            //recognition.pause();
+            //recognition.resume();
+            //recognition.stop();
+            //recognition.abort();
+            TextToSpeech(txt[j].innerText);
+            //recognition.getVoices();
+            //recognition.start();
+            //SpeechToText();
+            //recognition.start();
+            
+            
+         }else if(transcript.trim()=="전에 꺼"){
+            plusSlides(-1)
+            var txt=document.querySelectorAll('.text');
+            j--;
+//            alert(txt[j].innerText);
+            //recognition.pause();
+            //recognition.stop();
+            //recognition.abort();
+            TextToSpeech(txt[j].innerText);
+            //recognition.onresume();
+            //recognition.start();
+            //SpeechToText();
+            
+         }else if(transcript.trim()=="반복"){
+            var txt=document.querySelectorAll('.text');
+//            alert(txt[j].innerText);
+           // recognition.pause();
+            //recognition.stop();
+            //recognition.abort();
+            TextToSpeech(txt[j].innerText);
+            //recognition.start();
+            //recognition.onresume();
+            //SpeechToText();
+            
+         }else if(transcript.trim()=="그만"){
+            TextToSpeech('안녕히가세요~');
+            recognition.stop();
+            close_pop();
+         }else{
+            //recognition.pause();
+             //recognition.stop();
+             //recognition.abort();
+            TextToSpeech('똑바로 다시 말해주세요...');
+            //recognition.start(); 
+            //recognition.resume();
+            //SpeechToText();
+//            alert("다시말해주세요")
+         }
+         /* //변환된 text의 정확도
+         var confidence = event.results[0][0].confidence;
+
+         output.innerHTML = "<b>Text:</b> " + transcript
+               + "<br/> <b>Confidence:</b> " + confidence * 100 + "%";
+         output.classList.remove("hide");
+         alert(transcript.length);
+         alert(i)
+         i++ */
+      };
+
+      // 음성인식 시작
+      recognition.start();
+      //alert("음성인식시작?")
+   }
+   
+
+</script>
+
+<!-- <script type="text/javascript">
 
    var i = 0;
    var j=0;
@@ -430,14 +604,14 @@ img {vertical-align: middle;}
 	}
 	
 
-</script>
+</script> -->
 
 </head>
 <body>
 
 	<%@ include file="/form/header.jsp"%>
 	<!-- 레시피 정보 -->
-8
+
 	<div class="section_top">
 		<div class="main_img_wrap">
 			<img class="main_img" alt="title_img" src="${dto.recipe_main_photo }">
@@ -474,7 +648,6 @@ img {vertical-align: middle;}
 				</c:if>
 			</div>
 		</div>
-=======
 				
 				
 				 <!-- The Modal -->
@@ -524,17 +697,10 @@ img {vertical-align: middle;}
 
 
 				</div>
-				<div class="recipe_material">
-					<h2>재료</h2>
-					<ul class="material_list">
-						<c:forEach items="${material }" var="m" varStatus="status">
-							<li>${m }</li>
-						</c:forEach>
-					</ul>
-				</div>
-			</div>
+			
+		<!-- 	</div> -->
 
-		</div>
+		<!-- </div> -->
 
 		<div class="section_bottom">
 
