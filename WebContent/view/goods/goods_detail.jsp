@@ -158,7 +158,11 @@ section {
    <%@include file="/form/header.jsp"%>
    <section class="section">
       <!-- 쇼핑몰 상세보기 시작점  -->
+<<<<<<< HEAD
+      <form action="<%=request.getContextPath()%>/goods.do" mehtod="post">
+=======
       <form action="" method="post">
+>>>>>>> branch 'develop' of https://github.com/shm1113/YOZO.git
       <input type="hidden" name="command" value="goodsupdate"/>
       <input type="hidden" name="goods_no" value="${dto.goods_no}"/>
       <div class="product_wrap">
