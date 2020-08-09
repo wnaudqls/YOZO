@@ -26,7 +26,6 @@ public class AdminController extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("뭔데 싸발");
     	   
         request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html; charset=UTF-8");
@@ -39,6 +38,7 @@ public class AdminController extends HttpServlet {
         String url="view/admin/";
         if(command.equals("list")) {
             List<MemberDto> list = dao.selectList();
+            System.out.println("컨트롤러 list 여기까지");
             request.setAttribute("list", list);
             System.out.println("디스패치 가기전 list 사이즈" +list.size());
             dispatch(url+"user_list.jsp", request, response);
