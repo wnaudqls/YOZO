@@ -186,7 +186,7 @@ input#recipe_search{
 
 			<div id="btns">
 				<input class="btn" type="button" value="등록"
-					onclick="location.href='<%request.getContextPath();%>/YORIZORI/.do?command=goodsinsertform'" />
+					onclick="location.href='<%request.getContextPath();%>/YORIZORI/recipe.do?command=recipeinsertform'" />
 				<input class="btn" type="button" value="삭제" />
 			</div>
 		</c:if>

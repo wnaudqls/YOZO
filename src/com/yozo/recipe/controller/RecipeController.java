@@ -134,7 +134,7 @@ public class RecipeController extends HttpServlet {
 		//레시피 작성 폼
 		}else if(command.equals("recipeinsertform")) {
 			System.out.println("controller_recipe_insertform");
-			response.sendRedirect(request.getContextPath() + "/view/recipe/recipe_insert.jsp");
+			response.sendRedirect(request.getContextPath()+"/view/recipe/recipe_insert.jsp");
 		
 		//레시피 여러개 삭제
 		}else if(command.contentEquals("recipemuldel")) {
