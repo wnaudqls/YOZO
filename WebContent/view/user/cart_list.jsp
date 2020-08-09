@@ -46,12 +46,46 @@
 	border-radius: 0.35em;
 	font-weight: bold;
 	cursor: pointer;
-	background-color: #F5A9A9
+	
 }
+
+#pay_price{
+	background-color: #F5A9A9;
+	color : #C8F372;
+	font-size: 20px;
+	font-style: inherit;
+	font-weight: bolder;
+}
+
+#pay_price span{
+	color : #FDFF77;
+	font-size: 30px;
+}
+
+
+
 </style>
+<script src="https://cdn.iamport.kr/js/iamport.payment-1.1.4.js"
+	type="text/javascript"></script>
 <script>
 	$(function() {
-
+		$("input[name=chk]").click(function() {
+			var $totalPrice = $("#totalPrice");
+			if($(this).is(":checked")){
+			var price = Number($(this).parent().next().next().next().next().next().next().next().html());
+			var totalPrice = price + Number($totalPrice.html());
+			
+			$totalPrice.html(totalPrice);
+			}else{
+			var price = Number($(this).parent().next().next().next().next().next().next().next().html());
+			var totalPrice = Number($totalPrice.html()) - price;
+			
+			$totalPrice.html(totalPrice);
+				
+			}
+			
+			
+		});
 		$("#btnList").click(function() {
 			/* location.href = "${path}/shop/product/list.do"; */
 			location.href = "/YORIZORI/goods.do?command=goodslist";
@@ -75,6 +109,7 @@
 			console.log(price);
 
 		}
+		
 	});
 	
 	//전체선택 체크박스
@@ -86,52 +121,7 @@
 	}
 	
 	
-	//구매하기
 
- /*  장바구니 결제하기 아직 안했음 아직 안했음 아직 안했음!!!코드 고쳐야함!!!아직!!안했다~!!! 
-  function total_price() {
-		      var cnt = document.getElementById("count").value;
-		      var price = document.getElementById("goods_price").innerText;
-		      var total_price = parseInt(price) * parseInt(cnt);
-		      document.getElementById("total_price").innerText = total_price;
-		      
-		   
-		   } 
-		   function pay(){
-			   alert("결제시작");
-		      var cnt = document.getElementByName("chk");
-		      var total=Number(${dto.goods_price})*Number(cnt); 
-		      var IMP = window.IMP; // 생략가능
-		      IMP.init('imp92407375');
-
-		      IMP.request_pay({
-		          pg : 'html5_inicis', // version 1.1.0부터 지원.
-		          pay_method : 'card',
-		          merchant_uid : 'merchant_' + new Date().getTime(),
-		          name : '주문명:결제테스트',
-		          amount : total,
-		          buyer_email : 'iamport@siot.do',
-		          buyer_name : '구매자이름',
-		          buyer_tel : '010-1234-5678',
-		          buyer_addr : '서울특별시 강남구 삼성동',
-		          buyer_postcode : '123-456'
-		      }, function(rsp) {
-		          if ( rsp.success ) {
-		              var msg = '결제가 완료되었습니다.';
-		              msg += '고유ID : ' + rsp.imp_uid;
-		              msg += '상점 거래ID : ' + rsp.merchant_uid;
-		              msg += '결제 금액 : ' + rsp.paid_amount;
-		              msg += '카드 승인번호 : ' + rsp.apply_num;
-		          } else {
-		              var msg = '결제에 실패하였습니다.';
-		              msg += '에러내용 : ' + rsp.error_msg;
-		          }
-		          alert(msg);
-		      });
-
-		   };   	*/  
-		   
-		   
 			//구매하기
 
 		   /*  장바구니 결제하기 아직 안했음 아직 안했음 아직 안했음!!!코드 고쳐야함!!!아직!!안했다~!!! */
@@ -145,8 +135,8 @@
 		  		   } 
 		  		   function pay(){
 		  			   alert("결제시작");
-		  		      var cnt = document.getElementByName("chk");
-		  		      var total=Number(${dto.goods_price})*Number(cnt); 
+		  		      var cnt = document.getElementsByName("chk");
+		  		      var total= Number($("#totalPrice").html());
 		  		      var IMP = window.IMP; // 생략가능
 		  		      IMP.init('imp92407375');
 
@@ -176,8 +166,7 @@
 		  		      });
 
 		  		   };  
-	
-	
+		  		   
 </script>
 </head>
 <%
@@ -191,7 +180,7 @@
 		<input type="hidden" name="command" value="cartmuldel">
 		<table id="cart_table" border="1">
 
-			<tr class=".eval-contents">
+			<tr>
 				<th><input type="checkbox" name="all"
 					onclick="allChk(this.checked);" /></th>
 				<th>상품 번호</th>
@@ -229,20 +218,17 @@
 				<td><%=c.getMoney()%></td>
 				<input type="hidden" name="memberId" value="${rdto.member_id }" />
 				<input type="hidden" name="goods_no" value="<%=c.getGoods_no()%>" />
-				<!-- <input type="submit" value="삭제" /> -->
-				<%-- 			<div id="btns">
-					<!--  <input class="btn" type="submit" id="btnDelete" value="삭제" onclick="location.href='<%request.getContextPath();%>/YORIZORI/CartDelete.do?command=cartmuldel&goods_no=${dto.goods_no}'"/>-->
-						<input class="btn" type="submit" id="btnDelete" value="삭제" />
-						<input class="btn" type="button" id="btnList" value="상품목록"/>
-						<input class="btn" type="button" value="결제하기"/>
-					</div> --%>
+		
 				<%
 					}
 			}
 		%>
 			</tr>
+	<div id="pay_price">
+		' 총 가격 : <span id="totalPrice">0</span> WON '
+	</div>
 		</table>
-
+		
 		<div id="btns">
 			<!--  <input class="btn" type="submit" id="btnDelete" value="삭제" onclick="location.href='<%request.getContextPath();%>/YORIZORI/CartDelete.do?command=cartmuldel&goods_no=${dto.goods_no}'"/>-->
 			<input class="btn" type="submit" id="btnDelete" value="삭제" /> <input

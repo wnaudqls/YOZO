@@ -53,5 +53,3 @@ END;
 update recipe set recipe_title='레시피 찹스테이크~' where recipe_no=27
 
 
-
- ㅍㅊㅌㅌㅌ

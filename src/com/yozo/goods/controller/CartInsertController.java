@@ -48,7 +48,7 @@ public class CartInsertController extends HttpServlet {
 		CartDTO cartSearch = new CartService().cartInsertList(memberId, goods_no);
 		
 		if(cartSearch != null) {
-			result = new CartService().cartUpdate(memberId, goods_no, cartSearch.getAmount(), amount);
+			result = new CartService().cartUpdate(memberId, goods_no, cartSearch.getAmount(), amount, cart.getGoods_price());
 		}else {
 			result = new CartService().cartInsert(cart);
 		}

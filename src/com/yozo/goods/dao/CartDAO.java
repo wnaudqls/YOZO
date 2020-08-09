@@ -67,7 +67,7 @@ public class CartDAO {
 			pstmt.setString(3, cart.getGoods_title());
 			pstmt.setString(4, cart.getGoods_main_photo());
 			pstmt.setInt(5, cart.getGoods_price());
-			pstmt.setInt(6, cart.getMoney());
+			pstmt.setInt(6, cart.getAmount()*cart.getGoods_price());
 			pstmt.setInt(7, cart.getAmount());
 		
 			result = pstmt.executeUpdate();
@@ -163,17 +163,18 @@ public class CartDAO {
 		
 	}
 
-	public int cartUpdate(Connection conn, String memberId, int goods_no, int amount, int addAmount) {
+	public int cartUpdate(Connection conn, String memberId, int goods_no, int amount, int addAmount, int price) {
 		int result = 0;
 		PreparedStatement pstmt = null;
-		String sql = "update cart set amount=? where member_id = ? and goods_no = ?";
+		String sql = "update cart set amount=?, money = ? where member_id = ? and goods_no = ?";
 
 		try {
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setInt(1, amount+addAmount);
-			pstmt.setString(2, memberId);
-			pstmt.setInt(3, goods_no);
+			pstmt.setInt(2, (amount+addAmount)*price);
+			pstmt.setString(3, memberId);
+			pstmt.setInt(4, goods_no);
 		
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {

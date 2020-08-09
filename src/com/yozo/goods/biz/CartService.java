@@ -36,9 +36,9 @@ public class CartService {
 		return cartSearch;
 	}
 
-	public int cartUpdate(String memberId, int goods_no, int amount, int amount2) {
+	public int cartUpdate(String memberId, int goods_no, int amount, int amount2, int price) {
 		Connection conn = getConnection();
-		int result = cartDao.cartUpdate(conn, memberId, goods_no, amount, amount2);
+		int result = cartDao.cartUpdate(conn, memberId, goods_no, amount, amount2, price);
 		if(result>0) commit(conn);
 		else rollback(conn);
 		close(conn);

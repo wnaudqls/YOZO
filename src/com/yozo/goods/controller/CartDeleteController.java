@@ -49,9 +49,17 @@ public class CartDeleteController extends HttpServlet {
 			String [] chk = request.getParameterValues("chk");
 			String member_Id = request.getParameter("memberId");
 			System.out.println("chk : " + chk + "member_Id :" + member_Id);
-			
+			String msg = "";
+			if(chk == null) {
+				loc = "/list.do?memberId="+memberId;
+				msg="체크된 상품이 없습니다.";
+				request.setAttribute("msg", msg);
+				request.setAttribute("loc", loc);
+				
+				request.getRequestDispatcher("/view/goods/msg.jsp").forward(request, response);
+			}
 			int res = dao.multiDelete(member_Id, chk);
-			String msg = res >0 ? "삭제하는데 성공하였습니다.": "삭제하는데 실패하였습니다.";
+			msg = res >0 ? "삭제하는데 성공하였습니다.": "삭제하는데 실패하였습니다.";
 			if(res > 0) {
 				loc = "/list.do?memberId="+memberId; 
 				System.out.println("삭제완료");
