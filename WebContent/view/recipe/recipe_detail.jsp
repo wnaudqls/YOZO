@@ -698,9 +698,14 @@ img {vertical-align: middle;}
 
 				</div>
 			
-		<!-- 	</div> -->
-
-		<!-- </div> -->
+		<div class="recipe_material">
+					<h2>재료</h2>
+					<ul class="material_list">
+						<c:forEach items="${material }" var="m" varStatus="status">
+							<li>${m }</li>
+						</c:forEach>
+					</ul>
+				</div>
 
 		<div class="section_bottom">
 
