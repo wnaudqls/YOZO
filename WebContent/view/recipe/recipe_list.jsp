@@ -113,6 +113,7 @@ td {
 .list_card_like {
 	position: relative;
 	height: 50px;
+	text-overflow: ellipsis;
 }
 /*제목들어가는칸*/
 .list_card_title {
