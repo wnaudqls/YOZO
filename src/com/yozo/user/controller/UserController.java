@@ -93,14 +93,15 @@ public class UserController extends HttpServlet {
 				dispatch.forward(request, response);
 				
 			} else {
-				session.setAttribute("rdto", rdto);			
-				session.setMaxInactiveInterval(1000*60);
+				/*
+				 * session.setAttribute("rdto", rdto); 
+				 * session.setMaxInactiveInterval(1000*60);
+				 */
 				System.out.println("로그인 실패");
 				
 				String s = "<script type='text/javascript'>" + "alert('ID, PW를 확인해 주세요');" + "location.href='view/user/login.jsp';"
 						+ "</script>";
 				response.getWriter().append(s);
-				
 			}
 			
 		} else if (command.equals("moveMap")) {
@@ -123,8 +124,7 @@ public class UserController extends HttpServlet {
 			
 		} else if (command.equals("joinform")) {
 			System.out.println("JOINFORM.......입성");
-			RequestDispatcher dispatch = request.getRequestDispatcher("/view/user/join.jsp");
-			dispatch.forward(request, response);
+			response.sendRedirect("/YORIZORI/view/user/join.jsp");
 			System.out.println("............입성1");
 			
 		} else if (command.equals("idcheck")) {
@@ -142,7 +142,6 @@ public class UserController extends HttpServlet {
 			response.sendRedirect("/YORIZORI/view/user/idcheck.jsp?idnotused="+idnotused);
 		
 		} else if (command.equals("nickcheck")) {
-			System.out.println("nickcheck.......입성");
 			String nick = request.getParameter("nick");
 			
 			// 2.
@@ -246,7 +245,7 @@ public class UserController extends HttpServlet {
 			boolean res = dao.insert(dto);
 			
 			if (res) { 
-
+				
 				response.sendRedirect("/YORIZORI/view/user/login.jsp"); 
 			} else { 
 
@@ -256,17 +255,85 @@ public class UserController extends HttpServlet {
 		} else if (command.equals("updateform")) {
 			
 			
-			 RequestDispatcher dispatch = request.getRequestDispatcher("/view/user/edit_account");
-			 dispatch.forward(request, response);
+			response.sendRedirect("/YORIZORI/view/user/editLogin.jsp");
+
+			
+			 //RequestDispatcher dispatch = request.getRequestDispatcher("/view/user/editLogin.jsp");
+			 //dispatch.forward(request, response);
+			
+		} else if (command.equals("edit_account")) {
+			
+			System.out.println("update입성........입성");
+			String id = request.getParameter("id");
+			String pw = request.getParameter("pw");
 			
 			
+			MemberDto dto = new MemberDto();
+			dto.setMember_id(id);
+			dto.setMember_pw(pw);
+			
+			MemberDto rdto = dao.login(id, pw);
+			
+			request.setAttribute("rdto", rdto);
+			
+			System.out.println("");
+
+			if (rdto != null) {
+				
+					System.out.println("아무거나 테스트");			
+				RequestDispatcher dispatch = request.getRequestDispatcher("/view/user/edit_account.jsp");
+				dispatch.forward(request, response);
+				
+			} else {
+				
+				String s = "<script type='text/javascript'>" + "alert('ID, PW를 확인해 주세요');" + "location.href='view/user/login.jsp';"
+						+ "</script>";
+				
+				response.getWriter().append(s);
+				
+				RequestDispatcher dispatch = request.getRequestDispatcher("/view/user/editLogin.jsp");
+				dispatch.forward(request, response);
+			}
 			
 			
+			 
+		} else if (command.equals("update")) {
 			
+			System.out.println("컨트롤러 업데이트");
 			
+			int no = Integer.parseInt(request.getParameter("no"));
+			System.out.println(no);
+			String id = request.getParameter("id"); 
+			 String nick = request.getParameter("nick"); 
+			 String name = request.getParameter("name");
+			 String pw = request.getParameter("pw"); 
+			 String email = request.getParameter("email"); 
+			 String road_addr_part1 = request.getParameter("road_addr_part1");
+			 String road_addr_part2 = request.getParameter("road_addr_part2");
+			 String addr_detail = request.getParameter("addr_detail");
+			 String phone = request.getParameter("phone");
+			 
+			 String addr = road_addr_part1 + " " + road_addr_part2 + " " + addr_detail;
+
+			 MemberDto dto = new MemberDto(no,id,pw,name,nick,email,"null",true,"N",phone,addr,"회원");
+			 
+				System.out.println("controller dto = "+dto);
+
 			
+			boolean res = dao.update(dto);
 			
-			
+			if (res) { 
+				session.invalidate();
+				response.sendRedirect("/YORIZORI/view/user/login.jsp");
+				String s = "<script type='text/javascript'>" + "alert('수정되었습니다.\n다시 로그인 해주세요.');" + "location.href='view/user/login.jsp';"
+						+ "</script>";
+				response.getWriter().append(s);
+
+				
+			} else { 
+
+				System.out.println("안바뀌었어 다시 해");
+			}
 			
 			
 		} else if (command.equals("sendEmail")) {

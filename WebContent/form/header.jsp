@@ -215,25 +215,26 @@ window.onclick = function(event){
 		</div>		
 <%
 	} else if (dto != null) {
-%><form action="<%request.getContextPath();%>/YORIZORI/list.do?">
+%>			                <form action="<%request.getContextPath();%>/YORIZORI/list.do?">
+
     	<div class = "dropuserdown">
 		        	<span id="loginStatus"><b>${rdto.member_nick }</b> 님이 로그인하였습니다.</span>
 		            <img onclick = "dropuser()" class="usericon"alt="logo" src="/YORIZORI/img/usericon.png">
 		            <div id="dropuser_content" class = "dropuser_content">
 		                <a href="<%request.getContextPath();%>/YORIZORI/user.do?command=updateform">개인정보수정</a>
+		                <input type="hidden" name="member_no" value="${rdto.member_no }"><!-- 현승 수정 -->
 		                <a href="">나의레시피</a>
+			                <form action="<%request.getContextPath();%>/YORIZORI/list.do?"><!-- 현승 수정 -->
 		                <a href="" class="useId">
-
-			                
 							    <input type="hidden" name="memberId" id="memberId" value="${rdto.member_id }"/>
 							    <input type="submit" value="나의 장바구니"/>
-							
 						</a>
 		                <a href="">우리집냉장고</a>
 		                <a href="<%request.getContextPath();%>/YORIZORI/user.do?command=logout">로그아웃</a>
 		            </div>
        </div>
-       </form>
+</form>
+
 
  <%
  	}
