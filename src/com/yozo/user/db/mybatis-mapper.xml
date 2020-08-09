@@ -50,5 +50,23 @@
 		 #{member_email}, #{member_email_hash}, #{member_email_checked},
 		 #{member_enabled} , #{member_phone}, #{member_addr}, #{member_role})
 	</insert>
+	
+	<update id="update" parameterType="MemberDto">
+		UPDATE MEMBER SET
+		MEMBER_NO = #{member_no},
+		MEMBER_PW = #{member_pw},
+		MEMBER_NAME = #{member_name},
+		MEMBER_NICK = #{member_nick},
+		MEMBER_EMAIL = #{member_e1212mail},
+		MEMBER_EMAIL_HASH = #{member_email_hash},
+		MEMBER_EMAIL_CHECKED = #{member_email_checked},
+		MEMBER_ENABLED = #{member_enabled},
+		MEMBER_PHONE = #{member_phone},
+		MEMBER_ADDR = #{member_addr},
+		MEMBER_ROLE = #{member_role}
+		WHERE MEMBER_ID = #{member_id}
+		
+	
+	</update>
 
 </mapper>

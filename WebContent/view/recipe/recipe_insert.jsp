@@ -282,7 +282,7 @@
 </script>
 </head>
 <body>
-	<%@ include file="../../form/header.jsp"%>
+	<%@ include file="/form/header.jsp"%>
 	<!--유정)섹션추가 -->
 	<!-- 상단부 -->
 	<form action="<%=request.getContextPath()%>/recipe.do" method="post"

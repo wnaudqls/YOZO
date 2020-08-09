@@ -77,7 +77,19 @@ public class UserDao extends SqlMapConfig{
 		return (insertRs > 0)? true : false;
 	}
 	
-	
+	public boolean update(MemberDto dto) {
+		
+		SqlSession session = null;
+		int updateRs = 0;
+		System.out.println("userDao    dto = "+dto );
+		
+		session = getSqlSessionFactory().openSession(true);
+		updateRs = session.update(namespace+".update",dto);
+		
+		System.out.println("개인정보 수정 결과는 ?? : "+ updateRs);
+		
+		return (updateRs > 0)? true : false;
+	}
 	
 	
 	

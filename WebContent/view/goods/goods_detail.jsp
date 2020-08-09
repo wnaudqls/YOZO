@@ -23,7 +23,11 @@
 }
 
 section {
+<<<<<<< HEAD
 	/*    height: 600px;
+=======
+	/* 	height: 600px;
+>>>>>>> branch 'develop' of https://github.com/shm1113/YOZO.git
 
  */
 	
@@ -98,7 +102,6 @@ section {
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.iamport.kr/js/iamport.payment-1.1.4.js" type="text/javascript"></script>
 <script type="text/javascript">
-
 	function total_price() {
 		var cnt = document.getElementById("count").value;
 		var price = document.getElementById("goods_price").innerText;
@@ -111,7 +114,12 @@ section {
 		var total = Number("${dto.goods_price}") * Number(cnt);
 		var IMP = window.IMP; // 생략가능
 		IMP.init('imp92407375');
-
+	}
+	function pay() {
+		var cnt = document.getElementById("count").value;
+		var total = Number("${dto.goods_price}") * Number(cnt);
+		var IMP = window.IMP; // 생략가능
+		IMP.init('imp92407375');
 		IMP.request_pay({
 			pg : 'html5_inicis', // version 1.1.0부터 지원.
 			pay_method : 'card',
@@ -139,23 +147,18 @@ section {
 		});
 
 	};
-	/* 
-	$(function(){
-	   init();
-	   fn_image_file_view();
-	});
-	
-	fuction fn_image_file_view(){
-	   location.href="image_file_view.do"
-	}
-	 */
+	 $(function(){
+		$("#count").keyup(function(){
+			$("#amount").val($(this).val()) ;
+		});
+	 });
 </script>
 <body>
 
 	<%@include file="/form/header.jsp"%>
 	<section class="section">
 		<!-- 쇼핑몰 상세보기 시작점  -->
-		<form action="<%=request.getContextPath()%>/goods.do" method="post">
+		<form action="" method="post">
 			<input type="hidden" name="command" value="goodsupdate" /> <input
 				type="hidden" name="goods_no" value="${dto.goods_no}" />
 			<div class="product_wrap">
@@ -201,18 +204,26 @@ section {
 					</table>
 				</div>
 				<div>
-					<input class="btn" type="button" value="장바구니" /> <input class="btn"
-						type="button" value="구매하기" onclick="pay();" />
+					<input class="btn" type="button" value="구매하기" onclick="pay();" />
 					<c:if test="${rdto.member_role eq '관리자' }">
 						<div>
-							<input class="btn" type="submit" value="수정" /> <input class="btn"
-								type="button" value="삭제"
+							<input class="btn" type="submit" value="수정" /> 
+							<input class="btn" type="button" value="삭제"
 								onclick="location.href='<%=request.getContextPath()%>/YORIZORI/goods.do?command=goodsdelete&goods_no=${dto.goods_no}'" />
 						</div>
 					</c:if>
 				</div>
 			</div>
 		</form>
+		<form action="<%request.getContextPath();%>/YORIZORI/CartInsert.do"	method="POST">
+						<input type="hidden" name="memberId" value="${rdto.member_id }" />
+						<input type="hidden" name="goods_no" value="${dto.goods_no }" />
+						<input type="hidden" name="goods_title"	value="${dto.goods_title }" /> 
+						<input type="hidden" name="goods_price" value="${dto.goods_price }" /> 
+						<input type="hidden" name="goods_main_photo" value="${dto.goods_main_photo }" /> 
+						<input type="hidden" id="amount" name = "amount" value="1"/>
+						<input type="submit" value="장바구니 담기" />
+					</form>
 		<hr>
 		<h1>상세설명</h1>
 		<div class="goods_content">${dto.goods_content }</div>
@@ -221,5 +232,6 @@ section {
 	<%@ include file="/view/goods/goods_answer.jsp"%>
 	<!-- 푸터 -->
 	<%@ include file="/form/footer.jsp"%>
+
 </body>
 </html>
