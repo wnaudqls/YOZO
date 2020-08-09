@@ -625,7 +625,7 @@ img {vertical-align: middle;}
 =======
 >>>>>>> branch 'develop' of https://github.com/shm1113/YOZO.git
 
-	<%@ include file="../../form/header.jsp"%>
+	<%@ include file="/form/header.jsp"%>
 	<!-- 레시피 정보 -->
 8
 	<div class="section_top">

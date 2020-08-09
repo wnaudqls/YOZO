@@ -184,16 +184,18 @@ display: inline-block;} */
 }
 .list_card{
 display: inline-block;
+	width : 300px;
+	height : 380px;
 }
 
 #muldelform{
 	/* border: 1px solid red; */
-	width : 300px;
-	height : 330px;
+/* 	width : 300px;
+	height : 330px; */
 }
 </style>
 
-<%@ include file="../../form/header.jsp"%>
+<%@ include file="/form/header.jsp"%>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
 	function alldel() {
@@ -279,8 +281,8 @@ display: inline-block;
 									<%-- <a href="goods.do?command='goodsdetail'"><img src="/YORIZORI/ckstorage/images/${dto.goods_main_photo }" class="goods_img_tag" alt="굿즈메인사진"/></a> --%>
 									<%-- <a href="goods.do?command='goodsdetail'"><img src="${path }/${dto.goods_main_photo }" class="goods_img_tag" alt="굿즈메인사진"/></a> --%>
 									<a
-										href="goods.do?command=goodsdetail&goods_no=${dto.goods_no }"><img
-										src="imgtest/${dto.goods_main_photo }" class="goods_img_tag"
+										href="/YORIZORI/goods.do?command=goodsdetail&goods_no=${dto.goods_no }"><img
+										src="/YORIZORI/imgtest/${dto.goods_main_photo }" class="goods_img_tag"
 										alt="굿즈메인사진" /></a>
 									<p>${dto.goods_title }</p>
 									<p>${dto.goods_price }원</p>
@@ -329,7 +331,7 @@ display: inline-block;
 
 </body>
 <div id="paging"></div>
-<%@ include file="../../form/footer.jsp"%>
+<%@ include file="/form/footer.jsp"%>
 <script>
 	var $setRows = $('#setRows');
 

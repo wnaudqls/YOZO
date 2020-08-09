@@ -7,7 +7,7 @@
 <title>ㅁㄴㅇㄹ</title>
 </head>
 <body>
-<%@include file="../../form/header.jsp" %>
+<%@include file="/form/header.jsp" %>
 <hr>
 <h1>상세보기</h1>
 	<table border="1">
@@ -35,7 +35,7 @@
 	<input type="button" id="btn2"name="return" value="돌아가기" onclick="history.go(-1);"/>
 
 <div id="footer">
-<%@include file="../../form/footer.jsp" %>
+<%@include file="/form/footer.jsp" %>
 </div>
 </body>
 <style type="text/css">

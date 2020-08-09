@@ -88,7 +88,7 @@ public class JsonController extends HttpServlet {
 
 							/* RecipeDto dto=new RecipeDto(0,recipe_main_img,"yujeong",recipe_title, */
 
-							RecipeDto dto=new RecipeDto(0,recipe_main_img,"yujeong",recipe_title,null, recipe_step,null,0,"대표재료",1,1,material,0);
+							RecipeDto dto=new RecipeDto(0,recipe_main_img,"shm1113",recipe_title,null, recipe_step,null,0,"대표재료",1,1,material,0);
 							list.add(dto);
 						} catch (Exception e) {
 							// TODO Auto-generated catch block

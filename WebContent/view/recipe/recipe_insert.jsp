@@ -275,7 +275,7 @@
 </script>
 </head>
 <body>
-	<%@ include file="../../form/header.jsp"%>
+	<%@ include file="/form/header.jsp"%>
 	<!--유정)섹션추가 -->
 	<!-- 상단부 -->
 <form action="<%=request.getContextPath()%>/recipe.do" method="post">
@@ -315,6 +315,29 @@
 					</select>
 				</div>
 			</div>
+
+			
+			<div id="add_material_wrapper">
+				<br> <br>
+				<table id="material_table">
+			
+					<!--유정) 디브 추가-->
+					<div>
+						★ 대표재료 :
+						<input type="text" placeholder="재료 이름">
+						<input type="number" placeholder="수량" class="quantity">
+						
+						<select class="unit">
+								<option>단위</option>
+								<option>g</option>
+								<option>컵</option>
+								<option>아빠숟가락</option>
+								<option>웅큼</option>
+								<option>주먹</option>
+						</select>
+					
+					</div>
+
 
 			<div id="add_material_wrapper">
 				<div>
@@ -365,9 +388,13 @@
 			</div>
 		</div>
 
+
 	</div>
 </form>
 	<%@ include file="../../form/footer.jsp"%>
+
+	<%@ include file="/form/footer.jsp"%>
+
 </body>
 </html>
 
