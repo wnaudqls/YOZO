@@ -65,6 +65,12 @@
         height: 70px;
         margin-left: 80px;
     }
+    .admin{
+    	width: 55px;
+    	height: 50px;
+    	margin-left : 80px;
+    	margin-bottom: 10px;
+    }
     .admin finger{
     	float:left;
     }
@@ -265,7 +271,7 @@ window.onclick = function(event){
             <img class="goods finger" alt="logo" src="/YORIZORI/img/goodsicon.png" onclick="location.href='<%request.getContextPath();%>/YORIZORI/goods.do?command=goodslist'">
             <img class="map finger" alt="logo" src="/YORIZORI/img/mapicon.png" onclick = "location.href = '<%request.getContextPath();%>/YORIZORI/view/map/map.jsp'">
             <c:if test="${rdto.member_role eq '관리자' }">
-            	<img class="admin finger" alt="logo" src="/YORIZORI/img/mapicon.png" onclick="location.href='<%=request.getContextPath()%>/admin.do?command=list'">
+            	<img class="admin finger" alt="logo" src="/YORIZORI/img/admin_icon.png" onclick="location.href='<%=request.getContextPath()%>/admin.do?command=list'">
             </c:if>
         </nav>
         

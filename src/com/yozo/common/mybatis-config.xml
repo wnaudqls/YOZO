@@ -55,6 +55,7 @@
 			<mapper resource="com/yozo/user/db/mybatis-mapper.xml"/>
 			<mapper resource="com/yozo/goods/db/goods-mapper.xml"/>
 			<mapper resource="com/yozo/recipe/db/recipe-mapper.xml"/>
+			<mapper resource="com/yozo/admin/db/admin-mapper.xml"/>
 
 		</mappers>
 	

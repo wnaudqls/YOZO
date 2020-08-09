@@ -277,8 +277,7 @@ img {vertical-align: middle;}
       speech.lang = "ko-KR";
       /*id가 text-to-speech인 value값을 담아줌*/
       speech.text = msg;
-
-
+	  /*speech volume 조절*/
       speech.volume = 100;
       /*재생속도 1 = 정상속도 */
       speech.rate = 0.9;
@@ -292,14 +291,14 @@ img {vertical-align: middle;}
    function SpeechToText() {
       
       //output의 참조값
-      var output = document.getElementById("output");
+      //var output = document.getElementById("output");
       // action의 참조값
-      var action = document.getElementById("action");
+      //var action = document.getElementById("action");
       // 새로운 음성 객체 생성
       var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
       var recognition = new SpeechRecognition();
 
-
+		//이 함수가 끝날때까지 라디오를 계속 켜있는 상태로 만들어줌 false일 경우 한번만 인식이 가능하다
 		recognition.continuous = true;
 		// 음성인식이 실행 될 때 실행됨
 		
@@ -320,12 +319,12 @@ img {vertical-align: middle;}
       
       recognition.onerror = function(event) {
            console.log('error', event);
-           recognition.start("다시시작");
+           //recognition.start("다시시작");
          };
       recognition.onresult = function(event) {
          //음성을 text 로 변환된 값
          var transcript = event.results[i][0].transcript;
-         alert(i);
+         //alert(i);
          /* TextToSpeech(transcript); */
          i=i+1;
          console.log(transcript);
@@ -363,10 +362,10 @@ img {vertical-align: middle;}
             plusSlides(+1);
             var txt=document.querySelectorAll('.text');
             j++;
-            alert(txt[j].innerText);
+            //alert(txt[j].innerText);
 //            alert(txt[j].innerText);
             //recognition.pause();
-            recognition.resume();
+            //recognition.resume();
             //recognition.stop();
             //recognition.abort();
             TextToSpeech(txt[j].innerText);
@@ -376,22 +375,23 @@ img {vertical-align: middle;}
             //recognition.start();
             
             
-         }else if(transcript.trim()=="이전"){
+         }else if(transcript.trim()=="전에 꺼"){
             plusSlides(-1)
             var txt=document.querySelectorAll('.text');
             j--;
 //            alert(txt[j].innerText);
-            recognition.pause();
+            //recognition.pause();
             //recognition.stop();
             //recognition.abort();
             TextToSpeech(txt[j].innerText);
             //recognition.onresume();
             //recognition.start();
             //SpeechToText();
-         }else if(transcript.trim()=="다시"){
+            
+         }else if(transcript.trim()=="반복"){
             var txt=document.querySelectorAll('.text');
 //            alert(txt[j].innerText);
-            recognition.pause();
+           // recognition.pause();
             //recognition.stop();
             //recognition.abort();
             TextToSpeech(txt[j].innerText);
@@ -437,7 +437,6 @@ img {vertical-align: middle;}
 
 	<%@ include file="/form/header.jsp"%>
 	<!-- 레시피 정보 -->
-8
 	<div class="section_top">
 		<div class="main_img_wrap">
 			<img class="main_img" alt="title_img" src="${dto.recipe_main_photo }">
@@ -474,8 +473,6 @@ img {vertical-align: middle;}
 				</c:if>
 			</div>
 		</div>
-=======
-				
 				
 				 <!-- The Modal -->
 			    <div id="myModal" class="modal" style="width:100%; height:100%; ">
@@ -532,9 +529,7 @@ img {vertical-align: middle;}
 						</c:forEach>
 					</ul>
 				</div>
-			</div>
-
-		</div>
+			
 
 		<div class="section_bottom">
 
