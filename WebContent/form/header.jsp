@@ -12,117 +12,7 @@
 <link rel="shortcut icon" href="./img/favicon/yozofavicon.ico" type="image/x-icon">
 <title>요리조리</title>
 <style type="text/css">
-	 body {
-        margin: 0px;
-        text-align: center;
-        width: 100%;
-        }
-
-    header{
-        margin:0px;
-    }
-	section{
-		margin-top: 150px;
-	}
-    #header{
-        text-align: center;
-    }
-    #icon{
-        text-align: center;
-    }
-    .dropuserdown{
-   	 	 z-index: 1;
-         position: absolute;
-         right: 20px;
-         top: 20px;
-    }
-    .mainlogo{
-        width: 300px;
-        height: 100px;
-    }
-     .recipe{
-        width: 70px;
-        height: 70px;
-    } 
-    .recipe_link{
-    	width: 70px;
-        height: 70px;
-        margin-left: 20px;
-        display: inline-block;
-    }
-    .stream{
-        width: 70px;
-        height: 70px;
-        margin-left: 80px;
-    }
-    .goods{
-        width: 70px;
-        height: 70px;
-        margin-left: 80px;
-    }
-    .map{
-        width: 70px;
-        height: 70px;
-        margin-left: 80px;
-    }
-    .admin{
-    	width: 55px;
-    	height: 50px;
-    	margin-left : 80px;
-    	margin-bottom: 10px;
-    }
-    .admin finger{
-    	float:left;
-    }
-    .usericon {
-        background-color:white;
-        color: white;
-        padding: 0px;
-        font-size: 16px;
-        border: none;
-        cursor: pointer;
-    }
-    .usericon:hover, .usericon:focus {
-        background-color: white;
-    }
-    .dropuser_content {
-        display: none;
-        position: absolute;
-        background-color : #F5A9A9;
-        min-width: 160px;
-        overflow: auto;
-        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    }
-
-    .dropuser_content a {
-        color:white;
-        padding: 12px 16px;
-        text-decoration: none;
-        display: block;
-        float:left;
-    }
-
-    .dropuser_content a:hover {background-color: black}
-
-    .show {display:block;}
-
-    .dropstreamdown {
-        position: relative;
-        display: inline-block;
-    }
-    .stream {
-        background-color:white;
-        color: white;
-        padding: 0px;
-        font-size: 16px;
-        border: none;
-        cursor: pointer;
-    }
-    .stream:hover, .stream:focus {
-        background-color:white;
-    }
-    .dropstream_content {
-    	opacity: 0.85;
+	    	opacity: 0.85;
   		z-index: 1;
         display: none;
         position: absolute;
@@ -226,13 +116,14 @@ window.onclick = function(event){
 
 
 		<div class = "dropuserdown">
+				<span id="loginStatus">로그인을 해주세요</span>
 				<img onclick = "location.href='<%=request.getContextPath()%>/user.do?command=loginform'" class="usericon" alt="logo" src="/YORIZORI/img/usericon.png">
 		</div>		
 <%
 	} else if (dto != null) {
 %><form action="<%request.getContextPath();%>/YORIZORI/list.do?">
     	<div class = "dropuserdown">
-		        	<span id="loginStatus">${rdto.member_nick } 님이 로그인하였습니다.</span>
+		        	<span id="loginStatus"><b>${rdto.member_nick }</b> 님이 로그인하였습니다.</span>
 		            <img onclick = "dropuser()" class="usericon"alt="logo" src="/YORIZORI/img/usericon.png">
 		            <div id="dropuser_content" class = "dropuser_content">
 		                <a href="<%request.getContextPath();%>/YORIZORI/user.do?command=updateform">개인정보수정</a>
@@ -271,7 +162,7 @@ window.onclick = function(event){
             <img class="goods finger" alt="logo" src="/YORIZORI/img/goodsicon.png" onclick="location.href='<%request.getContextPath();%>/YORIZORI/goods.do?command=goodslist'">
             <img class="map finger" alt="logo" src="/YORIZORI/img/mapicon.png" onclick = "location.href = '<%request.getContextPath();%>/YORIZORI/view/map/map.jsp'">
             <c:if test="${rdto.member_role eq '관리자' }">
-            	<img class="admin finger" alt="logo" src="/YORIZORI/img/admin_icon.png" onclick="location.href='<%=request.getContextPath()%>/admin.do?command=list'">
+            	<img class="admin finger" alt="logo" src="/YORIZORI/img/mapicon.png" onclick="location.href='<%=request.getContextPath()%>/admin.do?command=list'">
             </c:if>
         </nav>
         

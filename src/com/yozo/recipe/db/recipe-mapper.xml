@@ -4,7 +4,15 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="recipe">
 
- <insert id="jsonInsert" parameterType="java.util.List">
+   <delete id="muldelete" parameterType="map">
+      DELETE FROM RECIPE
+      WHERE RECIPE_NO IN 
+         <foreach item="recipe_no" collection="recipe_no" open="(" separator="," close=")">
+            #{recipe_no}
+         </foreach>
+   </delete>
+
+   <insert id="jsonInsert" parameterType="java.util.List">
       <foreach collection="list" item="i" index="index"
          open="INSERT ALL" separator=" " close="SELECT * FROM DUAL">
          into
@@ -15,9 +23,9 @@
          #{i.recipe_main_photo},
          #{i.member_id},
          #{i.recipe_title},
+         null,
          #{i.recipe_detail},
          sysdate,
-         #{i.recipe_readcount},
          #{i.recipe_material_one},
          #{i.recipe_theme},
          #{i.recipe_kind},
@@ -26,16 +34,15 @@
          )
       </foreach>
    </insert>
-
- <select id="selectList" resultType="recipeDto">
+   <select id="selectList" resultType="recipeDto">
       SELECT 
       RECIPE_NO,
       RECIPE_MAIN_PHOTO,
       MEMBER_ID,
       RECIPE_TITLE,
+      RECIPE_PHOTO,
       RECIPE_DETAIL,
       RECIPE_REGDATE,
-      RECIPE_READCOUNT,
       RECIPE_MATERIAL_ONE,
       CATE_THEME,
       CATE_KIND,
@@ -50,9 +57,9 @@
       RECIPE_MAIN_PHOTO,
       MEMBER_ID,
       RECIPE_TITLE,
+      RECIPE_PHOTO,
       RECIPE_DETAIL,
       RECIPE_REGDATE,
-      RECIPE_READCOUNT,
       RECIPE_MATERIAL_ONE,
       CATE_THEME,
       CATE_KIND,
@@ -60,9 +67,29 @@
       RECIPE_LIKECOUNT
       FROM RECIPE 
       WHERE RECIPE_NO= #{recipe_no}
-   </select> 
+   </select>
    
-   <select id="search" resultType="recipeDto" parameterType="String">
+   <!-- 마이 레시피 리스트  -->
+      <select id="MYselectList" resultType="recipeDto" >      
+      SELECT 
+      RECIPE_NO,
+      RECIPE_MAIN_PHOTO,
+      MEMBER_ID,
+      RECIPE_TITLE,
+      RECIPE_PHOTO,
+      RECIPE_DETAIL,
+      RECIPE_REGDATE,
+      RECIPE_MATERIAL_ONE,
+      CATE_THEME,
+      CATE_KIND,
+      RECIPE_MATERIAL,
+      RECIPE_LIKECOUNT
+      FROM RECIPE 
+      WHERE member_id= #{member_id}
+   </select>
+   
+   <!-- 레시피 검색  -->
+    <select id="search" resultType="recipeDto" parameterType="String">
      SELECT 
       RECIPE_NO,
       RECIPE_MAIN_PHOTO,
@@ -72,23 +99,11 @@
       RECIPE_REGDATE,
       RECIPE_READCOUNT,
       RECIPE_MATERIAL_ONE,
-      CATE_THEME,
-      CATE_KIND,
+      CATE_THEME_NO,
+      CATE_KIND_NO,
       RECIPE_MATERIAL,
       RECIPE_LIKECOUNT 
       FROM RECIPE
       WHERE RECIPE_TITLE LIKE '%'||#{txt}||'%'
    </select>
-
-
-<!--레시피 멀티 딜리트 -->
-
-   <delete id="muldelete" parameterType="map">
-   	DELETE FROM RECIPE
-   	WHERE RECIPE_NO IN 
-   		<foreach item="recipe_no" collection="recipe_no" open="(" separator="," close=")">
-   			#{recipe_no}
-   		</foreach>
-   </delete>
-	
 </mapper>

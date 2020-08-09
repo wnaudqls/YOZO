@@ -65,6 +65,11 @@ height:310px;
 <script type="text/javascript" src="${pageContext.request.contextPath }/ckeditor/ckeditor.js "></script>
 <!--  <script src="//cdn.ckeditor.com/4.14.1/full/ckeditor.js"></script> -->
 <script type="text/javascript">
+		
+		
+		$(function(){
+			$("#goods_main_photo").attr("value","imgtest/${dto.goods_main_photo }");
+		});
 		function filechange(event){
 		 	//파일의 전체경로를 가져오기위한 javascript		
 				var filePath = document.getElementById("goods_main_photo").value;
