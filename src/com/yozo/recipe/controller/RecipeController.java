@@ -144,7 +144,9 @@ public class RecipeController extends HttpServlet {
 				jsResponse("레시피를 삭제하는데 실패하였습니다.", "recipe.do?command=recipe_list", response);
 			}
 			
-			
+			//레시피 등록
+		}else if(command.equals("recipe_insertres")) {
+			System.out.println("recipe_insertres왔음!");
 		}
 
 	}
