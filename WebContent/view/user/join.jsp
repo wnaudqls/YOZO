@@ -178,6 +178,13 @@
 			padding: 0px;
 		}
 	
+		.userBtn {
+			border: none;
+			background-color: #F5A9A9;
+			color: white;
+			border-radius: 3px;
+			cursor: pointer;
+		}
 	
 	</style>
 	
@@ -202,36 +209,36 @@
 %>
 
 	<div>
-	<h1>회원 가입</h1>
+	<h1 >회원 가입</h1>
 		<form action="<%=request.getContextPath() %>/user.do" name="form" id="form" method="post">
 		<input type="hidden" name="command" value="join" >
 		<table>
 	
 <tr>
-				<td class="col">아이디 : </td><td><input type="text" id="id" name="id" placeholder="아이디를 입력해 주세요"></td><td><input type="button" value="중복확인" onclick="idCheck()"></td>
+				<td class="col"><span style="color: #F5A9A9;">&bullet;</span>아이디 : </td><td><input type="text" id="id" name="id" placeholder="아이디를 입력해 주세요"></td><td><input type="button" class="userBtn" value="중복확인" onclick="idCheck()"></td>
 </tr>
 <tr>
-				<td class="col">닉네임 : </td><td><input type="text" id="nick" name="nick" placeholder="닉네임을 입력해 주세요"></td><td><input type="button" value="중복확인" onclick="nickCheck()"></td>
+				<td class="col"><span style="color: #F5A9A9;">&bullet;</span>닉네임 : </td><td><input type="text" id="nick" name="nick" placeholder="닉네임을 입력해 주세요"></td><td><input type="button" value="중복확인" class="userBtn" onclick="nickCheck()"></td>
 </tr>
 <tr>
-				<td class="col">이름 : </td><td><input type="text" id="name" name="name" placeholder="이름을 입력해 주세요"></td>
+				<td class="col"><span style="color: #F5A9A9;">&bullet;</span>이름 : </td><td><input type="text" id="name" name="name" placeholder="이름을 입력해 주세요"></td>
 </tr>
 <tr>
-				<td class="col">비밀번호 : </td><td><input type="password" id="pw" name="pw" placeholder="비밀번호를 입력해 주세요"></td>
+				<td class="col"><span style="color: #F5A9A9;">&bullet;</span>비밀번호 : </td><td><input type="password" id="pw" name="pw" placeholder="비밀번호를 입력해 주세요"></td>
 </tr>
 <tr>
-				<td class="col">비밀번호<br> 확인 : </td><td> <input type="password" id="pwchk" placeholder="비밀번호를 다시 입력해 주세요"></td>
+				<td class="col"><span style="color: #F5A9A9;">&bullet;</span>비밀번호<br><span style="color: #F5A9A9;">&nbsp;</span>확인 : </td><td> <input type="password" id="pwchk" placeholder="비밀번호를 다시 입력해 주세요"></td>
 </tr>
 <tr>
-				<td class="col">이메일 : </td> <td> <input type="text" id="email" name="email" placeholder="이메일을 입력해 주세요"></td><td><input type="button" value="본인인증" onclick="emailCheck('<%=getRandom()%>');"></td>
+				<td class="col"><span style="color: #F5A9A9;">&bullet;</span>이메일 : </td> <td> <input type="text" id="email" name="email" placeholder="이메일을 입력해 주세요"></td><td><input type="button" value="본인인증" class="userBtn" onclick="emailCheck('<%=getRandom()%>');"></td>
 </tr>
 <tr>
-				<td class="col">인증번호 확인 : </td> <td> <input type="text" id="chkAuth" placeholder="인증번호를 입력해 주세요"></td><td><input type="button" value="인증확인" onclick="chkAuth1()"></td>
+				<td class="col"><span style="color: #F5A9A9;">&nbsp;</span>인증번호 확인 : </td> <td> <input type="text" id="chkAuth" placeholder="인증번호를 입력해 주세요"></td><td><input type="button" value="인증확인" class="userBtn" onclick="chkAuth1()"></td>
 </tr>
 <tr>
-				<td class="col" class="asdf">주소 : </td> <td class="asdf"> 
+				<td class="col" class="asdf"><span style="color: #F5A9A9;">&nbsp;</span>주소 : </td> <td class="asdf"> 
 				<input type="hidden" id="confmKey" name="confmKey" value=""  >
-				<input type="text" id="zip_no" name="zip_no" placeholder="우편번호" readonly="readonly" value=""> </td> <td><input type="button" value="주소 검색" onclick="goPopup();"> </td>
+				<input type="text" id="zip_no" name="zip_no" placeholder="우편번호" readonly="readonly" value=""> </td> <td><input type="button" value="주소 검색" class="userBtn" onclick="goPopup();"> </td>
 </tr>
 <tr>
 				<td></td><td colspan="2"><input type="text" id="road_addr_part1" name="road_addr_part1" placeholder="도로명 주소" readonly="readonly" value=""></td>	
@@ -243,11 +250,11 @@
 				<td></td><td colspan="2"><input type="text" id="addr_detail" name="addr_detail" placeholder="상세주소 2" readonly="readonly" value=""></td>
 </tr>
 <tr>
-				<td class="col">전화번호 : </td> <td colspan="2"> <input type="text" id="phone" name="phone"></td> 
+				<td class="col"><span style="color: #F5A9A9;">&nbsp;</span>전화번호 : </td> <td colspan="2"> <input type="text" id="phone" name="phone"></td> 
 </tr>
 		</table>
 			<p style="color: green;" style="text-align: center;">이메일 인증을 하면 가입버튼이 나타납니다.</p>
-		<input type="submit" id="joinBtn" value="가입하기" style="display: none;">
+		<input type="submit" id="joinBtn" class="userBtn" value="가입하기" style="display: none;">
 		
 		</form>
 	</div>
