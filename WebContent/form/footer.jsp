@@ -13,13 +13,13 @@
 <style type="text/css">
    /*푸터*/
       footer {
-      	/* 	clear:both; */
+         /*    clear:both; */
           position: static;
            width: 100%; 
           /* bottom: 50px; */
         /*   margin-top: -50px; */
           /* border-top: 1px solid black; */
-          background-color: silver;
+          background-color: white;
           text-align: center;
           border: 0px;
           margin:0px;
@@ -29,11 +29,16 @@
       }
       
       #info {
-         text-align: center;
          display: inline-block;
                    border: 0px;
           margin:0px;
           padding:0px;
+          font-size:10px;
+          color : black;
+          float:left;
+      }
+      #kh{
+         text-align : center;
       }
    /*푸터*/
    </style>
@@ -41,15 +46,15 @@
 <footer>
       <div id="info">
          <b>CREATORS</b> <br>
-         이현승 : https://github.com/LHSEUNGG   <br>
-         최유정 : https://github.com/LIEBEALLES   <br>
-         박진석 : https://github.com/parkjin1407   <br>
-         주명빈 : https://github.com/wnaudqls   <br>
-         이병욱 : https://github.com/rpget2020   <br>
-         성현모 : https://github.com/shm1113   <br>
-         <br>
+         이현승 : https://github.com/LHSEUNGG<br>
+         최유정 : https://github.com/LIEBEALLES<br>
+         박진석 : https://github.com/parkjin1407<br>
+         주명빈 : https://github.com/wnaudqls<br>
+         이병욱 : https://github.com/rpget2020<br>
+         성현모 : https://github.com/shm1113<br>
+      </div>
+      <div id = "kh">
          KH정보교육원 &copy; all rights reserved ...
-         <br>
       </div>
    </footer>
 </html>

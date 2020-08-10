@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>YoriZori</title>
 <style type="text/css">
-	 body {
+    body {
         margin:0;
         text-align: center;
         width: 100%;
@@ -77,6 +77,10 @@
         position: absolute;
         margin-top: 17%;
         z-index: 1;
+    }
+    #recipe_search{
+       width: 400px;
+       height: 50px;
     }
     [name="search"]{
         width: 500px;
@@ -150,7 +154,7 @@
         display: none;
         position: absolute;
         margin-right: 500px;
-        background-color : #F5A9A9;
+        background-color : pink;
         min-width: 160px;
         overflow: auto;
         box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
@@ -167,6 +171,54 @@
     #dropstream_content a:hover {background-color: black}
 
     .show {display:block;}
+    input,
+   button {
+     position: relative;
+     /*width: 200px;*/
+     /*height: 50px;*/
+     padding: 0;
+     display: inline-block;
+     float: left;
+   }
+   
+   input {
+     color: #666;
+     z-index: 2;
+     border: 0 none;
+   }
+   input:focus {
+     outline: 0 none;
+   }
+   input:focus + button {
+     -webkit-transform: translate(0, 0);
+         -ms-transform: translate(0, 0);
+             transform: translate(0, 0);
+     -webkit-transition-duration: 0.3s;
+             transition-duration: 0.3s;
+   }
+   
+   
+   button {
+     z-index: 1;
+     width: 50px;
+     border: 0 none;
+     background: pink;
+     cursor: pointer;
+     border-radius: 0 5px 5px 0;  
+     -webkit-transform: translate(-50px, 0);
+         -ms-transform: translate(-50px, 0);
+             transform: translate(-50px, 0);
+     -webkit-transition-duration: 0.3s;
+             transition-duration: 0.3s;
+   }
+   fieldset {
+     position: relative;
+     display: inline-block;
+     padding: 0 0 0 40px;
+     background: #fff;
+     border: none;
+     border-radius: 5px;
+   }
 </style>
 <!-- <script type="text/javascript" src="../resouces/js/jquery-3.5.1.min.js"></script> -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -223,20 +275,19 @@
 		        	}
 		    	}
 			}
-function jsp_go(f){
-	f.action = "recipe.do"
-	f.submit
-}
+
 </script>
 </head>
 <body>
 <%@ include file="/form/header.jsp" %>
 <div class="search">
 		<form  action="/YORIZORI/recipe.do" method="post">
-			<input type="hidden" name="command" value="recipe_search">
-			<input type="text" placeholder ="레시피 검색" id="recipe_search" name = "recipe_title">
-			<input type="submit" value="검색" class="btn">
-		</form>
+      <fieldset>
+         <input type="hidden" name="command" value="recipe_search">
+         <input type="text" placeholder ="레시피 검색" id="recipe_search" name = "recipe_title">
+         <button type="submit" class="btn"><i class="fa fa-search"><strong>검색</strong></i></button>
+      </fieldset>
+      </form>
 </div>		
     <video oncontextmenu="return false;" id="myVideo" height = "600"width="100%" autoplay muted loop ">
         <source src="<%=request.getContextPath()%>/img/main/main_video.mp4" type="video/mp4">

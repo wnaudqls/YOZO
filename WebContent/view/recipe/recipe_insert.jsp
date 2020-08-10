@@ -18,79 +18,6 @@
 
 <style type="text/css">
 
-/* #upload_title {
-   position: relative;
-   top: 200px;
-   left: 700px;
-   float: left;
-}
-
-#on_add {
-    position: relative;
-   float: left;
-   top: 150px;
-   left: 950px;
-   text-align: center;
-   margin-right: 50px;
-}
-
-#on_add div {
-   width: 450px;
-}
-
-#on_add>div>table {
-   margin-left: auto;
-   margin-right: auto;
-}
-
-#on_add>table tr td .unit {
-   width: 100px;
-}
-
-#on_add>table tr td #large_category {
-   width: 80px;
-}
-
-#on_add>table tr td #small_category {
-   width: 130px;
-}
-
-#material_table {
-   text-align: right;
-}
-
-.quantity {
-   width: 40px;
-}
-
-/*하단*/
-/* #under_add {
-   text-align: center;
-}
-
-#under_add_create {
-   margin-left: auto;
-   margin-right: auto;
-}
-
-#under_add_create tr td input {
-   width: 70px;
-}  */
-
-/* 유정  */
-/* .wrapper {
-   display: inline-block;
-}
- */
-
-/* #add_material_wrapper {
-   width: 520px;
-   height: 350px;
-   overflow: auto;
-   padding: 0 20px;
-   border: 2px solid gray;
-   border-radius: 20px;
-} */
 
 /* yj */
 .recipe_photo, #recipe_img_main {
@@ -162,7 +89,11 @@
 						function() {
 							$("#add_material_wrapper")
 									.append(
+
+	
+
 											$("<div class='newmaterial'>재료 : <input type='text' placeholder='재료 이름' name='recipe_material'/>"
+
 													+ "<input type='button' value='-' onclick='delete_material(this);'>"
 													+ "</div>"));
 						});
@@ -176,7 +107,13 @@
 													+ i
 													+ ")' id='newrecipe_image"
 													+ i
+
+													+ "' name='recipe_photo"
+													+ i
+													+ "' value='recipe_photo"+i+"'><br/><br/>"
+
 													+ "'><br/><br/>"
+
 													+ "<div><img class='recipe_photo' id='image_container"+i+"' value='"+i+"' /></div><br/>"
 													+ "<textarea rows='5' cols='70' name='recipe_detail'></textarea></div>"));
 							i++;
@@ -188,34 +125,7 @@
 		$(a).parent().remove();
 	}
 
-	/* function filechange(event){
-	    //파일의 전체경로를 가져오기위한 javascript      
-	       alert("파일체인지!!")
-	      var filePath = document.getElementById("recipe_main_photo").value;
-	      alert("filePath:"+filePath);
-	      var reader=new FileReader();
-	      reader.onload= function(event)
-	         //FileReader.onload 이벤트의 핸들러. 이 이벤트는 읽기 동작이 성공적으로 완료 되었을 때마다 발생합니다.
-	      {
-	         var photo=document.getElementById("recipe_img_main");
-	         photo.setAttribute("src",event.target.result);
-	      }
-	      reader.readAsDataURL(event.target.files[0]);
-	      //document.getElementById("goods_main_photo").value=filePath;
-	   //파일 미리보기 만들기
-	         //FileReader객체는 웹 애플리케이션이 비동기적으로 데이터를 읽기 위하여 읽을 파일을 가리키는 File 혹은 Blob객체를 이용해 
-	         //파일의 내용을(혹은 raw data버퍼로)읽고 사용자의 컴퓨터에 저장하는 것을 가능하게 해준다 ./
-	   //서버에 이미지 저장   
-	      //var formdata=new FormData(document.getElementById("goods_form"));
-	   /*    // FormData의 key 확인
-	      for (key of formdata.keys()) {
-	        console.log(key);
-	      }
-	      // FormData의 value 확인
-	      for (value of formdata.values()) {
-	        console.log(value);
-	      } */
-	//var imgurl= document.getElementById("recipe_main_photo").value;
+
 	//대표이미지
 	function recipe_thumbnail(event) {
 		var filePath = document.getElementById("recipe_main_photo").value;
@@ -229,6 +139,28 @@
 
 		}
 		reader.readAsDataURL(event.target.files[0]);
+
+		var formdata=new FormData()
+		formdata.append("recipe_main_photo" , $("#recipe_main_photo")[0].files[0]);
+		$.ajax({
+			type : 'post',
+			data : formdata,
+			url:"<%=request.getContextPath()%>/recipe.do?command=imgUpload",
+			contentType : false, //header의 ContentType을 설정한다 	
+			processData : false,
+			 enctype: 'multipart/form-data',
+			success : function(msg) {
+				alert(msg);
+				alert("레시피 이미지 업로드 성공");
+				/* $("#recipeinsertform").submit(); */
+			},
+			error : function(request, status, error) {
+				alert("레시피 이미지 업로드 실패")
+
+			}
+
+		});
+
 	}
 	//기본 레시피 이미지
 	function recipe_image_upload(event) {
@@ -242,6 +174,35 @@
 
 		}
 		reader.readAsDataURL(event.target.files[0]);
+
+		var formdata=new FormData()
+		formdata.append("recipe_image" , $("#recipe_image")[0].files[0]);
+		$.ajax({
+			type : 'post',
+			data : formdata,
+			url:"<%=request.getContextPath()%>/recipe.do?command=imgUpload",
+			contentType : false, //header의 ContentType을 설정한다 	
+			processData : false,
+			 enctype: 'multipart/form-data',
+			success : function(msg) {
+				alert(msg);
+				alert("레시피 이미지 업로드 성공");
+				/* $("#recipeinsertform").submit(); */
+			},
+			error : function(request, status, error) {
+				alert("레시피 이미지 업로드 실패")
+
+			}
+
+		});
+		
+	}
+
+	//추가 레시피 이미지 미리보기
+	 function newrecipe_upload(event, i) {
+		alert("i:" + i)
+		var filePath = document.getElementById("newrecipe_image" + i).value;
+
 	}
 
 	//추가 레시피 이미지 미리보기
@@ -252,6 +213,21 @@
 
 		var reader = new FileReader();
 		reader.onload = function(event) {
+
+			var imgtag2 = document.getElementById("image_container" + i);
+			imgtag2.setAttribute("src", event.target.result);
+		}
+		reader.readAsDataURL(event.target.files[0]);
+		var formdata=new FormData()
+		formdata.append("newrecipe_image"+i , $("#newrecipe_image")[0].files[0]);
+		$.ajax({
+			type : 'post',
+			data : formdata,
+			url:"<%=request.getContextPath()%>/recipe.do?command=imgUpload",
+			contentType : false, //header의 ContentType을 설정한다 	
+			processData : false,
+			 enctype: 'multipart/form-data',
+
 			var imgtag2 = document.getElementById("image_container"+i);
 			imgtag2.setAttribute("src", event.target.result);
 		}
@@ -266,6 +242,7 @@
 			type : 'post',
 			url : "<c:url value='/recipe.do?command=imgupload'/>",
 			data : formdata,
+
 			success : function(msg) {
 				alert(msg);
 				alert("레시피 이미지 업로드 성공");
@@ -279,22 +256,35 @@
 		});
 
 	}
+
+	
+	
+
+	
+
+
 </script>
 </head>
 <body>
-	<%@ include file="/form/header.jsp"%>
+	<%@ include file="../../form/header.jsp"%>
 	<!--유정)섹션추가 -->
 	<!-- 상단부 -->
+<<<<<<< HEAD
 	<form action="<%=request.getContextPath()%>/recipe.do" method="post"
-		id="recipeinsertform">
-		<input type="hidden" name="command" value="recipe_insert" />
+=======
+
+	<form action="<%=request.getContextPath()%>/recipe.do" enctype="multipart/form-data" method="post"
+>>>>>>> branch 'develop' of https://github.com/shm1113/YOZO.git
+		id="recipeinsertform" >
+		<input type="hidden" name="command" value="recipe_insert"/>
 
 
 		<div class="section_top">
 			<div id="mainphoto_wrapper">
 				<div id="upload_title">
 					<input type="file" id="recipe_main_photo"
-						onchange="recipe_thumbnail(event);" name="recipe_main_photo" />
+
+						onchange="recipe_thumbnail(event);" name="recipe_main_photo" value="recipe_main_photo"/>
 				</div>
 				<div class="recipe_photo">
 					<img class="recipe_photo" alt="대표이미지를 선택해주세요."
@@ -305,24 +295,27 @@
 			<div id="on_add">
 				<div id="category_wrapper">
 					<input id="inputtitle" type="text" placeholder="제목을 입력해주세요."
-						name="recipe_title" />
+
+						name="recipe_title"  value="recipe_title"/>
 					<div id="select_wrapper">
-						<select id="large_category" name="cate_theme">
-							<option>한식
-							<option>일식
-							<option>중식
-							<option>양식
-							<option>퓨전
-							<option>분식
-							<option>간식
-						</select> <select id="small_category" name="cate_kind">
-							<option>자취생요리
-							<option>야식
-							<option>다이어트
-							<option>술안주
-							<option>간편식
-							<option>디저트
-							<option>가족
+						<select id="large_category" name="cate_theme" >
+							<option value="korea">한식
+							<option value="japan">일식
+							<option value="china">중식
+							<option value="europe">양식
+							<option value="fusion">퓨전
+							<option value="instant">분식
+							<option value="snack">간식
+						</select> <select id="small_category" name="cate_kind" >
+							<option value="alone">자취생요리
+							<option value="night">야식
+							<option value="diet">다이어트
+							<option value="drink">술안주
+							<option value="easy">간편식
+							<option value="dessert">디저트
+							<option value="family">가족
+
+	
 						</select>
 					</div>
 				</div>
@@ -331,6 +324,7 @@
 					<div>
 						★ 대표재료 : <input type="text" placeholder="재료 이름"
 							name="recipe_material_one">
+
 					</div>
 				</div>
 				<div>
@@ -346,7 +340,9 @@
 			<div id="add_recipe_wrapper">
 				<div id="upload_pic">
 					<input type="file" onchange="recipe_image_upload(event);"
-						id="recipe_image" name="recipe_photo" />
+
+						id="recipe_image" name="recipe_photo"  value="recipe_photo"/>
+
 				</div>
 				<div class="recipe_photo">
 					<img class="recipe_photo" alt="이미지를 선택해주세요" id="image_container">
@@ -362,8 +358,11 @@
 			<div id="under_add_create">
 
 				<div>
-					<input class="btn" type="button" value="취소" onclick="location.href='<%request.getContextPath();%>/YORIZORI/recipe.do?command=recipe_list'" /> <input
-						class="btn" type="submit" value="작성하기" onclick="imgupload();" />
+
+					<input class="btn" type="button" value="취소"
+						onclick="location.href='<%request.getContextPath();%>/YORIZORI/recipe.do?command=recipe_list'" />
+					<input class="btn" type="submit" value="작성하기" />
+
 
 				</div>
 			</div>

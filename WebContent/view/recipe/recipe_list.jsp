@@ -16,159 +16,207 @@
 
 <style type="text/css">
 * {
-	border: 0;
+   border: 0;
 }
 
 a {
-	text-decoration: none;
-	color: black;
+   text-decoration: none;
+   color: black;
 }
 
 div {
-	text-align: center;
+   text-align: center;
 }
 
 table {
-	margin-left: auto;
-	margin-right: auto;
+   margin-left: auto;
+   margin-right: auto;
 }
 
 td {
-	width: 110px;
+   width: 110px;
 }
 
 .recipe_img {
-	width: 200px;
-	height: 200px;
+   width: 200px;
+   height: 200px;
 }
 
 .top {
-	width: 350px;
-	height: 350px;
+   width: 350px;
+   height: 350px;
 }
 /*굿즈 목록 리스트 큰테두리*/
 .recipe_list {
-	border: 1px solid black;
-	margin: 0 5%;
+   border: 1px solid black;
+   margin: 0 5%;
 }
 
 #warning { /* warning이미지 */
-	width: 100px;
-	height: 100px;
-	vertical-align: middle;
+   width: 100px;
+   height: 100px;
+   vertical-align: middle;
 }
 
 #message { /* warning 메시지 */
-	display: inline-block;
-	vertical-align: middle;
+   display: inline-block;
+   vertical-align: middle;
 }
 
 .nosection { /* 내용없을때 기본크기주기 */
-	height: 400px;
+   height: 400px;
+}
+section{
+   margin:0px;
 }
 
 .list_card {
-	display: inline-block;
-	width: 300px;
-	height: 370px;
-	/* border : 1px solid black; */
-	border-radius: 25px;
-	box-sizing: border-box;
-	margin: 50px;
+   display: inline-block;
+   width: 300px;
+   height: 370px;
+   /* border : 1px solid black; */
+   border-radius: 25px;
+   box-sizing: border-box;
+   margin: 50px;
 }
 /* 카드이미지 테두리 */
 .list_card_img { /* 이미지 감싸는 div */
-	width: 300px;
-	height: 250px;
-	border-radius: 25px 25px 0 0;
+   width: 300px;
+   height: 250px;
+   border-radius: 25px 25px 0 0;
 }
 /* 카드이미지태그 */
 .list_img_tag { /* 이미지 태그 */
-	border-radius: 25px 25px 0 0;
-	width: 300px;
-	height: 250px;
+   border-radius: 25px 25px 0 0;
+   width: 300px;
+   height: 250px;
 }
 /* 카드 내용 */
 .list_card_contents {
-	text-align: center;
-	width: 300px;
-	height: 120px;
+   text-align: center;
+   width: 300px;
+   height: 120px;
 }
 
 .like_icon {
-	width: 50px;
-	height: 50px;
-}
-.like_icon:hover {
-	cursor: pointer;
-	
+   width: 50px;
+   height: 50px;
 }
 
 .like_text {
-	position: absolute;
-	top: 14px;
-	font: small-caps 24px/1 sans-serif;
-	width: 30px;
-	height: 50px;
-	/* 	display: inline-block;
+   position: absolute;
+   top: 14px;
+   font: small-caps 24px/1 sans-serif;
+   width: 30px;
+   height: 50px;
+   /*    display: inline-block;
  */
 }
 /*좋아요 테두리*/
 .list_card_like {
-	position: relative;
-	height: 50px;
-	text-overflow: ellipsis;
+   position: relative;
+   height: 50px;
 }
 /*제목들어가는칸*/
 .list_card_title {
-	height: 70px;
-	width: 300px;
-	font: small-caps bold 24px/1 sans-serif;
+   height: 70px;
+   width: 300px;
+   font: small-caps bold 24px/1 sans-serif;
 }
 
 .list_card_title_a {
-	margin-top: 10px;
+   margin-top: 10px;
 }
 /* 페이징 css */
 .off-screen {
-	display: none;
+   display: none;
 }
 
 /* 검색창 css */
 .search {
-	width: 36%;
-	/* height: 40px; */
-	margin: 10px auto;
-	min-width: 100%;
-	/* position: absolute; */
-	/* margin-top: 17%; */
-	z-index: 1;
+   width: 36%;
+   /* height: 40px; */
+   margin: 10px auto;
+   min-width: 100%;
+   /* position: absolute; */
+   /* margin-top: 17%; */
+   z-index: 1;
 }
 
 [name="search"] {
-	width: 500px;
-	height: 50px;
-	font-size: 30px;
+   width: 500px;
+   height: 50px;
+   font-size: 30px;
 }
 
 .btn {
-	height: 50px;
-	line-height: 56px;
-	background-color: #F5A9A9;
-	color: #FAFAFA;
+   height: 50px;
+   line-height: 56px;
+   background-color: #F5A9A9;
+   color: #FAFAFA;
 }
 
 .search img {
-	width: 70px;
-	height: 35px;
-	border-right: 1px solid #c2c2c2;
-	border-top: 1px solid #c2c2c2;
-	border-bottom: 1px solid #c2c2c2;
-	cursor: pointer;
+   width: 70px;
+   height: 35px;
+   border-right: 1px solid #c2c2c2;
+   border-top: 1px solid #c2c2c2;
+   border-bottom: 1px solid #c2c2c2;
+   cursor: pointer;
 }
 
-input#recipe_search {
-	height: 45px;
+
+#nav a {
+   margin-left:20px;
+   color:black;
+   font-size: 25px;
+}
+input,button {
+   position: relative;
+   width: 300px;
+   height: 50px;
+   padding: 0;
+   display: inline-block;
+   float: left;
+   border: solid 1px black;
+}
+   
+input {
+   color: #666;
+   z-index: 2;
+   border: 0 none;
+}
+input:focus {
+   outline: 0 none;
+}
+input:focus + button {
+   -webkit-transform: translate(0, 0);
+       -ms-transform: translate(0, 0);
+           transform: translate(0, 0);
+    -webkit-transition-duration: 0.3s;
+           transition-duration: 0.3s;
+}
+
+button {
+   z-index: 1;
+   width: 50px;
+   border: 0 none;
+   background: pink;
+   cursor: pointer;
+   border-radius: 0 5px 5px 0;  
+   -webkit-transform: translate(-50px, 0);
+   -ms-transform: translate(-50px, 0);
+   transform: translate(-50px, 0);
+   -webkit-transition-duration: 0.3s;
+   transition-duration: 0.3s;
+}
+fieldset {
+   position: relative;
+   display: inline-block;
+   padding: 0 0 0 40px;
+   background: #fff;
+   border: none;
+   border-radius: 5px;
 }
 </style>
 
@@ -178,13 +226,14 @@ input#recipe_search {
 	<section>
 
 		<div class="search">
-			<form action="/YORIZORI/recipe.do" method="post">
-				<input type="hidden" name="command" value="recipe_search"> <input
-					type="text" placeholder="레시피 검색" id="recipe_search"
-					name="recipe_title"> <input type="submit" value="검색"
-					class="btn">
-			</form>
-		</div>
+         <form action="/YORIZORI/recipe.do" method="post">
+            <fieldset>
+               <input type="hidden" name="command" value="recipe_search"> 
+               <input type="text" placeholder="레시피 검색" id="recipe_search" name="recipe_title"> 
+               <button type="submit" class="btn"><i class="fa fa-search"><strong>검색</strong></i></button>
+            </fieldset>
+         </form>
+      </div>
 
 		<c:if test="${rdto.member_role eq '관리자' }">
 
