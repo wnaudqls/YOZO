@@ -24,7 +24,7 @@
 		<typeAlias type="com.yozo.recipe.dto.RecipeDto" alias="recipeDto"/>
 		<typeAlias type="com.yozo.recipe.dto.RecipereDto" alias="recipereDto"/>
 		<typeAlias type="com.yozo.broadcast.dto.BroadcastDto" alias="broadcastdto"/>
-		
+		<typeAlias type="com.yozo.like.dto.LikeDto" alias="likedto"/>
 
 </typeAliases>
 	
@@ -56,7 +56,7 @@
 			<mapper resource="com/yozo/goods/db/goods-mapper.xml"/>
 			<mapper resource="com/yozo/recipe/db/recipe-mapper.xml"/>
 			<mapper resource="com/yozo/admin/db/admin-mapper.xml"/>
-
+			<mapper resource="com/yozo/like/db/like-mapper.xml"/>
 		</mappers>
 	
 	

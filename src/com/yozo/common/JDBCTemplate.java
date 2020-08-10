@@ -19,9 +19,9 @@ public class JDBCTemplate {
 			e.printStackTrace();
 		}
 		
-		String url = "jdbc:oracle:thin:@localhost:1521:xe";
-		String user = "kh";
-		String password = "kh";
+		String url = "jdbc:oracle:thin:@qclass.iptime.org:1521:xe";
+		String user = "BIGMASTER03_semi";
+		String password = "semi";
 		
 		Connection con = null;
 		

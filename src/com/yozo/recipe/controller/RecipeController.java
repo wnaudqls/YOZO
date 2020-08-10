@@ -58,6 +58,10 @@ public class RecipeController extends HttpServlet {
 		RecipeBiz biz = new RecipeBiz();
 		HttpSession session = request.getSession();
 
+
+		String member_id = request.getParameter("memberId");
+
+
 		// 레시피 리스트
 		if (command.equals("recipe_list")) {
 			System.out.println("controller_recipe_list");
@@ -68,17 +72,45 @@ public class RecipeController extends HttpServlet {
 				System.out.println("list어딨어ㅡㅡ");
 			}
 
+
 			System.out.println(list);
 
 			/* System.out.println(list.get(0)); */
 
 			request.setAttribute("list", list);
+
 			System.out.println(list);
+			dispatch("/view/recipe/recipe_list.jsp", request, response);
+		}
+		
+		//마이 레시피 리스트
+		else if(command.equals("my_recipe_list")) {
+			System.out.println("controller_recipe_list");
+			List<RecipeDto> list=biz.MYselectList(member_id);
+			System.out.println(member_id);
+			if(list!=null) {
+				System.out.println("마이 레시피 list잘왔네~");
+			}else {
+				System.out.println("마이 레시피 list어딨어ㅡㅡ");
+			}
+
+			/* System.out.println(list.get(0)); */
+
+			request.setAttribute("list", list);
+			System.out.println(list);
+
 			dispatch("/view/recipe/recipe_list.jsp", request, response);
 
 		}
 		// 레시피 상세
 		else if (command.equals("recipe_detail")) {
+
+			dispatch("/view/user/myrecipe.jsp", request, response);
+			
+			
+
+
+		
 			System.out.println("controller_recipe_detai");
 			int recipe_no = Integer.parseInt(request.getParameter("recipe_no"));
 			RecipeDto dto = biz.selectOne(recipe_no);
@@ -113,6 +145,7 @@ public class RecipeController extends HttpServlet {
 		else if (command.equals("recipe_insert")) {
 			System.out.println("controller_recipe_insert");
 			// 여기서 등록된 값을 받아주어 db로 저장시켜야함!
+
 
 			// 이미지 업로드 하기 전에 데이터 받아옴
 			String recipe_main_photo = request.getParameter("recipe_main_photo");
@@ -183,6 +216,9 @@ public class RecipeController extends HttpServlet {
 
 		}
 
+
+		}
+
 		// 레시피 수정
 		else if (command.equals("recipe_update")) {
 			System.out.println("controller_recipe_update");
@@ -209,10 +245,17 @@ public class RecipeController extends HttpServlet {
 			// 레시피 작성 폼
 		} else if (command.equals("recipeinsertform")) {
 			System.out.println("controller_recipe_insertform");
+
 			response.sendRedirect(request.getContextPath() + "/view/recipe/recipe_insert.jsp");
 
 			// 레시피 여러개 삭제
 		} else if (command.contentEquals("recipemuldel")) {
+
+			response.sendRedirect(request.getContextPath()+"/view/recipe/recipe_insert.jsp");
+		
+		//레시피 여러개 삭제
+		}else if(command.contentEquals("recipemuldel")) {
+
 			System.out.println("controller_recipe_muldel");
 			String[] recipe_no = request.getParameterValues("chk");
 			System.out.println(recipe_no + "레시피 번호 오냐? 오냐고 와라!!!!");
@@ -221,10 +264,14 @@ public class RecipeController extends HttpServlet {
 
 			if (res > 0) {
 				System.out.println("레시피 멀티 딜리트 성공");
+
 				jsResponse("선택하신 레시피를 성공적으로 삭제하였습니다.", "recipe.do?command=recipe_list", response);
+
+				jsResponse("선택하신 레시피를 성공적으로 삭제하였습니다.", "recipe.do?memberId="+member_id+"&command=my_recipe_list", response);
+
 			} else {
 				System.out.println("레시피 멀티 딜리트 실패");
-				jsResponse("레시피를 삭제하는데 실패하였습니다.", "recipe.do?command=recipe_list", response);
+				jsResponse("레시피를 삭제하는데 실패하였습니다.", "recipe.do?memberId="+member_id+"&command=my_recipe_list", response);
 			}
 
 			// 레시피 등록
@@ -265,6 +312,7 @@ public class RecipeController extends HttpServlet {
 
 		} else if (command.equals("recipe_insertres")) {
 			System.out.println("recipe_insertres왔음!");
+
 
 		} else if (command.equals("recipe_search")) {
 			System.out.println("search controller 입장");

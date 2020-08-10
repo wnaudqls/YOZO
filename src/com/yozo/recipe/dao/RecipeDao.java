@@ -55,6 +55,25 @@ public class RecipeDao extends SqlMapConfig {
 		return list;
 	}
 	
+	//마이레시피 selectlist
+	public List<RecipeDto> MYselectList(String member_id){
+		List<RecipeDto> list=new ArrayList<RecipeDto>();
+		SqlSession session=null;
+		System.out.println("여기는 DAO의 selectList");
+		
+		try {
+			session=getSqlSessionFactory().openSession(false);
+			list=session.selectList(namespace+"MYselectList",member_id);
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("selectList오류");
+		}finally {
+			session.close();
+		}
+		
+		return list;
+	}
+	
 	public RecipeDto selectOne(int recipe_no) {
 		RecipeDto dto=null;
 		SqlSession session=null;

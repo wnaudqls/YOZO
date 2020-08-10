@@ -103,31 +103,49 @@
 		.naverIdLogin {
 			width: 50%;
 		}
+		
+		.findId, .resetPw {
+			display: inline;
+		}
+		
+		.userBtn {
+			border: none;
+			background-color: #F5A9A9;
+			color: white;
+			border-radius: 3px;
+			cursor: pointer;
+		}
 	</style>
 </head>
 <body>
 	<%@ include file="/form/header.jsp"%>
 
 	<div class="login">
-		<br> <br> <br> <br>
-		<h1>로그인</h1>
+		
+		<h1 >로그인</h1>
 		<form action="<%=request.getContextPath()%>/user.do" method="post">
-			<input type="hidden" name="command" value="login"> 
-			<input type="text" name="id" placeholder="아이디를 입력하세요"> <br> 
-			<input type="password" name="pw" placeholder="비밀번호를 입력하세요"> <br><br>
-				<input type="submit" value="로그인">
+			<input type="hidden" name="command"  value="login"> 
+			<input type="text" name="id"  placeholder="아이디를 입력하세요"> <br> 
+			<input type="password" name="pw"  placeholder="비밀번호를 입력하세요"> <br><br>
+				<input type="submit" class="userBtn" value="로그인">
 			<br>
 			<br> 아직 회원이 아니신가요? <br> 
-			
-			<a href="/YORIZORI/user.do?command=joinform">회원가입하기</a> <br> 
+			<input type="button" onclick="location.href='<%=request.getContextPath() %>/user.do?command=joinform'" class="userBtn" value="회원가입 하기" >
 		</form>
 		<br>
+		<input type="button" onclick="location.href='<%=request.getContextPath()%>/user.do?command=findId'" id="findId" class="userBtn" value="아이디 찾기" >
+		<input type="button" onclick="location.href='<%=request.getContextPath()%>/user.do?command=resetPw'" id="resetPw" class="userBtn" value="비밀번호 찾기" >
 		
+		<br>
+		<br>
+		<br>
 		<div><a id="custom-login-btn" href="javascript:loginWithKakao()">
 			<img src="//k.kakaocdn.net/14/dn/btqCn0WEmI3/nijroPfbpCa4at5EIsjyf0/o.jpg" height="40" />
 		</a></div>
 
 		<div id="naverIdLogin"><img alt="NAVERIMAGE" src="<%=request.getContextPath()%>/img/naverLoginIcon (2).PNG" id="naverIdLogin_loginButton" height="40"></div>
+		
+		
 		</div>
 		
 		

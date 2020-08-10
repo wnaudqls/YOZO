@@ -79,30 +79,42 @@ public class UserController extends HttpServlet {
 			if (rdto != null) {
 				//세션만들기
 				session.setAttribute("rdto", rdto);			
-				session.setMaxInactiveInterval(10*60);	
+				session.setMaxInactiveInterval(1000*60);	
 
-				System.out.println("세션 정보 : "+ session);
+				System.out.println("세션 정보 : "+ session.getId());
+				System.out.println("세션 정보 : "+ session.getCreationTime());
+				System.out.println("세션 정보 : "+ session.getMaxInactiveInterval());
 				
 				PrintWriter out = response.getWriter();
 				out.println("<script type='text/javascript'>alert('계정이 등록 되었습니다'); </script>");
 				
-				request.setAttribute("session", session);
 				
 				RequestDispatcher dispatch = request.getRequestDispatcher("user.do?command=main");
 				dispatch.forward(request, response);
 				
 			} else {
-				
+				/*
+				 * session.setAttribute("rdto", rdto); 
+				 * session.setMaxInactiveInterval(1000*60);
+				 */
 				System.out.println("로그인 실패");
 				
 				String s = "<script type='text/javascript'>" + "alert('ID, PW를 확인해 주세요');" + "location.href='view/user/login.jsp';"
 						+ "</script>";
 				response.getWriter().append(s);
-				
 			}
 			
+		} else if (command.equals("moveMap")) {
 			
-		
+			//RequestDispatcher dispatch = request.getRequestDispatcher("/view/map/map.jsp");
+			//dispatch.forward(request, response);
+			
+			/*
+			 * session.setAttribute("rdto", rdto); session.setMaxInactiveInterval(1000*60);
+			 */
+			
+			System.out.println("컨트롤러 무브맵");
+			response.sendRedirect("/YORIZORI/view/map/map.jsp");
 			
 		} else if (command.equals("logout")) {
 
@@ -130,7 +142,6 @@ public class UserController extends HttpServlet {
 			response.sendRedirect("/YORIZORI/view/user/idcheck.jsp?idnotused="+idnotused);
 		
 		} else if (command.equals("nickcheck")) {
-			System.out.println("nickcheck.......입성");
 			String nick = request.getParameter("nick");
 			
 			// 2.
@@ -234,7 +245,7 @@ public class UserController extends HttpServlet {
 			boolean res = dao.insert(dto);
 			
 			if (res) { 
-
+				
 				response.sendRedirect("/YORIZORI/view/user/login.jsp"); 
 			} else { 
 
@@ -244,14 +255,117 @@ public class UserController extends HttpServlet {
 		} else if (command.equals("updateform")) {
 			
 			
-			 response.sendRedirect("/YORIZORI/view/user/edit_account.jsp");
+			response.sendRedirect("/YORIZORI/view/user/editLogin.jsp");
+
+			
+			 //RequestDispatcher dispatch = request.getRequestDispatcher("/view/user/editLogin.jsp");
+			 //dispatch.forward(request, response);
+			
+		} else if (command.equals("edit_account")) {
+			
+			System.out.println("update입성........입성");
+			String id = request.getParameter("id");
+			String pw = request.getParameter("pw");
+			
+			
+			MemberDto dto = new MemberDto();
+			dto.setMember_id(id);
+			dto.setMember_pw(pw);
+			
+			MemberDto rdto = dao.login(id, pw);
+			
+			request.setAttribute("rdto", rdto);
+			
+			System.out.println("");
+
+			if (rdto != null) {
+				
+					System.out.println("아무거나 테스트");			
+				RequestDispatcher dispatch = request.getRequestDispatcher("/view/user/edit_account.jsp");
+				dispatch.forward(request, response);
+				
+			} else {
+				
+				String s = "<script type='text/javascript'>" + "alert('ID, PW를 확인해 주세요');" + "location.href='view/user/login.jsp';"
+						+ "</script>";
+				
+				response.getWriter().append(s);
+				
+				RequestDispatcher dispatch = request.getRequestDispatcher("/view/user/editLogin.jsp");
+				dispatch.forward(request, response);
+			}
+			
+			
+			 
+		} else if (command.equals("update")) {
+			
+			System.out.println("컨트롤러 업데이트");
+			
+			int no = Integer.parseInt(request.getParameter("no"));
+			System.out.println(no);
+			String id = request.getParameter("id"); 
+			 String nick = request.getParameter("nick"); 
+			 String name = request.getParameter("name");
+			 String pw = request.getParameter("pw"); 
+			 String email = request.getParameter("email"); 
+			 String road_addr_part1 = request.getParameter("road_addr_part1");
+			 String road_addr_part2 = request.getParameter("road_addr_part2");
+			 String addr_detail = request.getParameter("addr_detail");
+			 String phone = request.getParameter("phone");
+			 
+			 String addr = road_addr_part1 + " " + road_addr_part2 + " " + addr_detail;
+
+			 MemberDto dto = new MemberDto(no,id,pw,name,nick,email,"null",true,"N",phone,addr,"회원");
+			 
+				System.out.println("controller dto = "+dto);
+
+			
+			boolean res = dao.update(dto);
+			
+			if (res) { 
+				session.invalidate();
+				response.sendRedirect("view/user/login.jsp");
+				String s = "<script type='text/javascript'>" + "alert('수정되었습니다.\n다시 로그인 해주세요.');" + "location.href='view/user/login.jsp';"
+						+ "</script>";
+				response.getWriter().append(s);
+
+				
+			} else { 
+
+				System.out.println("안바뀌었어 다시 해");
+			}
+			
+			
+		} else if (command.equals("deleteUser")) {
+			
+			String id = request.getParameter("id");
+			
+			MemberDto dto = new MemberDto(id, id);
+					
+			boolean res = dao.delete(dto);
+			
+			if (res) {
+				session.invalidate();
+				String s = "<script type='text/javascript'>" + "alert('탈퇴되었습니다.');" + "location.href='view/main/main.jsp';"
+						+ "</script>";
+				response.getWriter().append(s);
+			} else {
+				System.out.println("탈퇴 안됨 ㅠ");
+			}
+			
+		} else if (command.equals("findId")) {
+			
+			response.sendRedirect("view/user/find_id.jsp");
 			
 			
 			
 			
 			
 			
+		} else if (command.equals("resetPw")) {
 			
+			response.sendRedirect("view/user/find_password.jsp");
+
 			
 			
 			
@@ -319,6 +433,149 @@ public class UserController extends HttpServlet {
 	        }
 
 		        
+		} else if (command.equals("idEmail")) {
+		
+			
+			
+			Properties props = System.getProperties();
+			/*
+				props.put("mail.smtp.starttls.enable", "true"); // gmail은 무조건 true 고정
+				props.put("mail.smtp.host", "smtp.gmail.com"); // smtp 서버 주소
+				props.put("mail.smtp.auth","true"); // gmail은 무조건 true 고정 
+				props.put("mail.smtp.port","587"); // gmail 포트
+			 */         
+			props.put("mail.smtp.user", "lhseunge"); // 서버 아이디만 쓰기
+			props.put("mail.smtp.host", "smtp.gmail.com"); // 구글 SMTP
+			props.put("mail.smtp.port", "465");
+			props.put("mail.smtp.starttls.enable", "true");
+			props.put("mail.smtp.auth", "true");
+			props.put("mail.smtp.socketFactory.port", "465");
+			props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+			props.put("mail.smtp.socketFactory.fallback", "false");
+			
+			Authenticator auth = new MyAuthentication();
+			
+			//session 생성 및  MimeMessage생성
+			Session session1 = Session.getDefaultInstance(props, auth);
+			MimeMessage msg = new MimeMessage(session1);
+			
+			try{
+				//편지보낸시간
+				msg.setSentDate(new Date());
+				
+				InternetAddress from = new InternetAddress("YORIZORI") ;             
+				
+				// 이메일 발신자
+				msg.setFrom(from);           
+				
+				// 이메일 수신자
+				String email = request.getParameter("email"); //사용자가 입력한 이메일 받아오기
+				InternetAddress to = new InternetAddress(email);
+				msg.setRecipient(Message.RecipientType.TO, to);
+				
+				// 이메일 제목
+				msg.setSubject("요리조리에서 보내는 이메일." , "UTF-8");
+				
+				// 이메일 내용 
+				
+				MemberDto dto = dao.findId(email);
+				System.out.println(dto);
+				
+				String id = dto.getMember_id();
+				
+				System.out.println(id);
+				
+				
+				
+				// 4 request.setAttribute("dto", dto);
+				
+				msg.setText("회원님의 아이디는 \n["+id+"] 입니다.", "UTF-8");
+				
+				// 이메일 헤더 
+				msg.setHeader("content-Type", "text/html");
+				
+				//메일보내기
+				javax.mail.Transport.send(msg);
+				
+				
+				
+			}catch (AddressException addr_e) {
+				addr_e.printStackTrace();
+			}catch (MessagingException msg_e) {
+				msg_e.printStackTrace();
+			}
+		
+		
+		} else if (command.equals("pwEmail")) {
+			Properties props = System.getProperties();
+			/*
+				props.put("mail.smtp.starttls.enable", "true"); // gmail은 무조건 true 고정
+				props.put("mail.smtp.host", "smtp.gmail.com"); // smtp 서버 주소
+				props.put("mail.smtp.auth","true"); // gmail은 무조건 true 고정 
+				props.put("mail.smtp.port","587"); // gmail 포트
+			 */         
+			props.put("mail.smtp.user", "lhseunge"); // 서버 아이디만 쓰기
+			props.put("mail.smtp.host", "smtp.gmail.com"); // 구글 SMTP
+			props.put("mail.smtp.port", "465");
+			props.put("mail.smtp.starttls.enable", "true");
+			props.put("mail.smtp.auth", "true");
+			props.put("mail.smtp.socketFactory.port", "465");
+			props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+			props.put("mail.smtp.socketFactory.fallback", "false");
+			
+			Authenticator auth = new MyAuthentication();
+			
+			//session 생성 및  MimeMessage생성
+			Session session1 = Session.getDefaultInstance(props, auth);
+			MimeMessage msg = new MimeMessage(session1);
+			
+			try{
+				//편지보낸시간
+				msg.setSentDate(new Date());
+				
+				InternetAddress from = new InternetAddress("YORIZORI") ;             
+				
+				// 이메일 발신자
+				msg.setFrom(from);           
+				
+				// 이메일 수신자
+				String email = request.getParameter("email"); //사용자가 입력한 이메일 받아오기
+				InternetAddress to = new InternetAddress(email);
+				msg.setRecipient(Message.RecipientType.TO, to);
+				
+				// 이메일 제목
+				msg.setSubject("요리조리에서 보내는 이메일." , "UTF-8");
+				
+				// 이메일 내용 
+				
+				MemberDto dto = dao.findPw(email);
+				System.out.println(dto);
+				
+				String pw = dto.getMember_pw();
+				
+				System.out.println(pw);
+				
+				
+				
+				// 4 request.setAttribute("dto", dto);
+				
+				msg.setText("회원님의 비밀번호는 \n["+pw+"] 입니다.", "UTF-8");
+				
+				// 이메일 헤더 
+				msg.setHeader("content-Type", "text/html");
+				
+				//메일보내기
+				javax.mail.Transport.send(msg);
+				
+				
+				
+			}catch (AddressException addr_e) {
+				addr_e.printStackTrace();
+			}catch (MessagingException msg_e) {
+				msg_e.printStackTrace();
+			}
+		
+		
 		}
 		
 		

@@ -246,7 +246,8 @@ display: inline-block;
 				<input class="btn" type="button" value="등록"
 					onclick="location.href='<%request.getContextPath();%>/YORIZORI/goods.do?command=goodsinsertform'" />
 				<input class="btn" type="submit" value="삭제" onclick="confirmchk();"/> <input type="hidden"
-					name="goods_no" value="${dto.goods_no }" /> <input class="btn"
+					name="goods_no" value="${dto.goods_no }" /> 
+				<input class="btn"
 					type="button" value="전체삭제" onclick="alldel();" />
 			</div>
 		</c:if>
@@ -265,8 +266,8 @@ display: inline-block;
 						<div class="list_card">
 						<form action="<%=request.getContextPath()%>/goods.do"
 							method="post" id="muldelform">
-							<input type="hidden" name="command" value="muldel" /> <input
-								type="hidden" name="goods_no" value="${dto.goods_no}" />
+							<input type="hidden" name="command" value="muldel" /> 
+							<input type="hidden" name="goods_no" value="${dto.goods_no}" />
 
 							<!--썸네일 / 제목 / 가격 / 장바구니담기버튼 -->
 							<div class="goods_card eval-contents">
