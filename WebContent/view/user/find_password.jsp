@@ -22,6 +22,8 @@
 			   data:{"command":"pwEmail","email":email.value},	//ajax 에서 컨트롤러=샌드이메일 로 이동 (리시버=이베일 & 랜덤=체크넘 가지고)
 			   success() {
 			      alert("전송성공! 메일을 확인해주세요. ");
+			      location.href="<%=request.getContextPath() %>/view/user/login.jsp"; 
+
 			   },
 			   error() {
 			      alert("해당 이메일 전송 실패.");
@@ -59,12 +61,19 @@
 			margin-left: auto;
 			margin-right: auto;
 		}
+		.userBtn {
+			border: none;
+			background-color: #F5A9A9;
+			color: white;
+			border-radius: 3px;
+			cursor: pointer;
+		}
 		
 	</style>
 <body>
 <%@ include file ="../../form/header.jsp" %>
 	<div id="find_pw_form">
-	<h1>비밀번호 찾기</h1>
+	<h1 >비밀번호 찾기</h1>
 <br>
 <br>
 <br>
@@ -72,7 +81,7 @@
 <br>
 <table>
 <tr>
-				<td class="col">이메일 : </td> <td> <input type="text" id="email" name="email" placeholder="이메일을 입력해 주세요"></td><td><input type="button" value="비밀번호 보내기" onclick="emailCheck();"></td>
+				<td class="col">이메일 : </td> <td> <input type="text" id="email" name="email" placeholder="이메일을 입력해 주세요"></td><td><input type="button" class="userBtn" value="비밀번호 보내기" onclick="emailCheck();"></td>
 </tr>
 
 </table>
