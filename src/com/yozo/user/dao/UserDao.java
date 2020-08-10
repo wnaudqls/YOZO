@@ -77,8 +77,66 @@ public class UserDao extends SqlMapConfig{
 		return (insertRs > 0)? true : false;
 	}
 	
+	public boolean update(MemberDto dto) {
+		
+		SqlSession session = null;
+		int updateRs = 0;
+		System.out.println("userDao    dto = "+dto );
+		
+		session = getSqlSessionFactory().openSession(true);
+		updateRs = session.update(namespace+".update",dto);
+		
+		System.out.println("개인정보 수정 결과는 ?? : "+ updateRs);
+		
+		return (updateRs > 0)? true : false;
+	}
 	
+	public boolean delete(MemberDto dto) {
+		
+		SqlSession session = null;
+		int deleteRs = 0;
+		System.out.println("userDao    dto = "+dto );
+		
+		session = getSqlSessionFactory().openSession(true);
+		deleteRs = session.update(namespace+".delete",dto);
+		
+		System.out.println("계정 삭제 결과는 ?? : "+ deleteRs);
+		
+		return (deleteRs > 0)? true : false;
+	}
 	
+	public MemberDto findId(String member_email) {
+		
+		SqlSession session = null;
+		MemberDto rdto = null;
+		MemberDto dto = new MemberDto();
+		dto.setMember_email(member_email);
+		
+		
+		session = getSqlSessionFactory().openSession(true);
+		rdto = session.selectOne(namespace+".findId",dto);
+		
+		session.close();
+		
+		
+		return rdto;
+	}
+	public MemberDto findPw(String member_email) {
+		
+		SqlSession session = null;
+		MemberDto rdto = null;
+		MemberDto dto = new MemberDto();
+		dto.setMember_email(member_email);
+		
+		
+		session = getSqlSessionFactory().openSession(true);
+		rdto = session.selectOne(namespace+".findPw",dto);
+		
+		session.close();
+		
+		
+		return rdto;
+	}
 	
 	
 

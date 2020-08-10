@@ -21,7 +21,9 @@ public class AdminDao extends SqlMapConfig{
       try {
     	 System.out.println("dao list 중간");
          session = getSqlSessionFactory().openSession(false);
+         System.out.println(session);
          list = session.selectList(namespace+"selectList");
+         System.out.println(list);
          System.out.println(list.get(0).getMember_id());
       } catch (Exception e) {
     	 System.out.println("dao errors");

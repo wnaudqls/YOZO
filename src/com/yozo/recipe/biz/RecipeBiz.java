@@ -34,8 +34,13 @@ public class RecipeBiz {
 		return dao.multiDelete(recipe_no);
 
 	}
+
 	
 	public int insert(RecipeDto dto) {
 		return dao.insert(dto);
 	}
+//마이레시피  MYselectList
+	public List<RecipeDto> MYselectList(String member_id) {
+		return dao.MYselectList(member_id);
+
 }
