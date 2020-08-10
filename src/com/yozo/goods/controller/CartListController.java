@@ -15,7 +15,7 @@ import com.yozo.goods.dto.CartDTO;
 
 @WebServlet("/list.do")
 public class CartListController extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+   private static final long serialVersionUID = 1L;
        
 
     public CartListController() {
@@ -24,31 +24,31 @@ public class CartListController extends HttpServlet {
     }
 
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
-		response.setContentType("text/html; charset=utf-8");
-	       
-	    String memberId = request.getParameter("memberId");
+   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+      request.setCharacterEncoding("utf-8");
+      response.setContentType("text/html; charset=utf-8");
+          
+       String memberId = request.getParameter("memberId");
         if(memberId != null) {
-        	List<CartDTO> list = new CartService().cartList(memberId);
-        	request.setAttribute("list", list);
-        	request.getRequestDispatcher("/view/user/cart_list.jsp").forward(request, response);
+           List<CartDTO> list = new CartService().cartList(memberId);
+           request.setAttribute("list", list);
+           request.getRequestDispatcher("/view/user/cart_list.jsp").forward(request, response);
         }else {
-        	System.out.println("no login");
+           System.out.println("no login");
         }
-	        
-	    }
-	
+           
+       }
+   
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+   /**
+    * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+    */
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+   protected void doPost(HttpServletRequest request, HttpServletResponse response)
+         throws ServletException, IOException {
 
 
-	}
+   }
 
 
 }
