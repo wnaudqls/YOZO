@@ -71,7 +71,8 @@
 	
 	 <insert id="insert" parameterType="recipeDto">
 		INSERT INTO RECIPE
-		VALUES(recipe_seq.nextval, 
+		VALUES(
+		recipe_seq.nextval, 
 		#{recipe_main_photo}, 
 		#{member_id},
 		#{recipe_title},
@@ -79,8 +80,8 @@
 		#{recipe_detail},
 		SYSDATE,
 		#{recipe_material_one},
-		#{recipe_theme},
-		#{recipe_kind},
+		#{cate_theme},
+		#{cate_kind},
 		#{recipe_material},
 		#{recipe_likecount})
 	</insert> 

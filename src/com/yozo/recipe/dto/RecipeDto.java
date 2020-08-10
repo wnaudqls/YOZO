@@ -12,8 +12,8 @@ public class RecipeDto {
 		private String recipe_detail;
 		private DATE recipe_regdate;
 		private String recipe_material_one;
-		private String recipe_theme;
-		private String recipe_kind;
+		private String cate_theme;
+		private String cate_kind;
 		private String recipe_material;
 		private int recipe_likecount;
 		public RecipeDto() {
@@ -22,7 +22,7 @@ public class RecipeDto {
 		}
 		public RecipeDto(int recipe_no, String recipe_main_photo, String member_id, String recipe_title,
 				String recipe_photo, String recipe_detail, DATE recipe_regdate, String recipe_material_one,
-				String recipe_theme, String recipe_kind, String recipe_material, int recipe_likecount) {
+				String cate_theme, String cate_kind, String recipe_material, int recipe_likecount) {
 			super();
 			this.recipe_no = recipe_no;
 			this.recipe_main_photo = recipe_main_photo;
@@ -32,8 +32,8 @@ public class RecipeDto {
 			this.recipe_detail = recipe_detail;
 			this.recipe_regdate = recipe_regdate;
 			this.recipe_material_one = recipe_material_one;
-			this.recipe_theme = recipe_theme;
-			this.recipe_kind = recipe_kind;
+			this.cate_theme = cate_theme;
+			this.cate_kind = cate_kind;
 			this.recipe_material = recipe_material;
 			this.recipe_likecount = recipe_likecount;
 		}
@@ -85,17 +85,17 @@ public class RecipeDto {
 		public void setRecipe_material_one(String recipe_material_one) {
 			this.recipe_material_one = recipe_material_one;
 		}
-		public String getRecipe_theme() {
-			return recipe_theme;
+		public String getCate_theme() {
+			return cate_theme;
 		}
-		public void setRecipe_theme(String recipe_theme) {
-			this.recipe_theme = recipe_theme;
+		public void setCate_theme(String cate_theme) {
+			this.cate_theme = cate_theme;
 		}
-		public String getRecipe_kind() {
-			return recipe_kind;
+		public String getCate_kind() {
+			return cate_kind;
 		}
-		public void setRecipe_kind(String recipe_kind) {
-			this.recipe_kind = recipe_kind;
+		public void setCate_kind(String cate_kind) {
+			this.cate_kind = cate_kind;
 		}
 		public String getRecipe_material() {
 			return recipe_material;
@@ -109,7 +109,7 @@ public class RecipeDto {
 		public void setRecipe_likecount(int recipe_likecount) {
 			this.recipe_likecount = recipe_likecount;
 		}
-
+	
 
 		
 		
