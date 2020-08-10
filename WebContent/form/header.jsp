@@ -13,168 +13,148 @@
 	type="image/x-icon">
 <title>요리조리</title>
 <style type="text/css">
-body {
-	margin: 0px;
-	text-align: center;
-	width: 100%;
-}
+    body {
+        margin: 0px;
+        text-align: center;
+        width: 100%;
+        }
 
-header {
-	margin: 0px;
-}
+    header{
+        margin:0px;
+    }
+    #header{
+        text-align: center;
+    }
+    #icon{
+        text-align: center;
+    }
+    .dropuserdown{
+           z-index: 999;
+         position: absolute;
+         right: 20px;
+         top: 20px;
+    }
+    .mainlogo{
+        width: 300px;
+        height: 100px;
+    }
+     .recipe{
+        width: 70px;
+        height: 70px;
+    } 
+    .recipe_link{
+       width: 70px;
+        height: 70px;
+        margin-left: 20px;
+        display: inline-block;
+    }
+    .stream{
+        width: 70px;
+        height: 70px;
+        margin-left: 80px;
+    }
+    .goods{
+        width: 70px;
+        height: 70px;
+        margin-left: 80px;
+    }
+    .map{
+        width: 70px;
+        height: 70px;
+        margin-left: 80px;
+    }
+    .admin{
+       width: 70px;
+       height: 70px;
+       margin-left : 80px;
+    }
+    .admin finger{
+       float:left;
+    }
+    .usericon {
+        background-color:white;
+        color: white;
+        padding: 0px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+        width : 70px;
+        height: 70px;
+    }
+    .usericon:hover, .usericon:focus {
+        background-color: white;
+    }
+    .dropuser_content {
+        display: none;
+        position: absolute;
+        background-color : #F5A9A9;
+        min-width: 130px;
+        overflow:visible;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        right: 10px;
+    }
 
-section {
-	margin-top: 150px;
-}
+    .dropuser_content a {
+        color:white;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        float:center;
+    }
 
-#header {
-	text-align: center;
-}
+    .dropuser_content a:hover {background-color: black}
 
-#icon {
-	text-align: center;
-}
+    .show {display:block;}
 
-.dropuserdown {
-	z-index: 1;
-	position: absolute;
-	right: 20px;
-	top: 20px;
-}
+    .dropstreamdown {
+        position: relative;
+        display: inline-block;
+    }
+    .stream {
+        background-color:white;
+        color: white;
+        padding: 0px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+    }
+    .stream:hover, .stream:focus {
+        background-color:white;
+    }
+    .dropstream_content {
+       opacity: 0.85;
+        z-index: 999;
+        left:65px;
+        background-color : #F5A9A9;
+        min-width: 100px;
+        overflow: auto;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    }
 
-.mainlogo {
-	width: 300px;
-	height: 100px;
-}
+    .dropstream_content a {
+        color:white;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        float: center;
+    }
 
-.recipe {
-	width: 70px;
-	height: 70px;
-}
+    #dropstream_content a:hover {
+       background-color: black
+    }
 
-.recipe_link {
-	width: 70px;
-	height: 70px;
-	margin-left: 20px;
-	display: inline-block;
-}
-
-.stream {
-	width: 70px;
-	height: 70px;
-	margin-left: 80px;
-}
-
-.goods {
-	width: 70px;
-	height: 70px;
-	margin-left: 80px;
-}
-
-.map {
-	width: 70px;
-	height: 70px;
-	margin-left: 80px;
-}
-
-.admin finger {
-	float: left;
-}
-
-.usericon {
-	background-color: white;
-	color: white;
-	padding: 0px;
-	font-size: 16px;
-	border: none;
-	cursor: pointer;
-}
-
-.usericon:hover, .usericon:focus {
-	background-color: white;
-}
-
-.dropuser_content {
-	display: none;
-	position: absolute;
-	background-color: #F5A9A9;
-	min-width: 160px;
-	overflow: auto;
-	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-}
-
-.dropuser_content a {
-	color: white;
-	padding: 12px 16px;
-	text-decoration: none;
-	display: block;
-	float: left;
-}
-
-.dropuser_content a:hover {
-	background-color: black
-}
-
-.show {
-	display: block;
-}
-
-.dropstreamdown {
-	position: relative;
-	display: inline-block;
-}
-
-.stream {
-	background-color: white;
-	color: white;
-	padding: 0px;
-	font-size: 16px;
-	border: none;
-	cursor: pointer;
-}
-
-.stream:hover, .stream:focus {
-	background-color: white;
-}
-
-.dropstream_content {
-	opacity: 0.85;
-	z-index: 1;
-	display: none;
-	position: absolute;
-	margin-right: 500px;
-	background-color: #F5A9A9;
-	min-width: 160px;
-	overflow: auto;
-	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-}
-
-.dropstream_content a {
-	color: white;
-	padding: 12px 16px;
-	text-decoration: none;
-	display: block;
-	float: left;
-}
-
-#dropstream_content a:hover {
-	background-color: black
-}
-
-.show {
-	display: block;
-}
-
-.finger {
-	cursor: pointer;
-}
-
-#loginStatus {
-	width: 270px;
-	position: absolute;
-	top: 25px;
-	right: 85px;
-}
+    .show {display:block;}
+    
+   .finger{
+       cursor: pointer;
+    } 
+     #loginStatus {
+        width: 300px;
+       position: absolute;
+       top: 25px;
+       right: 100px;
+    }
+  
 </style>
 
 <script type="text/javascript"
@@ -242,7 +222,7 @@ section {
 	<header id=header>
 		<!-- 메인 아이콘, 유저아이콘 -->
 		<img id="mainicon" class="mainlogo finger" alt="logo"
-			src="/YORIZORI/img/mainicon.png"
+			src="/YORIZORI/img/main_icon.png"
 			onclick="location.href='http://qclass.iptime.org:8787/YORIZORI/view/main/main.jsp'"><br>
 
 
@@ -257,7 +237,7 @@ section {
 		<div class="dropuserdown">
 			<span id="loginStatus">로그인을 해주세요</span> <img
 				onclick="location.href='<%=request.getContextPath()%>/user.do?command=loginform'"
-				class="usericon" alt="logo" src="/YORIZORI/img/usericon.png">
+				class="usericon" alt="logo" src="/YORIZORI/img/user_icon.png">
 		</div>
 		<%
 			} else if (dto != null) {
@@ -266,7 +246,7 @@ section {
 			<div class="dropuserdown">
 				<span id="loginStatus"><b>${rdto.member_nick }</b> 님이
 					로그인하였습니다.</span> <img onclick="dropuser()" class="usericon" alt="logo"
-					src="/YORIZORI/img/usericon.png">
+					src="/YORIZORI/img/user_icon.png">
 				<div id="dropuser_content" class="dropuser_content">
 					<a
 						href="<%request.getContextPath();%>/YORIZORI/user.do?command=updateform">개인정보수정</a>
@@ -300,10 +280,10 @@ section {
 		<img
 			onclick="location.href='<%request.getContextPath();%>/YORIZORI/recipe.do?command=recipe_list'"
 			class="recipe finger" alt="logo"
-			src="/YORIZORI/img/recipebookicon.png">
+			src="/YORIZORI/img/recipe_icon.png">
 		<div class="dropstreamdown">
 			<img onclick="dropstream()" class="stream finger" alt="logo"
-				src="/YORIZORI/img/broadcasticon.png">
+				src="/YORIZORI/img/broadcast_icon.png">
 			<div id="dropstream_content" class="dropstream_content">
 
 				<a href="/YORIZORI/broadcast.do?command=stream" class="useId">방송하기</a>
@@ -312,12 +292,12 @@ section {
 			</div>
 		</div>
 		<!--유정 goods onclick 건들임 -->
-		<img class="goods finger" alt="logo" src="/YORIZORI/img/goodsicon.png"
+		<img class="goods finger" alt="logo" src="/YORIZORI/img/goods_icon.png"
 			onclick="location.href='<%request.getContextPath();%>/YORIZORI/goods.do?command=goodslist'">
-		<img class="map finger" alt="logo" src="/YORIZORI/img/mapicon.png"
+		<img class="map finger" alt="logo" src="/YORIZORI/img/map_icon.png"
 			onclick="location.href = '<%request.getContextPath();%>/YORIZORI/view/map/map.jsp'">
 		<c:if test="${rdto.member_role eq '관리자' }">
-			<img class="admin finger" alt="logo" src="/YORIZORI/img/mapicon.png"
+			<img class="admin finger" alt="logo" src="/YORIZORI/img/admin_icon.png"
 				onclick="location.href='<%=request.getContextPath()%>/admin.do?command=list'">
 		</c:if>
 	</nav>
