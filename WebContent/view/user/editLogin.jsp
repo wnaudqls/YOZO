@@ -42,7 +42,7 @@
 			<input type="text" name="id" placeholder="아이디를 입력하세요"> <br> 
 			<input type="password" name="pw" placeholder="비밀번호를 입력하세요"> <br><br>
 			<br>
-				<input type="submit" value="정보 수정페이지로 이동">
+				<input type="submit" value="정보 수정 페이지로 이동">
 
 		</form>
 		

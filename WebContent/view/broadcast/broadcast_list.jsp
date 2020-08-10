@@ -1,8 +1,6 @@
 <%@page import="com.yozo.broadcast.dto.BroadcastDto"%>
 <%@page import="java.util.List"%>
 <%@page import="com.yozo.broadcast.dao.BroadcastDao"%>
-<%@page
-	import="com.sun.org.apache.xerces.internal.impl.xpath.regex.RegularExpression"%>
 <%@page import="java.time.DayOfWeek"%>
 <%@page import="java.util.Calendar"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"

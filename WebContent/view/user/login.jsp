@@ -103,6 +103,10 @@
 		.naverIdLogin {
 			width: 50%;
 		}
+		
+		#findId, #resetPw {
+			display: inline;
+		}
 	</style>
 </head>
 <body>
@@ -121,7 +125,10 @@
 			
 			<a href="/YORIZORI/user.do?command=joinform">회원가입하기</a> <br> 
 		</form>
-		<br>
+		<input type="button" onclick="location.href='<%=request.getContextPath()%>/user.do?command=findId'" class="findId" value="아이디 찾기" >
+		
+		<input type="button" onclick="location.href='<%=request.getContextPath()%>/user.do?command=resetPw'" class="resetPw" value="비밀번호 재설정" >
+		<br><br>
 		
 		<div><a id="custom-login-btn" href="javascript:loginWithKakao()">
 			<img src="//k.kakaocdn.net/14/dn/btqCn0WEmI3/nijroPfbpCa4at5EIsjyf0/o.jpg" height="40" />
