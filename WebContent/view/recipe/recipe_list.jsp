@@ -99,6 +99,10 @@ td {
 	width: 50px;
 	height: 50px;
 }
+.like_icon:hover {
+	cursor: pointer;
+	
+}
 
 .like_text {
 	position: absolute;
@@ -223,14 +227,13 @@ input#recipe_search {
 
 								<div class="list_card_like">
 									<img
-										onclick="location.href='/YORIZORI/recipe.do?command=recipe_detail&recipe_no=${dto.recipe_no }'"
+										onclick="addlike(${dto.recipe_no}, ${rdto.member_no});"
 										class="like_icon" src="/YORIZORI/img/recipe/like_icon.png" />
 									<span class="like_text">${dto.recipe_likecount}</span>
 								</div>
 						</div>
 
-
-
+						</div>
 
 					</c:forEach>
 				</c:otherwise>
@@ -309,6 +312,8 @@ input#recipe_search {
 	<%@ include file="/form/footer.jsp"%>
 
 </body>
+<script type="text/javascript" src="/YORIZORI/js/like.js">
+</script>
 
 
 </html>
