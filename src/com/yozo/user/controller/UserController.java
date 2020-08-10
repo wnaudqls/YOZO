@@ -112,8 +112,7 @@ public class UserController extends HttpServlet {
 			
 		} else if (command.equals("joinform")) {
 			System.out.println("JOINFORM.......입성");
-			RequestDispatcher dispatch = request.getRequestDispatcher("/view/user/join.jsp");
-			dispatch.forward(request, response);
+			response.sendRedirect("/YORIZORI/view/user/join.jsp");
 			System.out.println("............입성1");
 			
 		} else if (command.equals("idcheck")) {
@@ -207,12 +206,10 @@ public class UserController extends HttpServlet {
 			 boolean res = dao.insert(dto);
 			 
 			 if (res) { 
-				 PrintWriter out = response.getWriter();
-				 out.println("<script>alert('계정이 등록 되었습니다.'); </script>");
+				 
 				 response.sendRedirect("/YORIZORI/view/user/login.jsp"); 
 			 } else { 
-				 PrintWriter out = response.getWriter();
-				 out.println("<script>alert('계정이 등록 되지 않았습니다.'); </script>");
+
 				 response.sendRedirect("history.back()"); 
 			 }
 			 
@@ -237,15 +234,29 @@ public class UserController extends HttpServlet {
 			boolean res = dao.insert(dto);
 			
 			if (res) { 
-				PrintWriter out = response.getWriter();
-				out.println("<script>alert('계정이 등록 되었습니다.'); </script>");
+
 				response.sendRedirect("/YORIZORI/view/user/login.jsp"); 
 			} else { 
-				PrintWriter out = response.getWriter();
-				out.println("<script>alert('계정이 등록 되지 않았습니다.'); </script>");
+
 				response.sendRedirect("history.back()"); 
 			}
-		}else if (command.equals("sendEmail")) {
+			
+		} else if (command.equals("updateform")) {
+			
+			
+			 response.sendRedirect("/YORIZORI/view/user/edit_account.jsp");
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+		} else if (command.equals("sendEmail")) {
 			
 
 			Properties props = System.getProperties();

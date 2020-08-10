@@ -25,7 +25,7 @@
 			#{i.recipe_title},
 			null,
 			#{i.recipe_detail},
-			sysdate,
+			SYSDATE,
 			#{i.recipe_material_one},
 			#{i.recipe_theme},
 			#{i.recipe_kind},
@@ -45,8 +45,8 @@
 		RECIPE_DETAIL,
 		RECIPE_REGDATE,
 		RECIPE_MATERIAL_ONE,
-		CATE_THEME_NO,
-		CATE_KIND_NO,
+		CATE_THEME,
+		CATE_KIND,
 		RECIPE_MATERIAL,
 		RECIPE_LIKECOUNT 
 		FROM RECIPE
@@ -61,26 +61,27 @@
 		RECIPE_DETAIL,
 		RECIPE_REGDATE,
 		RECIPE_MATERIAL_ONE,
-		CATE_THEME_NO,
-		CATE_KIND_NO,
+		CATE_THEME,
+		CATE_KIND,
 		RECIPE_MATERIAL,
 		RECIPE_LIKECOUNT
 		FROM RECIPE 
 		WHERE RECIPE_NO= #{recipe_no}
 	</select>
 	
-	<insert id="insert" parameterType="RecipeDto">
+	 <insert id="insert" parameterType="recipeDto">
 		INSERT INTO RECIPE
 		VALUES(recipe_seq.nextval, 
 		#{recipe_main_photo}, 
+		#{member_id},
 		#{recipe_title},
 		#{recipe_photo}, 
 		#{recipe_detail},
-		#{recipe_regdate},
+		SYSDATE,
 		#{recipe_material_one},
 		#{recipe_theme},
 		#{recipe_kind},
-		#{reipe_material},
+		#{recipe_material},
 		#{recipe_likecount})
-	</insert>
+	</insert> 
 </mapper>

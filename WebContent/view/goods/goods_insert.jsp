@@ -91,7 +91,7 @@ height:310px;
 				for (value of formdata.values()) {
 				  console.log(value);
 				} */
-			var imgurl= document.getElementById("goods_main_photo").value;
+			/* var imgurl= document.getElementById("goods_main_photo").value; */
 		$.ajax({	
 			type:"POST",		
 			url:"<%=request.getContextPath()%>/goods.do?command=imgUpload",		
@@ -109,10 +109,10 @@ height:310px;
 	}
 </script>
 </head>
-<%@ include file="../../form/header.jsp"%>
+<%@ include file="/form/header.jsp"%>
 <body>
 	<section>
-		<form action="<%=request.getContextPath()%>/goods.do" method="post" id="goods_form">
+		<form action="<%=request.getContextPath()%>/goods.do" method="post" id="goods_form" >
 			<input type="hidden" name="command" value="goodsinsertres">
 		<!-- 	<input type="hidden" id="goods_main_photo" name="goods_main_photo"> -->
 			<div class="goods_wrap">
@@ -151,6 +151,6 @@ height:310px;
 			</div>
 		</form>
 	</section>
-	<%@ include file="../../form/footer.jsp"%>
+	<%@ include file="/form/footer.jsp"%>
 </body>
 </html>

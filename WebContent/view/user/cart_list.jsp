@@ -10,7 +10,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<%@ include file="../../form/header.jsp"%>
+<%@ include file="/form/header.jsp"%>
 <style type="text/css">
 #table1 {
 	border: 1px;
@@ -213,7 +213,7 @@
 
 
 	</form>
-	<%@ include file="../../form/footer.jsp"%>
+	<%@ include file="/form/footer.jsp"%>
 </body>
 
 </html>

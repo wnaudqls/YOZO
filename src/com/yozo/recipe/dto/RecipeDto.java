@@ -109,6 +109,8 @@ public class RecipeDto {
 		public void setRecipe_likecount(int recipe_likecount) {
 			this.recipe_likecount = recipe_likecount;
 		}
+
+
 		
 		
 }

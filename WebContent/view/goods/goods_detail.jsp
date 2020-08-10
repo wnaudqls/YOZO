@@ -155,14 +155,10 @@ section {
 </script>
 <body> 
    
-   <%@include file="../../form/header.jsp"%>
+   <%@include file="/form/header.jsp"%>
    <section class="section">
       <!-- 쇼핑몰 상세보기 시작점  -->
-<<<<<<< HEAD
-      <form action="<%=request.getContextPath()%>/goods.do" mehtod="post">
-=======
-      <form action="" method="post">
->>>>>>> branch 'develop' of https://github.com/shm1113/YOZO.git
+      <form action="<%=request.getContextPath()%>/goods.do" method="post">
       <input type="hidden" name="command" value="goodsupdate"/>
       <input type="hidden" name="goods_no" value="${dto.goods_no}"/>
       <div class="product_wrap">
@@ -215,7 +211,7 @@ section {
         	<c:if test="${rdto.member_role eq '관리자' }">
         		<div>
         			<input class="btn" type="submit" value="수정"/>
-        			<input class="btn" type="button" value="삭제" onclick="location.href='<%=request.getContextPath()%>/goods.do?command=goodsdelete&goods_no=${dto.goods_no}'"/>
+        			<input class="btn" type="button" value="삭제" onclick="location.href='<%=request.getContextPath()%>/YORIZORI/goods.do?command=goodsdelete&goods_no=${dto.goods_no}'"/>
         		</div>
         	</c:if>
          </div>
@@ -228,8 +224,8 @@ section {
       </div>
    </section>
    
-   <%@ include file="./goods_answer.jsp" %>
+   <%@ include file="/view/goods/goods_answer.jsp" %>
    <!-- 푸터 -->
-   <%@ include file="../../form/footer.jsp"%>
+   <%@ include file="/form/footer.jsp"%>
 </body>
 </html>

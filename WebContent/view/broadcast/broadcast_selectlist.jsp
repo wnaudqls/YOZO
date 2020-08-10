@@ -21,7 +21,7 @@ height: 50px;
 <title>ㅁㄴㅇㄹ</title>
 </head>
 <body>
-	<%@include file="../../form/header.jsp" %>
+	<%@include file="/form/header.jsp" %>
 	<hr>
 	<% 
 	
@@ -55,13 +55,13 @@ height: 50px;
 		<tr>
 			<td>${dto.broadcast_no}</td>
 			<td>${dto.member_id}"</td>
-			<td><a href="<%=request.getContextPath()%>/broadcast.do?command=selectone&no=${dto.broadcast_no}">${dto.broadcast_title}</a></td>	
-			<td><input type="button" class="btn1" name="check" value="하기" onclick="location.href='broadcast.do?command=reserve&no=${dto.broadcast_no}&id=${rdto.member_id }'"></td>
+			<td><a href="<%=request.getContextPath()%>/YORIZORI/broadcast.do?command=selectone&no=${dto.broadcast_no}">${dto.broadcast_title}</a></td>	
+			<td><input type="button" class="btn1" name="check" value="하기" onclick="location.href='/YORIZORI/broadcast.do?command=reserve&no=${dto.broadcast_no}&id=${rdto.member_id }'"></td>
 		</tr>
 	</c:forEach>
 	</table>
 	<div id="down">
-			<%@include file="../../form/footer.jsp" %>
+			<%@include file="/form/footer.jsp" %>
 	</div>
 
 </body>
