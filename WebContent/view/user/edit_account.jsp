@@ -178,6 +178,13 @@
 		<input type="submit" id="updateBtn" value="개인정보 수정">
 		
 		</form>
+		
+		<br> <br>
+		<form action="<%=request.getContextPath() %>/user.do"  method="post">
+			<input type="hidden" name="command" value="deleteUser" >
+			<input type="hidden" name="id" value="<%=rdto.getMember_id() %>" >
+			<input type="submit"  value="회원 탈퇴">
+		</form>
 	</div>
 	<br>
 	<br>

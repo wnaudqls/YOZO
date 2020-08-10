@@ -92,6 +92,45 @@
 	});
 
 
+	function emailCheck(checkNum) {	//메일 보내기 기능 버튼! (랜덤 정수 반환받는 파라미터)
+		//해당하는value 값 특히 이메일은 값이 여러개
+		//selected 선택 된값 으로 잡아줘여한다.
+		   var email = document.getElementById("email").value;
+			rnum=checkNum;
+		   //value 값 저장 
+		   
+		   
+			$.ajax({         //한번더 ajax 사용하요 
+			   url:"<%=request.getContextPath() %>/user.do", //컨트롤러 활용하여
+			   type:"post",         // post방식
+			   datatype:"json",      //datatype
+			   data:{"command":"sendEmail","email":email, "random":checkNum},	//ajax 에서 컨트롤러=샌드이메일 로 이동 (리시버=이베일 & 랜덤=체크넘 가지고)
+			   success(data) {
+			      alert("전송성공! \n인증번호를 확인해주세요. ");
+			   },
+			   error(err) {
+			      alert("해당 이메일 전송 실패");
+			   }
+			    
+			});
+		    
+		 
+		}
+		function chkAuth1(){
+			var num=document.getElementById("chkAuth").value;//메일로 오는 값  = > 메일로 올 때 새로 난수 생성되서 옴
+			alert(num+rnum);
+			
+			if(num == rnum){		// 먼저 생선된 값 
+				alert("인증성공");
+				document.getElementById('joinBtn').style.display = "inline";
+
+			}else{
+				alert("인증실패");
+				document.getElementById('joinBtn').style.display = "none";
+
+			}
+		}	
+	
 	
 	function goPopup(){
 //	    var pop = window.open("../../popup/jusoPopup.jsp","pop","width=570,height=420, scrollbars=yes, resizable=yes"); 

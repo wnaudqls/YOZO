@@ -324,7 +324,7 @@ public class UserController extends HttpServlet {
 			
 			if (res) { 
 				session.invalidate();
-				response.sendRedirect("/YORIZORI/view/user/login.jsp");
+				response.sendRedirect("view/user/login.jsp");
 				String s = "<script type='text/javascript'>" + "alert('수정되었습니다.\n다시 로그인 해주세요.');" + "location.href='view/user/login.jsp';"
 						+ "</script>";
 				response.getWriter().append(s);
@@ -334,6 +334,40 @@ public class UserController extends HttpServlet {
 
 				System.out.println("안바뀌었어 다시 해");
 			}
+			
+			
+		} else if (command.equals("deleteUser")) {
+			
+			String id = request.getParameter("id");
+			
+			MemberDto dto = new MemberDto(id, id);
+					
+			boolean res = dao.delete(dto);
+			
+			if (res) {
+				session.invalidate();
+				String s = "<script type='text/javascript'>" + "alert('탈퇴되었습니다.');" + "location.href='view/main/main.jsp';"
+						+ "</script>";
+				response.getWriter().append(s);
+			} else {
+				System.out.println("탈퇴 안됨 ㅠ");
+			}
+			
+		} else if (command.equals("findId")) {
+			
+			response.sendRedirect("view/user/find_id.jsp");
+			
+			
+			
+			
+			
+			
+		} else if (command.equals("resetPw")) {
+			
+			response.sendRedirect("view/user/find_password.jsp");
+
+			
+			
 			
 			
 		} else if (command.equals("sendEmail")) {
@@ -399,6 +433,149 @@ public class UserController extends HttpServlet {
 	        }
 
 		        
+		} else if (command.equals("idEmail")) {
+		
+			
+			
+			Properties props = System.getProperties();
+			/*
+				props.put("mail.smtp.starttls.enable", "true"); // gmail은 무조건 true 고정
+				props.put("mail.smtp.host", "smtp.gmail.com"); // smtp 서버 주소
+				props.put("mail.smtp.auth","true"); // gmail은 무조건 true 고정 
+				props.put("mail.smtp.port","587"); // gmail 포트
+			 */         
+			props.put("mail.smtp.user", "lhseunge"); // 서버 아이디만 쓰기
+			props.put("mail.smtp.host", "smtp.gmail.com"); // 구글 SMTP
+			props.put("mail.smtp.port", "465");
+			props.put("mail.smtp.starttls.enable", "true");
+			props.put("mail.smtp.auth", "true");
+			props.put("mail.smtp.socketFactory.port", "465");
+			props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+			props.put("mail.smtp.socketFactory.fallback", "false");
+			
+			Authenticator auth = new MyAuthentication();
+			
+			//session 생성 및  MimeMessage생성
+			Session session1 = Session.getDefaultInstance(props, auth);
+			MimeMessage msg = new MimeMessage(session1);
+			
+			try{
+				//편지보낸시간
+				msg.setSentDate(new Date());
+				
+				InternetAddress from = new InternetAddress("YORIZORI") ;             
+				
+				// 이메일 발신자
+				msg.setFrom(from);           
+				
+				// 이메일 수신자
+				String email = request.getParameter("email"); //사용자가 입력한 이메일 받아오기
+				InternetAddress to = new InternetAddress(email);
+				msg.setRecipient(Message.RecipientType.TO, to);
+				
+				// 이메일 제목
+				msg.setSubject("요리조리에서 보내는 이메일." , "UTF-8");
+				
+				// 이메일 내용 
+				
+				MemberDto dto = dao.findId(email);
+				System.out.println(dto);
+				
+				String id = dto.getMember_id();
+				
+				System.out.println(id);
+				
+				
+				
+				// 4 request.setAttribute("dto", dto);
+				
+				msg.setText("회원님의 아이디는 \n["+id+"] 입니다.", "UTF-8");
+				
+				// 이메일 헤더 
+				msg.setHeader("content-Type", "text/html");
+				
+				//메일보내기
+				javax.mail.Transport.send(msg);
+				
+				
+				
+			}catch (AddressException addr_e) {
+				addr_e.printStackTrace();
+			}catch (MessagingException msg_e) {
+				msg_e.printStackTrace();
+			}
+		
+		
+		} else if (command.equals("pwEmail")) {
+			Properties props = System.getProperties();
+			/*
+				props.put("mail.smtp.starttls.enable", "true"); // gmail은 무조건 true 고정
+				props.put("mail.smtp.host", "smtp.gmail.com"); // smtp 서버 주소
+				props.put("mail.smtp.auth","true"); // gmail은 무조건 true 고정 
+				props.put("mail.smtp.port","587"); // gmail 포트
+			 */         
+			props.put("mail.smtp.user", "lhseunge"); // 서버 아이디만 쓰기
+			props.put("mail.smtp.host", "smtp.gmail.com"); // 구글 SMTP
+			props.put("mail.smtp.port", "465");
+			props.put("mail.smtp.starttls.enable", "true");
+			props.put("mail.smtp.auth", "true");
+			props.put("mail.smtp.socketFactory.port", "465");
+			props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+			props.put("mail.smtp.socketFactory.fallback", "false");
+			
+			Authenticator auth = new MyAuthentication();
+			
+			//session 생성 및  MimeMessage생성
+			Session session1 = Session.getDefaultInstance(props, auth);
+			MimeMessage msg = new MimeMessage(session1);
+			
+			try{
+				//편지보낸시간
+				msg.setSentDate(new Date());
+				
+				InternetAddress from = new InternetAddress("YORIZORI") ;             
+				
+				// 이메일 발신자
+				msg.setFrom(from);           
+				
+				// 이메일 수신자
+				String email = request.getParameter("email"); //사용자가 입력한 이메일 받아오기
+				InternetAddress to = new InternetAddress(email);
+				msg.setRecipient(Message.RecipientType.TO, to);
+				
+				// 이메일 제목
+				msg.setSubject("요리조리에서 보내는 이메일." , "UTF-8");
+				
+				// 이메일 내용 
+				
+				MemberDto dto = dao.findPw(email);
+				System.out.println(dto);
+				
+				String pw = dto.getMember_pw();
+				
+				System.out.println(pw);
+				
+				
+				
+				// 4 request.setAttribute("dto", dto);
+				
+				msg.setText("회원님의 비밀번호는 \n["+pw+"] 입니다.", "UTF-8");
+				
+				// 이메일 헤더 
+				msg.setHeader("content-Type", "text/html");
+				
+				//메일보내기
+				javax.mail.Transport.send(msg);
+				
+				
+				
+			}catch (AddressException addr_e) {
+				addr_e.printStackTrace();
+			}catch (MessagingException msg_e) {
+				msg_e.printStackTrace();
+			}
+		
+		
 		}
 		
 		

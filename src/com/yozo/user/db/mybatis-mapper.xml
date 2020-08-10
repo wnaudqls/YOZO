@@ -57,7 +57,7 @@
 		MEMBER_PW = #{member_pw},
 		MEMBER_NAME = #{member_name},
 		MEMBER_NICK = #{member_nick},
-		MEMBER_EMAIL = #{member_e1212mail},
+		MEMBER_EMAIL = #{member_email},
 		MEMBER_EMAIL_HASH = #{member_email_hash},
 		MEMBER_EMAIL_CHECKED = #{member_email_checked},
 		MEMBER_ENABLED = #{member_enabled},
@@ -68,5 +68,28 @@
 		
 	
 	</update>
+	
+	
+	<delete id="delete" parameterType="MemberDto">
+	
+		DELETE MEMBER WHERE MEMBER_ID = #{member_id}
+		
+	</delete>
+	
+	
+	<select id="findId" parameterType="MemberDto" resultType="MemberDto">
+	
+		SELECT MEMBER_ID
+		FROM MEMBER 
+		WHERE MEMBER_EMAIL = #{member_email}
+	
+	</select>
+	<select id="findPw" parameterType="MemberDto" resultType="MemberDto">
+	
+		SELECT MEMBER_PW
+		FROM MEMBER 
+		WHERE MEMBER_EMAIL = #{member_email}
+	
+	</select>
 
 </mapper>
