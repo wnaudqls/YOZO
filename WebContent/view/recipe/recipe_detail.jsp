@@ -623,9 +623,9 @@ img {vertical-align: middle;}
                <b>작성자 : </b>${dto.member_id }
             </p>
             <p>
-               <b>종류 : </b>${dto.recipe_kind }</p>
+               <b>종류 : </b>${dto.cate_kind }</p>
             <p>
-               <b>테마 : </b>${dto.recipe_theme }</p>
+               <b>테마 : </b>${dto.cate_theme }</p>
          </div>
          <div class="speech_wrap">
             <!-- 음성 인식 -->
@@ -643,7 +643,7 @@ img {vertical-align: middle;}
          </div>
          <div>
             <c:if test="${rdto.member_role eq '관리자' }">
-               <input class="btn" type="button" value="수정"/>
+               <input class="btn" type="button" value="수정" />
                <input class="btn" type="button" value="삭제"/>
             </c:if>
          </div>

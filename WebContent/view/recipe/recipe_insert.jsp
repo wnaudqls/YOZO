@@ -269,10 +269,14 @@
 	<%@ include file="../../form/header.jsp"%>
 	<!--유정)섹션추가 -->
 	<!-- 상단부 -->
+<<<<<<< HEAD
+	<form action="<%=request.getContextPath()%>/recipe.do" method="post"
+=======
 
 	<form action="<%=request.getContextPath()%>/recipe.do" enctype="multipart/form-data" method="post"
+>>>>>>> branch 'develop' of https://github.com/shm1113/YOZO.git
 		id="recipeinsertform" >
-		<input type="hidden" name="command" value="recipe_insert" />
+		<input type="hidden" name="command" value="recipe_insert"/>
 
 
 		<div class="section_top">
@@ -357,7 +361,7 @@
 
 					<input class="btn" type="button" value="취소"
 						onclick="location.href='<%request.getContextPath();%>/YORIZORI/recipe.do?command=recipe_list'" />
-					<input class="btn" type="submit" value="작성하기" onclick="ssabal();"/>
+					<input class="btn" type="submit" value="작성하기" />
 
 
 				</div>

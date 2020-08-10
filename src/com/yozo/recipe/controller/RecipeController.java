@@ -157,7 +157,6 @@ public class RecipeController extends HttpServlet {
 			String[] recipe_photo_array = request.getParameterValues("recipe_photo");
 			String[] recipe_detail_array = request.getParameterValues("recipe_detail");
 
-			
 			System.out.println(recipe_main_photo);
 			System.out.println(recipe_title);
 			System.out.println(cate_theme);
@@ -166,48 +165,54 @@ public class RecipeController extends HttpServlet {
 			System.out.println(recipe_material_array);
 			System.out.println(recipe_photo_array);
 			System.out.println(recipe_detail_array);
-			/*
-			 * JsonArray jArray = new JsonArray(); for (int i = 0; i <
-			 * recipe_material_array.length; i++) { JsonPrimitive element = new
-			 * JsonPrimitive(recipe_material_array[i]); jArray.add(element);
-			 * 
-			 * } jArray.toString(); String recipe_material = jArray.toString();
-			 * System.out.println("json배열을 문자열로 바꿔줌 :" + jArray.toString()); //
-			 * 
-			 * 
-			 * JsonArray jArray2 = new JsonArray(); for (int i = 0; i <
-			 * recipe_photo_array.length; i++) { JsonPrimitive element = new
-			 * JsonPrimitive(recipe_photo_array[i]); jArray2.add(element);
-			 * 
-			 * } jArray2.toString(); String recipe_photo = jArray2.toString();
-			 * System.out.println("json배열포토 문자열 : " + jArray2.toString()); //
-			 * 
-			 * 
-			 * JsonArray jArray3 = new JsonArray(); for (int i = 0; i <
-			 * recipe_detail_array.length; i++) { JsonPrimitive element = new
-			 * JsonPrimitive(recipe_detail_array[i]); jArray3.add(element); }
-			 * jArray3.toString(); String recipe_detail = jArray3.toString();
-			 * System.out.println("json배열 디테일 :" + jArray3.toString());
-			 * 
-			 * MemberDto id = (MemberDto) session.getAttribute("rdto"); String member_id =
-			 * id.getMember_id();
-			 * 
-			 * 
-			 * 
-			 * int res = 0; RecipeDto dto = new RecipeDto(1,recipe_main_photo, member_id,
-			 * recipe_title, recipe_photo, recipe_detail, null, recipe_material_one,
-			 * cate_theme, cate_kind, recipe_material,0);
-			 * 
-			 * res = biz.insert(new RecipeDto(1,recipe_main_photo, member_id, recipe_title,
-			 * recipe_photo, recipe_detail, null, recipe_material_one, cate_theme,
-			 * cate_kind, recipe_material,0)); System.out.println("dto :" + dto);
-			 * 
-			 * if(res>0) { System.out.println("레시피 인서트 성공");
-			 * jsResponse("레시피를 성공적으로 등록하였습니다.", "/recipe.do?command=recipe_list",
-			 * response); }else { System.out.println("레시피 인서트 실패;");
-			 * jsResponse("레시피 등록을 실패하였습니다. recipe_insert컨트롤러임 ㅡㅡㅋ",
-			 * "recipe.do?command=recipe_list", response); }
-			 */
+
+			JsonArray jArray = new JsonArray();
+			for (int i = 0; i < recipe_material_array.length; i++) {
+				JsonPrimitive element = new JsonPrimitive(recipe_material_array[i]);
+				jArray.add(element);
+
+			}
+			jArray.toString();
+			String recipe_material = jArray.toString();
+			System.out.println("json배열을 문자열로 바꿔줌 :" + jArray.toString()); //
+
+			JsonArray jArray2 = new JsonArray();
+			for (int i = 0; i < recipe_photo_array.length; i++) {
+				JsonPrimitive element = new JsonPrimitive(recipe_photo_array[i]);
+				jArray2.add(element);
+
+			}
+			jArray2.toString();
+			String recipe_photo = jArray2.toString();
+			System.out.println("json배열포토 문자열 : " + jArray2.toString()); //
+
+			JsonArray jArray3 = new JsonArray();
+			for (int i = 0; i < recipe_detail_array.length; i++) {
+				JsonPrimitive element = new JsonPrimitive(recipe_detail_array[i]);
+				jArray3.add(element);
+			}
+			jArray3.toString();
+			String recipe_detail = jArray3.toString();
+			System.out.println("json배열 디테일 :" + jArray3.toString());
+
+			MemberDto id = (MemberDto) session.getAttribute("rdto");
+			String member_id = id.getMember_id();
+
+			int res = 0;
+			RecipeDto dto = new RecipeDto(1, recipe_main_photo, member_id, recipe_title, recipe_photo, recipe_detail,
+					null, recipe_material_one, cate_theme, cate_kind, recipe_material, 0);
+
+			res = biz.insert(new RecipeDto(1, recipe_main_photo, member_id, recipe_title, recipe_photo, recipe_detail,
+					null, recipe_material_one, cate_theme, cate_kind, recipe_material, 0));
+			System.out.println("dto :" + dto);
+
+			if (res > 0) {
+				System.out.println("레시피 인서트 성공");
+				dispatch("/view/recipe/recipe_list.jsp", request, response);
+			} else {
+				System.out.println("레시피 인서트 실패;");
+				jsResponse("레시피 등록을 실패하였습니다. recipe_insert컨트롤러임 ㅡㅡㅋ", "recipe.do?command=recipe_list", response);
+			}
 
 		}
 
@@ -304,8 +309,7 @@ public class RecipeController extends HttpServlet {
 
 			String fullpath = realFolder + "\\" + filename1;
 			System.out.println("fullpath:" + fullpath);
-			
-		
+
 		} else if (command.equals("recipe_insertres")) {
 			System.out.println("recipe_insertres왔음!");
 
