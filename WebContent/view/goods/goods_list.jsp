@@ -70,7 +70,7 @@ section {
 .nav img {
 	width: 80px;
 	height: 50px;
-	border: 1px solid #ddd;
+/* 	border: 1px solid #ddd; */
 	margin: 8px 2px;
 	cursor: pointer;
 	transition: 0.3s;
@@ -117,7 +117,7 @@ section {
 }
 /*굿즈 목록 리스트 큰테두리*/
 .goods_list {
-	border: 1px solid red;
+
  	 	margin: 0 5%;  
 }
 
@@ -137,7 +137,7 @@ display: inline-block;} */
 	display: inline-block;
 	width: 250px;
 	/* height: 300px; */
-	border: 1px solid black;
+	/* border: 1px solid black; */
 	border-radius: 25px;
 	box-sizing: border-box;
 	margin-top: 50px;
@@ -283,7 +283,8 @@ display: inline-block;
 									<%-- <a href="goods.do?command='goodsdetail'"><img src="/YORIZORI/ckstorage/images/${dto.goods_main_photo }" class="goods_img_tag" alt="굿즈메인사진"/></a> --%>
 									<%-- <a href="goods.do?command='goodsdetail'"><img src="${path }/${dto.goods_main_photo }" class="goods_img_tag" alt="굿즈메인사진"/></a> --%>
 									<a
-										href="/YORIZORI/goods.do?command=goodsdetail&goods_no=${dto.goods_no }"><img
+										href="/YORIZORI/goods.do?command=goodsdetail&goods_no=${dto.goods_no }">
+										<img
 										src="/YORIZORI/imgtest/${dto.goods_main_photo }" class="goods_img_tag"
 										alt="굿즈메인사진" /></a>
 									<p>${dto.goods_title }</p>

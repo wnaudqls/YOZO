@@ -191,6 +191,7 @@ public class RecipeDao extends SqlMapConfig {
 			System.out.println("recipe dao에서 insert오류");
 			e.printStackTrace();
 		}finally {
+			session.commit();
 			session.close();
 		}
 		

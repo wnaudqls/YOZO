@@ -1,18 +1,16 @@
 <%@page import="com.yozo.user.dto.MemberDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
     
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 
-	pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <link rel="shortcut icon" href="./img/favicon/yozofavicon.ico"
-	type="image/x-icon">
+   type="image/x-icon">
 <title>요리조리</title>
 <style type="text/css">
     body {
@@ -29,6 +27,7 @@
     }
     #icon{
         text-align: center;
+        
     }
     .dropuserdown{
            z-index: 999;
@@ -90,10 +89,10 @@
         display: none;
         position: absolute;
         background-color : #F5A9A9;
-        min-width: 130px;
+        min-width: 140px;
         overflow:visible;
         box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-        right: 10px;
+        right: 15px;
     }
 
     .dropuser_content a {
@@ -124,13 +123,15 @@
         background-color:white;
     }
     .dropstream_content {
-       opacity: 0.85;
-        z-index: 999;
-        left:65px;
-        background-color : #F5A9A9;
+       z-index: 999;
+        display: none;
+        position: absolute;
+        margin-right: 500px;
+        background-color : pink;
         min-width: 100px;
         overflow: auto;
         box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        left: 50px;
     }
 
     .dropstream_content a {
@@ -138,7 +139,7 @@
         padding: 12px 16px;
         text-decoration: none;
         display: block;
-        float: center;
+        float:left;
     }
 
     #dropstream_content a:hover {
@@ -156,154 +157,155 @@
        top: 25px;
        right: 100px;
     }
+    .inform{
+       background-color: #F5A9A9;
+       color: white;
+       border: none;
+    
+    }
+    .inform:hover{
+    background-color: black;
+    }
   
 </style>
 
 <script type="text/javascript"
-	src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+   src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
-	function dropstream() {
-		document.getElementById("dropstream_content").classList.toggle("show");
-	}
-	window.onclick = function(event) {
-		if (!event.target.matches('.stream')) {
-			var dropdowns = document
-					.getElementsByClassName("dropstream_content");
-			var i;
-			for (i = 0; i < dropdowns.length; i++) {
-				var openDropdown = dropdowns[i];
-				if (openDropdown.classList.contains('show')) {
-					openDropdown.classList.remove('show');
-				}
-			}
-		}
-	}
+   function dropstream() {
+      document.getElementById("dropstream_content").classList.toggle("show");
+   }
+   window.onclick = function(event) {
+      if (!event.target.matches('.stream')) {
+         var dropdowns = document
+               .getElementsByClassName("dropstream_content");
+         var i;
+         for (i = 0; i < dropdowns.length; i++) {
+            var openDropdown = dropdowns[i];
+            if (openDropdown.classList.contains('show')) {
+               openDropdown.classList.remove('show');
+            }
+         }
+      }
+   }
 
-	function dropuser() {
-		document.getElementById("dropuser_content").classList.toggle("show");
-	}
-	window.onclick = function(event) {
-		if (!event.target.matches('.usericon')) {
-			var dropdowns = document.getElementsByClassName("dropuser_content");
-			var i;
-			for (i = 0; i < dropdowns.length; i++) {
-				var openDropdown = dropdowns[i];
-				if (openDropdown.classList.contains('show')) {
-					openDropdown.classList.remove('show');
-				}
-			}
-		}
-	}
-
-			//메뉴 클릭 시 로그인이 필요한 경우 로그인으로 이동 기능 작성 중 *************************
-
-			//---------페이스북 로그인 확인 
-			/* FB.getLoginStatus(function(response) {
-			 if(response.status === 'connected') {
-			 document.querySelector('#authBtn').value = "Logout";
-			 } else {
-			 document.querySelector('#authBtn').value = "Login";
-			 }
-			 })
-			 */
+   function dropuser() {
+      document.getElementById("dropuser_content").classList.toggle("show");
+   }
+   window.onclick = function(event) {
+      if (!event.target.matches('.usericon')) {
+         var dropdowns = document.getElementsByClassName("dropuser_content");
+         var i;
+         for (i = 0; i < dropdowns.length; i++) {
+            var openDropdown = dropdowns[i];
+            if (openDropdown.classList.contains('show')) {
+               openDropdown.classList.remove('show');
+            }
+         }
+      }
+   }
 </script>
 </head>
 <body>
 
-	<%
-	response.setHeader("Cache-Control","no-store");  
-	response.setHeader("Pragma","no-cache");  
-	response.setDateHeader("Expires",0);
-	MemberDto dto = (MemberDto) session.getAttribute("rdto");
-	
-	if (request.getProtocol().equals("HTTP/1.1"))
-	        response.setHeader("Cache-Control", "no-cache");
+   <%
+   response.setHeader("Cache-Control","no-store");  
+   response.setHeader("Pragma","no-cache");  
+   response.setDateHeader("Expires",0);
+   MemberDto dto = (MemberDto) session.getAttribute("rdto");
+   
+   if (request.getProtocol().equals("HTTP/1.1"))
+           response.setHeader("Cache-Control", "no-cache");
 
-	
-	%>
-	<header id=header>
-		<!-- 메인 아이콘, 유저아이콘 -->
-		<img id="mainicon" class="mainlogo finger" alt="logo"
-			src="/YORIZORI/img/main_icon.png"
-			onclick="location.href='http://qclass.iptime.org:8787/YORIZORI/view/main/main.jsp'"><br>
-
-
+   
+   %>
+   <header id=header>
+      <!-- 메인 아이콘, 유저아이콘 -->
+      <img id="mainicon" class="mainlogo finger" alt="logo"
+         src="/YORIZORI/img/main_icon.png"
+         onclick="location.href='http://qclass.iptime.org:8787/YORIZORI/view/main/main.jsp'"><br>
 
 
 
-		<%
-			if (dto == null) {
-		%>
 
 
-		<div class="dropuserdown">
-			<span id="loginStatus">로그인을 해주세요</span> <img
-				onclick="location.href='<%=request.getContextPath()%>/user.do?command=loginform'"
-				class="usericon" alt="logo" src="/YORIZORI/img/user_icon.png">
-		</div>
-		<%
-			} else if (dto != null) {
-		%>
-		
-			<div class="dropuserdown">
-				<span id="loginStatus"><b>${rdto.member_nick }</b> 님이
-					로그인하였습니다.</span> <img onclick="dropuser()" class="usericon" alt="logo"
-					src="/YORIZORI/img/user_icon.png">
-				<div id="dropuser_content" class="dropuser_content">
-					<a
-						href="<%request.getContextPath();%>/YORIZORI/user.do?command=updateform">개인정보수정</a>
+      <%
+         if (dto == null) {
+      %>
 
-					<form action="<%request.getContextPath();%>/YORIZORI/recipe.do?">
-						<a class="myrecipe"> <input type="hidden" name="memberId"	value="${rdto.member_id }" /> 
-						<input type="hidden" name="command" value="my_recipe_list" /> 
-						<input type="submit" value="나의레시피" />
-						</a>
-					</form>
 
-					<form action="<%request.getContextPath();%>/YORIZORI/list.do?">
-						<a href="" class="useId"> 
-						<input type="hidden" name="memberId"
-							id="memberId" value="${rdto.member_id }" /> 
-							<input type="submit" value="나의 장바구니" />
-						</a>
-					</form>
-					<a
-						href="<%request.getContextPath();%>/YORIZORI/user.do?command=logout">로그아웃</a>
-				</div>
-			</div>
+      <div class="dropuserdown">
+         <span id="loginStatus">로그인을 해주세요</span> <img
+            onclick="location.href='<%=request.getContextPath()%>/user.do?command=loginform'"
+            class="usericon" alt="logo" src="/YORIZORI/img/user_icon.png">
+      </div>
+      <%
+         } else if (dto != null) {
+      %>
+      
+         <div class="dropuserdown">
+            <span id="loginStatus"><b>${rdto.member_nick }</b> 님이
+               로그인하였습니다.</span> <img onclick="dropuser()" class="usericon" alt="logo"
+               src="/YORIZORI/img/user_icon.png">
+            <div id="dropuser_content" class="dropuser_content">
+               <a
+                  href="<%request.getContextPath();%>/YORIZORI/user.do?command=updateform">개인정보수정</a>
+<%--
+               <form action="<%request.getContextPath();%>/YORIZORI/recipe.do?">
+                  <a class="myrecipe"> <input type="hidden" name="memberId"   value="${rdto.member_id }" /> 
+                  <input type="hidden" name="command" value="my_recipe_list" /> 
+                  <input type="submit" class="inform" value="나의레시피" />
+                  </a>
+               </form>
+               <a href="<%request.getContextPath();%>/YORIZORI/user.do?command=my_recipe_list&memberId=${rdto.member_id }">나의레시피</a>
 
-		<%
-			}
-		%>
+               <form action="<%request.getContextPath();%>/YORIZORI/list.do?">
+                  <a href="" class="useId"> 
+                  <input type="hidden" name="memberId"
+                     id="memberId" value="${rdto.member_id }" /> 
+                     <input type="submit" class="inform" value="나의 장바구니" />
+                  </a>
+               </form>
+            --%>
+            <a href="<%request.getContextPath();%>/YORIZORI/recipe.do?command=my_recipe_list&memberId=${rdto.member_id }">나의레시피</a>
+               <a href="<%request.getContextPath();%>/YORIZORI/list.do?memberId=${rdto.member_id }">나의 장바구니</a>
+               
+               <a href="<%request.getContextPath();%>/YORIZORI/user.do?command=logout">로그아웃</a>
+            </div>
+         </div>
 
-	</header>
-	<!-- 네비게이션 아이콘  -->
-	<nav id="icon">
-		<img
-			onclick="location.href='<%request.getContextPath();%>/YORIZORI/recipe.do?command=recipe_list'"
-			class="recipe finger" alt="logo"
-			src="/YORIZORI/img/recipe_icon.png">
-		<div class="dropstreamdown">
-			<img onclick="dropstream()" class="stream finger" alt="logo"
-				src="/YORIZORI/img/broadcast_icon.png">
-			<div id="dropstream_content" class="dropstream_content">
+      <%
+         }
+      %>
 
-				<a href="/YORIZORI/broadcast.do?command=stream" class="useId">방송하기</a>
-				<a href="/YORIZORI/broadcast.do?command=watch">시청하기</a> <a
-					href="/YORIZORI/broadcast.do?command=broadcast" class="useId">예약하기</a>
-			</div>
-		</div>
-		<!--유정 goods onclick 건들임 -->
-		<img class="goods finger" alt="logo" src="/YORIZORI/img/goods_icon.png"
-			onclick="location.href='<%request.getContextPath();%>/YORIZORI/goods.do?command=goodslist'">
-		<img class="map finger" alt="logo" src="/YORIZORI/img/map_icon.png"
-			onclick="location.href = '<%request.getContextPath();%>/YORIZORI/view/map/map.jsp'">
-		<c:if test="${rdto.member_role eq '관리자' }">
-			<img class="admin finger" alt="logo" src="/YORIZORI/img/admin_icon.png"
-				onclick="location.href='<%=request.getContextPath()%>/admin.do?command=list'">
-		</c:if>
-	</nav>
+   </header>
+   <!-- 네비게이션 아이콘  -->
+   <nav id="icon">
+      <img
+         onclick="location.href='<%request.getContextPath();%>/YORIZORI/recipe.do?command=recipe_list'"
+         class="recipe finger" alt="logo"
+         src="/YORIZORI/img/recipe_icon.png">
+      <div class="dropstreamdown">
+         <img onclick="dropstream()" class="stream finger" alt="logo"
+            src="/YORIZORI/img/broadcast_icon.png">
+         <div id="dropstream_content" class="dropstream_content">
 
-	<!-- <input type="button" value="checking....." id="authBtn"> -->
+            <a href="/YORIZORI/broadcast.do?command=stream" class="useId">방송하기</a>
+            <a href="/YORIZORI/broadcast.do?command=watch">시청하기</a> <a
+               href="/YORIZORI/broadcast.do?command=broadcast" class="useId">예약하기</a>
+         </div>
+      </div>
+      <!--유정 goods onclick 건들임 -->
+      <img class="goods finger" alt="logo" src="/YORIZORI/img/goods_icon.png"
+         onclick="location.href='<%request.getContextPath();%>/YORIZORI/goods.do?command=goodslist'">
+      <img class="map finger" alt="logo" src="/YORIZORI/img/map_icon.png"
+         onclick="location.href = '<%request.getContextPath();%>/YORIZORI/view/map/map.jsp'">
+      <c:if test="${rdto.member_role eq '관리자' }">
+         <img class="admin finger" alt="logo" src="/YORIZORI/img/admin_icon.png"
+            onclick="location.href='<%=request.getContextPath()%>/admin.do?command=list'">
+      </c:if>
+   </nav>
+
+   <!-- <input type="button" value="checking....." id="authBtn"> -->
 </body>
 </html>

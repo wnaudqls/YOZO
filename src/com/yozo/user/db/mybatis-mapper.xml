@@ -19,7 +19,7 @@
 	<result property="Member_sns" column="Member_sns"/>
 </resultMap>
 
-	<select id="login" parameterType="MemberDto" resultType="MemberDto">
+	<select id="login" parameterType="memberDto" resultType="memberDto">
 			
 		SELECT MEMBER_NO, MEMBER_ID, MEMBER_PW, MEMBER_NAME, MEMBER_NICK,
 		       MEMBER_EMAIL, MEMBER_EMAIL_HASH, MEMBER_EMAIL_CHECKED, MEMBER_ENABLED, MEMBER_PHONE, MEMBER_ADDR, MEMBER_ROLE
@@ -29,13 +29,13 @@
 		
 	</select>
 	
-	<select id="idcheck" parameterType="MemberDto" resultType="MemberDto">
+	<select id="idcheck" parameterType="memberDto" resultType="memberDto">
 	
 		SELECT * FROM MEMBER WHERE MEMBER_ID = #{member_id}
 	
 	</select>
 	
-	<select id="nickcheck" parameterType="MemberDto" resultType="MemberDto">
+	<select id="nickcheck" parameterType="memberDto" resultType="memberDto">
 	
 		SELECT * FROM MEMBER WHERE MEMBER_NICK = #{member_nick}
 	
@@ -44,14 +44,14 @@
 	
 	
 	
-	<insert id="insert" parameterType="MemberDto">
+	<insert id="insert" parameterType="memberDto">
 		INSERT INTO MEMBER
 		VALUES(member_seq.nextval, #{member_id},#{member_pw},#{member_name},#{member_nick},
 		 #{member_email}, #{member_email_hash}, #{member_email_checked},
 		 #{member_enabled} , #{member_phone}, #{member_addr}, #{member_role})
 	</insert>
 	
-	<update id="update" parameterType="MemberDto">
+	<update id="update" parameterType="memberDto">
 		UPDATE MEMBER SET
 		MEMBER_NO = #{member_no},
 		MEMBER_PW = #{member_pw},
@@ -70,21 +70,21 @@
 	</update>
 	
 	
-	<delete id="delete" parameterType="MemberDto">
+	<delete id="delete" parameterType="memberDto">
 	
 		DELETE MEMBER WHERE MEMBER_ID = #{member_id}
 		
 	</delete>
 	
 	
-	<select id="findId" parameterType="MemberDto" resultType="MemberDto">
+	<select id="findId" parameterType="memberDto" resultType="memberDto">
 	
 		SELECT MEMBER_ID
 		FROM MEMBER 
 		WHERE MEMBER_EMAIL = #{member_email}
 	
 	</select>
-	<select id="findPw" parameterType="MemberDto" resultType="MemberDto">
+	<select id="findPw" parameterType="memberDto" resultType="memberDto">
 	
 		SELECT MEMBER_PW
 		FROM MEMBER 
