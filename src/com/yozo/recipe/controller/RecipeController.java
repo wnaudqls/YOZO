@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.jsp.PageContext;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -24,7 +25,6 @@ import com.google.gson.JsonParser;
 import com.google.gson.JsonPrimitive;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
-import com.sun.glass.ui.Application;
 import com.yozo.recipe.biz.RecipeBiz;
 import com.yozo.recipe.dto.RecipeDto;
 import com.yozo.user.dto.MemberDto;
@@ -57,9 +57,9 @@ public class RecipeController extends HttpServlet {
 		System.out.println(command);
 		RecipeBiz biz = new RecipeBiz();
 		HttpSession session = request.getSession();
+		
 
 
-		String member_id = request.getParameter("memberId");
 
 
 		// 레시피 리스트
@@ -85,7 +85,9 @@ public class RecipeController extends HttpServlet {
 		
 		//마이 레시피 리스트
 		else if(command.equals("my_recipe_list")) {
+			
 			System.out.println("controller_recipe_list");
+			String member_id = request.getParameter("memberId");
 			List<RecipeDto> list=biz.MYselectList(member_id);
 			System.out.println(member_id);
 			if(list!=null) {
@@ -103,43 +105,38 @@ public class RecipeController extends HttpServlet {
 
 		}
 		// 레시피 상세
-		else if (command.equals("recipe_detail")) {
+		else if (command.equals("recipe_detail")) {{
+	         System.out.println("controller_recipe_detai");			//에러날수있어조심
+	         int recipe_no = Integer.parseInt(request.getParameter("recipe_no"));
+	         RecipeDto dto = biz.selectOne(recipe_no);
+	         request.setAttribute("dto", dto);
+	         System.out.println(dto);
 
-			dispatch("/view/user/myrecipe.jsp", request, response);
-			
-			
+	         List<String> detail = new ArrayList<String>();
+	         List<String> material = new ArrayList<String>();
 
+	         JsonElement element_detail = JsonParser.parseString(dto.getRecipe_detail());
+	         JsonElement element_material = JsonParser.parseString(dto.getRecipe_material());
 
-		
-			System.out.println("controller_recipe_detai");
-			int recipe_no = Integer.parseInt(request.getParameter("recipe_no"));
-			RecipeDto dto = biz.selectOne(recipe_no);
-			request.setAttribute("dto", dto);
-			System.out.println(dto);
+	         JsonArray tmp_detail = element_detail.getAsJsonArray();
+	         for (int i = 0; i < tmp_detail.size(); i++) {
+	            detail.add(tmp_detail.get(i).getAsString());
+	         }
 
-			List<String> detail = new ArrayList<String>();
-			List<String> material = new ArrayList<String>();
+	         JsonArray tmp_material = element_material.getAsJsonArray();
+	         for (int i = 0; i < tmp_material.size(); i++) {
+	            material.add(tmp_material.get(i).getAsString());
+	         }
 
-			JsonElement element_detail = JsonParser.parseString(dto.getRecipe_detail());
-			JsonElement element_material = JsonParser.parseString(dto.getRecipe_material());
+	         System.out.println("detail: " + detail);
+	         System.out.println(detail.get(0));
+	         System.out.println("material: " + material);
+	         request.setAttribute("detail", detail);
+	         request.setAttribute("material", material);
+	         
+	         dispatch("/view/recipe/recipe_detail.jsp", request, response);
 
-			JsonArray tmp_detail = element_detail.getAsJsonArray();
-			for (int i = 0; i < tmp_detail.size(); i++) {
-				detail.add(tmp_detail.get(i).getAsString());
-			}
-
-			JsonArray tmp_material = element_material.getAsJsonArray();
-			for (int i = 0; i < tmp_material.size(); i++) {
-				material.add(tmp_material.get(i).getAsString());
-			}
-
-			System.out.println("detail: " + detail);
-			System.out.println(detail.get(0));
-			System.out.println("material: " + material);
-			request.setAttribute("detail", detail);
-			request.setAttribute("material", material);
-
-			dispatch("/view/recipe/recipe_detail.jsp", request, response);
+	      }
 		}
 		// 레시피 작성
 		else if (command.equals("recipe_insert")) {
@@ -170,41 +167,44 @@ public class RecipeController extends HttpServlet {
 			for (int i = 0; i < recipe_material_array.length; i++) {
 				JsonPrimitive element = new JsonPrimitive(recipe_material_array[i]);
 				jArray.add(element);
-
 			}
-			jArray.toString();
 			String recipe_material = jArray.toString();
 			System.out.println("json배열을 문자열로 바꿔줌 :" + jArray.toString()); //
 
+			
 			JsonArray jArray2 = new JsonArray();
 			for (int i = 0; i < recipe_photo_array.length; i++) {
 				JsonPrimitive element = new JsonPrimitive(recipe_photo_array[i]);
 				jArray2.add(element);
-
 			}
-			jArray2.toString();
 			String recipe_photo = jArray2.toString();
 			System.out.println("json배열포토 문자열 : " + jArray2.toString()); //
 
+			
 			JsonArray jArray3 = new JsonArray();
 			for (int i = 0; i < recipe_detail_array.length; i++) {
 				JsonPrimitive element = new JsonPrimitive(recipe_detail_array[i]);
 				jArray3.add(element);
 			}
-			jArray3.toString();
 			String recipe_detail = jArray3.toString();
 			System.out.println("json배열 디테일 :" + jArray3.toString());
 
-			MemberDto id = (MemberDto) session.getAttribute("rdto");
-			String member_id = id.getMember_id();
-
+			
+			String member_id="";
+			try {
+				MemberDto member_dto = (MemberDto) session.getAttribute("rdto");
+				member_id = member_dto.getMember_id();
+			} catch (Exception e) {
+				jsResponse("로그인해주세요","/user.do?command=loginform", response);
+				e.printStackTrace();
+			}
+			
 			int res = 0;
-			RecipeDto dto = new RecipeDto(1, recipe_main_photo, member_id, recipe_title, recipe_photo, recipe_detail,
+			RecipeDto recipe_dto = new RecipeDto(1, recipe_main_photo, member_id, recipe_title, recipe_photo, recipe_detail,
 					null, recipe_material_one, cate_theme, cate_kind, recipe_material, 0);
 
-			res = biz.insert(new RecipeDto(1, recipe_main_photo, member_id, recipe_title, recipe_photo, recipe_detail,
-					null, recipe_material_one, cate_theme, cate_kind, recipe_material, 0));
-			System.out.println("dto :" + dto);
+			res = biz.insert(recipe_dto);
+			System.out.println("dto :" + recipe_dto);
 
 			if (res > 0) {
 				System.out.println("레시피 인서트 성공");
@@ -214,7 +214,7 @@ public class RecipeController extends HttpServlet {
 				jsResponse("레시피 등록을 실패하였습니다. recipe_insert컨트롤러임 ㅡㅡㅋ", "recipe.do?command=recipe_list", response);
 			}
 
-		}
+		
 
 
 		}
@@ -236,10 +236,10 @@ public class RecipeController extends HttpServlet {
 			int res = biz.delete(recipe_no);
 			if (res > 0) {
 				System.out.println("레시피 하나 삭제성공");
-				jsResponse("레시피를 성공적으로 삭제하였습니다.", "/recipe.do?command=recipe_list", response);
+				jsResponse("레시피를 성공적으로 삭제하였습니다.", "recipe.do?command=recipe_list", response);
 			} else {
 				System.out.println("레시피 하나 삭제실패");
-				jsResponse("레시피를 삭제하는데 실패하였습니다.", "/recipe.do?command=recipe_list", response);
+				jsResponse("레시피를 삭제하는데 실패하였습니다.", "recipe.do?command=recipe_list", response);
 			}
 
 			// 레시피 작성 폼
@@ -259,7 +259,8 @@ public class RecipeController extends HttpServlet {
 			System.out.println("controller_recipe_muldel");
 			String[] recipe_no = request.getParameterValues("chk");
 			System.out.println(recipe_no + "레시피 번호 오냐? 오냐고 와라!!!!");
-
+			MemberDto member_dto = (MemberDto) session.getAttribute("rdto");
+			String member_id = member_dto.getMember_id();
 			int res = biz.multiDelte(recipe_no);
 
 			if (res > 0) {
@@ -325,10 +326,40 @@ public class RecipeController extends HttpServlet {
 			System.out.println(list);
 
 		}
-
+		else if (command.equals("recipe_update")) {
+	         System.out.println("controller_recipe_update");
+	         int recipe_no = Integer.parseInt(request.getParameter("recipe_no"));
+	         System.out.println("recipe_ no : " + recipe_no);
+	         RecipeDto dto = biz.selectOne(recipe_no);
+	         request.setAttribute("dto", dto);
+	         JsonArray element_material=JsonParser.parseString(dto.getRecipe_material()).getAsJsonArray();
+	         JsonArray element_detail=JsonParser.parseString(dto.getRecipe_detail()).getAsJsonArray();
+	         JsonArray element_photo=JsonParser.parseString(dto.getRecipe_photo()).getAsJsonArray();
+	         List<String> material= new ArrayList<String>();
+	         List<String> detail= new ArrayList<String>();
+	         List<String> photo= new ArrayList<String>();
+	         
+	         for(JsonElement str:element_material) {
+	        	 material.add(str.getAsString());
+	        	 System.out.println(str.getAsString());
+	         }
+	         for(JsonElement str:element_detail) {
+	        	 detail.add(str.getAsString());
+	        	 System.out.println(str.getAsString());
+	         }
+	         for(JsonElement str:element_photo) {
+	        	 photo.add(str.getAsString());
+	        	 System.out.println(str.getAsString());
+	         }
+	         request.setAttribute("material", material);
+	         request.setAttribute("detail", detail);
+	         request.setAttribute("photo", photo);
+	         
+	         dispatch("/view/recipe/recipe_update.jsp", request, response);
+	      }
 	}
 
-	public void dispatch(String url, HttpServletRequest request, HttpServletResponse response)
+	public void dispatch(String url, HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 		RequestDispatcher dispatch = request.getRequestDispatcher(url);
 		dispatch.forward(request, response);

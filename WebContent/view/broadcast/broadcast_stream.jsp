@@ -50,7 +50,7 @@
 	상대방 화면
 	<div id="remotevideo"></div>
 
-	<script type="text/javascript" src="/view/broadcast/js/broadcast.js">
+	<script type="text/javascript" src="/YORIZORI/view/broadcast/js/broadcast.js">
 	</script>
 <div id="footer">
 	<%@include file="/form/footer.jsp"%>

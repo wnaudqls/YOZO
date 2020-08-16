@@ -36,12 +36,12 @@
  	WHERE 0= #{goods_no} 	
  </delete>
  <!--굿즈 멀티딜리트 -->
- <delete id="muldelete" parameterType="map">
- 	DELETE FROM GOODS
- 	WHERE GOODS_NO IN 
- 		<foreach item="goods_no" collection="goods_no" open="(" separator="," close=")">
- 			#{goods_no}
- 		</foreach>
+<delete id="muldelete" parameterType="map">
+    DELETE FROM GOODS
+    WHERE GOODS_NO IN 
+       <foreach  collection="goods_no" item="goods_no2" open="(" separator="," close=")">
+          #{goods_no2}
+       </foreach>
  </delete>
   
  <!--  댓글 -->

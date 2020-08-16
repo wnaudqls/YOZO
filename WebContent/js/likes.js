@@ -1,4 +1,5 @@
-function addlike(recipe_no, member_no) {
+function addlikes(recipe_no, member_no) {
+	$('.like_icon').prop('disabled',true);
 	if (member_no != null) {
 		var param = '?command=like&recipe_no=' + recipe_no;
 		param += '&member_no=' + member_no;
@@ -22,6 +23,7 @@ function addlike(recipe_no, member_no) {
 		});
 	}
 	else{
+		$('.like_icon').prop('disabled',false);
 		alert("로그인부터 해라");
 	}
 }
