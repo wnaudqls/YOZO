@@ -70,12 +70,14 @@ section {
 }
 
 .nav img {
-   width: 80px;
-   height: 50px;
-   border: 1px solid #ddd;
-   margin: 8px 2px;
-   cursor: pointer;
-   transition: 0.3s;
+
+	width: 80px;
+	height: 50px;
+/* 	border: 1px solid #ddd; */
+	margin: 8px 2px;
+	cursor: pointer;
+	transition: 0.3s;
+
 }
 
 .nav img:hover {
@@ -120,8 +122,12 @@ section {
 
 *굿즈 목록 리스트 큰테두리* /
 .goods_list {
+
+ 	 	margin: 0 5%;  
+
    border: 1px solid red;
    /*    margin: 0 10%; */
+
 }
 
 #warning { /* warning이미지 */
@@ -138,6 +144,15 @@ section {
 /* .tablewrapper{
 display: inline-block;} */
 .goods_card {
+
+	display: inline-block;
+	width: 250px;
+	/* height: 300px; */
+	/* border: 1px solid black; */
+	border-radius: 25px;
+	box-sizing: border-box;
+	margin-top: 50px;
+
    display: inline-block;
    width: 250px;
    /* height: 300px; */
@@ -145,6 +160,7 @@ display: inline-block;} */
    border-radius: 25px;
    box-sizing: border-box;
    margin-top: 50px;
+
 }
 
 #checkbox { /*체크박스 */
@@ -198,7 +214,7 @@ display: inline-block;} */
 }
 </style>
 
-<%@ include file="/form/header.jsp"%>
+<%@ include file="../../form/header.jsp"%>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
    $(function() {
@@ -269,6 +285,7 @@ display: inline-block;} */
 
 
 
+
       <form action="<%=request.getContextPath()%>/goods.do" method="post"
          id="muldelform">
          <div id="products" class="goods_list">
@@ -282,6 +299,7 @@ display: inline-block;} */
                      </div>
                   </div>
                </c:when>
+
 
 
                <c:otherwise>
@@ -324,16 +342,7 @@ display: inline-block;} */
             </c:choose>
          </div>
       </form>
-      <%-- <form action="<%request.getContextPath();%>/YORIZORI/CartInsert.do"
-            method="POST">
-            <input type="text" name="memberId" value="${rdto.member_id }" />
-            <input type="text" name="goods_no" value="${dto.goods_no }" /> <input
-               type="text" name="goods_title" value="${dto.goods_title }" /> <input
-               type="text" name="goods_price" value="${dto.goods_price }" /> <input
-               type="text" name="amount" value="1" /> <input type="text"
-               name="goods_main_photo" value="${dto.goods_main_photo }" /> <input
-               type="submit" value="장바구니 담기" />
-         </form> --%>
+
    </section>
 
 
@@ -346,7 +355,7 @@ display: inline-block;} */
 
 </body>
 <div id="paging"></div>
-<%@ include file="/form/footer.jsp"%>
+<%@ include file="../../form/footer.jsp"%>
 <script>
    var $setRows = $('#setRows');
 

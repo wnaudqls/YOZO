@@ -3,10 +3,10 @@
    pageEncoding="UTF-8"%>
 
 <%
-	request.setCharacterEncoding("UTF-8");
+   request.setCharacterEncoding("UTF-8");
 %>
 <%
-	response.setContentType("text/html charset=UTF-8");
+   response.setContentType("text/html charset=UTF-8");
 %>
 
 <!DOCTYPE html>
@@ -167,7 +167,11 @@ section{
    color: #FAFAFA;
 }
 .btn_left{
+<<<<<<< HEAD
+   margin-right: 10px;
+=======
 	margin-right: 10px;
+>>>>>>> branch 'develop' of https://github.com/shm1113/YOZO.git
 }
 .btns{
 width: 65px;
@@ -255,24 +259,46 @@ fieldset {
 
 </head>
 <body>
-	<%@ include file="/form/header.jsp"%>
-	<section>
+   <%@ include file="/form/header.jsp"%>
+   <section>
 
-		<div class="search">
+      <div class="search">
          <form action="/YORIZORI/recipe.do" method="post">
             <fieldset>
                <input type="hidden" name="command" value="recipe_search"> 
                <input type="text" placeholder="레시피 검색" id="recipe_search" name="recipe_title"> 
                <button type="submit" class="btn"><i class="fa fa-search"><strong>검색</strong></i></button>
                <input class="btns " type="button" value="등록"
+<<<<<<< HEAD
+               onclick="location.href='<%request.getContextPath();%>/YORIZORI/recipe.do?command=recipeinsertform'" />
+            <!-- 
+            나중에　할　일：　전체삭제하기위함
+            <input class="btns btn_left" type="button" value="삭제" /> -->
+=======
 					onclick="location.href='<%request.getContextPath();%>/YORIZORI/recipe.do?command=recipeinsertform'" />
 				<!-- 
 				나중에　할　일：　전체삭제하기위함
 				<input class="btns btn_left" type="button" value="삭제" /> -->
+>>>>>>> branch 'develop' of https://github.com/shm1113/YOZO.git
             </fieldset>
          </form>
       </div>
 
+<<<<<<< HEAD
+      <c:if test="${rdto.member_role eq '관리자' }">
+<%--  
+         <div id="btns">
+            <input class="btns" type="button" value="등록"
+               onclick="location.href='<%request.getContextPath();%>/YORIZORI/recipe.do?command=recipeinsertform'" />
+            <input class="btns" type="button" value="삭제" />
+         </div>
+   --%>
+      </c:if>
+
+      <form action="" id="setRows">
+         <input type="hidden" name="rowPerPage" value="9">
+      </form>
+=======
 		<c:if test="${rdto.member_role eq '관리자' }">
 <%--  
 			<div id="btns">
@@ -282,13 +308,47 @@ fieldset {
 			</div>
 	--%>
 		</c:if>
+>>>>>>> branch 'develop' of https://github.com/shm1113/YOZO.git
 
-		<form action="" id="setRows">
-			<input type="hidden" name="rowPerPage" value="9">
-		</form>
+      <div class="recipe_list" id="products">
 
-		<div class="recipe_list" id="products">
+         <c:choose>
+            <c:when test="${empty list }">
+               <div class="nosection">
+                  <img id="warning" alt="warning" src="${pageContext.request.contextPath }/img/warning.jpg">
+                  <h1 id="message">등록된 상품이 존재하지 않습니다.</h1>
+               </div>
+            </c:when>
 
+<<<<<<< HEAD
+            <c:otherwise>
+               <c:forEach items="${list }" var="dto">
+                  <div class="list_card eval-contents">
+                     <div class="list_card_img">
+                        <a href="recipe.do?command=recipe_detail&recipe_no=${dto.recipe_no }">
+                              <%-- <c:if test="${fn:substring(dto.recipe_main_photo,0,4) eq 'http' }">
+                                 <img src="${dto.recipe_main_photo }" class="list_img_tag"   alt="레시피메인사진"/></a>
+                              </c:if>
+                              <c:if test="${fn:substring(dto.recipe_main_photo,0,4)  ne 'http'} ">
+                                 <img src="${pageContext.request.contextPath }/recipeimages/${dto.recipe_main_photo }" class="list_img_tag"   alt="레시피메인사진"/>
+                              </c:if> --%>
+                              <c:choose>
+                              <c:when test="${fn:substring(dto.recipe_main_photo,0,4) eq 'http' }">
+                                 <img src="${dto.recipe_main_photo }" class="list_img_tag"   alt="레시피메인사진"/>
+                              </c:when>
+                              <c:otherwise>
+                                 <img src="${pageContext.request.contextPath }/recipeimages/${dto.recipe_main_photo }" class="list_img_tag"   alt="레시피메인사진"/>
+                              </c:otherwise>
+                              </c:choose>
+                     </a>
+                     </div>
+                     <div class="list_card_content">
+                        <div class="list_card_title">
+                           <br> 『<a class="list_card_title_a"
+                              href="recipe.do?command=recipe_detail&recipe_no=${dto.recipe_no }">${dto.recipe_title }</a>
+                           』
+                        </div>
+=======
 			<c:choose>
 				<c:when test="${empty list }">
 					<div class="nosection">
@@ -296,7 +356,16 @@ fieldset {
 						<h1 id="message">등록된 상품이 존재하지 않습니다.</h1>
 					</div>
 				</c:when>
+>>>>>>> branch 'develop' of https://github.com/shm1113/YOZO.git
 
+<<<<<<< HEAD
+                        <div class="list_card_like">
+                           <input type="image" onclick="addlikes(${dto.recipe_no}, ${rdto.member_no});"
+                              class="like_icon" src="/YORIZORI/img/recipe/like_icon.png" />
+                           <span class="like_text">${dto.recipe_likecount}</span>
+                        </div>
+                  </div>
+=======
 				<c:otherwise>
 					<c:forEach items="${list }" var="dto">
 						<div class="list_card eval-contents">
@@ -324,91 +393,94 @@ fieldset {
 										href="recipe.do?command=recipe_detail&recipe_no=${dto.recipe_no }">${dto.recipe_title }</a>
 									』
 								</div>
+>>>>>>> branch 'develop' of https://github.com/shm1113/YOZO.git
 
+<<<<<<< HEAD
+                  </div>
+=======
 								<div class="list_card_like">
 									<input type="image" onclick="addlikes(${dto.recipe_no}, ${rdto.member_no});"
 										class="like_icon" src="/YORIZORI/img/recipe/like_icon.png" />
 									<span class="like_text">${dto.recipe_likecount}</span>
 								</div>
 						</div>
+>>>>>>> branch 'develop' of https://github.com/shm1113/YOZO.git
 
-						</div>
+               </c:forEach>
+            </c:otherwise>
+         </c:choose>
 
-					</c:forEach>
-				</c:otherwise>
-			</c:choose>
+      </div>
+   </section>
+   <script>
+      var $setRows = $('#setRows');
 
-		</div>
-	</section>
-	<script>
-		var $setRows = $('#setRows');
+      $setRows
+            .submit(function(e) {
+               e.preventDefault();
+               var rowPerPage = $('[name="rowPerPage"]').val() * 1;// 1 을  곱하여 문자열을 숫자형로 변환
 
-		$setRows
-				.submit(function(e) {
-					e.preventDefault();
-					var rowPerPage = $('[name="rowPerPage"]').val() * 1;// 1 을  곱하여 문자열을 숫자형로 변환
+               //            console.log(typeof rowPerPage);
 
-					//				console.log(typeof rowPerPage);
+               var zeroWarning = 'Sorry, but we cat\'t display "0" rows page. + \nPlease try again.'
+               if (!rowPerPage) {
+                  alert(zeroWarning);
+                  return;
+               }
+               $('#nav').remove();
+               var $products = $('#products');
 
-					var zeroWarning = 'Sorry, but we cat\'t display "0" rows page. + \nPlease try again.'
-					if (!rowPerPage) {
-						alert(zeroWarning);
-						return;
-					}
-					$('#nav').remove();
-					var $products = $('#products');
+               $products.after('<div id="nav" class="paging">');
 
-					$products.after('<div id="nav" class="paging">');
+               var $tr = $($products).find('.eval-contents');
+               var rowTotals = $tr.length;
 
-					var $tr = $($products).find('.eval-contents');
-					var rowTotals = $tr.length;
+               var pageTotal = Math.ceil(rowTotals / rowPerPage);
+               var i = 0;
 
-					var pageTotal = Math.ceil(rowTotals / rowPerPage);
-					var i = 0;
+               for (; i < pageTotal; i++) {
+                  $('<a href="#"></a>').attr('rel', i).html(i + 1)
+                        .appendTo('#nav');
+               }
 
-					for (; i < pageTotal; i++) {
-						$('<a href="#"></a>').attr('rel', i).html(i + 1)
-								.appendTo('#nav');
-					}
+               $tr.addClass('off-screen').slice(0, rowPerPage)
+                     .removeClass('off-screen');
 
-					$tr.addClass('off-screen').slice(0, rowPerPage)
-							.removeClass('off-screen');
+               var $pagingLink = $('#nav a');
+               $pagingLink.on('click', function(evt) {
+                  evt.preventDefault();
+                  var $this = $(this);
+                  if ($this.hasClass('active')) {
+                     return;
+                  }
+                  $pagingLink.removeClass('active');
+                  $this.addClass('active');
 
-					var $pagingLink = $('#nav a');
-					$pagingLink.on('click', function(evt) {
-						evt.preventDefault();
-						var $this = $(this);
-						if ($this.hasClass('active')) {
-							return;
-						}
-						$pagingLink.removeClass('active');
-						$this.addClass('active');
+                  // 0 => 0(0*4), 4(0*4+4)
+                  // 1 => 4(1*4), 8(1*4+4)
+                  // 2 => 8(2*4), 12(2*4+4)
+                  // 시작 행 = 페이지 번호 * 페이지당 행수
+                  // 끝 행 = 시작 행 + 페이지당 행수
 
-						// 0 => 0(0*4), 4(0*4+4)
-						// 1 => 4(1*4), 8(1*4+4)
-						// 2 => 8(2*4), 12(2*4+4)
-						// 시작 행 = 페이지 번호 * 페이지당 행수
-						// 끝 행 = 시작 행 + 페이지당 행수
+                  var currPage = $this.attr('rel');
+                  var startItem = currPage * rowPerPage;
+                  var endItem = startItem + rowPerPage;
 
-						var currPage = $this.attr('rel');
-						var startItem = currPage * rowPerPage;
-						var endItem = startItem + rowPerPage;
+                  $tr.css('opacity', '0.0').addClass('off-screen').slice(
+                        startItem, endItem).removeClass('off-screen')
+                        .animate({
+                           opacity : 1
+                        }, 100);
 
-						$tr.css('opacity', '0.0').addClass('off-screen').slice(
-								startItem, endItem).removeClass('off-screen')
-								.animate({
-									opacity : 1
-								}, 100);
+               });
 
-					});
+               $pagingLink.filter(':first').addClass('active');
 
-					$pagingLink.filter(':first').addClass('active');
+            });
 
-				});
-
-		$setRows.submit();
-	</script>
-	<%@ include file="/form/footer.jsp"%>
+      $setRows.submit();
+   </script>
+   <%@ include file="/form/footer.jsp"%>
 
 </body>
 

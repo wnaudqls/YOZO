@@ -100,6 +100,13 @@
 		.asdf {
 			padding: 0px;
 		}
+		.userBtn {
+			border: none;
+			background-color: #F5A9A9;
+			color: white;
+			border-radius: 3px;
+			cursor: pointer;
+		}
 	
 	
 	</style>
@@ -149,7 +156,7 @@
 		<table>
 	
 <tr>
-				<td class="col">닉네임 : </td><td><input type="text" id="nick" name="nick" placeholder="닉네임을 입력해 주세요" ></td><td><input type="button" value="중복확인" onclick="nickCheck()"></td>
+				<td class="col">닉네임 : </td><td><input type="text" id="nick" name="nick" placeholder="닉네임을 입력해 주세요" ></td><td><input type="button" value="중복확인" class="userBtn" onclick="nickCheck()"></td>
 </tr>
 <tr>
 				<td class="col">비밀번호 : </td><td><input type="password" id="pw" name="pw" placeholder="비밀번호를 입력해 주세요" ></td>
@@ -160,7 +167,7 @@
 <tr>
 				<td class="col" class="asdf">주소 : </td> <td class="asdf"> 
 				<input type="hidden" id="confmKey" name="confmKey" value=""  >
-				<input type="text" id="zip_no" name="zip_no" placeholder="우편번호" readonly="readonly" value=""> </td> <td><input type="button" value="주소 검색" onclick="goPopup();"> </td>
+				<input type="text" id="zip_no" name="zip_no" placeholder="우편번호" readonly="readonly" value=""> </td> <td><input type="button" value="주소 검색" class="userBtn" onclick="goPopup();"> </td>
 </tr>
 <tr>
 				<td></td><td colspan="2"><input type="text" id="road_addr_part1" name="road_addr_part1" placeholder="도로명 주소" readonly="readonly" value=""></td>	
@@ -175,7 +182,7 @@
 				<td class="col">전화번호 : </td> <td colspan="2"> <input type="text" id="phone" name="phone"></td> 
 </tr>
 		</table>
-		<input type="submit" id="updateBtn" value="개인정보 수정">
+		<input type="submit" id="updateBtn" class="userBtn" value="개인정보 수정">
 		
 		</form>
 		
@@ -183,7 +190,7 @@
 		<form action="<%=request.getContextPath() %>/user.do"  method="post">
 			<input type="hidden" name="command" value="deleteUser" >
 			<input type="hidden" name="id" value="<%=rdto.getMember_id() %>" >
-			<input type="submit"  value="회원 탈퇴">
+			<input type="submit" class="userBtn" value="회원 탈퇴">
 		</form>
 	</div>
 	<br>

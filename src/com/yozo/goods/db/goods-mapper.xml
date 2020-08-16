@@ -33,7 +33,7 @@
  <!--굿즈 게시글 하나 삭제 -->
  <delete id="delete" parameterType="int">
  	DELETE FROM GOODS
- 	WHERE 0= #{goods_no} 	
+ 	WHERE GOODS_NO = #{goods_no} 	
  </delete>
  <!--굿즈 멀티딜리트 -->
 <delete id="muldelete" parameterType="map">

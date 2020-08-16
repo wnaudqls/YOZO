@@ -38,6 +38,7 @@ border : 1px solid black;
 .section_bottom {
    margin-top: 5%;
    text-align: center;
+
 }
 
 .main_img_wrap {
@@ -398,7 +399,9 @@ to {
             plusSlides(+1);
             var txt = document.querySelectorAll('.text');
             j++;
+
           /*--   alert(txt[j].innerText); */
+
             //            alert(txt[j].innerText);
             //recognition.pause();
             //recognition.resume();
@@ -639,7 +642,7 @@ to {
 </head>
 <body>
 
-   <%@ include file="/form/header.jsp"%>
+   <%@ include file="../../form/header.jsp"%>
    <!-- 레시피 정보 -->
    <form action="<%=request.getContextPath()%>/recipe.do" method="post">
       <input type="hidden" name="command" value="recipe_update" /> <input
@@ -697,7 +700,9 @@ to {
 
                <!--          <p style="text-align: center;"><span style="font-size: 14pt;"><b><span style="font-size: 24pt;">공지</span></b></span></p>
                          <p style="text-align: center; line-height: 1.5;"><br />여기에 내용</p> -->
+
                <%@ include file="/view/recipe/modal.jsp"%>
+
 
 
                <div
@@ -771,6 +776,8 @@ to {
 
 
 </html>
+
+
 
 
 

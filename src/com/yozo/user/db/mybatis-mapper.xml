@@ -19,6 +19,80 @@
    <result property="Member_sns" column="Member_sns"/>
 </resultMap>
 
+<<<<<<< HEAD
+	<select id="login" parameterType="memberDto" resultType="memberDto">
+			
+		SELECT MEMBER_NO, MEMBER_ID, MEMBER_PW, MEMBER_NAME, MEMBER_NICK,
+		       MEMBER_EMAIL, MEMBER_EMAIL_HASH, MEMBER_EMAIL_CHECKED, MEMBER_ENABLED, MEMBER_PHONE, MEMBER_ADDR, MEMBER_ROLE
+		FROM MEMBER
+		WHERE MEMBER_ID = #{member_id}
+		AND MEMBER_PW = #{member_pw}
+		
+	</select>
+	
+	<select id="idcheck" parameterType="memberDto" resultType="memberDto">
+	
+		SELECT * FROM MEMBER WHERE MEMBER_ID = #{member_id}
+	
+	</select>
+	
+	<select id="nickcheck" parameterType="memberDto" resultType="memberDto">
+	
+		SELECT * FROM MEMBER WHERE MEMBER_NICK = #{member_nick}
+	
+	</select>
+	
+	
+	
+	
+	<insert id="insert" parameterType="memberDto">
+		INSERT INTO MEMBER
+		VALUES(member_seq.nextval, #{member_id},#{member_pw},#{member_name},#{member_nick},
+		 #{member_email}, #{member_email_hash}, #{member_email_checked},
+		 #{member_enabled} , #{member_phone}, #{member_addr}, #{member_role})
+	</insert>
+	
+	<update id="update" parameterType="memberDto">
+		UPDATE MEMBER SET
+		MEMBER_NO = #{member_no},
+		MEMBER_PW = #{member_pw},
+		MEMBER_NAME = #{member_name},
+		MEMBER_NICK = #{member_nick},
+		MEMBER_EMAIL = #{member_email},
+		MEMBER_EMAIL_HASH = #{member_email_hash},
+		MEMBER_EMAIL_CHECKED = #{member_email_checked},
+		MEMBER_ENABLED = #{member_enabled},
+		MEMBER_PHONE = #{member_phone},
+		MEMBER_ADDR = #{member_addr},
+		MEMBER_ROLE = #{member_role}
+		WHERE MEMBER_ID = #{member_id}
+		
+	
+	</update>
+	
+	
+	<delete id="delete" parameterType="memberDto">
+	
+		DELETE MEMBER WHERE MEMBER_ID = #{member_id}
+		
+	</delete>
+	
+	
+	<select id="findId" parameterType="memberDto" resultType="memberDto">
+	
+		SELECT MEMBER_ID
+		FROM MEMBER 
+		WHERE MEMBER_EMAIL = #{member_email}
+	
+	</select>
+	<select id="findPw" parameterType="memberDto" resultType="memberDto">
+	
+		SELECT MEMBER_PW
+		FROM MEMBER 
+		WHERE MEMBER_EMAIL = #{member_email}
+	
+	</select>
+=======
    <select id="login" parameterType="memberDto" resultType="memberDto">
          
       SELECT MEMBER_NO, MEMBER_ID, MEMBER_PW, MEMBER_NAME, MEMBER_NICK,
@@ -91,5 +165,6 @@
       WHERE MEMBER_EMAIL = #{member_email}
    
    </select>
+>>>>>>> branch 'develop' of https://github.com/shm1113/YOZO.git
 
 </mapper>
