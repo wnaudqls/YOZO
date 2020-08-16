@@ -44,3 +44,4 @@ public class RecipeBiz {
 		return dao.MYselectList(member_id);
 
 }
+}

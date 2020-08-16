@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%
@@ -27,246 +28,280 @@
 border : 1px solid black;
 } */
 
-   /*상단부*/
-   .section_top{
-      margin-top:5%;
-      height:550px;
-      margin: 0 5%;
-   }
-   .section_bottom{
-      margin-top:5%;
-      text-align: center;
-      text-align: ce
-   }
-   .main_img_wrap{
-      width:500px;
-      height:500px;
-      display: inline-block;
-      margin-left:100px;
-      float: left;
-      margin-block-start: 0.83em;
-   }
-   .main_img{
-      width:500px;
-      height:500px;
-      
-   }
-   .recipe_info{
-      width:500px;
-      height:150px;
-      text-align: left;
-      }
-   .recipe_material{
-      width:500px;
-      height:280px;
-      display: inline-block;
-      text-align: left;
-   }
-   .recipe_wrap_top{
-      display:inline-block;
-      width:502 px;
-      height:510px;
-   }
-   .material_list{
-      height:200px;
-      overflow: auto;
-      border:1px solid black;
-   }
-   .recipe_image_wrap{
-      border: 1px solid black;
-      display:inline-block;
-      height:300px;
-      width:80%;
-   }
-   .speech_wrap{
-      height:50px;
-      position: relative;
-      width:300px;
-   }
-   /*음성제어 버튼*/
-   .speech_button{
-      height:50px;
-      position: relative;
-      width:300px;
-      border:1px solid black;
-      background-color: #F5A9A9;
-      color:#FAFAFA;
-   }
-   /*음성제어 스피커아이콘*/
-   .speech_icon{
-      width:40px;
-      height:40px;
-      position:relative;
-      left:-7px;
-      top:0px;
-   }
-   /*음성제어 텍스트*/
-   .speech_text{
-      /* display:inline-block */
-      font: small-caps bold 24px/1 sans-serif;
-      position: relative;
-      top: 6px;
-   }
-   .recipe_content{
-      text-align: center;
-      font: small-caps  24px/1 sans-serif;
-      width:80%;
-      margin:0 auto;
-   }
-   
-   /* yj */
-   .btn{
-   width : 70px;
-   height : 35px;
-   background-color : #F5A9A9;
-   color : #FAFAFA;
-   border : 0;
+/*상단부*/
+.section_top {
+   margin-top: 5%;
+   height: 550px;
+   margin: 0 5%;
+}
+
+.section_bottom {
+   margin-top: 5%;
+   text-align: center;
+}
+
+.main_img_wrap {
+   width: 500px;
+   height: 500px;
+   display: inline-block;
+   margin-left: 100px;
+   float: left;
+   margin-block-start: 0.83em;
+}
+
+.main_img {
+   width: 500px;
+   height: 500px;
+}
+
+.recipe_info {
+   width: 500px;
+   height: 150px;
+   text-align: left;
+}
+
+.recipe_material {
+   width: 500px;
+   height: 280px;
+   display: inline-block;
+   text-align: left;
+}
+
+.recipe_wrap_top {
+   display: inline-block;
+   width: 502 px;
+   height: 510px;
+}
+
+.material_list {
+   height: 200px;
+   overflow: auto;
+   border: 1px solid black;
+}
+
+.recipe_image_wrap {
+   border: 1px solid black;
+   display: inline-block;
+   height: 300px;
+   width: 80%;
+}
+
+.speech_wrap {
+   height: 50px;
+   position: relative;
+   width: 300px;
+}
+/*음성제어 버튼*/
+.speech_button {
+   height: 50px;
+   position: relative;
+   width: 300px;
+   border: 1px solid black;
+   background-color: #F5A9A9;
+   color: #FAFAFA;
    outline: 0;
-   border-radius : 0.35em;
+   cursor: pointer;
+   border: 0;
+   border-radius: 0.5em;
+   margin-top: 10px;
+}
+/*음성제어 스피커아이콘*/
+.speech_icon {
+   width: 40px;
+   height: 40px;
+   position: relative;
+   left: -7px;
+   top: 0px;
+}
+/*음성제어 텍스트*/
+.speech_text {
+   /* display:inline-block */
+   font: small-caps bold 24px/1 sans-serif;
+   position: relative;
+   top: 6px;
+}
+
+.recipe_content {
+   text-align: center;
+   font: small-caps 24px/1 sans-serif;
+   width: 80%;
+   margin: 0 auto;
+}
+
+/* yj */
+.btn {
+   width: 70px;
+   height: 35px;
+   background-color: #F5A9A9;
+   color: #FAFAFA;
+   border: 0;
+   outline: 0;
+   border-radius: 0.35em;
    font-weight: bold;
    cursor: pointer;
-
 }
-   
 
 .recipe_content span {
    line-height: 1.5em;
 }
 
-   /* The Modal (background) */
-        .modal {
-            display: none; /* Hidden by default */
-            position: fixed; /* Stay in place */
-            z-index: 1; /* Sit on top */
-            left: 0;
-            top: 0;
-            width: 100%; /* Full width */
-            height: 100%; /* Full height */
-            overflow: auto; /* Enable scroll if needed */
-            background-color: rgb(0,0,0); /* Fallback color */
-            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-        }
-    
-        /* Modal Content/Box */
-        .modal-content {
-            background-color: #fefefe;
-            margin: 15% auto; /* 15% from the top and centered */
-            padding: 20px;
-            border: 1px solid #888;
-            width: 30%; /* Could be more or less, depending on screen size */                          
-        }
-        
-        
+/* The Modal (background) */
+.modal {
+   display: none; /* Hidden by default */
+   position: fixed; /* Stay in place */
+   z-index: 1; /* Sit on top */
+   left: 0;
+   top: 0;
+   width: 100%; /* Full width */
+   height: 100%; /* Full height */
+   overflow: auto; /* Enable scroll if needed */
+   background-color: rgb(0, 0, 0); /* Fallback color */
+   background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+   background-color: #fefefe;
+   margin: 15% auto; /* 15% from the top and centered */
+   padding: 20px;
+   border: 1px solid #888;
+   width: 30%; /* Could be more or less, depending on screen size */
+}
+
 /*------------------------------------------------------------*/
-      * {box-sizing: border-box}
-body {font-family: Verdana, sans-serif; margin:0}
-.mySlides {display: none}
-img {vertical-align: middle;}
+* {
+   box-sizing: border-box
+}
+
+body {
+   font-family: Verdana, sans-serif;
+   margin: 0
+}
+
+.mySlides {
+   display: none
+}
+
+img {
+   vertical-align: middle;
+}
 
 /* Slideshow container */
 .slideshow-container {
-  /* max-width: 1000px; */
-  position: relative;
-  margin: auto;
+   /* max-width: 1000px; */
+   position: relative;
+   margin: auto;
 }
 
 /* Next & previous buttons */
 .prev, .next {
-  cursor: pointer;
-  position: absolute;
-  top: 50%;
-  width: auto;
-  padding: 16px;
-  margin-top: -22px;
-  color: black;
-  font-weight: bold;
-  font-size: 18px;
-  transition: 0.6s ease;
-  border-radius: 0 3px 3px 0;
+   cursor: pointer;
+   position: absolute;
+   top: 50%;
+   width: auto;
+   padding: 16px;
+   margin-top: -22px;
+   color: black;
+   font-weight: bold;
+   font-size: 18px;
+   transition: 0.6s ease;
+   border-radius: 0 3px 3px 0;
 }
-.prev{
-   left:0;
+
+.prev {
+   left: 0;
 }
 
 /* Position the "next button" to the right */
 .next {
-  right: 0;
-  border-radius: 3px 0 0 3px;
+   right: 0;
+   border-radius: 3px 0 0 3px;
 }
 
 /* On hover, add a black background color with a little bit see-through */
 .prev:hover, .next:hover {
-  background-color: rgba(0,0,0,0.8);
+   background-color: rgba(0, 0, 0, 0.8);
 }
 
 /* Caption text */
 .text {
-  color: black;
-  font-size: 15px;
-  padding: 8px 12px;
-  position: absolute;
-  bottom: 8px;
-  width: 100%;
-  text-align: center;
-  vertical-align: bottom;
+   color: black;
+   font-size: 15px;
+   padding: 8px 12px;
+   position: absolute;
+   bottom: 8px;
+   width: 100%;
+   text-align: center;
+   vertical-align: bottom;
 }
 
 /* Number text (1/3 etc) */
 .numbertext {
-  color: black;
-  font-size: 12px;
-  padding: 8px 12px;
-  position: absolute;
-  top: 0;
+   color: black;
+   font-size: 12px;
+   padding: 8px 12px;
+   position: absolute;
+   top: 0;
 }
 
 /* The dots/bullets/indicators */
 .dot {
-  cursor: pointer;
-  height: 15px;
-  width: 15px;
-  margin: 0 2px;
-  background-color: #bbb;
-  border-radius: 50%;
-  display: inline-block;
-  transition: background-color 0.6s ease;
+   cursor: pointer;
+   height: 15px;
+   width: 15px;
+   margin: 0 2px;
+   background-color: #bbb;
+   border-radius: 50%;
+   display: inline-block;
+   transition: background-color 0.6s ease;
 }
 
 .active, .dot:hover {
-  background-color: #717171;
+   background-color: #717171;
 }
 
 /* Fading animation */
 .fade {
-  -webkit-animation-name: fade;
-  -webkit-animation-duration: 1.5s;
-  animation-name: fade;
-  animation-duration: 1.5s;
+   -webkit-animation-name: fade;
+   -webkit-animation-duration: 1.5s;
+   animation-name: fade;
+   animation-duration: 1.5s;
 }
 
-@-webkit-keyframes fade {
-  from {opacity: .4} 
-  to {opacity: 1}
+@
+-webkit-keyframes fade {
+   from {opacity: .4
 }
 
-@keyframes fade {
-  from {opacity: .4} 
-  to {opacity: 1}
+to {
+   opacity: 1
+}
+
+}
+@
+keyframes fade {
+   from {opacity: .4
+}
+
+to {
+   opacity: 1
+}
+
 }
 
 /* On smaller screens, decrease text size */
 @media only screen and (max-width: 300px) {
-  .prev, .next,.text {font-size: 11px}
+   .prev, .next, .text {
+      font-size: 11px
+   }
 }
 
 /*------------------------------------------------------------*/
-
 </style>
 <script type="text/javascript" src="js/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
-
    var i = 0;
-   var j=0;
+   var j = 0;
    // while 문으로 TextToSpeech가 SpeechToText를 감싼다 두 함수 모두 recipe_step이 끝날때까지 도는데 와일문안에 SpeechToText문의 value값을 if문으로 멈춰 || 정지 || 스탑 || , 재생||시작|| 등, 반복||다시||...,이전||전에꺼||전꺼||등..., 다음||다음꺼||담꺼||...,
    //if문이 끝나면 다시 while문이 돌면서 recipe_step부분을 끝낸다. 끝내고 난뒤에는 다시 재생할까요? 를 TextToSpeech를 통해서 출력하고 그에 대한 답이 아니야||됐어||꺼져||괜찮아||면 함수를 종료하고 응||그래||다시||한번더 면 while문을 다시돌린다.
    //하나하나 씩 speech값을 받아서 넘어간다
@@ -280,19 +315,18 @@ img {vertical-align: middle;}
       /*id가 text-to-speech인 value값을 담아줌*/
       speech.text = msg;
 
-
       speech.volume = 100;
       /*재생속도 1 = 정상속도 */
       speech.rate = 0.9;
       /*읽어주는 음의 높낮이 1 ~ 100*/
-      speech.pitch =1;
+      speech.pitch = 1;
       /*읽어준다*/
       window.speechSynthesis.speak(speech);
       //SpeechToText();
    }
 
    function SpeechToText() {
-      
+
       //output의 참조값
       var output = document.getElementById("output");
       // action의 참조값
@@ -301,38 +335,37 @@ img {vertical-align: middle;}
       var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
       var recognition = new SpeechRecognition();
 
-
       recognition.continuous = true;
       // 음성인식이 실행 될 때 실행됨
-      
+
       recognition.onstart = function() {
-//         alert("음성인식 실행됨?")
+         //         alert("음성인식 실행됨?")
          alert("이제 말해주세요~");
          //action.innerHTML = "<small>듣고 있어요...</small>";
       };
       // 음성인식이 끝나고 실행됨
       recognition.onspeechend = function() {
-//         alert("음성인식 끝남?");
+         //         alert("음성인식 끝남?");
          //action.innerHTML = "<small>더 말하시려면 버튼을 눌러주세요...</small>";
          recognition.stop();
       }
 
       //계속대기 할 수 있는걸 찾아야되고
       // 음성인식 결과를 반환할 때 사용된다.
-      
+
       recognition.onerror = function(event) {
-           console.log('error', event);
-           recognition.start("다시시작");
-         };
+         console.log('error', event);
+         recognition.start("다시시작");
+      };
       recognition.onresult = function(event) {
          //음성을 text 로 변환된 값
          var transcript = event.results[i][0].transcript;
-         alert(i);
+       /* -  alert(i); */
          /* TextToSpeech(transcript); */
-         i=i+1;
+         i = i + 1;
          console.log(transcript);
-//         alert(i);
-//         alert(transcript);
+         //         alert(i);
+         //         alert(transcript);
          /* if(transcript=="다음"){
             var txt=document.querySelectorAll('.text');
             j++;
@@ -361,12 +394,12 @@ img {vertical-align: middle;}
             TextToSpeech('똑바로 다시 말해주세요...');
             i++;
          } */
-         if(transcript.trim()=="다음"){
+         if (transcript.trim() == "다음") {
             plusSlides(+1);
-            var txt=document.querySelectorAll('.text');
+            var txt = document.querySelectorAll('.text');
             j++;
-            alert(txt[j].innerText);
-//            alert(txt[j].innerText);
+          /*--   alert(txt[j].innerText); */
+            //            alert(txt[j].innerText);
             //recognition.pause();
             //recognition.resume();
             //recognition.stop();
@@ -376,13 +409,12 @@ img {vertical-align: middle;}
             //recognition.start();
             //SpeechToText();
             //recognition.start();
-            
-            
-         }else if(transcript.trim()=="전에 꺼"){
+
+         } else if (transcript.trim() == "전에 꺼") {
             plusSlides(-1)
-            var txt=document.querySelectorAll('.text');
+            var txt = document.querySelectorAll('.text');
             j--;
-//            alert(txt[j].innerText);
+            //            alert(txt[j].innerText);
             //recognition.pause();
             //recognition.stop();
             //recognition.abort();
@@ -390,31 +422,31 @@ img {vertical-align: middle;}
             //recognition.onresume();
             //recognition.start();
             //SpeechToText();
-            
-         }else if(transcript.trim()=="반복"){
-            var txt=document.querySelectorAll('.text');
-//            alert(txt[j].innerText);
-           // recognition.pause();
+
+         } else if (transcript.trim() == "반복") {
+            var txt = document.querySelectorAll('.text');
+            //            alert(txt[j].innerText);
+            // recognition.pause();
             //recognition.stop();
             //recognition.abort();
             TextToSpeech(txt[j].innerText);
             //recognition.start();
             //recognition.onresume();
             //SpeechToText();
-            
-         }else if(transcript.trim()=="그만"){
+
+         } else if (transcript.trim() == "그만") {
             TextToSpeech('안녕히가세요~');
             recognition.stop();
             close_pop();
-         }else{
+         } else {
             //recognition.pause();
-             //recognition.stop();
-             //recognition.abort();
+            //recognition.stop();
+            //recognition.abort();
             TextToSpeech('똑바로 다시 말해주세요...');
             //recognition.start(); 
             //recognition.resume();
             //SpeechToText();
-//            alert("다시말해주세요")
+            //            alert("다시말해주세요")
          }
          /* //변환된 text의 정확도
          var confidence = event.results[0][0].confidence;
@@ -431,8 +463,6 @@ img {vertical-align: middle;}
       recognition.start();
       //alert("음성인식시작?")
    }
-   
-
 </script>
 
 <!-- <script type="text/javascript">
@@ -611,138 +641,136 @@ img {vertical-align: middle;}
 
    <%@ include file="/form/header.jsp"%>
    <!-- 레시피 정보 -->
+   <form action="<%=request.getContextPath()%>/recipe.do" method="post">
+      <input type="hidden" name="command" value="recipe_update" /> <input
+         type="hidden" name="recipe_no" value="${dto.recipe_no}" />
+      <div class="section_top">
+         <div class="main_img_wrap">
+            <img class="main_img" alt="title_img"
+               src="${dto.recipe_main_photo }">
+         </div>
+         <div class="recipe_wrap_top">
+            <div class="recipe_info">
+               <h2>${dto.recipe_title }</h2>
+               <p>
+                  <b>작성자 : </b>${dto.member_id }
+               </p>
+               <p>
+                  <b>종류 : </b>${dto.cate_kind }</p>
+               <p>
+                  <b>테마 : </b>${dto.cate_theme }</p>
+            </div>
+            <div class="speech_wrap">
+               <!-- 음성 인식 -->
+               <!--             <button type="button" onclick="voice_service()"  class="speech_button" id="myModal" > -->
+               <button type="button" class="speech_button" onclick="window_show()">
+                  <img class="speech_icon" src="/YORIZORI/img/recipe/speaker4.png" />
+                  <span class="speech_text">음성제어 시작하기</span>
+               </button>
+            </div>
+            <div class="recipe_material">
+               <h2>재료</h2>
 
-   <div class="section_top">
-      <div class="main_img_wrap">
-         <img class="main_img" alt="title_img" src="${dto.recipe_main_photo }">
-      </div>
-      <div class="recipe_wrap_top">
-         <div class="recipe_info">
-            <h2>${dto.recipe_title }</h2>
-            <p>
-               <b>작성자 : </b>${dto.member_id }
-            </p>
-            <p>
-               <b>종류 : </b>${dto.cate_kind }</p>
-            <p>
-               <b>테마 : </b>${dto.cate_theme }</p>
+               <ul class="material_list">
+                  <li>대표재료 : ${dto.recipe_material_one }</li>
+                  <c:forEach items="${material }" var="m" varStatus="status">
+                     <li>${m }</li>
+                  </c:forEach>
+               </ul>
+            </div>
+            <div>
+               <c:if test="${rdto.member_role eq '관리자' }">
+                  <input class="btn" type="submit" value="수정" />
+                  <input class="btn" type="button" value="삭제" onclick="location.href='/YORIZORI/recipe.do?command=recipe_delete&recipe_no=${dto.recipe_no}'"/>
+               </c:if>
+            </div>
          </div>
-         <div class="speech_wrap">
-            <!-- 음성 인식 -->
-            <!--             <button type="button" onclick="voice_service()"  class="speech_button" id="myModal" > -->
-            <button type="button" class="speech_button" onclick="window_show()">
-               <img class="speech_icon" src="/YORIZORI/img/recipe/speaker4.png" />
-               <span class="speech_text">음성제어 시작하기</span>
-            </button>
-         </div>
-         <div class="recipe_material">
-            <h2>재료</h2>
-            <ul class="material_list">
-            <c:forEach items="${material }" var="m" varStatus="status"><li>${m }</li>  </c:forEach> 
-            </ul>
-         </div>
-         <div>
-            <c:if test="${rdto.member_role eq '관리자' }">
-               <input class="btn" type="button" value="수정" />
-               <input class="btn" type="button" value="삭제"/>
-            </c:if>
-         </div>
-      </div>
-            
-            
-             <!-- The Modal -->
-             <div id="myModal" class="modal" style="width:100%; height:100%; ">
-          
-               <!-- Modal content -->
-               <div class="modal-content" style="width:80%; height:80%; margin:10% 10%; position:relative;">
-               
-               
-                <!--          <p style="text-align: center;"><span style="font-size: 14pt;"><b><span style="font-size: 24pt;">공지</span></b></span></p>
+
+
+         <!-- The Modal -->
+         <div id="myModal" class="modal" style="width: 100%; height: 100%;">
+
+            <!-- Modal content -->
+            <div class="modal-content"
+               style="width: 80%; height: 80%; margin: 10% 10%; position: relative;">
+
+
+               <!--          <p style="text-align: center;"><span style="font-size: 14pt;"><b><span style="font-size: 24pt;">공지</span></b></span></p>
                          <p style="text-align: center; line-height: 1.5;"><br />여기에 내용</p> -->
-                         <%@ include file="/view/recipe/modal.jsp"%>
-                    
-                        
-                     <div style="cursor:pointer;background-color:#DDDDDD;text-align: center;padding-bottom: 10px;padding-top: 10px;" onClick="close_pop();">
-                         <span class="pop_bt" style="font-size: 13pt;" >닫기         </span>
-                     </div>
-               </div>
-          
-             </div>
-        <!--End Modal-->
+               <%@ include file="/view/recipe/modal.jsp"%>
 
 
-
-
-
-
-               <script type="text/javascript">
-                  /*   jQuery(document).ready(function() {
-                            $('#myModal').show();
-                    }); */
-                    //처음 음성인식 시작 버튼을 눌렀을 때 실행
-                  function window_show() {
-                     $('#myModal').show();
-                     //TextToSpeech("어서오세요 준비되시면 다음을 외쳐주세요");
-                     alert("어서오세요 준비되시면 다음을 외쳐주세요!!")
-                     //showSlides(0);
-                     SpeechToText();//STT실행
-                     
-                  }
-                  //팝업창에서 닫기 버튼을 눌렀을 때
-                  function close_pop(flag) {
-                     $('#myModal').hide();
-                     recognition.stop();
-                  };
-               </script>
-
-
-
-            </div>
-         
-
-
-
-
-				</div>
-			
-		<div class="recipe_material">
-					<h2>재료</h2>
-					<ul class="material_list">
-						<c:forEach items="${material }" var="m" varStatus="status">
-							<li>${m }</li>
-						</c:forEach>
-					</ul>
-				</div>
-
-
-      <div class="section_bottom">
-
-         <h2>레시피</h2>
-         <c:forEach items="${detail }" var="content" varStatus="status">
-            <!-- 전체레시피 -->
-            <div class="recipe_wrap_bottom">
-               <!-- 단계별 레시피 이미지 -->
-               <div class="recipe_image_wrap">
-                  <img alt="레시피${status.index }" src="">
-               </div>
-               <!-- 단계별 래시피 글 -->
-               <div class="recipe_content">
-                  <span>${content}</span>
+               <div
+                  style="cursor: pointer; background-color: #DDDDDD; text-align: center; padding-bottom: 10px; padding-top: 10px;"
+                  onClick="close_pop();">
+                  <span class="pop_bt" style="font-size: 13pt;">닫기 </span>
                </div>
             </div>
 
-         </c:forEach>
+         </div>
+         <!--End Modal-->
+
+
+
+
+
+
+         <script type="text/javascript">
+            /*   jQuery(document).ready(function() {
+                      $('#myModal').show();
+              }); */
+            //처음 음성인식 시작 버튼을 눌렀을 때 실행
+            function window_show() {
+               $('#myModal').show();
+               //TextToSpeech("어서오세요 준비되시면 다음을 외쳐주세요");
+               alert("어서오세요 준비되시면 다음을 외쳐주세요!!")
+               //showSlides(0);
+               SpeechToText();//STT실행
+
+            }
+            //팝업창에서 닫기 버튼을 눌렀을 때
+            function close_pop(flag) {
+               $('#myModal').hide();
+               recognition.stop();
+            };
+         </script>
+
+
 
       </div>
 
+   </form>
 
 
-      <%@ include file="../../form/footer.jsp"%>
+
+
+   <div class="section_bottom">
+
+      <h2>레시피</h2>
+      <c:forEach items="${detail }" var="content" varStatus="status">
+         <!-- 전체레시피 -->
+         <div class="recipe_wrap_bottom">
+            <!-- 단계별 레시피 이미지 -->
+            <div class="recipe_image_wrap">
+               <img alt="레시피${status.index }" src="">
+            </div>
+            <!-- 단계별 래시피 글 -->
+            <div class="recipe_content">
+               <span>${content}</span>
+            </div>
+         </div>
+
+      </c:forEach>
+
+   </div>
+
+
+
+   <%@ include file="../../form/footer.jsp"%>
 </body>
 
 
 </html>
-
 
 
 

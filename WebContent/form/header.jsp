@@ -1,11 +1,7 @@
 <%@page import="com.yozo.user.dto.MemberDto"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-
-    pageEncoding="UTF-8"%>
-    
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 
-	pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 <html>
@@ -29,6 +25,7 @@
     }
     #icon{
         text-align: center;
+        
     }
     .dropuserdown{
            z-index: 999;
@@ -90,10 +87,10 @@
         display: none;
         position: absolute;
         background-color : #F5A9A9;
-        min-width: 130px;
+        min-width: 140px;
         overflow:visible;
         box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-        right: 10px;
+        right: 15px;
     }
 
     .dropuser_content a {
@@ -124,13 +121,15 @@
         background-color:white;
     }
     .dropstream_content {
-       opacity: 0.85;
-        z-index: 999;
-        left:65px;
-        background-color : #F5A9A9;
+    	z-index: 999;
+        display: none;
+        position: absolute;
+        margin-right: 500px;
+        background-color : pink;
         min-width: 100px;
         overflow: auto;
         box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        left: 50px;
     }
 
     .dropstream_content a {
@@ -138,7 +137,7 @@
         padding: 12px 16px;
         text-decoration: none;
         display: block;
-        float: center;
+        float:left;
     }
 
     #dropstream_content a:hover {
@@ -155,6 +154,15 @@
        position: absolute;
        top: 25px;
        right: 100px;
+    }
+    .inform{
+    	background-color: #F5A9A9;
+    	color: white;
+    	border: none;
+    
+    }
+    .inform:hover{
+    background-color: black;
     }
   
 </style>
@@ -225,8 +233,7 @@
 		<!-- 메인 아이콘, 유저아이콘 -->
 		<img id="mainicon" class="mainlogo finger" alt="logo"
 			src="/YORIZORI/img/main_icon.png"
-			onclick="location.href='http://qclass.iptime.org:8787/YORIZORI/view/main/main.jsp'"><br>
-
+			onclick="location.href='user.do?command=main'"><br>
 
 
 
@@ -252,23 +259,27 @@
 				<div id="dropuser_content" class="dropuser_content">
 					<a
 						href="<%request.getContextPath();%>/YORIZORI/user.do?command=updateform">개인정보수정</a>
-
+<%--
 					<form action="<%request.getContextPath();%>/YORIZORI/recipe.do?">
 						<a class="myrecipe"> <input type="hidden" name="memberId"	value="${rdto.member_id }" /> 
 						<input type="hidden" name="command" value="my_recipe_list" /> 
-						<input type="submit" value="나의레시피" />
+						<input type="submit" class="inform" value="나의레시피" />
 						</a>
 					</form>
+					<a href="<%request.getContextPath();%>/YORIZORI/user.do?command=my_recipe_list&memberId=${rdto.member_id }">나의레시피</a>
 
 					<form action="<%request.getContextPath();%>/YORIZORI/list.do?">
 						<a href="" class="useId"> 
 						<input type="hidden" name="memberId"
 							id="memberId" value="${rdto.member_id }" /> 
-							<input type="submit" value="나의 장바구니" />
+							<input type="submit" class="inform" value="나의 장바구니" />
 						</a>
 					</form>
-					<a
-						href="<%request.getContextPath();%>/YORIZORI/user.do?command=logout">로그아웃</a>
+				--%>
+				<a href="<%request.getContextPath();%>/YORIZORI/recipe.do?command=my_recipe_list&memberId=${rdto.member_id }">나의레시피</a>
+					<a href="<%request.getContextPath();%>/YORIZORI/list.do?memberId=${rdto.member_id }">나의 장바구니</a>
+					
+					<a href="<%request.getContextPath();%>/YORIZORI/user.do?command=logout">로그아웃</a>
 				</div>
 			</div>
 
@@ -289,8 +300,8 @@
 			<div id="dropstream_content" class="dropstream_content">
 
 				<a href="/YORIZORI/broadcast.do?command=stream" class="useId">방송하기</a>
-				<a href="/YORIZORI/broadcast.do?command=watch">시청하기</a> <a
-					href="/YORIZORI/broadcast.do?command=broadcast" class="useId">예약하기</a>
+				<a href="/YORIZORI/broadcast.do?command=watch">시청하기</a> <!-- <a
+					href="/YORIZORI/broadcast.do?command=broadcast" class="useId">예약하기</a> -->
 			</div>
 		</div>
 		<!--유정 goods onclick 건들임 -->

@@ -187,6 +187,9 @@ public class RecipeDao extends SqlMapConfig {
 		try {
 			session = getSqlSessionFactory().openSession(false);
 			res = session.insert(namespace+"insert", dto);
+			if(res>0) {
+				session.commit();
+			}
 		} catch (Exception e) {
 			System.out.println("recipe dao에서 insert오류");
 			e.printStackTrace();

@@ -1,5 +1,6 @@
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 
 <%
 	request.setCharacterEncoding("UTF-8");
@@ -18,6 +19,16 @@
 * {
    border: 0;
 }
+
+.dropuser_content {
+        display: none;
+        position: absolute;
+        background-color : #F5A9A9;
+        min-width: 130px;
+        overflow:visible;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        right: 10px;
+    }
 
 a {
    text-decoration: none;
@@ -155,7 +166,29 @@ section{
    background-color: #F5A9A9;
    color: #FAFAFA;
 }
+.btn_left{
+	margin-right: 10px;
+}
+.btns{
+width: 65px;
+ height: 40px;
+   line-height: 46px;
+   background-color: #F5A9A9;
+   color: #FAFAFA;
+   float: right;
+   position: relative;
+  left: 40%;
+  border-radius: 30px;
 
+}
+#add{
+width: 300px;
+height: 50px;
+   line-height: 56px;
+   background-color: #F5A9A9;
+   color: #FAFAFA;
+
+}
 .search img {
    width: 70px;
    height: 35px;
@@ -231,17 +264,23 @@ fieldset {
                <input type="hidden" name="command" value="recipe_search"> 
                <input type="text" placeholder="레시피 검색" id="recipe_search" name="recipe_title"> 
                <button type="submit" class="btn"><i class="fa fa-search"><strong>검색</strong></i></button>
+               <input class="btns " type="button" value="등록"
+					onclick="location.href='<%request.getContextPath();%>/YORIZORI/recipe.do?command=recipeinsertform'" />
+				<!-- 
+				나중에　할　일：　전체삭제하기위함
+				<input class="btns btn_left" type="button" value="삭제" /> -->
             </fieldset>
          </form>
       </div>
 
 		<c:if test="${rdto.member_role eq '관리자' }">
-
+<%--  
 			<div id="btns">
-				<input class="btn" type="button" value="등록"
+				<input class="btns" type="button" value="등록"
 					onclick="location.href='<%request.getContextPath();%>/YORIZORI/recipe.do?command=recipeinsertform'" />
-				<input class="btn" type="button" value="삭제" />
+				<input class="btns" type="button" value="삭제" />
 			</div>
+	--%>
 		</c:if>
 
 		<form action="" id="setRows">
@@ -253,7 +292,7 @@ fieldset {
 			<c:choose>
 				<c:when test="${empty list }">
 					<div class="nosection">
-						<img id="warning" alt="warning" src="/YORIZORI/img/warning.jpg">
+						<img id="warning" alt="warning" src="${pageContext.request.contextPath }/img/warning.jpg">
 						<h1 id="message">등록된 상품이 존재하지 않습니다.</h1>
 					</div>
 				</c:when>
@@ -262,10 +301,22 @@ fieldset {
 					<c:forEach items="${list }" var="dto">
 						<div class="list_card eval-contents">
 							<div class="list_card_img">
-								<a
-									href="recipe.do?command=recipe_detail&recipe_no=${dto.recipe_no }"><img
-									src="${dto.recipe_main_photo }" class="list_img_tag"
-									alt="레시피메인사진" /></a>
+								<a href="recipe.do?command=recipe_detail&recipe_no=${dto.recipe_no }">
+										<%-- <c:if test="${fn:substring(dto.recipe_main_photo,0,4) eq 'http' }">
+											<img src="${dto.recipe_main_photo }" class="list_img_tag"	alt="레시피메인사진"/></a>
+										</c:if>
+										<c:if test="${fn:substring(dto.recipe_main_photo,0,4)  ne 'http'} ">
+											<img src="${pageContext.request.contextPath }/recipeimages/${dto.recipe_main_photo }" class="list_img_tag"	alt="레시피메인사진"/>
+										</c:if> --%>
+										<c:choose>
+										<c:when test="${fn:substring(dto.recipe_main_photo,0,4) eq 'http' }">
+											<img src="${dto.recipe_main_photo }" class="list_img_tag"	alt="레시피메인사진"/>
+										</c:when>
+										<c:otherwise>
+											<img src="${pageContext.request.contextPath }/recipeimages/${dto.recipe_main_photo }" class="list_img_tag"	alt="레시피메인사진"/>
+										</c:otherwise>
+										</c:choose>
+							</a>
 							</div>
 							<div class="list_card_content">
 								<div class="list_card_title">
@@ -275,8 +326,7 @@ fieldset {
 								</div>
 
 								<div class="list_card_like">
-									<img
-										onclick="addlike(${dto.recipe_no}, ${rdto.member_no});"
+									<input type="image" onclick="addlikes(${dto.recipe_no}, ${rdto.member_no});"
 										class="like_icon" src="/YORIZORI/img/recipe/like_icon.png" />
 									<span class="like_text">${dto.recipe_likecount}</span>
 								</div>
@@ -361,8 +411,8 @@ fieldset {
 	<%@ include file="/form/footer.jsp"%>
 
 </body>
-<script type="text/javascript" src="/YORIZORI/js/like.js">
-</script>
 
+<script type="text/javascript" src="/YORIZORI/js/likes.js">
+</script>
 
 </html>
