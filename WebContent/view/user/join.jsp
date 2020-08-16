@@ -124,9 +124,11 @@
             alert("인증성공");
             document.getElementById('joinBtn').style.display = "inline";
 
+
          }else{
             alert("인증실패");
             document.getElementById('joinBtn').style.display = "none";
+
 
          }
       }   
@@ -147,6 +149,7 @@
       
       console.log(roadAddrPart1);
 
+     
       
       
    }

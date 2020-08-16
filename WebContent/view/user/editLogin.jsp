@@ -29,6 +29,14 @@
 		.naverIdLogin {
 			width: 50%;
 		}
+		
+		.userBtn {
+			border: none;
+			background-color: #F5A9A9;
+			color: white;
+			border-radius: 3px;
+			cursor: pointer;
+		}
 	</style>
 </head>
 <body>
@@ -42,7 +50,7 @@
 			<input type="text" name="id" placeholder="아이디를 입력하세요"> <br> 
 			<input type="password" name="pw" placeholder="비밀번호를 입력하세요"> <br><br>
 			<br>
-				<input type="submit" value="정보 수정 페이지로 이동">
+				<input type="submit" class="userBtn" value="정보 수정 페이지로 이동">
 
 		</form>
 		

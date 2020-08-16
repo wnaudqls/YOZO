@@ -94,7 +94,6 @@
 </delete>
 <update id="update" parameterType="recipeDto">
 UPDATE RECIPE SET 
-      
       RECIPE_MAIN_PHOTO = #{recipe_main_photo}, 
       MEMBER_ID = #{member_id},
       RECIPE_TITLE = #{recipe_title},
@@ -106,6 +105,6 @@ UPDATE RECIPE SET
       CATE_KIND = #{cate_kind},
       RECIPE_MATERIAL = #{recipe_material},
       RECIPE_LIKECOUNT = #{recipe_likecount}
-      WHERE RECIPE_NO = #{recipe_no}
+		WHERE RECIPE_NO = #{recipe_no}
 </update>
 </mapper>

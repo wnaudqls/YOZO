@@ -279,7 +279,7 @@
 </script>
 </head>
 <body>
-<%@ include file="/form/header.jsp" %>
+<%@ include file="../../form/header.jsp" %>
 <div class="search">
 		<form  action="/YORIZORI/recipe.do" method="post">
       <fieldset>

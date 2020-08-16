@@ -23,7 +23,7 @@
 }
 
 section {
-<<<<<<< HEAD
+
 	/*    height: 600px;
 =======
 	/* 	height: 600px;
@@ -109,12 +109,8 @@ section {
 		document.getElementById("total_price").innerText = total_price;
 
 	}
-	function pay() {
-		var cnt = document.getElementById("count").value;
-		var total = Number("${dto.goods_price}") * Number(cnt);
-		var IMP = window.IMP; // 생략가능
-		IMP.init('imp92407375');
-	}
+
+	
 	function pay() {
 		var cnt = document.getElementById("count").value;
 		var total = Number("${dto.goods_price}") * Number(cnt);
@@ -125,7 +121,7 @@ section {
 			pay_method : 'card',
 			merchant_uid : 'merchant_' + new Date().getTime(),
 			name : '주문명:${dto.goods_title}',
-			name : '${dto.goods_title }',
+			name : '1',
 			amount : total,
 			/*  buyer_email : 'iamport@siot.do', */
 			buyer_name : '구매자이름',
@@ -233,5 +229,5 @@ section {
 	<!-- 푸터 -->
 	<%@ include file="/form/footer.jsp"%>
 
-</body>
+</body>rufw
 </html>

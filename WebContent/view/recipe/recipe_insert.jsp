@@ -100,6 +100,7 @@
 /* clear:left; */
 }
 </style>
+
 <script type="text/javascript"
    src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
@@ -133,12 +134,16 @@
                                        + i
                                        + "' value='recipe_photo"+i+"'><br/><br/>"
 
-                                       + "<br/><br/>"
+
+													+ "<br/><br/>"
+
+
 
                                        + "<div><img class='recipe_photo' id='image_container"+i+"' value='"+i+"' /></div>"
                                        + "<textarea rows='5' cols='70' name='recipe_detail'></textarea><br><input type='button' value='삭제' onclick='delete_textarea(this);'</div>"));
                      i++;
                   });
+
 
    });
 
@@ -150,11 +155,16 @@
       $(b).parent().remove();
    }
 
+	function delete_textarea(b){
+		$(b).parent().remove();
+	}
+
 
    //대표이미지
    function recipe_thumbnail(event) {
       var filePath = document.getElementById("recipe_main_photo").value;
       alert("filePath:" + filePath);
+
 
       var reader = new FileReader();
       reader.onload = function(event) {
@@ -162,8 +172,10 @@
          imgtag.setAttribute("src", event.target.result);
          alert("속성부여완료");
 
+
       }
       reader.readAsDataURL(event.target.files[0]);
+
 
       var formdata=new FormData()
       formdata.append("recipe_main_photo" , $("#recipe_main_photo")[0].files[0]);
@@ -199,6 +211,7 @@
       }
       reader.readAsDataURL(event.target.files[0]);
 
+
       var formdata=new FormData()
       formdata.append("recipe_image" , $("#recipe_image")[0].files[0]);
       $.ajax({
@@ -216,11 +229,13 @@
          error : function(request, status, error) {
             alert("레시피 이미지 업로드 실패")
 
+
          }
 
       });
       
    }
+
 
    //추가 레시피 이미지 미리보기
    function newrecipe_upload(event,i) {
@@ -249,19 +264,23 @@
             alert(msg);
             alert("레시피 이미지 업로드 성공");
 
+
          },
          error : function(request, status, error) {
             alert("레시피 이미지 업로드 실패")
+
 
          }
 
       });
 
    }
+
 </script>
 </head>
 <body>
-   <%@ include file="../../form/header.jsp"%>
+
+   <%@ include file="../../form/header.jsp" %>
    <!--유정)섹션추가 -->
    <!-- 상단부 -->
 
@@ -320,8 +339,10 @@
 
             </div>
 
+
          </div>
       </div>
+
 
       <!-- 하단부 -->
       <div id="under_add">
@@ -331,6 +352,7 @@
                <input type="file" onchange="recipe_image_upload(event);"
                   id="recipe_image" name="recipe_photo" value="recipe_photo" />
 
+
             </div>
             <div class="recipe_photo">
                <img class="recipe_photo" alt="이미지를 선택해주세요" id="image_container">
@@ -339,6 +361,7 @@
             <textarea rows="5" cols="70" name="recipe_detail"></textarea>
             <br>
 
+
          </div>
          <div>
             <input id="add_recipe" type="button" alt="add_order" value="추가">
@@ -346,6 +369,8 @@
          <div id="under_add_create">
 
             <div>
+
+
 
                <input class="btn" type="button" value="취소"
                   onclick="location.href='<%request.getContextPath();%>/YORIZORI/recipe.do?command=recipe_list'" />
