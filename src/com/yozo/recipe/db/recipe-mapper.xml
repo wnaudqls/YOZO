@@ -94,6 +94,7 @@
 </delete>
 <update id="update" parameterType="recipeDto">
 UPDATE RECIPE SET 
+<<<<<<< HEAD
  	  
       RECIPE_MAIN_PHOTO = #{recipe_main_photo}, 
       MEMBER_ID = #{member_id},
@@ -107,5 +108,20 @@ UPDATE RECIPE SET
       RECIPE_MATERIAL = #{recipe_material},
       RECIPE_LIKECOUNT = #{recipe_likecount}
 		WHERE RECIPE_NO = #{recipe_no}
+=======
+      
+      RECIPE_MAIN_PHOTO = #{recipe_main_photo}, 
+      MEMBER_ID = #{member_id},
+      RECIPE_TITLE = #{recipe_title},
+      RECIPE_PHOTO = #{recipe_photo}, 
+      RECIPE_DETAIL = #{recipe_detail},
+      RECIPE_REGDATE = SYSDATE,
+      RECIPE_MATERIAL_ONE = #{recipe_material_one},
+      CATE_THEME = #{cate_theme},
+      CATE_KIND = #{cate_kind},
+      RECIPE_MATERIAL = #{recipe_material},
+      RECIPE_LIKECOUNT = #{recipe_likecount}
+      WHERE RECIPE_NO = #{recipe_no}
+>>>>>>> branch 'develop' of https://github.com/shm1113/YOZO.git
 </update>
 </mapper>

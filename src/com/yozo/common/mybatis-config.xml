@@ -36,7 +36,6 @@
 				<!-- 트랜젝션 설정,Mybatis는 transactionManager로 트랜잭션을 
 				관리하므로 Autocommit에 대한 설정을 할 수 있다. -->
 			<transactionManager type="JDBC"/>
-			
 			<dataSource type="POOLED">
 					<!-- JDBC 드라이버의 패키지 경로를 포함한 결제 자바 클래스명 -->
 				<property name="driver" value="${driver}"/>

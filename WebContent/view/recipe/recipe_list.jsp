@@ -167,7 +167,11 @@ section{
    color: #FAFAFA;
 }
 .btn_left{
+<<<<<<< HEAD
    margin-right: 10px;
+=======
+	margin-right: 10px;
+>>>>>>> branch 'develop' of https://github.com/shm1113/YOZO.git
 }
 .btns{
 width: 65px;
@@ -265,14 +269,22 @@ fieldset {
                <input type="text" placeholder="레시피 검색" id="recipe_search" name="recipe_title"> 
                <button type="submit" class="btn"><i class="fa fa-search"><strong>검색</strong></i></button>
                <input class="btns " type="button" value="등록"
+<<<<<<< HEAD
                onclick="location.href='<%request.getContextPath();%>/YORIZORI/recipe.do?command=recipeinsertform'" />
             <!-- 
             나중에　할　일：　전체삭제하기위함
             <input class="btns btn_left" type="button" value="삭제" /> -->
+=======
+					onclick="location.href='<%request.getContextPath();%>/YORIZORI/recipe.do?command=recipeinsertform'" />
+				<!-- 
+				나중에　할　일：　전체삭제하기위함
+				<input class="btns btn_left" type="button" value="삭제" /> -->
+>>>>>>> branch 'develop' of https://github.com/shm1113/YOZO.git
             </fieldset>
          </form>
       </div>
 
+<<<<<<< HEAD
       <c:if test="${rdto.member_role eq '관리자' }">
 <%--  
          <div id="btns">
@@ -286,6 +298,17 @@ fieldset {
       <form action="" id="setRows">
          <input type="hidden" name="rowPerPage" value="9">
       </form>
+=======
+		<c:if test="${rdto.member_role eq '관리자' }">
+<%--  
+			<div id="btns">
+				<input class="btns" type="button" value="등록"
+					onclick="location.href='<%request.getContextPath();%>/YORIZORI/recipe.do?command=recipeinsertform'" />
+				<input class="btns" type="button" value="삭제" />
+			</div>
+	--%>
+		</c:if>
+>>>>>>> branch 'develop' of https://github.com/shm1113/YOZO.git
 
       <div class="recipe_list" id="products">
 
@@ -297,6 +320,7 @@ fieldset {
                </div>
             </c:when>
 
+<<<<<<< HEAD
             <c:otherwise>
                <c:forEach items="${list }" var="dto">
                   <div class="list_card eval-contents">
@@ -324,15 +348,63 @@ fieldset {
                               href="recipe.do?command=recipe_detail&recipe_no=${dto.recipe_no }">${dto.recipe_title }</a>
                            』
                         </div>
+=======
+			<c:choose>
+				<c:when test="${empty list }">
+					<div class="nosection">
+						<img id="warning" alt="warning" src="${pageContext.request.contextPath }/img/warning.jpg">
+						<h1 id="message">등록된 상품이 존재하지 않습니다.</h1>
+					</div>
+				</c:when>
+>>>>>>> branch 'develop' of https://github.com/shm1113/YOZO.git
 
+<<<<<<< HEAD
                         <div class="list_card_like">
                            <input type="image" onclick="addlikes(${dto.recipe_no}, ${rdto.member_no});"
                               class="like_icon" src="/YORIZORI/img/recipe/like_icon.png" />
                            <span class="like_text">${dto.recipe_likecount}</span>
                         </div>
                   </div>
+=======
+				<c:otherwise>
+					<c:forEach items="${list }" var="dto">
+						<div class="list_card eval-contents">
+							<div class="list_card_img">
+								<a href="recipe.do?command=recipe_detail&recipe_no=${dto.recipe_no }">
+										<%-- <c:if test="${fn:substring(dto.recipe_main_photo,0,4) eq 'http' }">
+											<img src="${dto.recipe_main_photo }" class="list_img_tag"	alt="레시피메인사진"/></a>
+										</c:if>
+										<c:if test="${fn:substring(dto.recipe_main_photo,0,4)  ne 'http'} ">
+											<img src="${pageContext.request.contextPath }/recipeimages/${dto.recipe_main_photo }" class="list_img_tag"	alt="레시피메인사진"/>
+										</c:if> --%>
+										<c:choose>
+										<c:when test="${fn:substring(dto.recipe_main_photo,0,4) eq 'http' }">
+											<img src="${dto.recipe_main_photo }" class="list_img_tag"	alt="레시피메인사진"/>
+										</c:when>
+										<c:otherwise>
+											<img src="${pageContext.request.contextPath }/recipeimages/${dto.recipe_main_photo }" class="list_img_tag"	alt="레시피메인사진"/>
+										</c:otherwise>
+										</c:choose>
+							</a>
+							</div>
+							<div class="list_card_content">
+								<div class="list_card_title">
+									<br> 『<a class="list_card_title_a"
+										href="recipe.do?command=recipe_detail&recipe_no=${dto.recipe_no }">${dto.recipe_title }</a>
+									』
+								</div>
+>>>>>>> branch 'develop' of https://github.com/shm1113/YOZO.git
 
+<<<<<<< HEAD
                   </div>
+=======
+								<div class="list_card_like">
+									<input type="image" onclick="addlikes(${dto.recipe_no}, ${rdto.member_no});"
+										class="like_icon" src="/YORIZORI/img/recipe/like_icon.png" />
+									<span class="like_text">${dto.recipe_likecount}</span>
+								</div>
+						</div>
+>>>>>>> branch 'develop' of https://github.com/shm1113/YOZO.git
 
                </c:forEach>
             </c:otherwise>

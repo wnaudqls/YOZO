@@ -1,7 +1,7 @@
 <%@page import="com.yozo.user.dto.MemberDto"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-    
+
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 
 
@@ -123,7 +123,11 @@
         background-color:white;
     }
     .dropstream_content {
+<<<<<<< HEAD
        z-index: 999;
+=======
+    	z-index: 999;
+>>>>>>> branch 'develop' of https://github.com/shm1113/YOZO.git
         display: none;
         position: absolute;
         margin-right: 500px;
@@ -158,9 +162,15 @@
        right: 100px;
     }
     .inform{
+<<<<<<< HEAD
        background-color: #F5A9A9;
        color: white;
        border: none;
+=======
+    	background-color: #F5A9A9;
+    	color: white;
+    	border: none;
+>>>>>>> branch 'develop' of https://github.com/shm1113/YOZO.git
     
     }
     .inform:hover{
@@ -217,6 +227,7 @@
    if (request.getProtocol().equals("HTTP/1.1"))
            response.setHeader("Cache-Control", "no-cache");
 
+<<<<<<< HEAD
    
    %>
    <header id=header>
@@ -225,6 +236,15 @@
          src="/YORIZORI/img/main_icon.png"
          onclick="location.href='http://qclass.iptime.org:8787/YORIZORI/view/main/main.jsp'"><br>
 
+=======
+	
+	%>
+	<header id=header>
+		<!-- 메인 아이콘, 유저아이콘 -->
+		<img id="mainicon" class="mainlogo finger" alt="logo"
+			src="/YORIZORI/img/main_icon.png"
+			onclick="location.href='user.do?command=main'"><br>
+>>>>>>> branch 'develop' of https://github.com/shm1113/YOZO.git
 
 
 
@@ -234,6 +254,7 @@
       %>
 
 
+<<<<<<< HEAD
       <div class="dropuserdown">
          <span id="loginStatus">로그인을 해주세요</span> <img
             onclick="location.href='<%=request.getContextPath()%>/user.do?command=loginform'"
@@ -273,10 +294,53 @@
                <a href="<%request.getContextPath();%>/YORIZORI/user.do?command=logout">로그아웃</a>
             </div>
          </div>
+=======
+		<div class="dropuserdown">
+			<span id="loginStatus">로그인을 해주세요</span> <img
+				onclick="location.href='<%=request.getContextPath()%>/user.do?command=loginform'"
+				class="usericon" alt="logo" src="/YORIZORI/img/user_icon.png">
+		</div>
+		<%
+			} else if (dto != null) {
+		%>
+		
+			<div class="dropuserdown">
+				<span id="loginStatus"><b>${rdto.member_nick }</b> 님이
+					로그인하였습니다.</span> <img onclick="dropuser()" class="usericon" alt="logo"
+					src="/YORIZORI/img/user_icon.png">
+				<div id="dropuser_content" class="dropuser_content">
+					<a
+						href="<%request.getContextPath();%>/YORIZORI/user.do?command=updateform">개인정보수정</a>
+<%--
+					<form action="<%request.getContextPath();%>/YORIZORI/recipe.do?">
+						<a class="myrecipe"> <input type="hidden" name="memberId"	value="${rdto.member_id }" /> 
+						<input type="hidden" name="command" value="my_recipe_list" /> 
+						<input type="submit" class="inform" value="나의레시피" />
+						</a>
+					</form>
+					<a href="<%request.getContextPath();%>/YORIZORI/user.do?command=my_recipe_list&memberId=${rdto.member_id }">나의레시피</a>
+>>>>>>> branch 'develop' of https://github.com/shm1113/YOZO.git
 
+<<<<<<< HEAD
       <%
          }
       %>
+=======
+					<form action="<%request.getContextPath();%>/YORIZORI/list.do?">
+						<a href="" class="useId"> 
+						<input type="hidden" name="memberId"
+							id="memberId" value="${rdto.member_id }" /> 
+							<input type="submit" class="inform" value="나의 장바구니" />
+						</a>
+					</form>
+				--%>
+				<a href="<%request.getContextPath();%>/YORIZORI/recipe.do?command=my_recipe_list&memberId=${rdto.member_id }">나의레시피</a>
+					<a href="<%request.getContextPath();%>/YORIZORI/list.do?memberId=${rdto.member_id }">나의 장바구니</a>
+					
+					<a href="<%request.getContextPath();%>/YORIZORI/user.do?command=logout">로그아웃</a>
+				</div>
+			</div>
+>>>>>>> branch 'develop' of https://github.com/shm1113/YOZO.git
 
    </header>
    <!-- 네비게이션 아이콘  -->
@@ -306,6 +370,26 @@
       </c:if>
    </nav>
 
+<<<<<<< HEAD
    <!-- <input type="button" value="checking....." id="authBtn"> -->
+=======
+				<a href="/YORIZORI/broadcast.do?command=stream" class="useId">방송하기</a>
+				<a href="/YORIZORI/broadcast.do?command=watch">시청하기</a> <!-- <a
+					href="/YORIZORI/broadcast.do?command=broadcast" class="useId">예약하기</a> -->
+			</div>
+		</div>
+		<!--유정 goods onclick 건들임 -->
+		<img class="goods finger" alt="logo" src="/YORIZORI/img/goods_icon.png"
+			onclick="location.href='<%request.getContextPath();%>/YORIZORI/goods.do?command=goodslist'">
+		<img class="map finger" alt="logo" src="/YORIZORI/img/map_icon.png"
+			onclick="location.href = '<%request.getContextPath();%>/YORIZORI/view/map/map.jsp'">
+		<c:if test="${rdto.member_role eq '관리자' }">
+			<img class="admin finger" alt="logo" src="/YORIZORI/img/admin_icon.png"
+				onclick="location.href='<%=request.getContextPath()%>/admin.do?command=list'">
+		</c:if>
+	</nav>
+
+	<!-- <input type="button" value="checking....." id="authBtn"> -->
+>>>>>>> branch 'develop' of https://github.com/shm1113/YOZO.git
 </body>
 </html>

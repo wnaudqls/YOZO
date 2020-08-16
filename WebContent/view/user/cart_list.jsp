@@ -112,14 +112,45 @@
       
    });
    
-   //전체선택 체크박스
+   //전체선택 체크박스 및 가격 계산
    function allChk(bool){
       var chks = document.getElementsByName("chk");
+      var all = document.getElementsByName("all")[0];
+      //totalPrice: 결제할 총 금액
+      var totalPrice = document.getElementById("totalPrice");
+      //allprice는  getmoney인데 이거는 그 상품의 총 가격
+      var allprice = document.getElementsByClassName("allprice");
+      //a: 가격을 담아줄 변수
+      var a=0;
       for(var i = 0; i < chks.length; i++){
          chks[i].checked = bool;
       }         
+      if(!all.checked){
+         //전체선택 체크박스가 해제된 경우
+         totalPrice.innerHTML = "0";
+      }else if(all.checked){
+         //전첵선택 체크박스가 선택된 경우
+         for(var i = 0; i < allprice.length; i++){
+            //getmoney(allprice)의 총 길이까지 반복
+             a += Number(allprice[i].innerHTML);
+            //a에다 그 가격을 숫자로 변환하여 하나하나씩 더함
+            totalPrice.innerHTML = a;
+            //totalPrice의 HTML에 a를 대입
+         }
+
+      }
    }
    
+   //체크박스 체크유무 함수 : 만약 chk가 다 선택되었을경우에 전체선택 채크박스도 같이 체크해줌
+   //역으로 같은 논리를 이용해 chk가 하나라도 해제되면 전체선택 체크박스도 같이 해제
+   function chknums(){
+      var all = document.getElementsByName("all")[0];
+      if($("input:checkbox[name=chk]:checked").length<$("input:checkbox[name=chk]").length){
+         all.checked = "";
+      }else if($("input:checkbox[name=chk]:checked").length >= $("input:checkbox[name=chk]").length ){
+         all.checked = "checked";
+      }
+   }
    
 
          //구매하기
@@ -208,14 +239,14 @@
 
          <tr>
             <td><input type="checkbox" name="chk"
-               value="<%=c.getGoods_no()%>" /></td>
+               value="<%=c.getGoods_no()%>" onclick="chknums();" /></td>
             <td><%=c.getGoods_no()%></td>
             <td><%=c.getGoods_main_photo()%></td>
             <td><%=c.getGoods_title()%></td>
             <td><%=c.getMember_id()%></td>
             <td><div class="price"><%=c.getGoods_price()%></div></td>
             <td><%=c.getAmount()%></td>
-            <td><%=c.getMoney()%></td>
+            <td class="allprice"><%=c.getMoney()%></td>
             <input type="hidden" name="memberId" value="${rdto.member_id }" />
             <input type="hidden" name="goods_no" value="<%=c.getGoods_no()%>" />
       

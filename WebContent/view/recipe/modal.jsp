@@ -69,7 +69,7 @@ function currentSlide(n) {
 function showSlides(n) {
   var i;
   var slides = document.getElementsByClassName("mySlides");
-  alert(slides[0])
+ /*  alert(slides[0]) */
   //var dots = document.getElementsByClassName("dot");
   if (n > slides.length) {slideIndex = 1}  //slides가 존재하면 slideIndex는 1  
   if (n < 1) {slideIndex = slides.length}	//끝보다 높으면 1페이지
@@ -79,9 +79,9 @@ function showSlides(n) {
   //for (i = 0; i < dots.length; i++) {
   //    dots[i].className = dots[i].className.replace(" active", "");
  // }
-  alert("slideIndex-1:"+ (slideIndex-1));
-  alert("slides:"+slides);
-  alert(slides[0]);
+ /*  alert("slideIndex-1:"+ (slideIndex-1)); */
+  /* alert("slides:"+slides); */
+  /* alert(slides[0]); */
   slides[slideIndex-1].style.display = "block";  
   //dots[slideIndex-1].className += " active";
 }

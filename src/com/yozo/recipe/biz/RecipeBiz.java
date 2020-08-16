@@ -43,4 +43,8 @@ public class RecipeBiz {
 	public List<RecipeDto> MYselectList(String member_id) {
 		return dao.MYselectList(member_id);
 }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> branch 'develop' of https://github.com/shm1113/YOZO.git

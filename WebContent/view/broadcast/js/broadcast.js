@@ -7,6 +7,7 @@ var sharebutton = document.getElementById('share-room');
 
 //this line is VERY_important 중계해줄 서버 주소(시그널 서버)
 //connection.socketURL = 'https://192.168.1.17:9001/';
+var link = window.location.href.split("command=stream")[0];
 connection.socketURL = 'https://rtcmulticonnection.herokuapp.com:443/';
 /*
 
@@ -164,7 +165,7 @@ openbutton.onclick = function() {
 			}
 			var div = document.querySelector('#localvideo>div');
 			var div2 = document.createElement('div');
-			var broadUrl = 'https://192.168.1.17/YORIZORI/broadcast.do?command=watch&roomid=' + roomid;
+			var broadUrl = link+'command=watch&roomid=' + roomid;
 			/*var a = document.createElement('a');
 			a.setAttribute('href', broadUrl, "id", "share");
 			div.appendChild(a);*/

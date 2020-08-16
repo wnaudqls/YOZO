@@ -71,6 +71,9 @@ public class UserDao extends SqlMapConfig{
 		
 		session = getSqlSessionFactory().openSession(true);
 		insertRs = session.insert(namespace+".insert",dto);
+		if(insertRs>0) {
+			session.commit();
+		}
 		
 		System.out.println("JOIN 결과는 ?? : "+ insertRs);
 		
@@ -85,7 +88,9 @@ public class UserDao extends SqlMapConfig{
 		
 		session = getSqlSessionFactory().openSession(true);
 		updateRs = session.update(namespace+".update",dto);
-		
+		if(updateRs>0) {
+			session.commit();
+		}
 		System.out.println("개인정보 수정 결과는 ?? : "+ updateRs);
 		
 		return (updateRs > 0)? true : false;
@@ -99,6 +104,9 @@ public class UserDao extends SqlMapConfig{
 		
 		session = getSqlSessionFactory().openSession(true);
 		deleteRs = session.update(namespace+".delete",dto);
+		if(deleteRs>0) {
+			session.commit();
+		}
 		
 		System.out.println("계정 삭제 결과는 ?? : "+ deleteRs);
 		
