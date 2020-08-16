@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="Broadcast">
+
+<resultMap id="BroadcastReservationResultMap" type="dto">
+	<result property="RESERVATION_NO" column="RESERVATION_NO"/>
+	<result property="RESERVATION_TIME" column="RESERVATION_TIME"/>
+	<result property="RESERVATION_CONFIRM" column="RESERVATION_CONFIRM"/>
+	<result property="MEMBER_ID" column="MEMBER_ID"/>
+</resultMap>
+<resultMap id="BroadcastResultMap" type="dto">
+	<result property="broadcast_no" column="BROADCAST_NO"/>
+	<result property="member_id" column="MEMBER_ID"/>
+	<result property="broadcast_title" column="BROADCAST_TITLE"/>
+	<result property="broadcast_content" column="BROADCAST_CONTENT"/>
+	<result property="broadcast_regdate" column="BROADCAST_REGDATE"/>
+	<result property="broadcast_viewcount" column="BROADCAST_VIEWCOUNT"/>
+	<result property="broadcast_mdate" column="BROADCAST_MDATE"/>
+</resultMap>
+
+	<select id="selectlist" resultType="dto">		
+			SELECT *
+			FROM BROADCAST
+			WHERE BROADCAST_MDATE = #{broadcast_mdate}
+	</select>
+	<select id="selectOne" resultType="dto">		
+			SELECT *
+			FROM BROADCAST
+			WHERE BROADCAST_NO = #{broadcast_no}
+	</select>
+</mapper>	
