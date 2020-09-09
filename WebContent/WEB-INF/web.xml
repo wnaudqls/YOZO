@@ -49,7 +49,7 @@ https로 자동연결해주는 web 설정
 하지만 이 전에 인증서를 넣어줘야하기 때문에 주석처리
 	/*는	 모든 경로는 http가 접근못하게 설정
  -->
-  
+<!--   
 	<security-constraint>
 		<web-resource-collection>
 			<web-resource-name>SSL Forward</web-resource-name>
@@ -59,7 +59,7 @@ https로 자동연결해주는 web 설정
 		<user-data-constraint>
 			<transport-guarantee>CONFIDENTIAL</transport-guarantee>
 		</user-data-constraint>
-	</security-constraint>
+	</security-constraint> -->
 
 
 	
