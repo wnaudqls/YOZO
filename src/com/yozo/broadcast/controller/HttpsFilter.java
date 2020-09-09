@@ -13,21 +13,20 @@ import javax.servlet.http.HttpServletResponse;
 
 public class HttpsFilter implements Filter {
 
- public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-  
-  HttpsRequestWrapper httpsRequest = new HttpsRequestWrapper((HttpServletRequest) request);
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+			throws IOException, ServletException {
 
-  httpsRequest.setResponse((HttpServletResponse) response);
-  chain.doFilter(httpsRequest, response);
- }
+		HttpsRequestWrapper httpsRequest = new HttpsRequestWrapper((HttpServletRequest) request);
 
- public void destroy() {
-  // TODO Auto-generated method stub
- }
+		httpsRequest.setResponse((HttpServletResponse) response);
+		chain.doFilter(httpsRequest, response);
+	}
 
- public void init(FilterConfig arg0) throws ServletException {
-  // TODO Auto-generated method stub
- }
+	public void destroy() {
+		// TODO Auto-generated method stub
+	}
+
+	public void init(FilterConfig arg0) throws ServletException {
+		// TODO Auto-generated method stub
+	}
 }
-
-

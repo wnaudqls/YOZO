@@ -1,3 +1,4 @@
+
 package com.yozo.broadcast.controller;
 
 import javax.servlet.http.Cookie;
@@ -46,8 +47,8 @@ public class HttpsRequestWrapper extends HttpServletRequestWrapper {
 				cookie.setPath(contextPath);
 			} else {
 				cookie.setPath("/");
-			}
-			// cookie.setSecure(false);
+			} //
+			cookie.setSecure(false);
 			response.addCookie(cookie);
 
 			setAttribute("COOKIE_OVERWRITTEN_FLAG", "true");
