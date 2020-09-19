@@ -37,22 +37,20 @@
 #mainphoto_wrapper {
 
     display: inline-block; 
-     height:500px; 
-   /* float:left; */
-     position: relative;
-     top:-150px;
+     width:400px;
+     height:400px; 
+     position: absolute;
+      left:30%;
+      margin:0 auto;
 }
 
 #on_add {
-   text-align: center;
-       display: inline-block; 
-    height:400px; 
-    margin-left: 100px;
+text-align: center;
+    display: inline-block;
+    height: 400px;
+    margin-left: 261px;
+    left: 3%;
     position: relative;
-    top:150px;
-
-   /* float: left; */
-   /* margin-right: 300px; */
 }
 /* 오버플로우 오토 해야함  */
 #add_material_wrapper {
@@ -60,13 +58,12 @@
    overflow: auto;
    height: 250px;
    border: 2px solid gray;
-   border-radius: 0.                      8em;
+   border-radius: 0. 8em;
    margin-top: 15px;
 }
 
 .section_top {
-/*    position: relative;
-   text-align: center; */
+    margin-top: 50px;
 }
 
 .btn {
@@ -84,12 +81,12 @@
 }
 
 .recipe_photo {
-   width: 400px;
-   height: 400px;
+   width: 300px;
+   height: 300px;
 }
 #inputtitle{
    height : 30px;
-   width : 300px;
+/*    width : 300px; */
    margin-bottom: 15px;
 }
 .recipe_photo{
@@ -201,7 +198,6 @@
    //기본 레시피 이미지
    function recipe_image_upload(event) {
       var filePath = document.getElementById("recipe_image").value;
-      alert("filePath:" + filePath);
 
       var reader = new FileReader();
       reader.onload = function(event) {
@@ -213,6 +209,7 @@
 
 
       var formdata=new FormData()
+      alert("sdsd"+$("#recipe_image"));
       formdata.append("recipe_image" , $("#recipe_image")[0].files[0]);
       $.ajax({
          type : 'post',
@@ -369,7 +366,6 @@
          <div id="under_add_create">
 
             <div>
-
 
 
                <input class="btn" type="button" value="취소"
