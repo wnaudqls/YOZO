@@ -113,11 +113,13 @@ public class RecipeController extends HttpServlet {
             request.setAttribute("dto", dto);
             System.out.println(dto);
 
-            List<String> detail = new ArrayList<String>();
-            List<String> material = new ArrayList<String>();
+            List<String> detail = new ArrayList<String>();	//레시피내용
+            List<String> material = new ArrayList<String>();	//재료 
+            List<String> photo = new ArrayList<String>();	//레시피사진 
 
             JsonElement element_detail = JsonParser.parseString(dto.getRecipe_detail());
             JsonElement element_material = JsonParser.parseString(dto.getRecipe_material());
+            JsonElement element_photo = JsonParser.parseString(dto.getRecipe_photo());
 
             JsonArray tmp_detail = element_detail.getAsJsonArray();
             for (int i = 0; i < tmp_detail.size(); i++) {
@@ -129,11 +131,18 @@ public class RecipeController extends HttpServlet {
                material.add(tmp_material.get(i).getAsString());
             }
 
+            JsonArray tmp_photo = element_photo.getAsJsonArray();
+            for (int i = 0; i < tmp_photo.size(); i++) {
+               photo.add(tmp_photo.get(i).getAsString());
+            }
+            
             System.out.println("detail: " + detail);
             System.out.println(detail.get(0));
             System.out.println("material: " + material);
+            System.out.println("photo: " + photo);
             request.setAttribute("detail", detail);
             request.setAttribute("material", material);
+            request.setAttribute("photo", photo);
             
             dispatch("/view/recipe/recipe_detail.jsp", request, response);
 
@@ -307,10 +316,10 @@ public class RecipeController extends HttpServlet {
          System.out.println("realFolder" + realFolder);
 
          try {
-            MultipartRequest multi = new MultipartRequest(request, realFolder, maxSize,
+            MultipartRequest multi = new MultipartRequest(request, realFolder, maxSize,"utf-8",
                   new DefaultFileRenamePolicy());
             Enumeration<?> files = multi.getFileNames(); // 전송한 전체 파일이름들을 가져온다.
-            System.out.println("files" + files);
+            System.out.println("files" + files.toString());
             String file1 = (String) files.nextElement();
             System.out.println("file1:" + file1);
             // 파일명 중복이 발생했을 때 정책에 의해 뒤에 1,2,3 처럼 숫자가 붙어 고유 파일명을 생성한다

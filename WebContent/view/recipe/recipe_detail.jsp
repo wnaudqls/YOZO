@@ -30,9 +30,8 @@ border : 1px solid black;
 
 /*상단부*/
 .section_top {
-   margin-top: 5%;
    height: 550px;
-   margin: 0 5%;
+   margin: 50px 10%;
 }
 
 .section_bottom {
@@ -45,7 +44,7 @@ border : 1px solid black;
    width: 500px;
    height: 500px;
    display: inline-block;
-   margin-left: 100px;
+   margin-left: 200px;
    float: left;
    margin-block-start: 0.83em;
 }
@@ -650,7 +649,7 @@ to {
       <div class="section_top">
          <div class="main_img_wrap">
             <img class="main_img" alt="title_img"
-               src="${dto.recipe_main_photo }">
+               src="${pageContext.request.contextPath }/recipeimages/${dto.recipe_main_photo }">
          </div>
          <div class="recipe_wrap_top">
             <div class="recipe_info">
@@ -757,7 +756,7 @@ to {
          <div class="recipe_wrap_bottom">
             <!-- 단계별 레시피 이미지 -->
             <div class="recipe_image_wrap">
-               <img alt="레시피${status.index }" src="">
+               <img alt="레시피${status.index }" src="${pageContext.request.contextPath }/recipeimages/${photo[status.index]}">
             </div>
             <!-- 단계별 래시피 글 -->
             <div class="recipe_content">
