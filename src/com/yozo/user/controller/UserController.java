@@ -185,13 +185,15 @@ public class UserController extends HttpServlet {
 			 boolean res = dao.insert(dto);
 			 
 			 if (res) { 
-				 PrintWriter out = response.getWriter();
-				 out.println("<script>alert('계정이 등록 되었습니다.'); </script>");
-				 response.sendRedirect("/YORIZORI/view/user/login.jsp"); 
+				// PrintWriter out = response.getWriter();
+				 //out.println("<script>alert('계정이 등록 되었습니다.'); </script>");
+				 //response.sendRedirect("/YORIZORI/view/user/login.jsp");
+				 jsResponse("회원가입을 성공적으로 마쳤습니다.로그인을 해주세요.","user.do?command=loginform" , response);
 			 } else { 
-				 PrintWriter out = response.getWriter();
-				 out.println("<script>alert('계정이 등록 되지 않았습니다.'); </script>");
-				 response.sendRedirect("history.back()"); 
+				 //PrintWriter out = response.getWriter();
+				 //out.println("<script>alert('계정이 등록 되지 않았습니다.'); </script>");
+				 //response.sendRedirect("history.back()");
+				 jsResponse("회원가입을 실패했습니다!","user.do?command=main" , response);
 			 }
 			
 		
@@ -580,6 +582,19 @@ public class UserController extends HttpServlet {
 		
 		
 		
+	}
+	
+	public void dispatch(String url, HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		RequestDispatcher dispatch = request.getRequestDispatcher(url);
+		dispatch.forward(request, response);
+
+	}
+
+	public void jsResponse(String msg, String url, HttpServletResponse response) throws IOException {
+		String s = "<script type='text/javascript'>" + "alert('" + msg + "');" + "location.href='" + url + "';"
+				+ "</script>";
+		response.getWriter().append(s);
 	}
 		
 		
