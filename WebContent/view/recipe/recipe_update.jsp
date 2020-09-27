@@ -264,7 +264,7 @@ $(function() {
 	<form action="<%=request.getContextPath()%>/recipe.do" method="post"
 		id="recipeinsertform">
 		<input type="hidden" name="command" value="recipe_updateres" /> 
-		<input	type="hidden" name="recipe_no" value="${dto.recipe_no }" />
+		<input type="hidden" name="recipe_no" value="${dto.recipe_no }" />
 
 
 		<div class="section_top">
@@ -272,7 +272,7 @@ $(function() {
 				<div id="upload_title">
 					<input type="file" id="recipe_main_photo"
 						onchange="recipe_thumbnail(event);" name="recipe_main_photo"
-						value="recipe_main_photo" />
+						value="${dto.recipe_main_photo}" />
 				</div>
 				<div class="recipe_photo">
 					<img class="recipe_photo" alt="대표이미지를 선택해주세요."
@@ -308,7 +308,7 @@ $(function() {
 
 				<div id="add_material_wrapper">
 					<div>
-						대표재료 : <input type="text" name="recipe_material_one"  value="${dto.recipe_material_one}">
+						대표재료 : <input type="text" name="recipe_material_one" value="${dto.recipe_material_one}">
 						<c:forEach items="${material}" var="m">
 							<div class='newmaterial'>
 								재료 : <input type='text' placeholder='재료 이름'
@@ -330,26 +330,21 @@ $(function() {
 		<div id="under_add">
 			<h3>레시피</h3>
 			<div id="add_recipe_wrapper">
-				<div id="upload_pic">
+			<!-- 	<div id="upload_pic">
 					<input type="file" onchange="recipe_image_upload(event);"
 						id="recipe_image" name="recipe_photo" value="recipe_photo" />
 
-				</div>
-				<div class="recipe_photo">
-					<%-- 	<c:forEach items="${photo }" var="pho">
-						<img class="recipe_photo" alt="이미지를 선택해주세요" id="image_container"
-							src="/YORIZORI/recipeimages/${pho }">
-							
-					</c:forEach> --%>
-					<c:forEach items="${detail }" var="det">
-						<c:forEach items="${photo }" var="phos">
-							 <input type="file" onchange="recipe_image_upload(event);" name="recipe_photo" /><br/>
+				</div> -->
+
+					<c:forEach items="${detail }" var="det" varStatus="status">
+						<%-- <c:forEach items="${photo }" var="phos"> --%>
+							 <input type="file" onchange="recipe_image_upload(event);" name="recipe_photo" value=${photo[status.index] }  /><br/>
 							<img class="recipe_photo" id="image_container" alt="이미지를 선택해주세요"
-								src="/YORIZORI/recipeimages/${phos }" name="recipe_photo">
+								src="/YORIZORI/recipeimages/${photo[status.index] }" name="recipe_photo">
 							<br />
-							<textarea rows="5" cols="70" name="recipe_detail">${det }</textarea>
+							<textarea rows="5" cols="70" name="recipe_detail">${det}</textarea>
 							<br />
-						</c:forEach>
+						<%-- </c:forEach> --%>
 					</c:forEach>
 				</div>
 				<br>
@@ -371,7 +366,6 @@ $(function() {
 				</div>
 			</div>
 
-		</div>
 	</form>
 	<%@ include file="../../form/footer.jsp"%>
 </body>

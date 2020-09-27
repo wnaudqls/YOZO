@@ -82,8 +82,8 @@ border : 1px solid black;
 .recipe_image_wrap {
 	border: 1px solid black;
 	display: inline-block;
-	height: 300px;
-	width: 40%;
+	height: 600px;
+	width: 600px;
 }
 .recipe_image{
 	height:100%;
@@ -127,9 +127,10 @@ border : 1px solid black;
 
 .recipe_content {
 	text-align: center;
-	font: small-caps 24px/1 sans-serif;
-	width: 80%;
-	margin: 0 auto;
+	font: small-caps 18px/1 sans-serif;
+	width:600px;
+	margin: 10px auto;
+	word-break:break-all;
 }
 
 /* yj */

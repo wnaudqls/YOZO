@@ -4,107 +4,142 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="recipe">
 
-   <delete id="muldelete" parameterType="map">
+	<delete id="muldelete" parameterType="map">
 
-      DELETE FROM RECIPE
-      WHERE RECIPE_NO IN 
-         <foreach item="recipe_no" collection="recipe_no" open="(" separator="," close=")">
-            #{recipe_no}
-         </foreach>
-   </delete>
+		DELETE FROM RECIPE
+		WHERE RECIPE_NO IN
+		<foreach item="recipe_no" collection="recipe_no" open="("
+			separator="," close=")">
+			#{recipe_no}
+		</foreach>
+	</delete>
 
-   <insert id="jsonInsert" parameterType="java.util.List">
-      <foreach collection="list" item="i" index="index"
-         open="INSERT ALL" separator=" " close="SELECT * FROM DUAL">
-         into
-         RECIPE
-         VALUES
-         (
-         GET_SEQ,
-         #{i.recipe_main_photo},
-         #{i.member_id},
-         #{i.recipe_title},
-         null,
-         #{i.recipe_detail},
-         SYSDATE,
-         #{i.recipe_material_one},
-         #{i.recipe_theme},
-         #{i.recipe_kind},
-         #{i.recipe_material},
-         #{i.recipe_likecount}
-         )
-      </foreach>
-   </insert>
-   
-   <select id="selectList" resultType="recipeDto">
-      SELECT 
-      RECIPE_NO,
-      RECIPE_MAIN_PHOTO,
-      MEMBER_ID,
-      RECIPE_TITLE,
-      RECIPE_PHOTO,
-      RECIPE_DETAIL,
-      RECIPE_REGDATE,
-      RECIPE_MATERIAL_ONE,
-      CATE_THEME,
-      CATE_KIND,
-      RECIPE_MATERIAL,
-      RECIPE_LIKECOUNT 
-      FROM RECIPE
-      ORDER BY RECIPE_REGDATE DESC
-   </select>
-   <select id="selectOne" resultType="recipeDto" >      
-      SELECT 
-      RECIPE_NO,
-      RECIPE_MAIN_PHOTO,
-      MEMBER_ID,
-      RECIPE_TITLE,
-      RECIPE_PHOTO,
-      RECIPE_DETAIL,
-      RECIPE_REGDATE,
-      RECIPE_MATERIAL_ONE,
-      CATE_THEME,
-      CATE_KIND,
-      RECIPE_MATERIAL,
-      RECIPE_LIKECOUNT
-      FROM RECIPE 
-      WHERE RECIPE_NO= #{recipe_no}
-   </select>
-   
-    <insert id="insert" parameterType="recipeDto">
-      INSERT INTO RECIPE
-      VALUES(
-      recipe_seq.nextval, 
-      #{recipe_main_photo}, 
-      #{member_id},
-      #{recipe_title},
-      #{recipe_photo}, 
-      #{recipe_detail},
-      SYSDATE,
-      #{recipe_material_one},
-      #{cate_theme},
-      #{cate_kind},
-      #{recipe_material},
-      #{recipe_likecount})
-   </insert> 
+	<insert id="jsonInsert" parameterType="java.util.List">
+		<foreach collection="list" item="i" index="index"
+			open="INSERT ALL" separator=" " close="SELECT * FROM DUAL">
+			into
+			RECIPE
+			VALUES
+			(
+			GET_SEQ,
+			#{i.recipe_main_photo},
+			#{i.member_id},
+			#{i.recipe_title},
+			null,
+			#{i.recipe_detail},
+			SYSDATE,
+			#{i.recipe_material_one},
+			#{i.recipe_theme},
+			#{i.recipe_kind},
+			#{i.recipe_material},
+			#{i.recipe_likecount}
+			)
+		</foreach>
+	</insert>
 
-<delete id="delete" parameterType="int">
-      DELETE FROM RECIPE
-      WHERE RECIPE_NO = #{recipe_no}
-</delete>
-<update id="update" parameterType="recipeDto">
-UPDATE RECIPE SET 
-      RECIPE_MAIN_PHOTO = #{recipe_main_photo}, 
-      MEMBER_ID = #{member_id},
-      RECIPE_TITLE = #{recipe_title},
-      RECIPE_PHOTO = #{recipe_photo}, 
-      RECIPE_DETAIL = #{recipe_detail},
-      RECIPE_REGDATE = SYSDATE,
-      RECIPE_MATERIAL_ONE = #{recipe_material_one},
-      CATE_THEME = #{cate_theme},
-      CATE_KIND = #{cate_kind},
-      RECIPE_MATERIAL = #{recipe_material},
-      RECIPE_LIKECOUNT = #{recipe_likecount}
+	<select id="selectList" resultType="recipeDto">
+		SELECT
+		RECIPE_NO,
+		RECIPE_MAIN_PHOTO,
+		MEMBER_ID,
+		RECIPE_TITLE,
+		RECIPE_PHOTO,
+		RECIPE_DETAIL,
+		RECIPE_REGDATE,
+		RECIPE_MATERIAL_ONE,
+		CATE_THEME,
+		CATE_KIND,
+		RECIPE_MATERIAL,
+		RECIPE_LIKECOUNT
+		FROM RECIPE
+		ORDER BY RECIPE_REGDATE DESC
+	</select>
+	<select id="selectOne" resultType="recipeDto">
+		SELECT
+		RECIPE_NO,
+		RECIPE_MAIN_PHOTO,
+		MEMBER_ID,
+		RECIPE_TITLE,
+		RECIPE_PHOTO,
+		RECIPE_DETAIL,
+		RECIPE_REGDATE,
+		RECIPE_MATERIAL_ONE,
+		CATE_THEME,
+		CATE_KIND,
+		RECIPE_MATERIAL,
+		RECIPE_LIKECOUNT
+		FROM RECIPE
+		WHERE RECIPE_NO= #{recipe_no}
+	</select>
+
+	<insert id="insert" parameterType="recipeDto">
+		INSERT INTO RECIPE
+		VALUES(
+		recipe_seq.nextval,
+		#{recipe_main_photo},
+		#{member_id},
+		#{recipe_title},
+		#{recipe_photo},
+		#{recipe_detail},
+		SYSDATE,
+		#{recipe_material_one},
+		#{cate_theme},
+		#{cate_kind},
+		#{recipe_material},
+		#{recipe_likecount})
+	</insert>
+
+	<delete id="delete" parameterType="int">
+		DELETE FROM RECIPE
 		WHERE RECIPE_NO = #{recipe_no}
-</update>
+	</delete>
+	<update id="update" parameterType="recipeDto">
+		UPDATE RECIPE SET
+		RECIPE_REGDATE = SYSDATE
+			<if test="recipe_main_photo == null">
+				,RECIPE_MAIN_PHOTO = #{recipe_main_photo}
+			</if>
+			<if test="recipe_title == null">
+				,RECIPE_TITLE = #{recipe_title}
+			</if>
+			<if test="recipe_photo == null">
+				,RECIPE_PHOTO = #{recipe_photo}
+			</if>
+			<if test="recipe_detail == null">
+				,RECIPE_DETAIL = #{recipe_detail}
+			</if>
+			<if test="recipe_material_one == null">
+				,RECIPE_MATERIAL_ONE = #{recipe_material_one}
+			</if>
+			<if test="cate_kind == null">
+				,CATE_KIND = #{cate_kind}
+			</if>
+			<if test="cate_theme == null">
+				,CATE_THEME = #{cate_theme}
+			</if>
+			<if test="recipe_material == null">
+				,RECIPE_MATERIAL = #{recipe_material}
+			</if>
+		WHERE RECIPE_NO = #{recipe_no}
+	</update>
+	
+		<select id="search" resultType="recipeDto">
+		SELECT
+		RECIPE_NO,
+		RECIPE_MAIN_PHOTO,
+		MEMBER_ID,
+		RECIPE_TITLE,
+		RECIPE_PHOTO,
+		RECIPE_DETAIL,
+		RECIPE_REGDATE,
+		RECIPE_MATERIAL_ONE,
+		CATE_THEME,
+		CATE_KIND,
+		RECIPE_MATERIAL,
+		RECIPE_LIKECOUNT
+		FROM RECIPE
+		WHERE RECIPE_TITLE LIKE '%'||#{txt}||'%'
+		ORDER BY RECIPE_REGDATE DESC
+	</select>
+	
 </mapper>

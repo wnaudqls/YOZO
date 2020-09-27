@@ -40,7 +40,7 @@
      width:400px;
      height:400px; 
      position: absolute;
-      left:30%;
+      left:25%;
       margin:0 auto;
 }
 
@@ -48,17 +48,18 @@
 text-align: center;
     display: inline-block;
     height: 400px;
-    margin-left: 261px;
+    margin-left: 15%;
     left: 3%;
     position: relative;
+    
 }
 /* 오버플로우 오토 해야함  */
 #add_material_wrapper {
 
-   overflow: auto;
+/*    overflow: auto; */
    height: 250px;
-   border: 2px solid gray;
-   border-radius: 0. 8em;
+   border: 2px dotted gray;
+   border-radius: 0.8em;
    margin-top: 15px;
 }
 
@@ -128,7 +129,7 @@ text-align: center;
                                        + i
 
                                        + "' name='recipe_photo"
-                                       + i
+                                       /* + i */
                                        + "' value='recipe_photo"+i+"'><br/><br/>"
 
 
@@ -249,7 +250,7 @@ text-align: center;
       reader.readAsDataURL(event.target.files[0]);
       
       var formdata=new FormData()
-      formdata.append("newrecipe_image"+i , $("#newrecipe_image")[0].files[0]);
+      formdata.append("newrecipe_image"+i , $("#newrecipe_image"+i)[0].files[0]);
       $.ajax({
          type : 'post',
          data : formdata,

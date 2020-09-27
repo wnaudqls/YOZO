@@ -1,4 +1,4 @@
-<%@page import="com.yozo.user.dto.MemberDto"%>
+<%-- <%@page import="com.yozo.user.dto.MemberDto"%> --%>
 <%@page import="com.yozo.admin.dao.AdminDao" %>
 <%@page import="java.util.List" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -18,13 +18,11 @@
 
    #user_list {
       text-align: center;
-      height: 500px;
    }
 
    #user_list_table {
    
       position: relative;
-      top: 30px;
       margin-left: auto;
       margin-right: auto;
       text-align: center;

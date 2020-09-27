@@ -17,10 +17,12 @@
         margin: 0px;
         text-align: center;
         width: 100%;
+        
         }
 
     header{
         margin:0px;
+        
     }
     #header{
         text-align: center;

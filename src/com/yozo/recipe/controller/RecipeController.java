@@ -60,6 +60,7 @@ public class RecipeController extends HttpServlet {
 		HttpSession session = request.getSession();
 
 		// 레시피 리스트
+	
 		if (command.equals("recipe_list")) {
 			System.out.println("controller_recipe_list");
 			List<RecipeDto> list = biz.selectList();
@@ -149,7 +150,6 @@ public class RecipeController extends HttpServlet {
 				}
 
 				System.out.println("detail: " + detail);
-				System.out.println(detail.get(0));
 				System.out.println("material: " + material);
 				System.out.println("photo: " + photo);
 				request.setAttribute("detail", detail);
@@ -353,22 +353,9 @@ public class RecipeController extends HttpServlet {
 			dispatch("/view/recipe/recipe_list.jsp", request, response);
 			System.out.println(list);
 
-			// 레시피 수정 완료 컨트롤러
-		} else if (command.equals("recipe_updateres")) {
-			System.out.println("recipe_updateres입장..");
-			int recipe_no = Integer.parseInt(request.getParameter("recipe_no"));
-
-			MemberDto member = (MemberDto) session.getAttribute("rdto");
-			String member_id = "";
-			try {
-				member_id = member.getMember_id();
-			} catch (Exception e) {
-
-				e.printStackTrace();
-				jsResponse("로그인하세요", request.getContextPath() + "/user.do?command=loginform", response);
-
-			}
+			
 		}
+		
 
 		// 마이 레시피 리스트
 		else if (command.equals("my_recipe_list")) {
@@ -621,7 +608,7 @@ public class RecipeController extends HttpServlet {
 		} else if (command.equals("recipe_updateres")) {
 			System.out.println("recipe_updateres입장..");
 			int recipe_no = Integer.parseInt(request.getParameter("recipe_no"));
-
+			System.out.println("checkcheck");
 			MemberDto member = (MemberDto) session.getAttribute("rdto");
 			String member_id = "";
 			try {
@@ -632,16 +619,17 @@ public class RecipeController extends HttpServlet {
 				e.printStackTrace();
 				jsResponse("로그인하세요", request.getContextPath() + "/user.do?command=loginform", response);
 			}
-
+			
 			String recipe_main_photo = request.getParameter("recipe_main_photo");
-			String recipe_title = request.getParameter("recipe_title");
+			System.out.println("요기"+recipe_main_photo);
 			String[] recipe_photo = request.getParameterValues("recipe_photo");
+			String recipe_title = request.getParameter("recipe_title");
 			String[] recipe_detail = request.getParameterValues("recipe_detail");
 			String recipe_material_one = request.getParameter("recipe_material_one");
 			String cate_theme = request.getParameter("cate_theme");
 			String cate_kind = request.getParameter("cate_kind");
 			String[] recipe_material = request.getParameterValues("recipe_material");
-
+			System.out.println("checkcheck");
 			JsonArray element_material = new JsonArray();
 			for (int i = 0; i < recipe_material.length; i++) {
 				element_material.add(recipe_material[i]);
@@ -674,6 +662,7 @@ public class RecipeController extends HttpServlet {
 			RecipeDto dto = new RecipeDto(recipe_no, recipe_main_photo, member_id, recipe_title, recipe_photo1,
 					recipe_detail1, null, recipe_material_one, cate_theme, cate_kind, recipe_material1, 0);
 			int res = biz.update(dto);
+			System.out.println("이건뭔경우야"+res);
 			if (res > 0) {
 				jsResponse("수정성공", request.getContextPath() + "/recipe.do?command=my_recipe_list", response);
 			} else {

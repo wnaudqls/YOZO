@@ -18,13 +18,14 @@
            width: 100%; 
           /* bottom: 50px; */
         /*   margin-top: -50px; */
-          /* border-top: 1px solid black; */
-          background-color: white;
+        
+          background-color: #fafbfc;
           text-align: center;
-          border: 0px;
+          border-top: 1px solid #e4e8eb;
           margin:0px;
           padding:0px;
           clear:both;
+          
          
       }
       
