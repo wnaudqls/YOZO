@@ -30,14 +30,14 @@
       
       #info {
          display: inline-block;
-                   border: 0px;
-          margin:0px;
+           border: 0px;
+          margin-top:20px;
           padding:0px;
-          font-size:10px;
+          font-size:12px;
           color : black;
-          float:left;
       }
       #kh{
+      margin:10px 0 5px 0;
          text-align : center;
       }
    /*푸터*/
@@ -53,6 +53,7 @@
          이병욱 : https://github.com/rpget2020<br>
          성현모 : https://github.com/shm1113<br>
       </div>
+      
       <div id = "kh">
          KH정보교육원 &copy; all rights reserved ...
       </div>

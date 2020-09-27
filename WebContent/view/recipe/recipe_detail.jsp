@@ -49,8 +49,9 @@ border : 1px solid black;
 }
 
 .main_img {
-	width: 500px;
-	height: 475px;
+	margin:10%;
+	width: 80%;
+	height:80%;
 }
 
 .recipe_info {
@@ -82,7 +83,11 @@ border : 1px solid black;
 	border: 1px solid black;
 	display: inline-block;
 	height: 300px;
-	width: 80%;
+	width: 40%;
+}
+.recipe_image{
+	height:100%;
+	width:100%;
 }
 
 .speech_wrap {
@@ -763,7 +768,7 @@ to {
 			<div class="recipe_wrap_bottom">
 				<!-- 단계별 레시피 이미지 -->
 				<div class="recipe_image_wrap">
-					<img alt="레시피${status.index }"
+					<img class="recipe_image" alt="레시피${status.index }"
 						src="${pageContext.request.contextPath }/recipeimages/${photo[status.index]}">
 				</div>
 				<!-- 단계별 래시피 글 -->

@@ -128,15 +128,16 @@ public class RecipeController extends HttpServlet {
 				JsonElement element_detail = JsonParser.parseString(dto.getRecipe_detail());
 				JsonElement element_material = JsonParser.parseString(dto.getRecipe_material());
 
-				if (dto.getRecipe_main_photo().equals(null)) {
-					System.out.println("null이아니네??");
-					JsonElement element_photo = JsonParser.parseString(dto.getRecipe_photo());
-
-					JsonArray tmp_photo = element_photo.getAsJsonArray();
-					for (int i = 0; i < tmp_photo.size(); i++) {
-						photo.add(tmp_photo.get(i).getAsString());
-					}
-				}
+				if(dto.getRecipe_photo()!=null)
+					{
+						System.out.println("null이아니네??");
+						JsonElement element_photo = JsonParser.parseString(dto.getRecipe_photo());
+	
+						JsonArray tmp_photo = element_photo.getAsJsonArray();
+						for (int i = 0; i < tmp_photo.size(); i++) {
+							photo.add(tmp_photo.get(i).getAsString());
+						}
+					}	
 				JsonArray tmp_detail = element_detail.getAsJsonArray();
 				for (int i = 0; i < tmp_detail.size(); i++) {
 					detail.add(tmp_detail.get(i).getAsString());
