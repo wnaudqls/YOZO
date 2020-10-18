@@ -199,7 +199,7 @@ public class GoodsDao extends SqlMapConfig {
    public int rereplyupdate(int goods_re_no) {
       SqlSession session = null;
       int res = 0;
-      
+      	System.out.println("모야"+goods_re_no);
       try {
          session = getSqlSessionFactory().openSession(false);
          res = session.update(namespace+"rereplyupdate", goods_re_no);
@@ -207,10 +207,9 @@ public class GoodsDao extends SqlMapConfig {
          System.out.println("goodsdao에서 rereplyupdate오류");
          e.printStackTrace();
       }finally {
-         session.commit();
          session.close();
       }
-      
+      System.out.println("대댓글 업데이트완료");
       return res;
    }
    
@@ -224,6 +223,7 @@ public class GoodsDao extends SqlMapConfig {
          res = session.insert(namespace+"rereplyinsert", dto);
          if(res>0) {
             session.commit();
+            System.out.println("대댓글입력완료");
          }else {
             System.out.println("입력실패요ㅠ");
          }
@@ -231,10 +231,35 @@ public class GoodsDao extends SqlMapConfig {
          System.out.println("goodsdao에서 rereplyInsert오류 ");
          e.printStackTrace();
       }finally {
+    	  session.commit();
          session.close();
       }
       return res;
    }
+
+public int replydelete(int goods_re_no) {
+	 SqlSession session = null;
+     int res = 0 ;
+	
+	try {
+	   session = getSqlSessionFactory().openSession(false);
+		res=session.delete(namespace+"rereplydelete",goods_re_no);
+		if(res>0) {
+			session.commit();
+			System.out.println("삭제성공");
+		}else {
+			System.out.println("삭제실패");
+		}
+	} catch (Exception e) {
+		e.printStackTrace();
+	}finally {
+		session.commit();
+		session.close();
+	}
+	
+		
+	return res;
+}
    
 
 }

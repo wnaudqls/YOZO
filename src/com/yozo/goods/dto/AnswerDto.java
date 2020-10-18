@@ -13,12 +13,13 @@ public class AnswerDto {
 	private int goods_re_seq;
 	private int goods_re_titletab;
 	private String member_nick;
+	private String goods_re_state;
 	public AnswerDto() {
 		super();
 	
 	}
 	public AnswerDto(int goods_re_no, int goods_no, String member_id, String goods_re_content, Date goods_re_regdate,
-			int goods_re_groupno, int goods_re_seq, int goods_re_titletab, String member_nick) {
+			int goods_re_groupno, int goods_re_seq, int goods_re_titletab, String member_nick, String goods_re_state) {
 		super();
 		this.goods_re_no = goods_re_no;
 		this.goods_no = goods_no;
@@ -29,6 +30,7 @@ public class AnswerDto {
 		this.goods_re_seq = goods_re_seq;
 		this.goods_re_titletab = goods_re_titletab;
 		this.member_nick = member_nick;
+		this.goods_re_state = goods_re_state;
 	}
 	public int getGoods_re_no() {
 		return goods_re_no;
@@ -83,6 +85,12 @@ public class AnswerDto {
 	}
 	public void setMember_nick(String member_nick) {
 		this.member_nick = member_nick;
+	}
+	public String getGoods_re_state() {
+		return goods_re_state;
+	}
+	public void setGoods_re_state(String goods_re_state) {
+		this.goods_re_state = goods_re_state;
 	}
 	
 	

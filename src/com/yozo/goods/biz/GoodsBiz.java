@@ -58,5 +58,10 @@ public class GoodsBiz {
       return rereplyupdate + rereplyinsert;
       
    }
+
+public int answerDelete(int goods_re_no) {
+	// TODO Auto-generated method stub
+	return dao.replydelete(goods_re_no);
+}
    
 }

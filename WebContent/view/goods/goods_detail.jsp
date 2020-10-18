@@ -23,7 +23,6 @@
 }
 
 section {
-
 	/*    height: 600px;
 =======
 	/* 	height: 600px;
@@ -42,7 +41,7 @@ section {
 	padding: 14px 0;
 	font-size: 15px;
 	color: #444;
-	text-align: left
+	text-align: left;
 }
 
 .btns_product_updown>a {
@@ -71,6 +70,8 @@ section {
 .product_image {
 	display: inline-block;
 	margin-right: 100px;
+	vertical-align: top;
+    margin-top: 5%;
 }
 
 .btns_product_updown {
@@ -79,12 +80,12 @@ section {
 
 .product_wrap {
 	text-align: center;
+	margin-bottom:20px;
 }
 
 .btn {
-	width: 70px;
+	width: 100px;
 	height: 35px;
-	margin-top: 20px;
 	background-color: #F5A9A9;
 	color: #FAFAFA;
 	border: 0;
@@ -92,15 +93,23 @@ section {
 	border-radius: 0.35em;
 	font-weight: bold;
 	cursor: pointer;
+	margin: 0 auto;
 }
+
+.btn_buy {
+	width: 100%;
+}
+
 </style>
 </head>
 
 
 
 
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://cdn.iamport.kr/js/iamport.payment-1.1.4.js" type="text/javascript"></script>
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.iamport.kr/js/iamport.payment-1.1.4.js"
+	type="text/javascript"></script>
 <script type="text/javascript">
 	function total_price() {
 		var cnt = document.getElementById("count").value;
@@ -110,7 +119,6 @@ section {
 
 	}
 
-	
 	function pay() {
 		var cnt = document.getElementById("count").value;
 		var total = Number("${dto.goods_price}") * Number(cnt);
@@ -143,85 +151,101 @@ section {
 		});
 
 	};
-	 $(function(){
-		$("#count").keyup(function(){
-			$("#amount").val($(this).val()) ;
+	$(function() {
+		$("#count").keyup(function() {
+			$("#amount").val($(this).val());
 		});
-	 });
+	});
 </script>
 <body>
 
 	<%@include file="/form/header.jsp"%>
 	<section class="section">
 		<!-- 쇼핑몰 상세보기 시작점  -->
-		<form action="<%request.getContextPath(); %>/YORIZORI/goods.do" method="post">
+		<form action="<%request.getContextPath();%>/YORIZORI/goods.do"
+			method="post">
 			<input type="hidden" name="command" value="goodsupdate" /> <input
 				type="hidden" name="goods_no" value="${dto.goods_no}" />
 			<div class="product_wrap">
 				<div class="product_image">
 					<!-- 썸네일   -->
-					<img src="imgtest/${dto.goods_main_photo }" id="thumbnail" />
+					<img
+						src="${pageContext.request.contextPath }/ckstorage/images/${dto.goods_main_photo }"
+						id="thumbnail" />
 				</div>
 				<div class="product_view">
-					<table id="product_preview">
+					<table id="product_preview" >
 						<caption>
 							<details>
 								<summary>상품정보</summary>
 							</details>
 						</caption>
 						<tbody>
-							<tr>
-								<th>제품명</th>
-								<td>${dto.goods_title }</td>
-							</tr>
-							<tr>
-								<th>판매가</th>
-								<td id="goods_price">${dto.goods_price}</td>
-							</tr>
-							<tr>
-								<th>제조사/공급사</th>
-								<td>&nbsp; Wonju / YORIZORI</td>
-							</tr>
-							<tr>
-								<th>구매 수량</th>
-								<td><input type="number" min="1" value="1"
-									onchange="total_price();" id="count"></td>
-							</tr>
-							<tr>
-								<th>배송비</th>
-								<td>무료배송</td>
-							</tr>
-							<tr>
-								<th>결제금액</th>
-								<td><span id="total_price"> ${dto.goods_price} </span>원</td>
-							</tr>
+						<col width="140px">
+						<col width="140px">
+						<tr>
+							<th>제품명</th>
+							<td>${dto.goods_title }</td>
+						</tr>
+						<tr>
+							<th>판매가</th>
+							<td id="goods_price">${dto.goods_price}</td>
+						</tr>
+						<tr>
+							<th>제조사/공급사</th>
+							<td>&nbsp; Wonju / YORIZORI</td>
+						</tr>
+						<tr>
+							<th>구매 수량</th>
+							<td><input type="number" min="1" value="1"
+								onchange="total_price();" id="count"></td>
+						</tr>
+						<tr>
+							<th>배송비</th>
+							<td>무료배송</td>
+						</tr>
+						<tr>
+							<th>결제금액</th>
+							<td><span id="total_price"> ${dto.goods_price} </span>원</td>
+						</tr>
+						<tr>
+							<td colspan=2><input class="btn btn_buy" type="button"
+								value="구매하기" onclick="pay();" /></td>
+						</tr>
+						<tr>
+							<c:if test="${rdto.member_role eq '관리자' }">
+								<td style="text-align:center;">
+									<input class="btn" type="submit" value="수정" />
+								</td >
+								<td style="text-align:center;">
+									<input class="btn btn_delete" type="button" value="삭제"	onclick="location.href='<%=request.getContextPath()%>/YORIZORI/goods.do?command=goodsdelete&goods_no=${dto.goods_no}'" />
+								</td>
+							</c:if>
+						</tr>
 						</tbody>
-
 					</table>
 				</div>
-				<div>
-					<input class="btn" type="button" value="구매하기" onclick="pay();" />
-					<c:if test="${rdto.member_role eq '관리자' }">
-						<div>
-							<input class="btn" type="submit" value="수정" /> 
-							<input class="btn" type="button" value="삭제"
-								onclick="location.href='<%=request.getContextPath()%>/YORIZORI/goods.do?command=goodsdelete&goods_no=${dto.goods_no}'" />
-						</div>
-					</c:if>
-				</div>
+
+
 			</div>
+ 		</form> 
+ 		
+		<form action="<%request.getContextPath();%>/YORIZORI/CartInsert.do"
+			method="POST">
+			<input type="hidden" name="memberId" value="${rdto.member_id }" /> <input
+				type="hidden" name="goods_no" value="${dto.goods_no }" /> <input
+				type="hidden" name="goods_title" value="${dto.goods_title }" /> <input
+				type="hidden" name="goods_price" value="${dto.goods_price }" /> <input
+				type="hidden" name="goods_main_photo"
+				value="${dto.goods_main_photo }" /> <input type="hidden"
+				id="amount" name="amount" value="1" /> <input type="submit"
+				value="장바구니 담기" />
 		</form>
-		<form action="<%request.getContextPath();%>/YORIZORI/CartInsert.do"	method="POST">
-						<input type="hidden" name="memberId" value="${rdto.member_id }" />
-						<input type="hidden" name="goods_no" value="${dto.goods_no }" />
-						<input type="hidden" name="goods_title"	value="${dto.goods_title }" /> 
-						<input type="hidden" name="goods_price" value="${dto.goods_price }" /> 
-						<input type="hidden" name="goods_main_photo" value="${dto.goods_main_photo }" /> 
-						<input type="hidden" id="amount" name = "amount" value="1"/>
-						<input type="submit" value="장바구니 담기" />
-					</form>
+		<br>
 		<hr>
+		<br>
 		<h1>상세설명</h1>
+		<br>
 		<div class="goods_content">${dto.goods_content }</div>
 	</section>
 
@@ -229,5 +253,5 @@ section {
 	<!-- 푸터 -->
 	<%@ include file="/form/footer.jsp"%>
 
-</body>rufw
+</body>
 </html>

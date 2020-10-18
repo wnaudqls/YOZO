@@ -97,7 +97,7 @@ public class GoodsController extends HttpServlet {
 			List<GoodsDto> list = biz.selectList();
 			request.setAttribute("list", list);
 			ServletContext scontext = getServletContext();
-			String savefile = "imgtest";
+			String savefile = "goodsimages";
 			String realFolder = scontext.getRealPath(savefile);
 			request.setAttribute("path", realFolder);
 			dispatch("/view/goods/goods_list.jsp", request, response);
@@ -112,7 +112,7 @@ public class GoodsController extends HttpServlet {
 			String filename1 = ""; // 업로드한 파일이름
 			int maxSize = 1024 * 1024 * 5; // 파일 사이즈 설정: 5M
 			/* String encType = "multipart/form-data"; */
-			String savefile = "imgtest";
+			String savefile = "goodsimages";
 			ServletContext scontext = getServletContext();
 			System.out.println("scontext:" + scontext);
 			realFolder = scontext.getRealPath(savefile);
@@ -159,7 +159,7 @@ public class GoodsController extends HttpServlet {
 
 			/* goods_re 필요없고 / goods_re_no 필요없고 */
 			int res = biz
-					.answerinsert(new AnswerDto(1, goods_no, member_id, goods_re_content, null, 1, 1, 0, member_nick));
+					.answerinsert(new AnswerDto(1, goods_no, member_id, goods_re_content, null, 1, 1, 0, member_nick,"N"));
 			System.out.println("int res 지남 if 전");
 			if (res > 0) {
 				System.out.println("댓글작성성공");
@@ -191,6 +191,19 @@ public class GoodsController extends HttpServlet {
 			out.println(str);
 
 		}
+		else if (command.equals("answerdelete")) {
+			
+			System.out.println("answerdelete왔다");
+			int goods_re_no=Integer.parseInt(request.getParameter("goods_re_no"));
+			int res=biz.answerDelete(goods_re_no);
+			if (res > 0) {
+				System.out.println("댓글삭제성공");
+				dispatch("/view/goods/goods_detail.jsp", request, response);
+			} else {
+				jsResponse("댓글 삭제 실패", "goods_answer.jsp", response);
+			}
+		}
+		
 
 		// 굿즈 상세페이지
 		else if (command.equals("goodsdetail")) {
@@ -225,7 +238,7 @@ public class GoodsController extends HttpServlet {
 
 			// int res = biz.rereplyinsert(new AnserDto(1,goods_no, member_id,
 			// goods_re_content,null,goods_re_groupno, goods_re_seq, goods_re_titletab));
-			AnswerDto dto = new AnswerDto(1, 0, member_id, goods_re_content, null, 0, 0, 0, member_nick);
+			AnswerDto dto = new AnswerDto(goods_re_no, 0, member_id, goods_re_content, null, 0, 0, 0, member_nick,"N");
 			int res = biz.answerProc(dto);
 			System.out.println("goodsadminre int res 지났고 if 전");
 			if (res > 0) {
