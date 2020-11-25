@@ -338,17 +338,19 @@ function confirmchk() {
 };
 </script>
 	<section>
-		<c:if test="${rdto.member_role eq '관리자' }">
 
-			<div id="btns">
+		<div id="btns">
+			<c:if test="${!empty rdto }">
 				<input class="btn" type="button" value="등록"
 					onclick="location.href='<%request.getContextPath();%>/YORIZORI/recipe.do?command=recipeinsertform'" />
+			</c:if>
+			<c:if test="${rdto.member_role eq '관리자' }">
 				<input class="btn" type="submit" value="삭제" onclick="confirmchk();" />
 				<input type="hidden" name="recipe_no" value="${dto.recipe_no }" />
 				<input class="btn" type="button" value="전체선택 " name="all"
 					id="allcheck" />
-			</div>
-		</c:if>
+			</c:if>
+		</div>
 		<div class="search">
 			<form action="/YORIZORI/recipe.do" method="post">
 				<fieldset>

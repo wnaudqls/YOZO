@@ -108,7 +108,7 @@ text-align: center;
             .click(
                   function() {
                      $("#add_material_wrapper")
-                           .append(
+                           .bgget(
 
    
 
@@ -210,7 +210,7 @@ text-align: center;
 
 
       var formdata=new FormData()
-      alert("sdsd"+$("#recipe_image"));
+      alert("sdsd"+$("#re'cipe_image"));
       formdata.append("recipe_image" , $("#recipe_image")[0].files[0]);
       $.ajax({
          type : 'post',

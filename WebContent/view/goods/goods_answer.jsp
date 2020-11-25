@@ -71,7 +71,7 @@
 	font-size: 9px;
 }
 </style>
-</head>
+</head>x
 <body>
 	<script type="text/javascript"
 		src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
