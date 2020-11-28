@@ -1,40 +1,5 @@
 package com.yori.zori.model.biz;
 
-import java.util.List;
+public interface BroadcastBiz {
 
-import com.yori.zori.model.dto.BroadcastDto;
-import com.yori.zori.model.dto.BroadcastDto_Reservation;
-import com.yori.zori.model.dao.BroadcastDao;
-import com.yori.zori.model.dao.BroadcastDao_Reservation;
-
-public class BroadcastBiz{
-	public BroadcastDao Broadcastdao = new BroadcastDao();
-	public BroadcastDao_Reservation dao_Reservation = new BroadcastDao_Reservation(); 
-	public List<BroadcastDto> selectList(String ymd) {
-		return Broadcastdao.selectList(ymd);
-
-	}
-	
-	public BroadcastDto selectone(int seq) {
-
-		return Broadcastdao.selectone(seq);
-	}
-
-	public int insert(BroadcastDto_Reservation dto) {
-	
-		return dao_Reservation.insert(dto);
-	}
-
-	public int update(BroadcastDto dto) {
-	
-		return Broadcastdao.update(dto);
-	}
-
-	public int delete(int seq) {
-	
-		return Broadcastdao.delete(seq);
-	}
-	public List<BroadcastDto_Reservation> checklist(String id){
-		return dao_Reservation.checklist(id);
-	}
 }

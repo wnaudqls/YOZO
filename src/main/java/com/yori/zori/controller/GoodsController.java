@@ -54,7 +54,7 @@ public class GoodsController extends HttpServlet {
 		String command = request.getParameter("command");
 		System.out.println("[" + command + "]");
 
-		GoodsBiz biz = new GoodsBiz();
+		GoodsBizImpl biz = new GoodsBizImpl();
 		HttpSession session = request.getSession();
 
 		// 굿즈 상품 등독

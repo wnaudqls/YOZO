@@ -30,7 +30,7 @@ public class CartListController extends HttpServlet {
           
        String memberId = request.getParameter("memberId");
         if(memberId != null) {
-           List<CartDTO> list = new CartService().cartList(memberId);
+           List<CartDTO> list = new CartBizImpl().cartList(memberId);
            request.setAttribute("list", list);
            request.getRequestDispatcher("/view/user/cart_list.jsp").forward(request, response);
         }else {

@@ -16,7 +16,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.yori.zori.model.biz.RecipeBiz;
+import com.yori.zori.model.biz.RecipeBizImpl;
 import com.yori.zori.recipe.dto.RecipeDto;
 import com.yori.zori.user.dto.MemberDto;
 
@@ -42,7 +42,7 @@ public class JsonController extends HttpServlet {
 		response.setContentType("text/html; charset=utf-8");
 		System.out.println("recipe.do왔다~");
 		String command = request.getParameter("command");
-		RecipeBiz biz = new RecipeBiz();
+		RecipeBizImpl biz = new RecipeBizImpl();
 		HttpSession session=request.getSession();
 		// Json데이터 DB에 입력
 		if (command.equals("jsoninsert")) {

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="like">
+<resultMap type="likedto" id="likedtoresultmap">
+
+	<result property="member_no" column="MEMBER_NO"/>
+	<result property="recipe_no" column="RECIPE_NO"/>
+	<result property="like_it" column="LIKE_IT"/>
+	<result property="like_check" column="LIKE_CHECK"/>
+
+
+</resultMap>
+
+	<insert id="insert_like">
+	INSERT INTO LIKE_BOARD VALUES(LIKE_BOARDSEQ.NEXTVAL, #{member_no}, #{recipe_no}, +1, 1)
+	
+	</insert>
+	
+	 <!-- 
+	<update id="cancel_like">
+	UPDATE RECIPE SET LIKE_IT=0, LIKE_CHECK=0
+	WHERE RECIPE_NO=#{recipe_no} AND MEMBER_NO = #{member_no}
+	</update>
+ -->
+ 
+ <select id="overlap_check" resultType="int">
+ 	SELECT * FROM LIKE_BOARD WHERE RECIPE_NO=#{recipe_no} AND MEMBER_NO = #{member_no}
+ </select>
+ <update id="addcount">
+ 
+ UPDATE RECIPE SET RECIPE_LIKECOUNT = RECIPE_LIKECOUNT+1
+ WHERE RECIPE_NO = #{recipe_no}
+ </update>
+ <update id="cancel_like" parameterType="int">
+ UPDATE RECIPE SET RECIPE_LIKECOUNT = RECIPE_LIKECOUNT-1
+ WHERE RECIPE_NO = #{recipe_no}
+ </update>
+ <delete id="delete_like" parameterType="likedto">
+ DELETE FROM LIKE_BOARD
+ WHERE MEMBER_NO = #{member_no} AND RECIPE_NO = #{recipe_no}
+ </delete>
+</mapper>

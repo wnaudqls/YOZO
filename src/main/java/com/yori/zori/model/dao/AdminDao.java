@@ -1,34 +1,31 @@
 package com.yori.zori.model.dao;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.ibatis.session.SqlSession;
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.yori.zori.model.dto.MemberDto;
 
 
 public class AdminDao {
-   private String namespace = "admin.";
+	private String namespace = "admin.";
+   
+   @Autowired
+   SqlSessionTemplate session;
    
    public List<MemberDto> selectList(){
 	  System.out.println("dao list입장");
-      SqlSession session = null;
-      List<MemberDto> list = null;
+      List<MemberDto> list = new ArrayList<MemberDto>();
       
       try {
-    	 System.out.println("dao list 중간");
-         session = getSqlSessionFactory().openSession(false);
-         System.out.println(session);
          list = session.selectList(namespace+"selectList");
-         System.out.println(list);
-         System.out.println(list.get(0).getMember_id());
       } catch (Exception e) {
     	 System.out.println("dao errors");
          e.printStackTrace();
-      } finally {
-         session.close();
       }
       return list;
    }
@@ -49,38 +46,27 @@ public class AdminDao {
 //	   return dto;
 //	   
 //   }
-   public List<MemberDto> search(String txt){
-	   System.out.println("search dao입장");
-	   SqlSession session = null;
-	   List<MemberDto> list = null;
-	  
-	   try {
-		System.out.println("search dao 중간");
-		session = getSqlSessionFactory().openSession(false);
-	    list = session.selectList(namespace+"search",txt);
-	} catch (Exception e) {
-		System.out.println("dao search error");
-		e.printStackTrace();
-	} finally {
-		session.close();
+	public List<MemberDto> search(String txt) {
+
+		List<MemberDto> list = new ArrayList<MemberDto>();
+
+		try {
+			list = session.selectList(namespace + "search", txt);
+		} catch (Exception e) {
+			System.out.println("dao search error");
+			e.printStackTrace();
+		}
+		return list;
 	}
-	   return list;
-   }
    
    public int update(MemberDto dto) {
 	  System.out.println("업데이트 입장");
-      SqlSession session = null;
+
       int res = 0;
-      System.out.println("아이디" +dto.getMember_id());
       
       try {
-    	  System.out.println("중간");
-         session = getSqlSessionFactory().openSession(false);
-         System.out.println(dto.getMember_role());
-         System.out.println(session);
-         res = session.update("admin.update",dto);
-         System.out.println(res);
-         System.out.println("왓냐?");
+ 
+         res = session.update(namespace+"update",dto);
       } catch (Exception e) {
          e.printStackTrace();
       } finally {
@@ -91,13 +77,11 @@ public class AdminDao {
       return res;
    }
    
-   public int delete(int seq) {
-      SqlSession session = null;
+   public int delete(MemberDto dto) {
       int res = 0;
       
       try {
-         session = getSqlSessionFactory().openSession();
-         res = session.delete(namespace+"delete", seq);
+         res = session.delete(namespace+"delete", dto);
       } catch (Exception e) {
          e.printStackTrace();
       } finally {
@@ -111,20 +95,13 @@ public class AdminDao {
       int count = 0;
       Map<String, String[]> map = new HashMap<>();
       map.put("seqs", seq);
-      SqlSession session = null;
       
       try {
-         session = getSqlSessionFactory().openSession(false);
          count = session.delete(namespace+"multdel",map);
-         if(count == seq.length) {
-            session.commit();
-         }
+  
       } catch (Exception e) {
          e.printStackTrace();
-      } finally {
-         session.close();
-      }
-      
+      } 
       return count;
    }
   

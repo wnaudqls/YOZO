@@ -25,7 +25,7 @@ import com.google.gson.JsonParser;
 import com.google.gson.JsonPrimitive;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
-import com.yori.zori.model.biz.RecipeBiz;
+import com.yori.zori.model.biz.RecipeBizImpl;
 import com.yori.zori.recipe.dto.RecipeDto;
 import com.yori.zori.user.dto.MemberDto;
 
@@ -56,7 +56,7 @@ public class RecipeController extends HttpServlet {
 		System.out.println("recipe.do왔다~");
 		String command = request.getParameter("command");
 		System.out.println(command);
-		RecipeBiz biz = new RecipeBiz();
+		RecipeBizImpl biz = new RecipeBizImpl();
 		HttpSession session = request.getSession();
 
 		// 레시피 리스트

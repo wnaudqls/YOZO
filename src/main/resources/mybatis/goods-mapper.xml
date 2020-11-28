@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="goods">
+	<insert id="insert" parameterType="goodsDto">
+		<!-- member_id : 작성자 -->
+		INSERT INTO GOODS
+		VALUES(goods_seq.nextval,#{member_id},#{goods_title},#{goods_main_photo},#{goods_price},#{goods_quantity},#{goods_content},sysdate)
+	</insert>
+	<!-- 굿즈 리스트 -->
+	<select id="selectList" resultType="goodsDto">
+		SELECT GOODS_NO, MEMBER_ID, GOODS_TITLE, GOODS_MAIN_PHOTO, GOODS_PRICE,
+		GOODS_QUANTITY,
+		GOODS_CONTENT, GOODS_REGDATE
+		FROM GOODS
+	</select>
+	<!-- 굿즈 detail -->
+	<select id="selectOne" resultType="goodsDto">
+		SELECT GOODS_NO, MEMBER_ID, GOODS_TITLE, GOODS_MAIN_PHOTO, GOODS_PRICE,
+		GOODS_QUANTITY,
+		GOODS_CONTENT, GOODS_REGDATE
+		FROM GOODS
+		WHERE GOODS_NO=#{goods_no}
+	</select>
+
+	<!--굿즈수정 -->
+	<update id="update" parameterType="goodsDto">
+		UPDATE GOODS
+		SET GOODS_TITLE = #{goods_title}, GOODS_QUANTITY = #{goods_quantity},
+		GOODS_PRICE = #{goods_price} ,GOODS_MAIN_PHOTO=#{goods_main_photo},
+		GOODS_CONTENT = #{goods_content}
+		WHERE GOODS_NO = #{goods_no}
+
+	</update>
+	<!--굿즈 게시글 하나 삭제 -->
+	<delete id="delete" parameterType="int">
+		DELETE FROM GOODS
+		WHERE GOODS_NO = #{goods_no}
+	</delete>
+	<!--굿즈 멀티딜리트 -->
+	<delete id="muldelete" parameterType="map">
+		DELETE FROM GOODS
+		WHERE GOODS_NO IN
+		<foreach collection="goods_no" item="goods_no2" open="("
+			separator="," close=")">
+			#{goods_no2}
+		</foreach>
+	</delete>
+
+	<!-- 댓글 -->
+	<select id="answerList" resultType="answerDto">
+		SELECT GOODS_RE_NO, GOODS_NO, MEMBER_ID, GOODS_RE_CONTENT, GOODS_RE_REGDATE,
+		GOODS_RE_GROUPNO,
+		GOODS_RE_SEQ, GOODS_RE_TITLETAB , MEMBER_NICK,GOODS_RE_STATE
+		FROM GOODSRE JOIN MEMBER USING(MEMBER_ID)
+		WHERE GOODS_NO = #{goods_no}
+		ORDER BY GOODS_RE_GROUPNO DESC,GOODS_RE_SEQ
+	</select>
+
+	<!-- 사용자댓글인서트(원댓글) -->
+	<insert id="answerinsert" parameterType="answerDto">
+		INSERT INTO GOODSRE
+		VALUES(GOODSRE_SEQ.NEXTVAL,
+		#{goods_no},
+		#{member_id},
+		#{goods_re_content},
+		SYSDATE,
+		GOODSRE_NSEQ.NEXTVAL,
+		#{goods_re_seq},
+		#{goods_re_titletab},
+		#{goods_re_state})
+	</insert>
+
+	<!-- 관리자 댓글이 끼어들기 할 공간 만들어줌 -->
+	<update id="rereplyupdate" parameterType="int">
+		UPDATE GOODSRE SET GOODS_RE_SEQ = GOODS_RE_SEQ + 1
+		WHERE GOODS_RE_GROUPNO = (SELECT GOODS_RE_GROUPNO FROM GOODSRE WHERE
+		GOODS_RE_NO = #{goods_re_no})
+		AND GOODS_RE_SEQ > (SELECT GOODS_RE_SEQ FROM GOODSRE WHERE GOODS_RE_NO =
+		#{goods_re_no})
+	</update>
+	<!-- 관리자댓글 인서트(대댓글) -->
+	<insert id="rereplyinsert" parameterType="answerDto">
+		INSERT INTO GOODSRE
+		VALUES(GOODSRE_SEQ.NEXTVAL,
+		(SELECT GOODS_NO FROM GOODSRE WHERE GOODS_RE_NO = #{goods_re_no}),
+		#{member_id},
+		#{goods_re_content},
+		SYSDATE,
+		(SELECT GOODS_RE_GROUPNO FROM GOODSRE WHERE GOODS_RE_NO = #{goods_re_no}),
+		(SELECT GOODS_RE_SEQ+1 FROM GOODSRE WHERE GOODS_RE_NO =
+		#{goods_re_no}),
+		(SELECT GOODS_RE_TITLETAB+1 FROM GOODSRE WHERE
+		GOODS_RE_NO = #{goods_re_no}),
+		'N'
+		)
+	</insert>
+	<update id="rereplydelete">
+		UPDATE GOODSRE SET GOODS_RE_STATE='Y' WHERE GOODS_RE_NO=#{goods_re_no}
+	</update>
+
+</mapper>

@@ -32,7 +32,7 @@ public class LikeController extends HttpServlet {
 
 			int recipe_no = Integer.parseInt(request.getParameter("recipe_no"));
 			int member_no = Integer.parseInt(request.getParameter("member_no"));
-			LikeBiz biz = new LikeBiz();
+			LikeBizImpl biz = new LikeBizImpl();
 			boolean chk = biz.overlap_check(new LikeDto(member_no, recipe_no));
 			System.out.println(chk);
 			if (chk) {

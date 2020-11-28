@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.yori.zori.broadcast.dto.BroadcastDto;
 import com.yori.zori.broadcast.dto.BroadcastDto_Reservation;
-import com.yori.zori.model.biz.BroadcastBiz;
+import com.yori.zori.model.biz.BroadcastBizImpl;
 
 /**
  * Servlet implementation class CalController
@@ -28,7 +28,7 @@ public class BroadcastController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		BroadcastBiz biz = new BroadcastBiz();
+		BroadcastBizImpl biz = new BroadcastBizImpl();
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		String command = request.getParameter("command");

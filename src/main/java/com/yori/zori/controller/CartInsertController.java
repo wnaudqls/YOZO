@@ -45,12 +45,12 @@ public class CartInsertController extends HttpServlet {
       int money = goods_price * amount;
       int result = 0;
       CartDTO cart = new CartDTO(memberId, goods_no, goods_title, goods_price, money, amount, goods_main_photo);
-      CartDTO cartSearch = new CartService().cartInsertList(memberId, goods_no);
+      CartDTO cartSearch = new CartBizImpl().cartInsertList(memberId, goods_no);
       
       if(cartSearch != null) {
-         result = new CartService().cartUpdate(memberId, goods_no, cartSearch.getAmount(), amount, cart.getGoods_price());
+         result = new CartBizImpl().cartUpdate(memberId, goods_no, cartSearch.getAmount(), amount, cart.getGoods_price());
       }else {
-         result = new CartService().cartInsert(cart);
+         result = new CartBizImpl().cartInsert(cart);
       }
       
 

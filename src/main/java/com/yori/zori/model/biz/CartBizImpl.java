@@ -4,13 +4,17 @@ package com.yori.zori.model.biz;
 import java.sql.Connection;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.yori.zori.model.dao.CartDAO;
 import com.yori.zori.model.dto.CartDTO;
 
+@Service
+public class CartBizImpl {
 
-public class CartService {
-
-   private CartDAO cartDao = new CartDAO();
+	@Autowired
+   private CartDAO cartDao;
 
    public List<CartDTO> cartList(String memberId) {
       List<CartDTO> list = cartDao.cartList(memberId);

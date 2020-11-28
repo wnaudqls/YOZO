@@ -1,5 +1,5 @@
 package com.yori.zori.model.biz;
 
-public class UserBiz {
+public class AdminBizImpl {
 
 }
