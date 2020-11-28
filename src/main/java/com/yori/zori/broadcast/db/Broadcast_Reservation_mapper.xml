@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="Broadcast_Reservation">
+
+<resultMap id="BroadcastReservationResultMap" type="dto">
+	<result property="reservation_no" column="RESERVATION_NO"/>
+	<result property="reservation_time" column="RESERVATION_TIME"/>
+	<result property="reservation_confirm" column="RESERVATION_CONFIRM"/>
+	<result property="member_id" column="MEMBER_ID"/>
+</resultMap>
+
+	<select id="selectlist" resultType="dto">		
+			SELECT *
+			FROM BROADCAST_RESERVATION
+			WHERE MEMBER_ID = #{member_id}
+	</select>
+	<insert id="insert">
+		INSERT INTO BROADCAST_RESERVATION 
+		VALUES(RESERVATION_SEQ.NEXTVAL,
+		SYSDATE,#{reservation_confirm},#{member_id})
+	</insert>
+</mapper>	
