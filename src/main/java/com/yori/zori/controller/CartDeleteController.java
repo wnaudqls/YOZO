@@ -35,7 +35,7 @@ public class CartDeleteController extends HttpServlet {
    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
       request.setCharacterEncoding("utf-8");
       response.setContentType("text/html; charset=utf-8");
-      CartDAO dao = new CartDAO();
+      CartDao dao = new CartDao();
       
       System.out.println("카트딜리트컨트롤러왔음");
       String command = request.getParameter("command");

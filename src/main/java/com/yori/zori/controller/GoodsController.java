@@ -303,7 +303,7 @@ public class GoodsController extends HttpServlet {
 			System.out.println("controller_goods_muldel");
 			String[] goods_no = request.getParameterValues("chk");
 			System.out.println(goods_no + "굿즈 번호 오냐? 오냐고 와라!!!!");
-			CartDAO dao = new CartDAO();
+			CartDao dao = new CartDao();
 			// CarDAO 선언
 			int result = dao.CartmultiDelete(goods_no);
 			// result: CartmuliDelete인데 용도는 굿즈 목록에서 삭제되면 장바구니에 담긴 상품도 같이 삭제

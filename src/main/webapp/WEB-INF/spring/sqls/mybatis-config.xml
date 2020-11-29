@@ -14,9 +14,10 @@
 		<typeAlias type="com.yori.zori.model.dto.GoodsDto" alias="goodsDto"/>
 		<typeAlias type="com.yori.zori.model.dto.BroadcastDto" alias="broadcastdto"/>
 		<typeAlias type="com.yori.zori.model.dto.AnswerDto" alias="answerDto"/>
-		<typeAlias type="com.yori.zori.dto.MemberDto" alias="memberDto"/> 
-		<typeAlias type="com.yori.zori.dto.RecipeDto" alias="recipeDto"/> 
-		<typeAlias type="com.yori.zori.dto.RecipereDto" alias="recipereDto"/> 
+		<typeAlias type="com.yori.zori.model.dto.MemberDto" alias="memberDto"/> 
+		<typeAlias type="com.yori.zori.model.dto.RecipeDto" alias="recipeDto"/> 
+		<typeAlias type="com.yori.zori.model.dto.RecipereDto" alias="recipereDto"/> 
+		<!-- <typeAlias type="com.yori.zori.model.dto.CartDto" alias="cartDto"/>  -->
 	</typeAliases>
 	<mappers>
 
@@ -26,7 +27,7 @@
 		<mapper resource="/mybatis/recipe-mapper.xml"/>
 		<mapper resource="/mybatis/goods-mapper.xml"/>
 		<mapper resource="/mybatis/mybatis-mapper.xml"/>
-
+		<!-- <mapper resource="/mybatis/cart-mapper.xml"/> -->
 		
 		
 	</mappers>

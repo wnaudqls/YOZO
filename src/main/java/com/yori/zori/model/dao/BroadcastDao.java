@@ -6,83 +6,17 @@ import org.apache.ibatis.session.SqlSession;
 
 import com.yori.zori.model.dto.BroadcastDto;
 
-public class BroadcastDao{
-	private String namespace = "Broadcast.";
+public interface BroadcastDao{
+	String namespace = "Broadcast.";
+	public List<BroadcastDto> selectList(String ymd);
 
-	public List<BroadcastDto> selectList(String ymd) {
-		SqlSession session = null;
-		List<BroadcastDto> list = null;
-		try {
-			session = getSqlSessionFactory().openSession(false);
-			list = session.selectList(namespace + "selectlist",ymd);
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		} finally {
-			session.close();
-		}
-		return list;
 
-	}
+	public BroadcastDto selectone(int seq);
+	public int insert(BroadcastDto dto);
 
-	public BroadcastDto selectone(int seq) {
-		SqlSession session = null;
-		BroadcastDto dto = null;
-		session = getSqlSessionFactory().openSession(false);
-		dto = session.selectOne(namespace + "selectOne", seq);
-		return dto;
-	}
+	public int update(BroadcastDto dto);
 
-	public int insert(BroadcastDto dto) {
-		SqlSession session = null;
-		int res = 0;
-		try {
-			session = getSqlSessionFactory().openSession(false);
-			res = session.insert(namespace + "insert", dto);
-			if (res > 0) {
-				session.commit();
-			}
-		} catch (Exception e) {
-			// TODO: handle exception
-		} finally {
-			session.close();
-		}
-		return res;
-	}
-
-	public int update(BroadcastDto dto) {
-		SqlSession session = null;
-		int res = 0;
-		try {
-			session = getSqlSessionFactory().openSession(false);
-			res = session.insert(namespace + "update", dto);
-			if (res > 0) {
-				session.commit();
-			}
-		} catch (Exception e) {
-			// TODO: handle exception
-		} finally {
-			session.close();
-		}
-		return res;
-	}
-
-	public int delete(int seq) {
-		SqlSession session = null;
-		int res = 0;
-		try {
-			session = getSqlSessionFactory().openSession(false);
-			res = session.insert(namespace + "delete", seq);
-			if (res > 0) {
-				session.commit();
-			}
-		} catch (Exception e) {
-			// TODO: handle exception
-		} finally {
-			session.close();
-		}
-		return res;
-	}
+	public int delete(int seq);
 	
 	/*
 	public int multidelete(String[] seq) {

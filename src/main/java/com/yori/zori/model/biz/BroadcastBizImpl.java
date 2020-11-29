@@ -9,12 +9,14 @@ import com.yori.zori.model.dto.BroadcastDto;
 import com.yori.zori.model.dto.BroadcastDto_Reservation;
 import com.yori.zori.model.dao.BroadcastDao;
 import com.yori.zori.model.dao.BroadcastDao_Reservation;
+import com.yori.zori.model.dao.BroadcastDao_ReservationImpl;
 
 @Service
 public class BroadcastBizImpl implements BroadcastBiz{
 	
 	@Autowired
 	private BroadcastDao Broadcastdao;
+	
 	@Autowired
 	private BroadcastDao_Reservation dao_Reservation;
 	

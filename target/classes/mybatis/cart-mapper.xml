@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace = "cart">
+
+	<select id="selectList" resultType="cartDto">
+		SELECT * FROM CART
+		WHERE MEMBER_ID = #{member_id}
+	</select>
+	<select id="search" resultType="cartDto" >
+	
+	</select>
+	<update id ="update" parameterType="memberDto">
+		UPDATE MEMBER SET MEMBER_ROLE = #{member_role} WHERE MEMBER_ID = #{member_id}
+	</update>
+	<insert id="insert">
+		INSERT INTO CART VALUES(#{member_id}, #{goods_no}, #{goods_title}, 
+		#{goods_main_photo}, #{goods_price}, #{money}, #{amount})
+	</insert>
+</mapper>

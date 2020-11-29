@@ -1,4 +1,4 @@
-<%@page import="com.yori.zori.model.dto.CartDTO"%>
+<%@page import="com.yori.zori.model.dto.CartDto"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
@@ -201,7 +201,7 @@
 </script>
 </head>
 <%
-   List<CartDTO> list = (List<CartDTO>) request.getAttribute("list");
+	List<CartDto> list = (List<CartDto>) request.getAttribute("list");
 %>
 <body>
 
@@ -223,18 +223,16 @@
             <th>총가격</th>
          </tr>
          <%
-            if(list.size() == 0){
-               
-          %>
+         	if(list.size() == 0){
+         %>
 
          <tr>
             <td colspan="8">장바구니가 비어있습니다.</td>
          </tr>
 
          <%
-            }else{ 
-               for (CartDTO c : list) {
-            
+         	}else{ 
+                                                            for (CartDto c : list) {
          %>
 
          <tr>

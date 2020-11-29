@@ -44,8 +44,8 @@ public class CartInsertController extends HttpServlet {
       String goods_main_photo = request.getParameter("goods_main_photo");
       int money = goods_price * amount;
       int result = 0;
-      CartDTO cart = new CartDTO(memberId, goods_no, goods_title, goods_price, money, amount, goods_main_photo);
-      CartDTO cartSearch = new CartBizImpl().cartInsertList(memberId, goods_no);
+      CartDto cart = new CartDto(memberId, goods_no, goods_title, goods_price, money, amount, goods_main_photo);
+      CartDto cartSearch = new CartBizImpl().cartInsertList(memberId, goods_no);
       
       if(cartSearch != null) {
          result = new CartBizImpl().cartUpdate(memberId, goods_no, cartSearch.getAmount(), amount, cart.getGoods_price());
