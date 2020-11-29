@@ -62,7 +62,7 @@
 
 <h3>전체 회원 조회</h3>
 <%
-AdminDao dao = new AdminDao();
+AdminDao dao;
 List<MemberDto> list = (List<MemberDto>)request.getAttribute("list");
 %>
 

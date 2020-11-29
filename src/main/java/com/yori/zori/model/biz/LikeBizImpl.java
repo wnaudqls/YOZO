@@ -1,6 +1,7 @@
 package com.yori.zori.model.biz;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.yori.zori.model.dao.LikeDao;
@@ -8,7 +9,9 @@ import com.yori.zori.model.dto.LikeDto;
 
 @Service
 public class LikeBizImpl implements LikeBiz{
-	LikeDao dao = new LikeDao();
+	
+	@Autowired
+	LikeDao dao;
 	public int insert_like(LikeDto dto) {
 	
 		return dao.insert_like(dto);

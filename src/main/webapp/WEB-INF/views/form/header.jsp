@@ -212,21 +212,21 @@
 	<header id="header">
 		<!-- 메인 아이콘, 유저아이콘 -->
 		<img id="mainicon" class="mainlogo finger" alt="logo"
-			src="/YORIZORI/img/main_icon.png"
+			src="resources/img/main_icon.png"
 			onclick="location.href='user.do?command=main'"><br>
 		<c:choose>
 			<c:when test="${empty rdto }">
 				<div class="dropuserdown">
 					<span id="loginStatus">로그인을 해주세요</span> <img
 						onclick="location.href='<%=request.getContextPath()%>/user.do?command=loginform'"
-						class="usericon" alt="logo" src="/YORIZORI/img/user_icon.png">
+						class="usericon" alt="logo" src="resources/img/user_icon.png">
 				</div>
 			</c:when>
 			<c:otherwise>
 				<div class="dropuserdown">
 					<span id="loginStatus"><b>${rdto.member_nick }</b> 님이
 						로그인하였습니다.</span> <img onclick="dropuser()" class="usericon" alt="logo"
-						src="/YORIZORI/img/user_icon.png">
+						src="resources/img/user_icon.png">
 					<div id="dropuser_content" class="dropuser_content">
 						<a
 							href="<%request.getContextPath();%>/YORIZORI/user.do?command=updateform">개인정보수정</a>
@@ -246,22 +246,22 @@
 	<nav id="icon">
 		<img
 			onclick="location.href='<%request.getContextPath();%>/YORIZORI/recipe.do?command=recipe_list'"
-			class="recipe finger" alt="logo" src="/YORIZORI/img/recipe_icon.png">
+			class="recipe finger" alt="logo" src="resources/img/recipe_icon.png">
 		<div class="dropstreamdown">
 			<img onclick="dropstream()" class="stream finger" alt="logo"
-				src="/YORIZORI/img/broadcast_icon.png">
+				src="resources/img/broadcast_icon.png">
 			<div id="dropstream_content" class="dropstream_content">
 
-				<a href="/YORIZORI/broadcast.do?command=stream" class="useId">방송하기</a>
-				<a href="/YORIZORI/broadcast.do?command=watch">시청하기</a> <a
-					href="/YORIZORI/broadcast.do?command=broadcast" class="useId">예약하기</a>
+				<a href="resources/broadcast.do?command=stream" class="useId">방송하기</a>
+				<a href="resources/broadcast.do?command=watch">시청하기</a> <a
+					href="resources/broadcast.do?command=broadcast" class="useId">예약하기</a>
 			</div>
 		</div>
 		<!--유정 goods onclick 건들임 -->
 		<img class="goods finger" alt="logo"
-			src="/YORIZORI/img/goods_icon.png"
+			src="resources/img/goods_icon.png"
 			onclick="location.href='<%request.getContextPath();%>/YORIZORI/goods.do?command=goodslist'">
-		<img class="map finger" alt="logo" src="/YORIZORI/img/map_icon.png"
+		<img class="map finger" alt="logo" src="resources/img/map_icon.png"
 			onclick="location.href = '<%request.getContextPath();%>/YORIZORI/view/map/map.jsp'">
 		<c:if test="${rdto.member_role eq '관리자' }">
 			<img class="admin finger" alt="logo"
