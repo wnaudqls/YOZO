@@ -9,7 +9,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="shortcut icon" href="./img/favicon/yozofavicon.ico"
+<link rel="shortcut icon" href="resources/img/yozofavicon.ico"
    type="image/x-icon">
 <title>요리조리</title>
 <style type="text/css">
@@ -218,7 +218,7 @@
 			<c:when test="${empty rdto }">
 				<div class="dropuserdown">
 					<span id="loginStatus">로그인을 해주세요</span> <img
-						onclick="location.href='<%=request.getContextPath()%>/user.do?command=loginform'"
+						onclick="location.href='<%=request.getContextPath()%>/login'"
 						class="usericon" alt="logo" src="resources/img/user_icon.png">
 				</div>
 			</c:when>

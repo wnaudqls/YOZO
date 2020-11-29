@@ -13,12 +13,9 @@ public class UserDaoImpl implements UserDao {
 	SqlSessionTemplate session;
 
 	@Override
-	public MemberDto login(String member_id, String member_pw) {
+	public MemberDto login(MemberDto dto) {
 
 		MemberDto rdto = null;
-		MemberDto dto = new MemberDto();
-		dto.setMember_id(member_id);
-		dto.setMember_pw(member_pw);
 
 		rdto = session.selectOne(namespace + ".login", dto);
 		System.out.println(rdto);
@@ -27,11 +24,9 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public MemberDto idCheck(String member_id) {
+	public MemberDto idCheck(MemberDto dto) {
 
 		MemberDto rdto = null;
-		MemberDto dto = new MemberDto();
-		dto.setMember_id(member_id);
 
 		rdto = session.selectOne(namespace + ".idcheck", dto);
 
@@ -39,11 +34,9 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public MemberDto nickCheck(String member_nick) {
+	public MemberDto nickCheck(MemberDto dto) {
 
 		MemberDto rdto = null;
-		MemberDto dto = new MemberDto();
-		dto.setMember_nick(member_nick);
 
 		rdto = session.selectOne(namespace + ".nickcheck", dto);
 
@@ -90,22 +83,18 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public MemberDto findId(String member_email) {
+	public MemberDto findId(MemberDto dto) {
 
 		MemberDto rdto = null;
-		MemberDto dto = new MemberDto();
-		dto.setMember_email(member_email);
 		rdto = session.selectOne(namespace + ".findId", dto);
 
 		return rdto;
 	}
 
 	@Override
-	public MemberDto findPw(String member_email) {
+	public MemberDto findPw(MemberDto dto) {
 
 		MemberDto rdto = null;
-		MemberDto dto = new MemberDto();
-		dto.setMember_email(member_email);
 
 		rdto = session.selectOne(namespace + ".findPw", dto);
 

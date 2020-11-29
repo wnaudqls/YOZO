@@ -1,12 +1,8 @@
-package com.yori.zori.model.dao;
-
+package com.yori.zori.model.biz;
 
 import com.yori.zori.model.dto.MemberDto;
 
-public interface UserDao {
-
-	String namespace = "member";
-
+public interface UserBiz {
 	public MemberDto login(MemberDto dto);
 
 	public MemberDto idCheck(MemberDto dto);
@@ -22,5 +18,4 @@ public interface UserDao {
 	public MemberDto findId(MemberDto dto);
 
 	public MemberDto findPw(MemberDto dto);
-
 }

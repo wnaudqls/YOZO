@@ -1,42 +1,40 @@
 package com.yori.zori.controller;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.Date;
-import java.util.Properties;
+import java.util.HashMap;
+import java.util.Map;
 
-import javax.mail.Authenticator;
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
-import javax.mail.internet.AddressException;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import com.yori.zori.user.dao.UserDao;
-import com.yori.zori.user.dto.MemberDto;
-import com.yori.zori.user.util.MyAuthentication;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@WebServlet("/user.do")
-public class UserController extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+import com.yori.zori.model.biz.UserBiz;
+import com.yori.zori.model.dto.MemberDto;
 
+@RestController
+public class UserController {
+	Logger logger = LoggerFactory.getLogger("UserController");
+	@Autowired
+	UserBiz biz;
 	public UserController() {
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)	throws ServletException, IOException {
-		doGet(request, response);
-	}
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	@RequestMapping("/loginres")
+	public Map<String, Boolean> login(@RequestBody MemberDto dto) {
+		
+		Map<String, Boolean> map = new HashMap<String, Boolean>();
+		boolean chk = false;
+		
+		return map;
+		
+	}
+	
+	
+	/*protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
 		
@@ -46,7 +44,7 @@ public class UserController extends HttpServlet {
 
 		String command = request.getParameter("command");
 		System.out.println(command);
-		UserDao dao = new UserDao();
+		
 		
 
 		if(command.equals("main")) {
@@ -94,10 +92,10 @@ public class UserController extends HttpServlet {
 				dispatch.forward(request, response);
 				
 			} else {
-				/*
+				
 				 * session.setAttribute("rdto", rdto); 
 				 * session.setMaxInactiveInterval(1000*60);
-				 */
+				 
 				System.out.println("로그인 실패");
 				
 				String s = "<script type='text/javascript'>" + "alert('ID, PW를 확인해 주세요');" + "location.href='view/user/login.jsp';"
@@ -110,9 +108,9 @@ public class UserController extends HttpServlet {
 			//RequestDispatcher dispatch = request.getRequestDispatcher("/view/map/map.jsp");
 			//dispatch.forward(request, response);
 			
-			/*
+			
 			 * session.setAttribute("rdto", rdto); session.setMaxInactiveInterval(1000*60);
-			 */
+			 
 			
 			System.out.println("컨트롤러 무브맵");
 			response.sendRedirect("/YORIZORI/view/map/map.jsp");
@@ -377,12 +375,12 @@ public class UserController extends HttpServlet {
 			
 
 			Properties props = System.getProperties();
-			/*
+			
 			props.put("mail.smtp.starttls.enable", "true"); // gmail은 무조건 true 고정
 			props.put("mail.smtp.host", "smtp.gmail.com"); // smtp 서버 주소
 			props.put("mail.smtp.auth","true"); // gmail은 무조건 true 고정 
 			props.put("mail.smtp.port","587"); // gmail 포트
-			*/         
+			         
 	        props.put("mail.smtp.user", "lhseunge"); // 서버 아이디만 쓰기
 			props.put("mail.smtp.host", "smtp.gmail.com"); // 구글 SMTP
 			props.put("mail.smtp.port", "465");
@@ -441,12 +439,12 @@ public class UserController extends HttpServlet {
 			
 			
 			Properties props = System.getProperties();
-			/*
+			
 				props.put("mail.smtp.starttls.enable", "true"); // gmail은 무조건 true 고정
 				props.put("mail.smtp.host", "smtp.gmail.com"); // smtp 서버 주소
 				props.put("mail.smtp.auth","true"); // gmail은 무조건 true 고정 
 				props.put("mail.smtp.port","587"); // gmail 포트
-			 */         
+			          
 			props.put("mail.smtp.user", "lhseunge"); // 서버 아이디만 쓰기
 			props.put("mail.smtp.host", "smtp.gmail.com"); // 구글 SMTP
 			props.put("mail.smtp.port", "465");
@@ -511,12 +509,12 @@ public class UserController extends HttpServlet {
 		
 		} else if (command.equals("pwEmail")) {
 			Properties props = System.getProperties();
-			/*
+			
 				props.put("mail.smtp.starttls.enable", "true"); // gmail은 무조건 true 고정
 				props.put("mail.smtp.host", "smtp.gmail.com"); // smtp 서버 주소
 				props.put("mail.smtp.auth","true"); // gmail은 무조건 true 고정 
 				props.put("mail.smtp.port","587"); // gmail 포트
-			 */         
+			          
 			props.put("mail.smtp.user", "lhseunge"); // 서버 아이디만 쓰기
 			props.put("mail.smtp.host", "smtp.gmail.com"); // 구글 SMTP
 			props.put("mail.smtp.port", "465");
@@ -596,7 +594,7 @@ public class UserController extends HttpServlet {
 		String s = "<script type='text/javascript'>" + "alert('" + msg + "');" + "location.href='" + url + "';"
 				+ "</script>";
 		response.getWriter().append(s);
-	}
+	}*/
 		
 		
 
