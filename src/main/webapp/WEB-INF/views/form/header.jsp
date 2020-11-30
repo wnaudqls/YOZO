@@ -217,12 +217,12 @@
 		<!-- 메인 아이콘, 유저아이콘 -->
 		<img id="mainicon" class="mainlogo finger" alt="logo"
 			src="resources/img/main_icon.png"
-			onclick="location.href='user.do?command=main'"><br>
+			onclick="location.href='/YORIZORI/'"><br>
 		<c:choose>
 			<c:when test="${empty login }">
 				<div class="dropuserdown">
 					<span id="loginStatus">로그인을 해주세요</span> <img
-						onclick="location.href='<%=request.getContextPath()%>/login'"
+						onclick="location.href='/YORIZORI/login'"
 						class="usericon" alt="logo" src="resources/img/user_icon.png">
 				</div>
 			</c:when>
@@ -249,28 +249,28 @@
 	<!-- 네비게이션 아이콘  -->
 	<nav id="icon">
 		<img
-			onclick="location.href='<%request.getContextPath();%>/YORIZORI/recipe.do?command=recipe_list'"
+			onclick="location.href='<%request.getContextPath();%>/YORIZORI/recipe_list'"
 			class="recipe finger" alt="logo" src="resources/img/recipe_icon.png">
 		<div class="dropstreamdown">
 			<img onclick="dropstream()" class="stream finger" alt="logo"
 				src="resources/img/broadcast_icon.png">
 			<div id="dropstream_content" class="dropstream_content">
 
-				<a href="resources/broadcast.do?command=stream" class="useId">방송하기</a>
-				<a href="resources/broadcast.do?command=watch">시청하기</a> <a
-					href="resources/broadcast.do?command=broadcast" class="useId">예약하기</a>
+				<a href="/YORIZORI/stream" class="useId">방송하기</a>
+				<a href="/YORIZORI/watch">시청하기</a> <a
+					href="/YORIZORI/book" class="useId">예약하기</a>
 			</div>
 		</div>
 		<!--유정 goods onclick 건들임 -->
 		<img class="goods finger" alt="logo"
 			src="resources/img/goods_icon.png"
-			onclick="location.href='<%request.getContextPath();%>/YORIZORI/goods.do?command=goodslist'">
+			onclick="location.href='/YORIZORI/goodslist'">
 		<img class="map finger" alt="logo" src="resources/img/map_icon.png"
-			onclick="location.href = '<%request.getContextPath();%>/YORIZORI/view/map/map.jsp'">
+			onclick="location.href = '/YORIZORI/map'">
 		<c:if test="${rdto.member_role eq '관리자' }">
 			<img class="admin finger" alt="logo"
-				src="/YORIZORI/img/admin_icon.png"
-				onclick="location.href='<%=request.getContextPath()%>/admin.do?command=list'">
+				src="/YORIZORI/resources/img/admin_icon.png"
+				onclick="location.href='/YORIZORI/userlist'">
 		</c:if>
 	</nav>
 
