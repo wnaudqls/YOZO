@@ -3,6 +3,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+
+
+<!-- 로그아웃 후 뒤로가기 금지 -->
 <% response.setHeader("Pragma", "no-cache"); 
 	response.setHeader("Cache-Control", "no-cache"); 
 	response.setHeader("Cache-Control", "no-store"); 
@@ -249,7 +252,7 @@
 	<!-- 네비게이션 아이콘  -->
 	<nav id="icon">
 		<img
-			onclick="location.href='<%request.getContextPath();%>/YORIZORI/recipe_list'"
+			onclick="location.href='/YORIZORI/recipe_list'"
 			class="recipe finger" alt="logo" src="resources/img/recipe_icon.png">
 		<div class="dropstreamdown">
 			<img onclick="dropstream()" class="stream finger" alt="logo"

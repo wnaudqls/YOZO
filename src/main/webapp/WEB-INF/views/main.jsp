@@ -281,9 +281,8 @@
 <body>
 <%@ include file="form/header.jsp" %>
 <div class="search">
-		<form  action="/YORIZORI/recipe.do" method="post">
+		<form action="/YORIZORI/recipe_search" method="post">
       <fieldset>
-         <input type="hidden" name="command" value="recipe_search">
          <input type="text" placeholder ="레시피 검색" id="recipe_search" name = "recipe_title">
          <button type="submit" class="btn"><i class="fa fa-search"><strong>검색</strong></i></button>
       </fieldset>

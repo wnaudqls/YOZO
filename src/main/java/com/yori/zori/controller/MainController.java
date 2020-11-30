@@ -15,4 +15,8 @@ public class MainController {
 	public String login() {
 		return "login";
 	}
+	@RequestMapping("recipe_list")
+	public String recipe() {
+		return "recipe_list";
+	}
 }

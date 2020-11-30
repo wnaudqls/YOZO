@@ -18,6 +18,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 		//아래 조건일때만 controller로 넘어갑니다.
 		if(	request.getRequestURI().contains("/login")||
 			request.getRequestURI().contains("/login/loginres") || 
+			request.getRequestURI().contains("/recipe_list")||
 			request.getSession().getAttribute("login")!=null) {
 			
 			return true;
