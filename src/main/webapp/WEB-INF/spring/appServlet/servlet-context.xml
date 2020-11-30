@@ -65,13 +65,11 @@
 	</websocket:message-broker> -->
 
 	<!-- interceptor -->
-	<!-- <interceptors>
+	 <interceptors>
 		<interceptor>
 			<mapping path="/**/*"/>
-			<exclude-mapping path="/login/*"/>
-			<exclude-mapping path="/user/*"/>
 			<beans:bean class="com.yori.zori.common.interceptor.LoginInterceptor"></beans:bean>
 		</interceptor>
-	</interceptors> -->
+	</interceptors> 
 
 </beans:beans>

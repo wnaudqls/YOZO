@@ -3,7 +3,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
-
+<% response.setHeader("Pragma", "no-cache"); 
+	response.setHeader("Cache-Control", "no-cache"); 
+	response.setHeader("Cache-Control", "no-store"); 
+	response.setDateHeader("Expires", 0L); 
+%>
 
 <!DOCTYPE html>
 <html>
@@ -229,14 +233,14 @@
 						src="resources/img/user_icon.png">
 					<div id="dropuser_content" class="dropuser_content">
 						<a
-							href="<%request.getContextPath();%>/YORIZORI/user.do?command=updateform">개인정보수정</a>
+							href="/YORIZORI/update">개인정보수정</a>
 
 						<a
-							href="<%request.getContextPath();%>/YORIZORI/recipe.do?command=my_recipe_list&memberId=${rdto.member_id }">나의레시피</a>
+							href="/YORIZORI/recipe">나의레시피</a>
 						<a
-							href="<%request.getContextPath();%>/YORIZORI/list.do?memberId=${rdto.member_id }">나의
+							href="/YORIZORI/list">나의
 							장바구니</a> <a
-							href="<%request.getContextPath();%>/YORIZORI/user.do?command=logout">로그아웃</a>
+							href="/YORIZORI/logout">로그아웃</a>
 					</div>
 				</div>
 			</c:otherwise>

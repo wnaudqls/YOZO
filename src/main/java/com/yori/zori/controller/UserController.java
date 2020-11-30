@@ -52,6 +52,11 @@ public class UserController {
 	public String loginsuccess() {
 		return "redirect:/";
 	}
+	@RequestMapping("/logout")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "redirect:/";
+	}
 	
 	
 	/*protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
