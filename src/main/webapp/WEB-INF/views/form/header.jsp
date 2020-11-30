@@ -215,7 +215,7 @@
 			src="resources/img/main_icon.png"
 			onclick="location.href='user.do?command=main'"><br>
 		<c:choose>
-			<c:when test="${empty rdto }">
+			<c:when test="${empty login }">
 				<div class="dropuserdown">
 					<span id="loginStatus">로그인을 해주세요</span> <img
 						onclick="location.href='<%=request.getContextPath()%>/login'"
@@ -224,7 +224,7 @@
 			</c:when>
 			<c:otherwise>
 				<div class="dropuserdown">
-					<span id="loginStatus"><b>${rdto.member_nick }</b> 님이
+					<span id="loginStatus"><b>${login.member_nick }</b> 님이
 						로그인하였습니다.</span> <img onclick="dropuser()" class="usericon" alt="logo"
 						src="resources/img/user_icon.png">
 					<div id="dropuser_content" class="dropuser_content">

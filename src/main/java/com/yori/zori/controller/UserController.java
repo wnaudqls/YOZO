@@ -3,18 +3,22 @@ package com.yori.zori.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.yori.zori.model.biz.UserBiz;
 import com.yori.zori.model.dto.MemberDto;
 
-@RestController
+@Controller
 public class UserController {
 	Logger logger = LoggerFactory.getLogger("UserController");
 	@Autowired
@@ -23,14 +27,30 @@ public class UserController {
 	}
 
 
-	@RequestMapping("/loginres")
-	public Map<String, Boolean> login(@RequestBody MemberDto dto) {
+	@RequestMapping(value="loginres",method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Boolean> login(@RequestBody MemberDto dto, HttpSession session) {
 		
 		Map<String, Boolean> map = new HashMap<String, Boolean>();
 		boolean chk = false;
 		
+
+		MemberDto res = biz.login(dto);
+		logger.info("아이디: {} \n 비밀번호: {}",dto.getMember_id(),
+				dto.getMember_pw());
+		
+		if(res != null) {
+			chk = true;
+			session.setAttribute("login", res);
+		}
+		
+		map.put("check", chk);
 		return map;
 		
+	}
+	@RequestMapping("/success")
+	public String loginsuccess() {
+		return "redirect:/";
 	}
 	
 	

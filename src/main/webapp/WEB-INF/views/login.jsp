@@ -123,18 +123,16 @@
    <div class="login">
       
       <h1>로그인</h1>
-      <form action="<%=request.getContextPath()%>/user.do" method="post">
          <input type="hidden" name="command"  value="login"> 
-         <input type="text" name="id"  placeholder="아이디를 입력하세요"> <br> 
-         <input type="password" name="pw"  placeholder="비밀번호를 입력하세요"> <br><br>
-            <input type="submit" class="userBtn" value="로그인">
+         <input type="text" id="id" name="id"  placeholder="아이디를 입력하세요"> <br> 
+         <input type="password" id="pw" name="pw"  placeholder="비밀번호를 입력하세요"> <br><br>
+            <input type="button" class="userBtn" value="로그인">
          <br>
          <br> 아직 회원이 아니신가요? <br> 
-         <input type="button" onclick="location.href='<%=request.getContextPath() %>/user.do?command=joinform'" class="userBtn" value="회원가입 하기" >
-      </form>
+         <input type="button" onclick="location.href='signup'" class="userBtn" value="회원가입 하기" >
       <br>
-      <input type="button" onclick="location.href='<%=request.getContextPath()%>/user.do?command=findId'" id="findId" class="userBtn" value="아이디 찾기" >
-      <input type="button" onclick="location.href='<%=request.getContextPath()%>/user.do?command=resetPw'" id="resetPw" class="userBtn" value="비밀번호 찾기" >
+      <input type="button" onclick="location.href='findId'" id="findId" class="userBtn" value="아이디 찾기" >
+      <input type="button" onclick="location.href='resetPw'" id="resetPw" class="userBtn" value="비밀번호 찾기" >
       
       <br>
       <br>
@@ -143,7 +141,7 @@
          <img src="//k.kakaocdn.net/14/dn/btqCn0WEmI3/nijroPfbpCa4at5EIsjyf0/o.jpg" height="40" />
       </a></div>
 
-      <div id="naverIdLogin"><img alt="NAVERIMAGE" src="<%=request.getContextPath()%>/img/naverLoginIcon (2).PNG" id="naverIdLogin_loginButton" height="40"></div>
+      <div id="naverIdLogin"><img alt="NAVERIMAGE" src="resources/img/naverLoginIcon (2).PNG" id="naverIdLogin_loginButton" height="40"></div>
       
       
       </div>
@@ -151,6 +149,40 @@
       
       <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
    <script type="text/javascript">
+
+   var userBtn = document.getElementsByClassName("userBtn")[0];
+	
+	userBtn.onclick = function(){
+		var id = document.getElementById("id").value;
+		var pw = document.getElementById("pw").value;
+		
+		var data = {"member_id" : id,
+	            "member_pw" : pw
+	    };
+		console.log(id);
+		console.log(pw);
+		$.ajax({
+	        url: "/YORIZORI/loginres",
+	        dataType: 'json',
+	        contentType: "application/json",
+	        data: JSON.stringify(data),
+	        type: "POST",
+	        success : function(res){
+	        	if(res.check == true){
+	        		location.href = "/YORIZORI/success";
+	        	}else{
+	        		alert("다시 로그인 해주세요.");
+	        	}
+	     			
+	               
+	        },
+	        error : function(userRes){
+	       
+	          		alert("오류발생");
+	            }
+	        });
+	};
+	
 
 
 
