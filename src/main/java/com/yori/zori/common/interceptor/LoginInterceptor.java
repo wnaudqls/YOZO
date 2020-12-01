@@ -1,7 +1,11 @@
 package com.yori.zori.common.interceptor;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,19 +18,23 @@ public class LoginInterceptor implements HandlerInterceptor {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		logger.info("[LogingInterceptor]:prehandle");
-		
 		//아래 조건일때만 controller로 넘어갑니다.
-		if(	request.getRequestURI().contains("/login")||
-			request.getRequestURI().contains("/login/loginres") || 
-			request.getRequestURI().contains("/recipe_list")||
-			request.getSession().getAttribute("login")!=null) {
-			
+		if(	request.getRequestURI().contains("/YORIZORI/login")||
+			request.getRequestURI().contains("/YORIZORI/loginres") || 
+			request.getRequestURI().contains("/YORIZORI/success") ||
+			request.getRequestURI().contains("/YORIZORI/recipe_list")||
+			request.getRequestURI().contains("/YORIZORI/recipelist")||
+			request.getRequestURI().contains("/YORIZORI/resources")
+			||(request.getSession().getAttribute("login")!=null)) 
+		
+		{
 			return true;
 		}
 		
 		//session에 값이 없으면,
 		if(request.getSession().getAttribute("login")==null) {
-			response.sendRedirect("/timewizard/login/loginform");
+			PrintWriter out;
+			response.sendRedirect("/YORIZORI/login");
 			return false;
 		}
 		
@@ -34,7 +42,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 	}
 	
 	@Override
-	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) {
+	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws IOException {
 		logger.info("[LoginInterceptor] : postHandle");
 		
 		if(modelAndView != null) {

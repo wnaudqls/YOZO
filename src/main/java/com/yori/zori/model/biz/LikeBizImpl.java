@@ -17,8 +17,8 @@ public class LikeBizImpl implements LikeBiz{
 		return dao.insert_like(dto);
 	}
 
-	public int addcount(int recipe_no) {
-		return dao.addcount(recipe_no);
+	public int addcount(LikeDto dto) {
+		return dao.addcount(dto);
 	}
 	
 	public boolean overlap_check(LikeDto dto) {
@@ -27,8 +27,8 @@ public class LikeBizImpl implements LikeBiz{
 	
 	
 	// 좋아요 취소
-	public int cancel_like(int recipe_no) {
-		return dao.cancel_like(recipe_no);
+	public int cancel_like(LikeDto dto) {
+		return dao.cancel_like(dto);
 	
 	}
 	

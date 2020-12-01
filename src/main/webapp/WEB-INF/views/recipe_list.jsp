@@ -8,13 +8,9 @@
 <%
 	response.setContentType("text/html charset=UTF-8");
 %>
-
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>전체 레시피</title>
-
 <style type="text/css">
 * {
 	border: 0;
@@ -111,13 +107,14 @@ section {
 }
 
 .like_icon {
+	margin-top: 15%;
 	width: 50px;
 	height: 50px;
 }
 
 .like_text {
 	position: absolute;
-	top: 14px;
+	margin-top: 15%;
 	font: small-caps 24px/1 sans-serif;
 	width: 30px;
 	height: 50px;
@@ -285,13 +282,87 @@ fieldset {
 	text-align: center;
 	display: inline-block;
 }
+
+
 </style>
+<meta charset="UTF-8">
+<title>전체 레시피</title>
+
 
 </head>
 <body>
 	<%@ include file="form/header.jsp"%>
 	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 	<script type="text/javascript">
+	
+	$(document).ready(function(){
+		recipelist();
+	})
+	
+	function recipelist(){
+	var member_no = $("#member_no").val();
+	$("#recipelist").empty();
+	$(".nosection").empty();
+	$.ajax({
+	    type: "post",
+	    url: "/YORIZORI/recipelist",
+	    dataType: "json",
+	    contentType: "application/json",
+	    success: function(data){
+	    	var list = data.list;
+	    	if(list == null || list == ''){
+	    		$(".nosection").append(
+	    				"<img id='warning' alt='warning' src='resources/img/warning.jpg'>"
+						+"<h1 id='message'>등록된 레시피가 존재하지 않습니다.</h1>"
+						
+	    		);
+	    	}else{
+	    		for(i in list){
+	    			recipe_no = list[i].recipe_no;
+	    			recipe_title = list[i].recipe_title;
+	    			recipe_main_photo = list[i].recipe_main_photo;
+	    			recipe_likecount = list[i].recipe_likecount;
+	    		$("#recipelist").append(
+	    		'<div class="list_card eval-contents">'+
+					'<div class="list_card_img">'
+						+'<a href="">'
+						+'<img class="list_img_tag"'
+								+'alt="레시피메인사진" '
+						+'src="'+recipe_main_photo+'"'
+						+'class="list_img_tag" alt="레시피메인사진" />'
+						+'</a>'
+					+'</div>'
+					+'<div class="list_card_content">'
+						+'<div class="list_card_title">'
+							+'<br> 『<a class="list_card_title_a"'
+								+'href="/YORIZORI/recipe_detail/'+recipe_no+'">'+recipe_title+'</a>』'	
+						+'</div>'
+						+'<div class="list_card_like">'
+							+'<input type="image"'
+								+'onclick="addlikes('+recipe_no+','+member_no+');"'
+								+'class="like_icon" src="resources/img/recipe/like_icon.png" />'
+							+'<span class="like_text">'+recipe_likecount+'</span>'
+						+'</div>'
+					+'</div>'
+				+'</div>'
+				+'</div>');
+	    		}
+	    	}
+	    		
+	    },
+	    error: function(data){
+
+	    	
+	    	}
+		});
+	}
+
+	</script>
+	
+	
+
+	<script type="text/javascript">
+	
 $(function() {
 
 	var bool = true;
@@ -337,14 +408,15 @@ function confirmchk() {
 	}
 };
 </script>
+
 	<section>
 
 		<div id="btns">
-			<c:if test="${!empty rdto }">
+			<c:if test="${!empty login }">
 				<input class="btn" type="button" value="등록"
 					onclick="location.href='/YORIZORI/recipeinsert'" />
 			</c:if>
-			<c:if test="${rdto.member_role eq '관리자' }">
+			<c:if test="${login.member_role eq '관리자' }">
 				<input class="btn" type="submit" value="삭제" onclick="confirmchk();" />
 				<input type="hidden" name="recipe_no" value="${dto.recipe_no }" />
 				<input class="btn" type="button" value="전체선택 " name="all"
@@ -364,8 +436,9 @@ function confirmchk() {
 		</div>
 
 
-		<form action="recipemuldel" method="post"
-			id="muldelform">
+		<!--  
+			<form action="recipemuldel" method="post" id="muldelform">
+		-->
 			<div class="recipe_list" id="products">
 
 						<div class="nosection">
@@ -427,64 +500,7 @@ function confirmchk() {
 		<input type="hidden" name="rowPerPage" value="9">
 	</form>
 	
-	<script type="text/javascript">
-	var member_no = ${login.member_no};
-	$("#recipelist").empty();
-	$(".nosection").empty();
-	$.ajax({
-	    type: "post",
-	    url: "/YORIZORI/recipelist",
-	    dataType: "json",
-	    contentType: "application/json",
-	    success: function(data){
-	    	var list = data.list;
-	    	console.log(list);
-	    	if(list == null || list == ''){
-	    		$(".nosection").append(
-	    				"<img id='warning' alt='warning' src='resources/img/warning.jpg'>"
-						+"<h1 id='message'>등록된 레시피가 존재하지 않습니다.</h1>"
-						
-	    		);
-	    	}else{
-	    		for(i in list){
-	    			recipe_no = list[i].recipe_no;
-	    			recipe_title = list[i].recipe_title;
-	    			recipe_main_photo = list[i].recipe_main_photo;
-	    			console.log(recipe_main_photo);
-	    		$("#recipelist").append(
-	    		'<div class="list_card eval-contents">'+
-					'<div class="list_card_img">'
-						+'<a href="">'
-						+'<img class="list_img_tag"'
-								+'alt="레시피메인사진" '
-						+'src="'+recipe_main_photo+'"'
-						+'class="list_img_tag" alt="레시피메인사진" />'
-						+'</a>'
-					+'</div>'
-					+'<div class="list_card_content">'
-						+'<div class="list_card_title">'
-							+'<br> 『<a class="list_card_title_a"'
-								+'href="recipe.do?command=recipe_detail&recipe_no=${dto.recipe_no }">'+recipe_title+'</a>』'	
-						+'</div>'
-						+'<div class="list_card_like">'
-							+'<input type="image"'
-								+'onclick="addlikes(${dto.recipe_no},'+member_no+');"'
-								+'class="like_icon" src="resources/img/recipe/like_icon.png" />'
-							+'<span class="like_text">${dto.recipe_likecount}</span>'
-						+'</div>'
-					+'</div>'
-				+'</div>'
-				+'</div>');
-	    		}
-	    	}
-	    		
-	    },
-	    error: function(data){
-
-	    	
-	    }
-	});
-	</script>
+	
 	
 	<script>
       var $setRows = $('#setRows');
@@ -558,7 +574,10 @@ function confirmchk() {
 
 </body>
 
+
 <script type="text/javascript" src="resources/js/likes.js">
 </script>
+
+
 
 </html>

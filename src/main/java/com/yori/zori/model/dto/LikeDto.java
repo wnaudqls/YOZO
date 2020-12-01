@@ -28,6 +28,14 @@ public class LikeDto {
 
 
 
+	public int getRecipe_no() {
+		return recipe_no;
+	}
+
+	public void setRecipe_no(int recipe_no) {
+		this.recipe_no = recipe_no;
+	}
+
 	public int getLike_seq() {
 		return recipe_no;
 	}

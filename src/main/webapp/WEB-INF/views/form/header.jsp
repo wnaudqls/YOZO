@@ -217,6 +217,7 @@
 </head>
 <body>
 	<header id="header">
+	<input type="hidden"id="member_no" value="${login.member_no }" />
 		<!-- 메인 아이콘, 유저아이콘 -->
 		<img id="mainicon" class="mainlogo finger" alt="logo"
 			src="resources/img/main_icon.png"
@@ -239,7 +240,7 @@
 							href="/YORIZORI/update">개인정보수정</a>
 
 						<a
-							href="/YORIZORI/recipe">나의레시피</a>
+							href="/YORIZORI/myrecipe">나의레시피</a>
 						<a
 							href="/YORIZORI/list">나의
 							장바구니</a> <a
@@ -270,7 +271,7 @@
 			onclick="location.href='/YORIZORI/goodslist'">
 		<img class="map finger" alt="logo" src="resources/img/map_icon.png"
 			onclick="location.href = '/YORIZORI/map'">
-		<c:if test="${rdto.member_role eq '관리자' }">
+		<c:if test="${login.member_role eq '관리자' }">
 			<img class="admin finger" alt="logo"
 				src="/YORIZORI/resources/img/admin_icon.png"
 				onclick="location.href='/YORIZORI/userlist'">

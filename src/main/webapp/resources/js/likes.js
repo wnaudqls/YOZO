@@ -1,19 +1,23 @@
 function addlikes(recipe_no, member_no) {
 	$('.like_icon').prop('disabled',true);
 	if (member_no != null) {
-		var param = '?command=like&recipe_no=' + recipe_no;
-		param += '&member_no=' + member_no;
+		var param = {
+				"recipe_no" :recipe_no,
+				"member_no": member_no
+		};
 		//넘겨줄 파라미터 지정
 		$.ajax({
-			url: "like.do" + param,
+			url: "like",
 			type: "POST",
-			cache: false,
-			dataType: "text",
+			data: JSON.stringify(param),
+			dataType: "json",
+			contentType: "application/json",
+			
 		
 			success:
 				function(data) { //ajax통신 성공시 넘어오는 데이터 통째 이름  = data
-				alert(data);
-					location.reload();// 페이지 다시 불러옴
+				alert(data.vaild);
+				recipelist();// recipelist 다시실행
 					
 				},
 			error:
@@ -24,6 +28,7 @@ function addlikes(recipe_no, member_no) {
 	}
 	else{
 		$('.like_icon').prop('disabled',false);
-		alert("로그인부터 해라");
+		alert("로그인부터 하고 오세요.");
+		location.href="/YORIZORI/login";
 	}
 }

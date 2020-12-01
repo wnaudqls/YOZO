@@ -2,25 +2,66 @@
 package com.yori.zori.controller;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.yori.zori.like.biz.LikeBiz;
-import com.yori.zori.like.dto.LikeDto;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
-@WebServlet("/like.do")
+import com.yori.zori.model.biz.LikeBiz;
+import com.yori.zori.model.biz.LikeBizImpl;
+import com.yori.zori.model.dto.LikeDto;
+
+
+@RestController
 public class LikeController extends HttpServlet {
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-		doPost(request, response);
-	}
+	@Autowired
+	LikeBiz biz;
 
+	@RequestMapping("like")
+	@ResponseBody
+	public Map<String, String> asdf(@RequestBody LikeDto dto) {
+		Map<String, String> map = new HashMap<String, String>();
+		String vaild = "";
+		boolean chk = biz.overlap_check(dto);
+		System.out.println("결과: "+chk);
+		if(chk) {
+			int cancel = biz.cancel_like(dto);
+			int delete = biz.delete_like(dto);
+			int result = cancel +delete;
+			if(result >= 2) {
+				vaild = "좋아요 취소 성공";
+				System.out.println(vaild);
+				map.put("vaild",vaild);
+			}
+		}else {
+			int res = biz.insert_like(dto);
+			if(res > 0) {
+				int overlap = biz.addcount(dto);
+				if(overlap > 0) {
+					vaild = "좋아요 추가 성공";
+					System.out.println(vaild);
+					map.put("vaild",vaild);
+				}else {
+					vaild = "좋아요 추가 과정에 오류가 발생했습니다.";
+					System.out.println(vaild);
+					map.put("vaild",vaild);
+				}
+			}
+		}
+		return map;
+	}
+	/*
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
@@ -32,7 +73,7 @@ public class LikeController extends HttpServlet {
 
 			int recipe_no = Integer.parseInt(request.getParameter("recipe_no"));
 			int member_no = Integer.parseInt(request.getParameter("member_no"));
-			LikeBizImpl biz = new LikeBizImpl();
+			
 			boolean chk = biz.overlap_check(new LikeDto(member_no, recipe_no));
 			System.out.println(chk);
 			if (chk) {
@@ -59,5 +100,5 @@ public class LikeController extends HttpServlet {
 				}
 			}
 		}
-	}
+	}*/
 }
