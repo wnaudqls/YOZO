@@ -1,11 +1,15 @@
 package com.yori.zori.model.dao;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.yori.zori.model.dto.LikeDto;
+import com.yori.zori.model.dto.RecipeDto;
 
 
 @Repository
@@ -90,6 +94,20 @@ public class LikeDaoImpl implements LikeDao{
 			System.out.println("delete_like 오류");
 		}
 		return res;
+	}
+	@Override
+	public List<RecipeDto> selectlist(RecipeDto dto) {
+		// TODO Auto-generated method stub
+		List<RecipeDto> list = new ArrayList<RecipeDto>();
+		try {
+			
+			 list = session.selectList(namespace+"selectlist",dto);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("selectlist 오류");
+		}
+		return list;
 	}
 
 }

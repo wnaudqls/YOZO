@@ -20,9 +20,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.jsp.PageContext;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -31,8 +34,10 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonPrimitive;
-
+import com.yori.zori.model.biz.LikeBiz;
 import com.yori.zori.model.biz.RecipeBizImpl;
+import com.yori.zori.model.dto.LikeDto;
+import com.yori.zori.model.dto.MemberDto;
 import com.yori.zori.model.dto.RecipeDto;
 
 import oracle.sql.DATE;
@@ -44,6 +49,10 @@ import oracle.sql.DATE;
 public class RecipeController extends HttpServlet {
 	@Autowired
 	RecipeBizImpl biz;
+	@Autowired
+	LikeBiz lbiz;
+	
+	Logger logger = LoggerFactory.getLogger(RecipeController.class);
 	public RecipeController() {
 		// TODO Auto-generated constructor stub
 	}
@@ -51,21 +60,28 @@ public class RecipeController extends HttpServlet {
 
 	@RequestMapping("recipelist")
 	@ResponseBody
-	public Map<String, List<RecipeDto>> recipelist() {
+	public Map<String, List<RecipeDto>> recipelist(RecipeDto dto, HttpSession session) {
 
+		MemberDto mdto = (MemberDto) session.getAttribute("login");
+		dto.setMember_no(mdto.getMember_no());
 
 		System.out.println("recipe.do왔다~");
+		
 
+		logger.info("member_no: {}",dto.getMember_no());
 		
 		Map<String, List<RecipeDto>> map = new HashMap<String, List<RecipeDto>>();
 
 		// 레시피 리스트
 
 			System.out.println("controller_recipe_list");
-			List<RecipeDto> list = biz.selectList();
+			List<RecipeDto> list = biz.selectList(dto);
+			List<RecipeDto> nonlist = biz.nonlikelist(dto);
 			if (list != null) {
 				System.out.println("list잘왔네~");
 				map.put("list", list);
+				map.put("nonlist", nonlist);
+				logger.info("리스트: "+nonlist);
 			} else {
 				System.out.println("list어딨어ㅡㅡ");
 			}

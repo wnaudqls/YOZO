@@ -1,11 +1,14 @@
 package com.yori.zori.model.biz;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.yori.zori.model.dao.LikeDao;
 import com.yori.zori.model.dto.LikeDto;
+import com.yori.zori.model.dto.RecipeDto;
 
 @Service
 public class LikeBizImpl implements LikeBiz{
@@ -34,6 +37,12 @@ public class LikeBizImpl implements LikeBiz{
 	
 	public int delete_like(LikeDto dto) {
 		return dao.delete_like(dto);
+	}
+
+	@Override
+	public List<RecipeDto> selectlist(RecipeDto dto) {
+		// TODO Auto-generated method stub
+		return dao.selectlist(dto);
 	}
 
 }

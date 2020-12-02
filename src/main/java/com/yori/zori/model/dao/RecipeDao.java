@@ -1,14 +1,7 @@
 package com.yori.zori.model.dao;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
-import org.apache.ibatis.session.SqlSession;
-import org.mybatis.spring.SqlSessionTemplate;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
+import java.util.List;
 
 import com.yori.zori.model.dto.RecipeDto;
 
@@ -19,7 +12,8 @@ public interface RecipeDao {
 	
 	public int jsonInsert(List<RecipeDto> list);
 
-	public List<RecipeDto> selectList();
+	public List<RecipeDto> selectList(RecipeDto dto);
+	public List<RecipeDto> nonlikelist(RecipeDto dto);
 
 	// 마이레시피 selectlist
 	public List<RecipeDto> MYselectList(String member_id);

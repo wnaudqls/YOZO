@@ -1,7 +1,10 @@
 package com.yori.zori.model.dao;
 
 
+import java.util.List;
+
 import com.yori.zori.model.dto.LikeDto;
+import com.yori.zori.model.dto.RecipeDto;
 
 public interface LikeDao {
 	String namespace = "like.";
@@ -17,5 +20,7 @@ public interface LikeDao {
 	public int cancel_like(LikeDto dto);
 
 	public int delete_like(LikeDto dto);
+	
+	public List<RecipeDto> selectlist(RecipeDto dto);
 
 }

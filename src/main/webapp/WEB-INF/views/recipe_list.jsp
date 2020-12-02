@@ -15,7 +15,9 @@
 * {
 	border: 0;
 }
-
+#likelisttext{
+	font: small-caps bold 15px/1 sans-serif; 
+}
 .dropuser_content {
 	display: none;
 	position: absolute;
@@ -35,24 +37,7 @@ div {
 	text-align: center;
 }
 
-table {
-	margin-left: auto;
-	margin-right: auto;
-}
 
-td {
-	width: 110px;
-}
-
-.recipe_img {
-	width: 200px;
-	height: 200px;
-}
-
-.top {
-	width: 350px;
-	height: 350px;
-}
 /*굿즈 목록 리스트 큰테두리*/
 .recipe_list {
 	border: 1px solid black;
@@ -93,25 +78,39 @@ section {
 	height: 250px;
 	border-radius: 25px 25px 0 0;
 }
+.like_card_img { /* 이미지 감싸는 div */
+	width: 300px;
+	height: 150px;
+	border-radius: 25px 25px 0 0;
+}
 /* 카드이미지태그 */
 .list_img_tag { /* 이미지 태그 */
 	border-radius: 25px 25px 0 0;
 	width: 300px;
 	height: 250px;
 }
+.like_img_tag { /* 이미지 태그 */
+	border-radius: 25px 25px 0 0;
+	width: 150px;
+	height: 100px;
+}
 /* 카드 내용 */
-.list_card_contents {
+.list_card_content {
 	text-align: center;
 	width: 300px;
 	height: 120px;
 }
+.like_card_content {
+	text-align: center;
+	width: 300px;
+	height: 450px;
+}
 
 .like_icon {
-	margin-top: 15%;
+	margin-top: 13%;
 	width: 50px;
 	height: 50px;
 }
-
 .like_text {
 	position: absolute;
 	margin-top: 15%;
@@ -121,16 +120,41 @@ section {
 	/*    display: inline-block;
  */
 }
+.dislike_icon {
+	width: 50px;
+	height: 50px;
+}
+.like_text_2 {
+	position: absolute;
+	margin-top: 3%;
+	font: small-caps 24px/1 sans-serif;
+	width: 30px;
+	height: 50px;
+	/*    display: inline-block;
+ */
+}
+#textrecipe{
+font-size: 20pt;
+}
 /*좋아요 테두리*/
 .list_card_like {
 	position: relative;
 	height: 50px;
 }
+.like_card{
+	position: relative;
+}
 /*제목들어가는칸*/
 .list_card_title {
+	height: 30px;
+	width: 300px;
+	font: small-caps bold 15px/1 sans-serif;
+}
+
+.like_card_title {
 	height: 70px;
 	width: 300px;
-	font: small-caps bold 24px/1 sans-serif;
+	font: small-caps bold 15px/1 sans-serif;
 }
 
 .list_card_title_a {
@@ -251,7 +275,9 @@ fieldset {
 	border: none;
 	border-radius: 5px;
 }
-
+#likelist{
+	text-align: center;
+}
 .btn {
 	width: 70px;
 	height: 35px;
@@ -294,14 +320,18 @@ fieldset {
 	<%@ include file="form/header.jsp"%>
 	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 	<script type="text/javascript">
+	var b = true;
 	
 	$(document).ready(function(){
 		recipelist();
 	})
 	
 	function recipelist(){
+		b = true;
+	$("#likelist").css("display","none");
 	var member_no = $("#member_no").val();
 	$("#recipelist").empty();
+	$("#likelist").empty();
 	$(".nosection").empty();
 	$.ajax({
 	    type: "post",
@@ -310,18 +340,57 @@ fieldset {
 	    contentType: "application/json",
 	    success: function(data){
 	    	var list = data.list;
-	    	if(list == null || list == ''){
-	    		$(".nosection").append(
-	    				"<img id='warning' alt='warning' src='resources/img/warning.jpg'>"
-						+"<h1 id='message'>등록된 레시피가 존재하지 않습니다.</h1>"
+	    	var nonlist = data.nonlist;
+	    	if(nonlist == null || nonlist == ''){
+	    		$("#products").append(	
+						'<div class="nosection">'
+						+'<img id="warning" alt="warning" src="resources/img/warning.jpg">'
+						+'<h1 id="message">등록된 레시피가 존재하지 않습니다.</h1>'
+						+'</div>'
 						
 	    		);
-	    	}else{
+	    	}
+	    	else{
+	    		if(list == null || list == ''){
+		    		$("#likelist").append("좋아요를 누른 레시피가 없습니다.");
+		    	}
 	    		for(i in list){
-	    			recipe_no = list[i].recipe_no;
-	    			recipe_title = list[i].recipe_title;
-	    			recipe_main_photo = list[i].recipe_main_photo;
-	    			recipe_likecount = list[i].recipe_likecount;
+	    			var recipe_no = list[i].recipe_no;
+	    			var recipe_title = list[i].recipe_title;
+	    			var recipe_main_photo = list[i].recipe_main_photo;
+	    			var recipe_likecount = list[i].recipe_likecount;
+	    			console.log(list[i].member_no);
+	    		$("#likelist").append(
+	    		'<div class="list_card eval-contents">'+
+					'<div class="like_card_img">'
+						+'<a href="">'
+						+'<img class="like_img_tag"'
+								+'alt="레시피메인사진" '
+						+'src="'+recipe_main_photo+'"'
+						+'alt="레시피메인사진" />'
+						+'</a>'
+					+'</div>'
+					+'<div class="like_card_content">'
+						+'<div class="like_card_title">'
+							+ '『<a class="list_card_title_a"'
+								+'href="/YORIZORI/recipe_detail/'+recipe_no+'">'+recipe_title+'</a>』'	
+						+'</div>'
+						+'<div class="like_card">'
+							+'<input type="image"'
+								+'onclick="addlikes('+recipe_no+','+member_no+');"'
+								+'class="dislike_icon" src="resources/img/recipe/dislike_icon.png" />'
+							+'<span class="like_text_2">'+recipe_likecount+'</span>'
+						+'</div>'
+					+'</div>'
+				+'</div>'
+				+'</div>');
+	    		}
+	    		for(i in nonlist){
+	    			var recipe_no =  nonlist[i].recipe_no;
+	    			var recipe_title = nonlist[i].recipe_title;
+	    			var recipe_main_photo = nonlist[i].recipe_main_photo;
+	    			var recipe_likecount = nonlist[i].recipe_likecount;
+	    			console.log(nonlist[i].member_no);
 	    		$("#recipelist").append(
 	    		'<div class="list_card eval-contents">'+
 					'<div class="list_card_img">'
@@ -329,7 +398,7 @@ fieldset {
 						+'<img class="list_img_tag"'
 								+'alt="레시피메인사진" '
 						+'src="'+recipe_main_photo+'"'
-						+'class="list_img_tag" alt="레시피메인사진" />'
+						+'alt="레시피메인사진" />'
 						+'</a>'
 					+'</div>'
 					+'<div class="list_card_content">'
@@ -347,6 +416,7 @@ fieldset {
 				+'</div>'
 				+'</div>');
 	    		}
+	    		
 	    	}
 	    		
 	    },
@@ -439,11 +509,16 @@ function confirmchk() {
 		<!--  
 			<form action="recipemuldel" method="post" id="muldelform">
 		-->
+		
 			<div class="recipe_list" id="products">
+		
+					<a href="#" id="likelisttext">좋아요 한 레시피 목록</a>
+					<div id="likelist">
+		
+					</div>
+	
 
-						<div class="nosection">
-							
-						</div>
+						
 		
 
 						<div id="recipelist">
@@ -577,7 +652,19 @@ function confirmchk() {
 
 <script type="text/javascript" src="resources/js/likes.js">
 </script>
-
+<script type="text/javascript">
+document.getElementById("likelisttext").onclick= function(){
+	
+	if(b == true){
+		$("#likelist").css("display", "block");
+		b = false;
+	}else if(b == false){
+		$("#likelist").css("display", "none");
+		b = true;
+	}
+		
+}
+</script>
 
 
 </html>

@@ -36,14 +36,30 @@ public class RecipeDaoImpl implements RecipeDao {
 	}
 
 	@Override
-	public List<RecipeDto> selectList() {
+	public List<RecipeDto> selectList(RecipeDto dto) {
 		List<RecipeDto> list = new ArrayList<RecipeDto>();
 
 		System.out.println("여기는 DAO의 selectList");
 
 		try {
 
-			list = session.selectList(namespace + "selectList");
+			list = session.selectList(namespace + "likelist", dto);
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("selectList오류");
+		}
+		return list;
+	}
+	
+	@Override
+	public List<RecipeDto> nonlikelist(RecipeDto dto) {
+		List<RecipeDto> list = new ArrayList<RecipeDto>();
+
+		System.out.println("여기는 DAO의 selectList");
+
+		try {
+
+			list = session.selectList(namespace + "non_likelist", dto);
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("selectList오류");
@@ -169,5 +185,8 @@ public class RecipeDaoImpl implements RecipeDao {
 		}
 		return res;
 	}
+
+
+
 
 }

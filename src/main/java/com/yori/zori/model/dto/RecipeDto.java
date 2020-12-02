@@ -5,6 +5,7 @@ import oracle.sql.DATE;
 public class RecipeDto {
 
 		private int recipe_no;
+		private int member_no;
 		private String recipe_main_photo;
 		private String member_id;
 		private String recipe_title;
@@ -22,7 +23,7 @@ public class RecipeDto {
 		}
 		public RecipeDto(int recipe_no, String recipe_main_photo, String member_id, String recipe_title,
 				String recipe_photo, String recipe_detail, DATE recipe_regdate, String recipe_material_one,
-				String cate_theme, String cate_kind, String recipe_material, int recipe_likecount) {
+				String cate_theme, String cate_kind, String recipe_material, int recipe_likecount, int member_no) {
 			super();
 			this.recipe_no = recipe_no;
 			this.recipe_main_photo = recipe_main_photo;
@@ -36,6 +37,14 @@ public class RecipeDto {
 			this.cate_kind = cate_kind;
 			this.recipe_material = recipe_material;
 			this.recipe_likecount = recipe_likecount;
+			this.member_no = member_no;
+		}
+		
+		public int getMember_no() {
+			return member_no;
+		}
+		public void setMember_no(int member_no) {
+			this.member_no = member_no;
 		}
 		public int getRecipe_no() {
 			return recipe_no;

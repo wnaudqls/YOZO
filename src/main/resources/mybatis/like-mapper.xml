@@ -25,6 +25,13 @@
 	</update>
  -->
  
+  <select id="selectlist" resultType="likedto">
+ 	SELECT 
+ 	LIKE_SEQ, MEMBER_NO, RECIPE_NO, LIKE_IT, LIKE_CHECK
+ 	FROM LIKE_BOARD WHERE MEMBER_NO = #{member_no}
+ 	<!-- 수정작업중 -->
+ </select>
+ 
  <select id="overlap_check" resultType="int">
  	SELECT * FROM LIKE_BOARD WHERE RECIPE_NO=#{recipe_no} AND MEMBER_NO = #{member_no}
  </select>

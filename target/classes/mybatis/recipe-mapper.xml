@@ -37,21 +37,26 @@
 		</foreach>
 	</insert>
 
-	<select id="selectList" resultType="recipeDto">
-		SELECT
-		RECIPE_NO,
-		RECIPE_MAIN_PHOTO,
-		MEMBER_ID,
-		RECIPE_TITLE,
-		RECIPE_PHOTO,
-		RECIPE_DETAIL,
-		RECIPE_REGDATE,
-		RECIPE_MATERIAL_ONE,
-		CATE_THEME,
-		CATE_KIND,
-		RECIPE_MATERIAL,
-		RECIPE_LIKECOUNT
-		FROM RECIPE
+	<select id="non_likelist" resultType="recipeDto">
+		SELECT *
+		FROM RECIPE 
+		WHERE RECIPE_NO NOT IN
+		(
+		SELECT L.RECIPE_NO 
+		FROM LIKE_BOARD L JOIN RECIPE R ON(L.RECIPE_NO = R.RECIPE_NO)
+		WHERE L.MEMBER_NO = #{member_no}
+		)
+		ORDER BY RECIPE_REGDATE DESC
+	</select>
+	<select id="likelist" resultType="recipeDto">
+		SELECT *
+		FROM RECIPE 
+		WHERE RECIPE_NO IN
+		(
+		SELECT L.RECIPE_NO 
+		FROM LIKE_BOARD L JOIN RECIPE R ON(L.RECIPE_NO = R.RECIPE_NO)
+		WHERE L.MEMBER_NO = #{member_no}
+		)
 		ORDER BY RECIPE_REGDATE DESC
 	</select>
 	<select id="selectOne" resultType="recipeDto">
