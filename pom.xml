@@ -206,15 +206,6 @@
 			<version>${org.aspectj-version}</version>
 		</dependency>
 
-		<!-- 회원가입 관련 중복 체크 하기 위해 추가한 디펜던시입니다. -->
-		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-databind</artifactId>
-			<version>2.9.8</version>
-		</dependency>
-
-
 		<!-- 이메일 인증을 위한 dependency 추가 -->
 
 		<!-- https://mvnrepository.com/artifact/org.springframework/spring-context-support -->
@@ -248,13 +239,7 @@
 			<artifactId>commons-fileupload</artifactId>
 			<version>1.4</version>
 		</dependency>
-		
-		<!-- html2canvas -->
-		<dependency>
-		    <groupId>org.webjars.npm</groupId>
-		    <artifactId>html2canvas</artifactId>
-		    <version>0.5.0-beta4</version>
-		</dependency>
+	
   </dependencies>
   <build>
 		<plugins>
